@@ -1,0 +1,328 @@
+body{direction:rtl;}
+.pull-left {
+    float: right;
+}
+.axanya-header .search-form .location{padding:22px 37px 22px 4px; border-left:none;}
+#search-form-header{}
+ul.nav.pull-right.help-menu.list-unstyled {
+    padding-right: 0; float:left;
+}
+.axanya-header .nav.logged-out{padding-right:0; float:left;}
+
+.axanya-header .regular-header .header-icon.icon-search-alt-gray{left:auto; right:5px;}
+.axanya-header .header-belo{margin: 11px auto 10px;}
+.list-unstyled, .list-layout, .subnav-list, .sidenav-list{padding-right:0;}
+
+.decorative-input[type=password], .decorative-input.otp-input, .decorative-input.recaptcha_response_field {
+    background-position: left -77px;
+}
+.decorative-input[type=email] {
+    background-position: left -33px;
+}
+.icon-btn.btn-large{padding-left: 27px; padding-right:51px;}
+.icon-btn.btn-large .icon{left:auto; right:20px;}
+ul.nav.pull-right.list-unstyled {
+    float: left;
+}
+ul.nav.pull-right.last_menu.list-unstyled {
+    padding-right: 0;
+	float:left;
+	border-right: none;
+}
+.header_item{border-left:none;}
+ul.nav.pull-right.list-unstyled #sign_up{}
+
+/*tls add dec1 start*/
+header#old-header {
+    padding: 0 15px 0 0;
+}
+.SearchForm__label {
+    padding: 0;
+    text-align: right;
+}
+.select:before{
+	left: 0;
+	right: auto;
+}
+.SearchForm__dates, .dates-text, .DropDownWrapper .dates-text{
+	text-align: right;
+}
+
+.SearchForm__guests.text-left.SearchForm__guests_infants.col-md-3.col-lg-2 {
+    border: initial;
+}
+.SearchForm__location.col-lg-4.col-md-3.SearchForm__location_infants{
+    border-left: 1px solid #ccc;
+}
+.DateRangePickerInput__arrow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    position: relative;
+    top: 1px;
+}
+.rowHeader_e3x0j{
+	text-align: right;
+}
+#footer .col-md-2 {
+    float: right;
+}
+.col-md-2.col-md-offset-1.hide-sm {
+    margin-left: 0px;
+    margin-right: 8.33333%;
+}
+.col-lg-3 {
+    float: right;
+}
+.col-lg-6{
+	float: right;
+}
+.icon-list {
+    float: right;
+}
+.icon-list.right-list {
+    float: left;
+}
+.select select{
+	padding-left: 2em;
+	padding-right: 10px;
+}
+select#guests {
+    padding-right: 5px !important;
+}
+ul#search-form-header {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+}
+.axanya-header .dropdown-trigger .dropdown-menu.notifications-dropdown{
+	left: 0px;
+	right: auto;
+}
+.axanya-header .dropdown-trigger .dropdown-menu{
+	left: 0;
+	right: auto;
+}
+.axanya-header .dropdown-trigger .dropdown-menu>li{
+	text-align:left;
+}
+.why-host-div{
+	padding: 80px 00px 80px 60px;
+	text-align: right;
+}
+.axanya-header .header-belo{
+	margin: 11px auto 10px 15px;
+}
+.nav-item a{
+	padding: 9px 20px 9px 0px;
+}
+.va-middle{
+	float: left;
+}
+
+div#js-manage-listing-content-container .col-10 {
+    float: right;
+}
+.col-2.text-right.next_step {
+    text-align: left;
+}
+.row-space-top-2 .col-4 {
+    float: right;
+}
+.row-space-top-2 .col-8 .label-large {
+    text-align: left;
+}
+#help-panel-summary .col-4 label.label-large {
+    text-align: left;
+}
+.row-space-top-2 .col-4 label a {
+    float: left !important;
+}
+.col-10 div#js-publish-button {
+    float: left !important;
+}
+.col-2.row-space-top-1.next_step {
+    float: right;
+}
+
+.nav-item .icon, .nav-item .dot {
+    margin-left: 10px;
+    margin-right: 0 !important;
+}
+.saving-progress{
+	float: left !important; 
+}
+
+#js-photos-grid .row-table .col-md-6,#help-panel-nightly-price  .row-space-top-3 .col-4,
+.col-2.space-top-1,.not-post-listed .col-8  {
+    float: right;
+}
+
+.not-post-listed div#js-publish-button {
+    float: left !important;
+}
+.calendar-month .month-nav-next,.calendar-month .month-nav{
+	float: left;
+	margin:0 4px;
+}
+.calendar-month .tile, .calendar-month .days-of-week li,.segmented-control__option{
+	float:right;
+}
+.modal_done {
+    text-align: left;
+}
+.panel-body .text-muted .col-6,.calendar-edit-form .panel-body .col-6,.row-condensed .col-sm-2.text-right,
+.ib-better-off-state .panel > div:first-child,#summary .page-container-responsive .col-lg-8,
+.col-md-3.space-sm-4.text-center.space-sm-2,.col-md-3.text-muted.text-center.hide-sm,
+.row-condensed .col-sm-3,.row-condensed .col-sm-6.space-1-sm,div#details-column
+{
+    float: right;
+}
+#pricing div#price_amount, #payment-period-container {
+    float: left;
+    padding-right: 12px;
+}
+.panel-footer {
+    text-align: left;
+}
+.row-condensed .col-md-9,.row-condensed .col-md-3,#details-column .col-md-3
+#details .page-container-responsive .row #details-column,#details-column .row .col-md-6 {
+    float: right;
+}
+
+.rooms_amenities_before .col-sm-6,.js-p3-safety-features-section .row .col-sm-6,
+.room-section .page-container-responsive .row .col-lg-8,
+.col-lg-2.col-md-12.text-center-sm.text-center-md.row-space-sm-1.filter-label,
+form.col-lg-9.trip-form.ng-pristine.ng-valid,.filters-section .col-lg-9,
+.col-lg-2.col-md-12.text-center-sm.text-center-md.filter-label {
+    float: right;
+}
+.pac-item {
+    text-align: right;
+}
+.sidebar{
+	left: auto;
+	right: 15px;
+}
+.map{
+	left: 0;
+	right: auto;
+}
+.col-middle-alt .checkbox  input{
+	float: left;
+}
+.checkbox.panel{
+	padding: 7px;
+}
+.filters-section .col-lg-9 .text-right{
+	text-align: left;
+}
+
+.filters-section .col-lg-9 .col-6,.col-sm-12.row-space-2.col-md-6.ng-scope,.pagination li {
+    float: right;
+}
+.footer-toggle{
+	left: 0;
+	right: auto;
+}
+
+
+@media(max-width: 767px){
+.discovery-tiles .col-lg-6.col-md-12.rm-padding-sm{
+	width: 100%;
+}
+
+footer .row-condensed .col-md-2 {
+    width: 100%;
+}
+.axanya-header .header--sm .title--sm .search-btn--sm{
+	padding: 22px 46px 22px 5px;
+}
+.axanya-header .header--sm .nav-content--sm .nav-icon{
+	float: left;
+}
+.button_1hueyqh{
+	left: 16px !important;
+	right: auto;
+}
+.help-section-header h2{
+	font-size: 23px;
+}
+.js-section .row-space-top-2 .col-8,#help-panel-summary .row .col-8 {
+    width: 100%;
+}
+.col-2.text-right.next_step{
+	text-align: center;
+}
+.manage-listing-row-container .listing-nav-sm {
+    display: none;
+}
+.availability-option {
+	width: 100%;
+	margin: 5px 0;
+}
+.row.row-table{
+	width: 100%;
+}
+#calendar .wizard-pane .display-flex{
+	display: block;
+}
+.row-space-top-6 h4.col-6 {
+    width: 100%;
+}
+.ib-better-off-state .row .row-condensed .col-sm-9 {
+    width: 100%;
+}
+.saving-progress {
+    float: left !important;
+    width: 100%;
+    margin-bottom: 0px;
+    text-align: left;
+}
+.col-sm-6.space-1-sm {
+    width: 100%;
+}
+
+#book_it .col-md-3 {
+    width: 100%;
+}
+}  /*767*/
+
+
+@media(min-width: 768px) and (max-width:1199px){
+.why-host-div{
+	padding: 80px 30px 80px 60px
+}
+
+.checkbox.panel {
+    padding: 7px 5px;
+    font-size: 14px;
+}
+.ib-better-off-state .col-md-8 {
+    width: 100%;
+}
+.textHeaderContainer_1sy11fq{
+	padding: 0 15px;
+}
+.footer-table {
+    padding: 0 15px;
+}
+div#footer {
+    padding: 40px 15px !important;
+}
+#host-profile .space-top-8 .col-lg-8 {
+    width: 100%;
+}
+.col-sm-12.row-space-2.col-md-6.ng-scope {
+    width: 100%;
+}
+}
+
+/*tls dec10 2016*/
+#welcomepopup a.close{
+    left:4%;
+    right:auto !important;
+}
+.rowHeader_e3x0j{
+    font-family: initial;
+}

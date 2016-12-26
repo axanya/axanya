@@ -1,0 +1,483 @@
+<?php $__env->startSection('main'); ?>
+    <main id="site-content" role="main">
+    
+    <?php echo $__env->make('common.subheader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>  
+
+  <div class="page-container-responsive space-top-4 space-4">
+    <div class="row">
+      <div class="col-md-3">
+        
+        <?php echo $__env->make('common.sidenav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+      </div>
+
+      <div class="col-md-9">
+        <!-- <div class="your-listings-flash-container"></div> -->
+        
+
+<div class="panel row-space-4">
+  <div class="panel-header">
+    <?php echo e(trans('messages.your_reservations.requested_reservation')); ?>
+
+    <?php if($result->status == 'Pending'): ?>
+    <div class="pull-right">
+        <span class="label label-info">
+    <i class="icon icon-time"></i>
+    <?php echo e(trans('messages.your_reservations.expires_in')); ?>
+
+    <span class="countdown_timer hasCountdown"><span class="countdown_row countdown_amount" id="countdown_1"></span></span>
+  </span>
+    </div>
+    <?php endif; ?>
+  </div>
+
+  <div id="accept_decline" class="panel-body">
+
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td><?php echo e(trans('messages.your_reservations.property')); ?></td>
+          <td>
+            <?php echo e($result->rooms->name); ?>
+
+            <a href="<?php echo e(url()); ?>/rooms/<?php echo e($result->room_id); ?>" class="pull-right" data-popup="true"><?php echo e(trans('messages.your_reservations.view_property')); ?></a>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo e(trans('messages.your_reservations.checkin')); ?></td>
+          <td>
+            <?php echo e($result->checkin_dmy); ?>
+
+            <a href="<?php echo e(url()); ?>/manage-listing/<?php echo e($result->room_id); ?>/calendar" class="pull-right" data-popup="true"><?php echo e(trans('messages.your_reservations.view_calendar')); ?></a>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo e(trans('messages.your_reservations.checkout')); ?></td>
+          <td>
+            <?php echo e($result->checkout_dmy); ?>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <?php echo e(ucfirst(trans_choice('messages.rooms.night',2))); ?>
+
+          </td>
+          <td>
+            <?php echo e($result->nights); ?>
+
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo e(trans_choice('messages.home.guest',2)); ?></td>
+          <td>
+            <?php echo e($result->number_of_guests); ?>
+
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo e(trans('messages.your_reservations.cancellation')); ?></td>
+          <td>
+            <?php echo e($result->cancellation); ?>
+
+            <a href="<?php echo e(url()); ?>/home/cancellation_policies" class="pull-right" id="cancel-policy-modal-trigger"><?php echo e(trans('messages.your_reservations.view_policy')); ?></a>
+          </td>
+        </tr>
+          <tr>
+            <td>
+                <?php echo e(trans('messages.your_reservations.rate_per_night')); ?>
+
+                <i class="icon icon-question icon-question-sign" data-behavior="tooltip" rel="tooltip" style="font-size: " aria-label="Different rates apply to different dates.&lt;br /&gt;Please review the property description page for more details."></i>
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->per_night); ?>
+
+            </td>
+          </tr>
+          <?php if($result->cleaning != 0): ?>
+          <tr>
+            <td>
+              <?php echo e(trans('messages.your_reservations.cleaning_fee')); ?>
+
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->cleaning); ?>
+
+            </td>
+          </tr>
+          <?php endif; ?>
+          <?php if($result->additional_guest != 0): ?>
+          <tr>
+            <td>
+              <?php echo e(trans('messages.your_reservations.additional_guest_fee')); ?>
+
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->additional_guest); ?>
+
+            </td>
+          </tr>
+          <?php endif; ?>
+          <?php if($result->security != 0): ?>
+          <tr>
+            <td>
+              <?php echo e(trans('messages.your_reservations.security_fee')); ?>
+
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->security); ?>
+
+            </td>
+          </tr>
+          <?php endif; ?>
+          <tr>
+            <td>
+              <?php echo e(trans('messages.your_reservations.subtotal')); ?>
+
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->subtotal); ?>
+
+            </td>
+          </tr>
+          <?php if($result->host_fee): ?>
+          <tr>
+            <td>
+                  <?php echo e(trans('messages.your_reservations.host_fee')); ?>
+
+                  <i class="icon icon-question icon-question-sign" data-behavior="tooltip" rel="tooltip" style="font-size: " aria-label="<?php echo e(trans('messages.your_reservations.host_fee_desc',['site_name'=>$site_name])); ?>"></i>
+            </td>
+            <td>
+              <?php echo e($result->currency->symbol); ?><?php echo e($result->host_fee); ?>
+
+            </td>
+          </tr>
+          <?php endif; ?>
+          <tr id="total">
+            <td>
+              <?php echo e(trans('messages.your_reservations.total_payout')); ?>
+
+            </td>
+            <td>
+              <strong><?php echo e($result->currency->symbol); ?><?php echo e($result->host_payout); ?></strong>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+</div>
+<div class="panel-header">
+  <?php echo e(trans('messages.your_reservations.about_guest')); ?>
+
+</div>
+<div class="panel-body">
+  <div class="row">
+    <div class="col-4">
+      <span class="media-round" style="background-image:url(<?php echo e($result->users->profile_picture->src); ?>); width:215px; height:215px;" title="<?php echo e($result->users->first_name); ?>"></span>
+      <h4>
+        <a href="<?php echo e(url()); ?>/users/show/<?php echo e($result->users->id); ?>" class="verification_user_name"><?php echo e($result->users->first_name); ?></a>
+          <!-- <i id="verified-id-icon" class="icon icon-verified-id icon-lima" data-tooltip-el="#verifications-tooltip" data-tooltip-position="bottom" data-tooltip-sticky="true"></i> -->
+      </h4>
+        <span class="h5"><?php echo e($result->users->live); ?></span>
+      <p>
+        <?php echo e(trans('messages.profile.member_since')); ?> <?php echo e($result->users->since); ?>
+
+      </p>
+      <?php if($result->users->age): ?>
+      <dl>
+          <dt><?php echo e(trans('messages.your_reservations.age')); ?></dt>
+          <dd><?php echo e($result->users->age); ?></dd>
+      </dl>
+      <?php endif; ?>
+      <?php if($result->users->users_verification->show()): ?>
+      <div class="panel">
+  <div class="panel-header row">
+    <div class="pull-left">
+      <?php echo e(trans('messages.dashboard.verifications')); ?>
+
+    </div>
+  </div>
+  <div class="panel-body">
+      <ul class="list-unstyled">
+      <?php if($result->users->users_verification->email == 'yes'): ?>
+      <li class="row row-condensed">
+        <div class="media">
+          <i class="icon icon-ok icon-lima h3 pull-left"></i>
+          <div class="media-body">
+            <div>
+              <?php echo e(trans('messages.dashboard.email_address')); ?>
+
+            </div>
+            <div class="text-muted">
+              <?php echo e(trans('messages.dashboard.verified')); ?>
+
+            </div>
+          </div>
+        </div>
+      </li>
+      <?php endif; ?>
+      <?php if($result->users->users_verification->facebook == 'yes'): ?>
+      <li class="row row-condensed">
+        <div class="media">
+          <i class="icon icon-ok icon-lima h3 pull-left"></i>
+          <div class="media-body">
+            <div>
+              Facebook
+            </div>
+            <div class="text-muted">
+              <?php echo e(trans('messages.dashboard.validated')); ?>
+
+            </div>
+          </div>
+        </div>
+      </li>
+      <?php endif; ?>
+      <?php if($result->users->users_verification->google == 'yes'): ?>
+      <li class="row row-condensed">
+        <div class="media">
+          <i class="icon icon-ok icon-lima h3 pull-left"></i>
+          <div class="media-body">
+            <div>
+              Google
+            </div>
+            <div class="text-muted">
+              <?php echo e(trans('messages.dashboard.validated')); ?>
+
+            </div>
+          </div>
+        </div>
+      </li>
+      <?php endif; ?>
+      <?php if($result->users->users_verification->linkedin == 'yes'): ?>
+      <li class="row row-condensed">
+        <div class="media">
+          <i class="icon icon-ok icon-lima h3 pull-left"></i>
+          <div class="media-body">
+            <div>
+              LinkedIn
+            </div>
+            <div class="text-muted">
+              <?php echo e(trans('messages.dashboard.validated')); ?>
+
+            </div>
+          </div>
+        </div>
+      </li>
+      <?php endif; ?>
+  </ul>
+  </div>
+</div>
+      <?php endif; ?>
+    </div>
+    <div class="col-8">
+        <div class="panel panel-quote panel-dark row-space-4">
+          <div class="panel-body">
+            <p class="trans"><?php echo e($result->messages->message); ?></p>
+            <a href="<?php echo e(url()); ?>/messaging/qt_with/<?php echo e($reservation_id); ?>" class="view_message_history_link" target="_blank"><?php echo e(trans('messages.your_reservations.view_msg_history')); ?></a>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<?php if($result->status == 'Pending'): ?>
+<div class="panel-header">
+  <div class="row row-table">
+    <div class="col-6 col-offset-2">
+      <?php echo e(trans('messages.your_reservations.accept_request')); ?>?
+    </div>
+    <div class="pull-right">
+        <span class="label label-info">
+    <i class="icon icon-time"></i>
+    <?php echo e(trans('messages.your_reservations.expires_in')); ?>
+
+    <span class="countdown_timer hasCountdown"><span class="countdown_row countdown_amount" id="countdown_2"></span></span>
+  </span>
+    </div>
+  </div>
+</div>
+
+<div class="panel-body">
+  <p>
+    <?php echo e(trans('messages.your_reservations.penalized_if_expires')); ?>
+
+  </p>
+</div>
+
+
+<div class="panel-footer">
+    <button class="js-host-action btn btn-large btn-primary" id="accept-modal-trigger">
+      <?php echo e(trans('messages.your_reservations.accept')); ?>
+
+    </button>
+    <button class="js-host-action btn btn-large" id="decline-modal-trigger">
+      <?php echo e(trans('messages.your_reservations.decline')); ?>
+
+    </button>
+    <button class="js-host-action btn btn-large" id="discuss-modal-trigger">
+      <?php echo e(trans('messages.your_reservations.discuss')); ?>
+
+    </button>
+        </div>
+  <?php else: ?>
+  <div class="panel-header">
+    <div class="row row-table">
+      <div class="col-10 col-middle text-center label-<?php echo e($result->status_color); ?>">
+      <?php echo e($result->status); ?>
+
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal hide" role="dialog" id="accept-modal" aria-hidden="false" tabindex="-1">
+  <div class="modal-table">
+    <div class="modal-cell">
+      <div class="modal-content">
+        <div class="panel-header">
+          <?php echo e(trans('messages.your_reservations.accept_this_request')); ?>
+
+        </div>
+        <div id="accept-modal-alert" class="panel-header alert alert-header alert-with-icon alert-info hide">
+          <i class="icon icon-comment alert-icon"></i>
+          <span id="alert-content"></span>
+        </div>
+        <form accept-charset="UTF-8" action="<?php echo e(url('reservation/accept/'.$reservation_id)); ?>" id="accept_reservation_form" method="post" name="accept_reservation_form">
+        <?php echo Form::token(); ?>
+
+          <div class="panel-body">
+            <label for="accept_message">
+              <?php echo e(trans('messages.your_reservations.type_msg_to_guest')); ?>...
+            </label>
+            <textarea cols="40" id="accept_message" name="message" rows="10"></textarea>
+            <div class="row">
+                <div class="col-1 row-space-top-2">
+                  <input id="tos_confirm" name="tos_confirm" type="checkbox" value="1">
+                </div>
+                <div class="col-11">
+                  <label class="label-inline" for="tos_confirm"><?php echo e(trans('messages.your_reservations.by_checking_box')); ?> <br><a href="<?php echo e(url()); ?>/host_guarantee" target="_blank"><?php echo e(trans('messages.your_reservations.host_terms_conditions')); ?></a> <br><a href="<?php echo e(url()); ?>/guest_refund" target="_blank"><?php echo e(trans('messages.your_reservations.guest_refund_terms')); ?></a>, and <a href="<?php echo e(url()); ?>/terms_of_service" target="_blank"><?php echo e(trans('messages.login.terms_service')); ?></a>.</label>
+                </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <input type="hidden" name="decision" value="accept">
+            <input class="btn btn-primary" id="accept_submit" name="commit" type="submit" value="Accept">
+            <button class="btn" data-behavior="modal-close">
+              <?php echo e(trans('messages.home.close')); ?>
+
+            </button>
+          </div>
+</form>      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" id="decline-modal" aria-hidden="true">
+  <div class="modal-table">
+    <div class="modal-cell">
+      <div class="modal-content">
+        <form accept-charset="UTF-8" action="<?php echo e(url('reservation/decline/'.$reservation_id)); ?>" id="decline_reservation_form" method="post" name="decline_reservation_form">
+        <?php echo Form::token(); ?>
+
+          <div class="panel-header">
+            <a href="#" class="modal-close" data-behavior="modal-close"></a>
+            <?php echo e(trans('messages.your_reservations.decline_this_request')); ?>
+
+          </div>
+          <div class="panel-body">
+            <div id="decline_reason_container">
+              <p>
+                <?php echo e(trans('messages.your_reservations.reason_declining')); ?>?
+              </p>
+              <p>
+                <strong>
+                  <?php echo e(trans('messages.your_reservations.not_shared_with_guest')); ?>
+
+                </strong>
+              </p>
+              <div class="select">
+                <select id="decline_reason" name="decline_reason"><option value="">Why are you declining?</option>
+<option value="dates_not_available">Dates are not available</option>
+<option value="not_comfortable">I do not feel comfortable with this guest</option>
+<option value="not_a_good_fit">My listing is not a good fit for the guest’s needs (children, pets, etc.)</option>
+<option value="waiting_for_better_reservation">I’m waiting for a more attractive reservation</option>
+<option value="different_dates_than_selected">The guest is asking for different dates than the ones selected in this request</option>
+<option value="spam">This message is spam</option>
+<option value="other">Other</option></select>
+              </div>
+
+              <div id="decline_reason_other_div" class="hide row-space-top-2">
+                <label for="decline_reason_other">
+                  <?php echo e(trans('messages.your_reservations.why_declining')); ?>?
+                </label>
+                <textarea id="decline_reason_other" name="decline_reason_other" rows="4"></textarea>
+              </div>
+
+              <div class="row-space-top-4">
+                  <input type="checkbox" checked="checked" name="block_calendar" value="yes">
+                <?php echo e(trans('messages.your_reservations.block_calc_from')); ?> <b><?php echo e($result->checkin_md); ?></b> <?php echo e(trans('messages.your_reservations.through')); ?> <b><?php echo e($result->checkout_md); ?></b>
+              </div>
+            </div>
+
+            <label for="decline_message" class="row-space-top-2">
+              <?php echo e(trans('messages.your_reservations.type_msg_to_guest')); ?>...
+            </label>
+            <textarea cols="40" id="decline_message" name="message" rows="10"></textarea>
+          </div>
+          <div class="panel-footer">
+            <input type="hidden" name="decision" value="decline">
+            <input class="btn btn-primary" id="decline_submit" name="commit" type="submit" value="Decline">
+            <button class="btn" data-behavior="modal-close">
+              <?php echo e(trans('messages.home.close')); ?>
+
+            </button>
+          </div>
+</form>      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" data-trigger="#discuss-modal-trigger" id="discuss-modal" aria-hidden="true">
+  <div class="modal-table">
+    <div class="modal-cell">
+      <div class="modal-content">
+        <div class="panel-header">
+          <?php echo e(trans('messages.your_reservations.discuss_this_request')); ?>
+
+        </div>
+        <div class="panel-body">
+          <p>
+            <?php echo e(trans('messages.your_reservations.before_accept_decline')); ?>:
+          </p><ul class="list-unstyled">
+            <li>
+              <a href="<?php echo e(url()); ?>/messaging/qt_with/<?php echo e($result->id); ?>" id="other_reservation_send_message"><?php echo e(trans('messages.your_reservations.send_msg_to')); ?> <?php echo e($result->users->first_name); ?></a>
+            </li>
+          </ul>
+          <p></p>
+          <p><?php echo e(trans('messages.your_reservations.after_msg_accept')); ?>
+
+          </p>
+        </div>
+        <div class="panel-footer">
+          <button class="btn btn-primary" data-behavior="modal-close">
+            <?php echo e(trans('messages.home.close')); ?>
+
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="expired_at" value="<?php echo e($result->created_at_timer); ?>">
+<input type="hidden" id="reservation_id" value="<?php echo e($reservation_id); ?>">
+</main>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

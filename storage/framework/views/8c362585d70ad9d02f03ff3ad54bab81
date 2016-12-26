@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en-IN" xmlns:fb="http://ogp.me/ns/fb#"><!--<![endif]--><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <link rel="dns-prefetch" href="https://maps.googleapis.com/">
+      <link rel="dns-prefetch" href="https://maps.gstatic.com/">
+      <link rel="dns-prefetch" href="https://mts0.googleapis.com/">
+      <link rel="dns-prefetch" href="https://mts1.googleapis.com/">
+
+    <link rel="shortcut icon" href="<?php echo e($favicon); ?>">
+
+    <!--[if IE]><![endif]-->
+    <meta charset="utf-8">
+
+    <!--[if IE 8]>
+      <?php echo Html::style('css/common_ie8.css'); ?>
+
+    <![endif]-->
+    <!--[if !(IE 8)]><!-->
+      <?php echo Html::style('css/common.css'); ?>
+
+        <?php echo Html::style('css/map-icons.min.css'); ?>
+
+      <?php echo Html::style('pcss?css=css/dynamic.css'); ?>
+
+    <!--<![endif]-->
+	<?php echo Html::style('css/animate.css'); ?>
+
+	
+
+    <!--[if lt IE 9]>
+      <?php echo Html::style('css/airglyphs-ie8.css'); ?>
+
+    <![endif]-->
+
+    <?php if(isset($exception)): ?>
+      <?php if($exception->getStatusCode()  == '404'): ?>
+        <?php echo Html::style('css/error_pages_pretzel.css'); ?>
+
+      <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if(!isset($exception)): ?>
+
+    <?php if(Route::current()->uri() == 'signup_action'): ?>
+    	<?php echo Html::style('css/signinup.css'); ?>
+
+    <?php endif; ?>
+    	
+    <?php if(Route::current()->uri() == '/'): ?>
+    	<?php echo Html::style('css/main.css'); ?>
+
+    <?php endif; ?>    
+                 
+    <?php if(Route::current()->uri() == 'dashboard'): ?>        
+      <?php echo Html::style('css/host_dashboard.css'); ?>
+
+      <?php echo Html::style('css/dashboard.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'rooms/new'): ?>
+      <?php echo Html::style('css/new.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'inbox'): ?>
+      <?php echo Html::style('css/threads.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'reservation/change'): ?>
+      <?php echo Html::style('css/alterations.css'); ?>
+
+      <?php echo Html::style('css/policy_timeline_v2.css'); ?>
+
+    <?php endif; ?>
+
+     <?php if(Route::current()->uri() == 'alterations/{code}'): ?>
+      <?php echo Html::style('css/alterations.css'); ?>
+
+    <?php endif; ?>
+
+
+    <?php if(Route::current()->uri() == 'z/q/{id}'): ?>
+      <?php echo Html::style('css/messaging.css'); ?>
+
+      <?php echo Html::style('css/tooltip.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'messaging/qt_with/{id}'): ?>
+      <?php echo Html::style('css/messaging.css'); ?>
+
+      <?php echo Html::style('css/tooltip.css'); ?>
+
+      <?php echo Html::style('css/responsive_calendar.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'manage-listing/{id}/{page}'): ?>
+      <?php echo Html::style('css/manage_listing.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'wishlists/picks' || Route::current()->uri() == 'wishlists/my' || Route::current()->uri() == 'wishlists/popular' || Route::current()->uri() == 'wishlists/{id}' || Route::current()->uri() == 'users/{id}/wishlists'): ?>
+      <?php echo Html::style('css/wishlists.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'rooms/{id}'): ?>
+      <?php echo Html::style('css/rooms_detail.css'); ?>
+
+      <?php echo Html::style('css/slider/nivo-lightbox.css'); ?>
+
+      <?php echo Html::style('css/slider/default.css'); ?>
+
+      <?php echo Html::style('css/jquery.bxslider.css'); ?>
+
+      <?php echo Html::style('css/p3.css'); ?>
+
+    <?php endif; ?>
+    
+    <?php if(Route::current()->uri() == 'rooms'): ?>
+      <?php echo Html::style('css/index.css'); ?>
+
+      <?php echo Html::style('css/unlist_modal.css'); ?>
+
+      <?php echo Html::style('css/dashboard.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'reservation/itinerary'): ?>
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'reservation/receipt'): ?>
+      <?php echo Html::style('css/receipt.css'); ?>
+
+      <?php echo Html::style('css/receipt-print.css',['media'=>'print']); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 's' || Route::current()->uri() == 'wishlists/popular'): ?>
+      <?php echo Html::style('css/map_search.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'payments/book/{id?}'): ?>
+      <?php echo Html::style('css/payments.css'); ?>
+
+      <?php echo Html::style('css/p4.css'); ?>
+
+      <?php echo Html::style('css/StyleSheet.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'reservation/requested'): ?>
+      <?php echo Html::style('css/page5.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 's?{id}'): ?>
+      <?php echo Html::style('css/search.css'); ?>
+
+       <?php endif; ?>
+    <?php if(Route::current()->uri() == 'users/edit'): ?>
+      <?php echo Html::style('css/address_widget.css'); ?>
+
+      <?php echo Html::style('css/phonenumbers.css'); ?>
+
+      <?php echo Html::style('css/edit_profile.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'users/show/{id}'): ?>
+      <?php echo Html::style('css/profile.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'users/payout_preferences/{id}'): ?>
+      <?php echo Html::style('css/payout_preferences.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'home/cancellation_policies'): ?>
+      <?php echo Html::style('css/policy_timeline_v2.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'reviews/edit/{id}'): ?>
+      <?php echo Html::style('css/reviews.css'); ?>
+
+    <?php endif; ?>
+	
+	
+
+    <?php if(Route::current()->uri() == 'invite' || Route::current()->uri() == 'c/{username}'): ?>
+      <?php echo Html::style('css/referrals.css'); ?>
+
+    <?php endif; ?>
+
+    <?php if(Route::current()->uri() == 'help' || Route::current()->uri() == 'help/topic/{id}/{category}' || Route::current()->uri() == 'help/article/{id}/{question}'): ?>
+      <?php echo Html::style('css/help.css'); ?>
+
+      <?php echo Html::style('css/jquery-ui.css'); ?>
+
+    <?php endif; ?>
+
+    <?php endif; ?>
+
+    <style type="text/css">
+      .ui-selecting { background: #FECA40; }
+      .ui-selected { background: #F39814; color: white; }
+    </style>
+	 <?php if(trans('messages.header.currentlanguage') == 'lang-iw'): ?>
+      <?php echo Html::style('css/rtl.css'); ?>
+
+	
+    <?php endif; ?>
+	<?php if(Route::current()->uri() == 'contact'): ?>
+      <title>Contact Us</title>
+    <?php endif; ?>
+    <?php if(Route::current()->uri() == 'invites'): ?>
+      <title>Invite Friends</title>
+    <?php endif; ?>
+	<?php if(Route::current()->uri() != 'contact'): ?>
+    <title><?php echo e(isset($title) ? $title : Helpers::meta((!isset($exception)) ? Route::current()->uri() : '', 'title')); ?> <?php echo e(isset($additional_title) ? $additional_title : ''); ?></title>
+	<?php endif; ?>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+     
+    <meta name="description" content="<?php echo e(Helpers::meta((!isset($exception)) ? Route::current()->uri() : '', 'description')); ?>">
+    <meta name="keywords" content="<?php echo e(Helpers::meta((!isset($exception)) ? Route::current()->uri() : '', 'keywords')); ?>">
+    
+<meta property="og:title" content="<?php echo e(isset($title) ? $title : Helpers::meta((!isset($exception)) ? Route::current()->uri() : '', 'title')); ?> <?php echo e(isset($additional_title) ? $additional_title : ''); ?>" />
+<meta property="og:description" content="<?php echo e(Helpers::meta((!isset($exception)) ? Route::current()->uri() : '', 'description')); ?>" />
+<meta property="og:image" content="<?php echo e(url()); ?>/images/axanya_why_choose_us.jpg">
+<meta property="og:url" content="<?php echo e(url()); ?>">
+
+
+    <meta name="twitter:widgets:csp" content="on">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="image_src" href="#">
+    <link rel="search" type="application/opensearchdescription+xml" href="#" title="">
+
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="theme-color" content="#f5f5f5">
+
+  </head>
+  <body class="<?php echo e((!isset($exception)) ? (Route::current()->uri() == '/' ? 'home_view v2 simple-header p1' : '') : ''); ?> <?php echo e(!Auth::user()->check() ? '' : 'loggedin'); ?>" ng-app="App">
+  <div class="hide"> 
+  <?php echo e(trans('messages.header.currentlanguage')); ?>
+
+	
+    </div>

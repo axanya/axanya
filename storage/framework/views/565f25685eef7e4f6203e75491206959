@@ -1,0 +1,245 @@
+﻿
+
+<?php $__env->startSection('main'); ?>
+    <main id="site-content" role="main">
+    
+    <?php echo $__env->make('common.subheader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>  
+
+  <div class="page-container-responsive space-top-4 space-4">
+    <div class="row">
+      <div class="col-md-3">
+        
+        <?php echo $__env->make('common.sidenav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+      </div>
+    
+      <div class="col-md-9">
+        <div class="your-listings-flash-container"></div>
+        
+  <div class="panel" id="print_area">
+  <?php if($reservations->count() == 0 && $code != 1): ?>
+  <div class="panel-body">
+      <p>
+          <?php echo e(trans('messages.your_reservations.no_upcoming_reservations')); ?>
+
+      </p>
+        <a href="<?php echo e(url()); ?>/my_reservations?all=1"><?php echo e(trans('messages.your_reservations.view_past_reservation_history')); ?></a>
+    </div>
+  <?php elseif($reservations->count() == 0 && $code == 1): ?>
+    <div class="panel-body">
+      <p>
+          <?php echo e(trans('messages.your_reservations.no_reservations')); ?>
+
+      </p>
+        <a href="<?php echo e(url()); ?>/rooms/new" class="btn btn-special list-your-space-btn" id="list-your-space"><?php echo e(trans('messages.your_listing.add_new_listings')); ?></a>
+    </div>
+  <?php else: ?>
+    <div class="panel-header">
+      <div class="row row-table">
+        <div class="col-md-6 col-middle">
+            <?php echo e(($code == 1) ? trans('messages.your_reservations.all') : trans('messages.your_reservations.upcoming')); ?> <?php echo e(trans('messages.inbox.reservations')); ?>
+
+        </div>
+        <div class="col-md-6 col-middle">
+
+          <a class="btn pull-right" href="<?php echo e(url()); ?>/my_reservations?all=<?php echo e($code); ?>&amp;print=<?php echo e($code); ?>">
+            <i class="icon icon-description"></i>
+            <?php echo e(trans('messages.your_reservations.print_this_page')); ?>
+
+</a>        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table style="background-color:white" class="table panel-body space-1">
+        <tbody><tr>
+          <th><?php echo e(trans('messages.your_reservations.status')); ?></th>
+          <th><?php echo e(trans('messages.your_reservations.dates_location')); ?></th>
+          <th><?php echo e(trans_choice('messages.home.guest',1)); ?></th>
+          <th><?php echo e(trans('messages.your_reservations.details')); ?></th>
+        </tr>
+        <?php foreach($reservations as $row): ?>
+          <tr data-reservation-id="<?php echo e($row->id); ?>" class="reservation">
+  <td>
+    <span class="label label-<?php echo e($row->status_color); ?>">
+      <?php echo e($row->status); ?>
+
+    </span>
+  </td>
+
+  <td>
+    <?php echo e($row->dates); ?>
+
+    <br>
+    <a locale="en" href="<?php echo e(url()); ?>/rooms/<?php echo e($row->room_id); ?>"><?php echo e($row->rooms->name); ?></a>
+    <br>
+        <?php echo e($row->rooms->rooms_address->address_line_1); ?>
+
+    <br>
+        <?php echo e($row->rooms->rooms_address->city.', '.$row->rooms->rooms_address->state.' '.$row->rooms->rooms_address->postal_code); ?>
+
+    <br>
+  </td>
+
+  <td>
+    <div class="media va-container">
+      <a class="pull-left media-photo media-round" href="<?php echo e(url()); ?>/users/show/<?php echo e($row->users->id); ?>">
+        <span title="<?php echo e($row->users->first_name); ?>" style="baclground-image:url(<?php echo e($row->users->profile_picture->src); ?>); width:50px; height:50px;" ></span>
+</a>      <div class="va-top">
+        <a class="text-normal" href="<?php echo e(url()); ?>/users/show/<?php echo e($row->users->id); ?>"><?php echo e($row->users->full_name); ?></a>
+        <br>
+        <?php if($row->status == 'Accepted'): ?>
+        <a href="<?php echo e(url()); ?>/messaging/qt_with/<?php echo e($row->id); ?>" class="text-normal">
+          <i class="icon icon-envelope"></i>
+          <?php echo e(trans('messages.your_reservations.send_message')); ?>
+
+        </a>
+        <!-- <br>
+          +91 -->
+          <br>
+          <a href="mailto:<?php echo e($row->users->email); ?>">
+            <?php echo e(trans('messages.your_reservations.contact_by_email')); ?>
+
+          </a>
+            <i class="icon icon-question" id="anonymous-email-118017996-tooltip-trigger"></i>
+          <?php endif; ?>
+          <br>
+      </div>
+    </div>
+  </td>
+
+  <td>
+      <?php echo e($row->currency->symbol.$row->subtotal); ?> <?php echo e(trans('messages.your_reservations.total')); ?>
+
+
+
+    <ul class="list-unstyled">
+    <li>
+        <a href="<?php echo e(url()); ?>/messaging/qt_with/<?php echo e($row->id); ?>"><?php echo e(trans('messages.your_reservations.message_history')); ?></a>
+      </li>
+      <?php if($row->status == "Accepted"): ?>
+        <li>
+          <a target="_blank" href="<?php echo e(url()); ?>/reservation/itinerary?code=<?php echo e($row->code); ?>"><?php echo e(trans('messages.your_reservations.print_confirmation')); ?></a>
+        </li>
+        <?php if(!$row->checkout_cross): ?>
+          <li>
+            <a href="#" id="<?php echo e($row->id); ?>-trigger"><?php echo e(trans('messages.your_reservations.cancel')); ?></a>
+          </li>
+        <?php endif; ?>
+      <?php endif; ?>
+    </ul>
+
+  </td>
+</tr>
+<?php endforeach; ?>
+
+      </tbody></table>
+    </div>
+    <?php if($code == '0' || $code == ''): ?>
+      <div class="panel-body">
+        <a href="<?php echo e(url()); ?>/my_reservations?all=1"><?php echo e(trans('messages.your_reservations.view_all_reservation_history')); ?></a>
+      </div>
+     <?php else: ?>
+      <div class="panel-body">
+        <a href="<?php echo e(url()); ?>/my_reservations?all=0"><?php echo e(trans('messages.your_reservations.view_upcoming_reservations')); ?></a>
+      </div>
+     <?php endif; ?>
+  <?php endif; ?>
+  </div>
+
+
+      </div>
+    </div>
+  </div>
+<input type="hidden" value="<?php echo e($print); ?>" id="print">
+
+<div class="modal" role="dialog" id="cancel-modal" aria-hidden="true">
+  <div class="modal-table">
+    <div class="modal-cell">
+      <div class="modal-content">
+        <form accept-charset="UTF-8" action="<?php echo e(url('reservation/host_cancel_reservation')); ?>" id="cancel_reservation_form" method="post" name="cancel_reservation_form">
+        <?php echo Form::token(); ?>
+
+          <div class="panel-header">
+            <a href="#" class="modal-close" data-behavior="modal-close"></a>
+            <?php echo e(trans('messages.your_reservations.cancel_this_reservation')); ?>
+
+          </div>
+          <div class="panel-body">
+            <div id="decline_reason_container">
+              <p>
+                <?php echo e(trans('messages.your_reservations.reason_cancel_reservation')); ?>
+
+              </p>
+              <p>
+                
+              </p>
+              <div class="select">
+                <select id="cancel_reason" name="cancel_reason"><option value="">Why are you Cancelling?</option>
+<option value="no_longer_available">My place is no longer available</option>
+<option value="offer_a_different_listing">I want to offer a different listing or change the price</option>
+<option value="need_maintenance">My place needs maintenance</option>
+<option value="I_have_an_extenuating_circumstance">I have an extenuating circumstance</option>
+<option value="my_guest_needs_to_cancel">My guest needs to cancel</option>
+<option value="other">Other</option></select>
+              </div>
+
+             <!--  <div id="cancel_reason_other_div" class="hide row-space-top-2">
+                <label for="cancel_reason_other">
+                  <?php echo e(trans('messages.your_reservations.why_cancel')); ?>
+
+                </label>
+                <textarea id="decline_reason_other" name="decline_reason_other" rows="4"></textarea>
+              </div>
+ -->
+             
+            </div>
+           
+            <label for="cancel_message" class="row-space-top-2">
+              <?php echo e(trans('messages.your_reservations.type_msg_guest')); ?>...
+            </label>
+            <textarea cols="40" id="cancel_message" name="cancel_message" rows="10"></textarea>
+            <input type="hidden" name="id" id="reserve_id" value="">
+          </div>
+          <div class="panel-footer">
+            <input type="hidden" name="decision" value="decline">
+            <input class="btn btn-primary" id="cancel_submit" name="commit" type="submit" value="Cancel My Reservation">
+            <button class="btn" data-behavior="modal-close">
+              <?php echo e(trans('messages.home.close')); ?>
+
+            </button>
+          </div>
+</form>      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+if(document.getElementById('print').value >= '0')
+{
+  window.print();
+  window.onfocus=function(){ window.location.href=APP_URL+'/my_reservations'; }
+}
+</script>
+
+<?php if($print >= '0'): ?>
+<style>
+body * {
+  visibility: hidden;
+}
+#print_area, #print_area * {
+  visibility: visible;
+}
+#print_area {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+}
+a[href]:after {
+  content: none !important;
+}
+</style>
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

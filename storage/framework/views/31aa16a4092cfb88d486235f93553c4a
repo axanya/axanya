@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+         <?php echo Html::style('css/common.css'); ?>
+
+      <?php echo Html::style('css/slider/default.css'); ?>
+
+      <?php echo Html::style('css/slider/jquery.ad-gallery.css'); ?>
+
+      <?php echo Html::style('css/slider/main.css'); ?>
+
+
+    </head>
+
+    <body style="background:rgba(0,0,0,0)">
+
+
+    <div id="gallery" class="ad-gallery">
+      <div class="ad-image-wrapper">
+      </div>
+      <div class="ad-nav">
+        <div class="ad-controls">
+        </div>
+
+        <div class="ad-thumbs">
+          <ul class="ad-thumb-list">
+          <?php foreach($rooms_photos as $row_photos): ?>
+            <li>
+              <a href="<?php echo e(url('images/rooms/'.$room_id.'/'.$row_photos->name)); ?>" class="image0">
+                
+              <img src="<?php echo e(url('images/rooms/'.$room_id.'/'.$row_photos->name)); ?>" title="<?php echo e($row_photos->highlights); ?>" >
+              </a>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
+    </div>       
+
+    </body>
+</html>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo e($map_key); ?>&sensor=false&libraries=places"></script>
+<?php echo Html::script('js/jquery-1.11.3.js'); ?>
+
+
+<?php echo Html::script('js/angular.js'); ?>
+
+ <script> 
+    var app = angular.module('App', [], function($interpolateProvider) {
+        /*$interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');*/
+    });
+    </script>
+<?php echo Html::script('js/rooms.js'); ?>

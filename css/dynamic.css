@@ -1,0 +1,48 @@
+body {
+    font-family: Circular, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    BODYFONTSIZE;
+    line-height: 1.43;
+    BODYFONTCOLOR;
+    BODYBGCOLOR;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.makent-header .background-light-gray {
+    BODYBGCOLOR;
+}
+.makent-header {
+    padding: 0 20px;
+    HEADERBGCOLOR;
+    border-bottom: 1px solid #dce0e0
+}
+.container-brand-dark {
+    padding: 50px 0;
+    background-image: url(./images/background-7c73b7858fe7c4bc03505fc1f7f672fd.png);
+    FOOTERBGCOLOR;
+    color: #fff
+}
+a {
+    HREFCOLOR;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    HREFCOLOR;
+    text-decoration: underline;
+}
+.btn-primary.btn {
+    BUTTONPRIMARYBORDERCOLOR;
+    border-bottom-color: #e00007;
+    BUTTONPRIMARYCOLOR;
+    color: #fff;
+}
+.btn-primary.btn:hover, .btn-primary.btn:focus {
+    border-color: #ff7e82;
+    border-bottom-color: #fa0008;
+    background-color: #ff7e82;
+    color: #fff;
+}
+.btn-primary.btn:active {
+    border-color: #e00007;
+    background-color: #e00007;
+    color: #fff;
+}

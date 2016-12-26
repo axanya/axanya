@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>Profile</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1-(DE)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Suitcase" transform="translate(-324.000000, -621.000000)" stroke="#666666" stroke-width="1.5">
+            <path d="M336.5078,622.0619 L336.2018,622.0619 C333.3918,622.0619 331.1128,623.9289 331.1128,627.1509 C331.1128,629.0349 330.7508,632.4309 333.5048,634.2959 C333.5048,634.2959 327.2348,637.4319 325.8718,639.4359 C324.7148,641.1379 325.3688,642.7809 327.0198,643.8919 C327.4088,644.1539 327.8728,644.2879 328.3418,644.2879 L344.0738,644.2879 C344.5418,644.2879 345.0068,644.1539 345.3948,643.8919 C347.0468,642.7809 347.7008,641.1379 346.5428,639.4359 C345.1808,637.4319 338.9108,634.2959 338.9108,634.2959 C341.6638,632.4309 341.3028,629.0349 341.3028,627.1509 C341.3028,623.9289 339.0238,622.0619 336.2138,622.0619 L335.9078,622.0619" id="Profile"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,32 @@
+<div class="manage-listing-footer" id="js-manage-listing-footer">
+    <div class="container-brand-light footer-panel">
+      <div class="row row-table">
+        <div class="col-2 col-footer col-middle"><span class="text-muted">© <?php echo e($site_name); ?>, Inc.</span></div>
+        <div class="col-8 col-footer col-middle text-center text-muted">
+        <?php /**/ $i = 0 /**/ ?>
+        <?php foreach($company_pages as $company_page): ?>
+          <a href="<?php echo e(url($company_page->url)); ?>" class="text-muted">
+            <?php echo e($company_page->name); ?>
+
+          </a> <?php echo e(($i+1 == $company_pages->count()) ? '' : '|'); ?>
+
+          <?php /**/ $i++ /**/ ?>
+        <?php endforeach; ?>
+        </div>
+        <div class="col-2 col-footer col-middle">
+          <div class="language-curr-picker pull-right">
+            <div class="select select-large select-block row-space-2">
+  <label id="language-selector-label" class="screen-reader-only">
+    <?php echo e(trans('messages.footer.change_language')); ?>
+
+  </label>
+  <?php echo Form::select('language',$language, (Session::get('language')) ? Session::get('language') : $default_language[0]->value, ['class' => 'language-selector', 'aria-labelledby' => 'language-selector-label', 'id' => 'language_footer']); ?>
+
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

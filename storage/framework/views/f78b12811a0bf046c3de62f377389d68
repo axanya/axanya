@@ -1,0 +1,174 @@
+<div id="js-manage-listing-content-container" class="manage-listing-content-container">
+      <div class="manage-listing-content-wrapper">
+        <div id="js-manage-listing-content" class="manage-listing-content">
+
+        <div>
+        <div>
+        <div class="space-4">
+        <h3><?php echo e(trans('messages.lys.amenities_title')); ?></h3>
+        <p class="text-muted"><?php echo e(trans('messages.lys.amenities_desc',['site_name'=>$site_name])); ?></p>
+        </div>
+        <hr>
+        </div>
+
+        <div>
+        <div class="js-section">
+        <div style="display:none;" class="js-saving-progress saving-progress save_no_amenities">
+        <h5><?php echo e(trans('messages.lys.saving')); ?>...</h5>
+        </div>
+        <input type="hidden" ng-model="amenities_status" value="<?php echo e(count($prev_amenities)); ?>" ng-init=" amenities_status = '<?php echo e(count($prev_amenities)); ?>' " />
+        <span>&nbsp;&nbsp;</span>
+        <label class="label-large label-inline amenity-label">
+        <input type="checkbox" value="0" name="amenities" data-saving="save_no_amenities" <?php echo e(in_array("0", $prev_amenities) ? 'checked' : ''); ?> >
+        <span><?php echo e(trans('messages.new.no_amenities')); ?></span>
+        </label>
+        <span>&nbsp;</span>
+
+        </div>
+        </div>
+
+        <?php foreach($amenities_type as $row_type): ?>
+
+        <div>
+        <div class="js-section">
+        <div style="display:none;" class="js-saving-progress saving-progress <?php echo e($row_type->id); ?>">
+        <h5><?php echo e(trans('messages.lys.saving')); ?>...</h5>
+        </div>
+
+        <h4><?php echo e($row_type->name); ?></h4>
+
+        <?php if($row_type->description != ''): ?>
+        <p class="text-muted"><?php echo e($row_type->description); ?></p>
+        <?php endif; ?>
+
+        <ul class="list-unstyled">
+        <?php foreach($amenities as $row_amenities): ?>
+
+        <?php if($row_amenities->type_id == $row_type->id): ?>
+        <li>
+        <span>&nbsp;&nbsp;</span>
+        <label class="label-large label-inline amenity-label">
+        <input type="checkbox" value="<?php echo e($row_amenities->id); ?>" name="amenities" data-saving="<?php echo e($row_type->id); ?>" <?php echo e(in_array($row_amenities->id, $prev_amenities) ? 'checked' : ''); ?>>
+        <span><?php echo e($row_amenities->name); ?></span>
+        </label>
+        <span>&nbsp;</span>
+
+        <?php if($row_amenities->description != ''): ?>
+        <span data-toggle="tooltip" class="icon icon-question" title="<?php echo e($row_amenities->description); ?>"></span>
+        <?php endif; ?>
+
+        </li>
+        <?php endif; ?>
+
+        <?php endforeach; ?>
+
+        </ul>
+
+        <hr class="space-top-4 space-4">
+        </div>
+        </div>
+        <?php endforeach; ?>
+
+
+        <div>
+            <div class="js-section">
+                <div style="display:none;" class="js-saving-progress saving-progress save_religious_amenities">
+                    <h5><?php echo e(trans('messages.lys.saving')); ?>...</h5>
+                </div>
+                <h4><?php echo e(trans('messages.new.religious_accommadations')); ?></h4>
+                <div class="row" > 
+                <?php foreach($religious_amenities_types->chunk(ceil($religious_amenities_types->count()/2)) as $religious_amenities_type_array): ?>
+                    <div class="col-md-6">
+                        <?php foreach($religious_amenities_type_array as $religious_amenities_type): ?>
+                            <div class="space-3">
+                                <h5><?php echo e($religious_amenities_type->name); ?> <?php if($religious_amenities_type->description != ''): ?><span class="" style="font-weight:normal;">(<?php echo e($religious_amenities_type->description); ?>)</span>  <?php endif; ?></h5>
+                                <ul class="list-unstyled">
+                                    <?php foreach($religious_amenities as $religous_amenity): ?>
+                                        <?php if($religous_amenity->type_id == $religious_amenities_type->id): ?>
+                                        <li style="margin-left:10px;">
+                                            <!-- <span>&nbsp;&nbsp;</span> -->
+                                            <label class="label-large label-inline amenity-label">
+                                                <input type="checkbox" data-extra="<?php if($religous_amenity->extra_input == 'text'): ?>Yes <?php endif; ?>" value="<?php echo e($religous_amenity->id); ?>" name="religious_amenities" data-saving="save_religious_amenities" <?php echo e(in_array($religous_amenity->id, $prev_religious_amenities) ? 'checked' : ''); ?>>
+                                                <span><?php echo e($religous_amenity->name); ?> <?php if($religous_amenity->description != ''): ?>(<?php echo e($religous_amenity->description); ?>)<?php endif; ?></span>
+                                            </label>
+                                            <?php if($religous_amenity->extra_input == 'text'): ?>
+                                            <div class="row row-condensed religious_amenity_extra_block <?php echo e(in_array($religous_amenity->id, $prev_religious_amenities) ? '' : 'hide'); ?>" id="religious_amenity_extra_<?php echo e($religous_amenity->id); ?>"> 
+                                                <div class="col-md-1">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="label-inline"><?php echo e(trans('messages.new.distance')); ?></label>
+                                                </div>
+                                                <div class="col-md-6">  
+                                                    <input type="text" id="religious_amenities_extra_data_<?php echo e($religous_amenity->id); ?>" name="<?php echo e($religous_amenity->id); ?>"  data-saving="save_religious_amenities" value="<?php echo e(@$religious_amenities_extra_data[$religous_amenity->id]); ?>">
+                                                </div>
+                                            </div>
+                                            <?php endif; ?>
+                                            <span>&nbsp;</span>
+                                        </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
+                </div>
+                <hr class="space-top-4 space-4">
+            </div>
+        </div>
+
+
+        <div class="not-post-listed row space-top-6 next_step">
+        <div class="col-2 space-top-1">
+        <!-- <a data-prevent-default="true" href="<?php echo e(url('manage-listing/'.$room_id.'/location')); ?>" class="back-section-button"><?php echo e(trans('messages.lys.back')); ?></a> -->
+        </div>
+          <div class="col-8">
+      <div id="js-publish-button" style="float:right;">
+
+  <div class="not-post-listed text-center">
+  <!-- <div  class="animated text-lead text-muted steps-remaining js-steps-remaining <?php echo e(($result->steps_count != 0) ? 'show' : 'show'); ?>" style="opacity: 1;"><strong class="text-highlight"> <span id="steps_count"><?php echo e(7-$result->steps_count); ?></span> / 6 </strong><?php echo e(trans('messages.lys.steps')); ?> completed</div> -->
+
+  <div  class="animated text-lead text-muted steps-remaining js-steps-remaining show" style="opacity: 1;">
+    <div class="col-2 row-space-top-1 next_step">
+        <a class="back-section-button" href="<?php echo e(url('manage-listing/'.$room_id.'/location')); ?>" data-prevent-default=""><?php echo e(trans('messages.lys.back')); ?></a>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+</div>
+<?php if($result->status == NULL): ?>
+<button data-href="complete" class="animated btn btn-large btn-host btn-primary <?php echo e(($result->steps_count == 0) ? '' : 'hide'); ?>" id="js-list-space-button" data-track="list_space_button_left_nav" style="">
+          <?php echo e(trans('messages.lys.list_space')); ?>
+
+</button>
+ <div class="col-2 text-right next_step">
+    <a data-prevent-default="" href="<?php echo e(url('manage-listing/'.$room_id.'/photos')); ?>" class="btn btn-large btn-primary next-section-button <?php echo e(($result->steps_count != 0) ? '' : 'hide'); ?>">
+        <?php echo e(trans('messages.lys.next')); ?>
+
+      </a>
+  </div>
+<?php endif; ?>
+
+<?php if($result->status != NULL): ?>
+<div class="col-2 text-right next_step">
+    <a data-prevent-default="" href="<?php echo e(url('manage-listing/'.$room_id.'/photos')); ?>" class="btn btn-large btn-primary next-section-button">
+        <?php echo e(trans('messages.lys.next')); ?>
+
+      </a>
+  </div>
+</div>
+<?php endif; ?>
+
+</div>
+
+        </div>
+        </div>
+        </div>
+
+        <div id="js-manage-listing-help" class="manage-listing-help hide"></div>
+      </div>
+      <div class="manage-listing-content-background"></div>
+    </div>
