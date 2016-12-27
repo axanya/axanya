@@ -36,7 +36,7 @@ class FacebookHelper
 		$this->fb = new Facebook([
   							'app_id' => Config::get('facebook.client_id'),
   							'app_secret' => Config::get('facebook.client_secret'),
-  							'default_graph_version' => 'v2.4',
+  							'default_graph_version' => 'v2.6',
 							'persistent_data_handler' => 'session',
   							]);
 
