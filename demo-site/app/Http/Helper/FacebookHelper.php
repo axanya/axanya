@@ -41,7 +41,7 @@ class FacebookHelper
   							]);
 
 		$this->helper = $this->fb->getRedirectLoginHelper();
-		$this->token = $this->helper->getAccessToken();
+		//$this->token = $this->helper->getAccessToken();
 	}
 
 	/**
