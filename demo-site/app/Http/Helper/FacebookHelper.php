@@ -19,8 +19,9 @@ use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Config;
 
-//session_start();
-
+if(!session_id()) {
+	session_start();
+}
 class FacebookHelper
 {
 	private $helper;	// Global variable for Facebok Helper
