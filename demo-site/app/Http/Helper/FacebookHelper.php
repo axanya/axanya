@@ -40,7 +40,8 @@ class FacebookHelper
 							'persistent_data_handler' => 'session',
   							]);
 
-		//$this->helper = $this->fb->getRedirectLoginHelper();
+		$this->helper = $this->fb->getRedirectLoginHelper();
+		$this->token = $this->helper->getAccessToken();
 	}
 
 	/**
