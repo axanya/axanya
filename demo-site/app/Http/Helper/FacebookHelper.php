@@ -19,9 +19,8 @@ use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Config;
 
-if(!session_id()) {
-	session_start();
-}
+session_start();
+
 class FacebookHelper
 {
 	private $helper;	// Global variable for Facebok Helper
@@ -36,12 +35,10 @@ class FacebookHelper
 		$this->fb = new Facebook([
   							'app_id' => Config::get('facebook.client_id'),
   							'app_secret' => Config::get('facebook.client_secret'),
-  							'default_graph_version' => 'v2.6',
-							'persistent_data_handler' => 'session',
+  							'default_graph_version' => 'v2.2',
   							]);
 
 		$this->helper = $this->fb->getRedirectLoginHelper();
-		//$this->token = $this->helper->getAccessToken();
 	}
 
 	/**
@@ -72,7 +69,6 @@ class FacebookHelper
 		} catch(FacebookSDKException $e) {
 		  // When validation fails or other local issues
 		  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-			dd($e);
 		  exit;
 		}
 		
@@ -118,7 +114,6 @@ class FacebookHelper
      */
     public function getUrlLogin()
     {
-		$this->helper->getAccessToken();
         return $this->helper->getLoginUrl(url('facebookAuthenticate'),
             ['public_profile', 'email', 'user_friends', 'user_birthday']);
     }
