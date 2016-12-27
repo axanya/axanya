@@ -71,6 +71,7 @@ class FacebookHelper
 		} catch(FacebookSDKException $e) {
 		  // When validation fails or other local issues
 		  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			dd($e);
 		  exit;
 		}
 		
