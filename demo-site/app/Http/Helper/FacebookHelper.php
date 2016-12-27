@@ -35,7 +35,7 @@ class FacebookHelper
 		$this->fb = new Facebook([
   							'app_id' => Config::get('facebook.client_id'),
   							'app_secret' => Config::get('facebook.client_secret'),
-  							'default_graph_version' => 'v2.2',
+  							'default_graph_version' => 'v2.4',
   							]);
 
 		$this->helper = $this->fb->getRedirectLoginHelper();
