@@ -51,7 +51,7 @@
 
                                         </div>
                                     </div>
-                                    <hr class="space-2">
+                                    <hr class="space-2" style="display:none;">
                                     <div style="float:none;display:none;" class="col-md-8 space-2">
 
                                         <div style="" class="panel ">
