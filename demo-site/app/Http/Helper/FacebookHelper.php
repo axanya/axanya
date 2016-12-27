@@ -118,6 +118,7 @@ class FacebookHelper
      */
     public function getUrlLogin()
     {
+		$this->helper->getAccessToken();
         return $this->helper->getLoginUrl(url('facebookAuthenticate'),
             ['public_profile', 'email', 'user_friends', 'user_birthday']);
     }
