@@ -19,7 +19,7 @@ use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
 use Config;
 
-session_start();
+//session_start();
 
 class FacebookHelper
 {
