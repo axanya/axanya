@@ -16,13 +16,43 @@
 
         <ul class="list-unstyled row-space-5 list-nav-link">
 
+
+
+            <li class="nav-item nav-description pre-listed" data-track="description"
+                ng-class="(step == 'description') ? 'nav-active' : ''">
+                <a href="{{ ($room_step != 'description') ? url('manage-listing/'.$room_id.'/description') : '' }}"
+                   id="href_description">
+                    <div class="row nav-item">
+                        <div class="col-sm-12 va-container">
+                            <span class="va-middle">{{ trans('messages.lys.overview') }}</span>
+
+                            <div class="instant-book-status pull-right">
+                                <div class="instant-book-status__on hide">
+                                    <i class="icon icon-bolt icon-beach h3"></i>
+                                </div>
+                                <div class="instant-book-status__off hide">
+                                    <i class="icon icon-bolt icon-light-gray h3"></i>
+                                </div>
+                            </div>
+
+                            <div class="pull-right">
+                                <i class="nav-icon icon icon-ok-alt icon-babu not-post-listed {{ ($rooms_status->description == 1) ? '' : 'hide' }}"></i>
+                                <i class="dot dot-success hide"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+
             <li class="nav-item nav-basics pre-listed" data-track="basics"
-                ng-class="(step == 'basics') ? 'nav-active' : ''">
+                ng-class="(step == 'basics') ? 'nav-active' : ''" >
                 <a href="{{ ($room_step != 'basics') ? url('manage-listing/'.$room_id.'/basics') : '' }}"
                    id="href_basics">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.basics') }}</span>
+                            <span class="va-middle">{{ trans('messages.lys.the_space') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -36,37 +66,6 @@
 
                             <div class="pull-right">
                                 <i class="nav-icon icon icon-ok-alt icon-babu not-post-listed {{ ($rooms_status->basics == 1) ? '' : 'hide' }}"></i>
-                                <i class="dot dot-success hide"></i>
-                            </div>
-
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li class="nav-item nav-description pre-listed" data-track="description"
-                ng-class="(step == 'description') ? 'nav-active' : ''">
-                <a href="{{ ($room_step != 'description') ? url('manage-listing/'.$room_id.'/description') : '' }}"
-                   id="href_description">
-                    <div class="row nav-item">
-                        <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.description') }}</span>
-
-                            <div class="instant-book-status pull-right">
-                                <div class="instant-book-status__on hide">
-                                    <i class="icon icon-bolt icon-beach h3"></i>
-                                </div>
-                                <div class="instant-book-status__off hide">
-                                    <i class="icon icon-bolt icon-light-gray h3"></i>
-                                </div>
-                            </div>
-
-                        <!-- <div class="js-new-section-icon not-post-listed pull-right transition {{ ($rooms_status->description == 1) ? 'hide' : 'visible' }}">
-            <i class="nav-icon icon icon-add icon-grey"></i>
-          </div> -->
-
-                            <div class="pull-right">
-                                <i class="nav-icon icon icon-ok-alt icon-babu not-post-listed {{ ($rooms_status->description == 1) ? '' : 'hide' }}"></i>
                                 <i class="dot dot-success hide"></i>
                             </div>
 

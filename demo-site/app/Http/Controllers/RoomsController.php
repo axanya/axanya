@@ -151,7 +151,7 @@ class RoomsController extends Controller
             $rooms_description->save(); // Store data to rooms_description table
         }
 
-        return redirect('manage-listing/'.$rooms->id.'/basics');
+        return redirect('manage-listing/'.$rooms->id.'/description');
     }
 
 

@@ -4,6 +4,70 @@
         <div class="manage-listing-content" id="js-manage-listing-content">
 
             <div>
+
+
+                <div class="panel row-space-4">
+                    <div class="panel-header active-panel-header">
+                        <div class="row">
+                            <div class="col-6 active-panel-padding">Property & Room Type</div>
+                            <div id="ib-master-switch-container" class="col-6"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body active-panel-header">
+
+
+                        <div class="js-saving-progress saving-progress basics2" style="display: none;">
+                            <h5>{{ trans('messages.lys.select') }}...</h5>
+                        </div>
+
+                        <div class="row row-space-2">
+                            <div class="col-4">
+                                <label class="label-large">{{ trans('messages.lys.property_type') }}</label>
+                                <div id="property-type-select">
+                                    <div class="select
+            select-large
+            select-block">
+                                        {!! Form::select('property_type',$property_type, $result->property_type, ['id' => 'basics-select-property_type', 'data-saving' => 'basics2']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label class="label-large">{{ trans('messages.lys.room_type') }}</label>
+                                <div id="room-type-select">
+                                    <div class="select
+            select-large
+            select-block">
+                                        {!! Form::select('room_type',$room_type, $result->room_type, ['id' => 'basics-select-room_type', 'data-saving' => 'basics2']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label class="label-large">{{ trans('messages.lys.accommodates') }}</label>
+                                <div id="person-capacity-select">
+                                    <div class="select
+            select-large
+            select-block">
+                                        <select name="accommodates" id="basics-select-accommodates" data-saving="basics2">
+
+                                            @for($i=1;$i<=16;$i++)
+                                                <option class="accommodates"
+                                                        value="{{ $i }}" {{ ($i == $result->accommodates) ? 'selected' : '' }}>
+                                                    {{ ($i == '16') ? $i.'+' : $i }}
+                                                </option>
+                                            @endfor
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
                 <div class="row-space-4">
                     <div class="row">
 
@@ -18,54 +82,12 @@
 
 
                 <div class="js-section">
-                    <div class="js-saving-progress saving-progress basics2" style="display: none;">
-                        <h5>{{ trans('messages.lys.select') }}...</h5>
-                    </div>
+
 
                     <h4>{{ trans('messages.lys.listing') }}</h4>
 
                     <!-- HTML for listing info subsection -->
-                    <div class="row row-space-2">
-                        <div class="col-4">
-                            <label class="label-large">{{ trans('messages.lys.property_type') }}</label>
-                            <div id="property-type-select">
-                                <div class="select
-            select-large
-            select-block">
-                                    {!! Form::select('property_type',$property_type, $result->property_type, ['id' => 'basics-select-property_type', 'data-saving' => 'basics2']) !!}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <label class="label-large">{{ trans('messages.lys.room_type') }}</label>
-                            <div id="room-type-select">
-                                <div class="select
-            select-large
-            select-block">
-                                    {!! Form::select('room_type',$room_type, $result->room_type, ['id' => 'basics-select-room_type', 'data-saving' => 'basics2']) !!}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <label class="label-large">{{ trans('messages.lys.accommodates') }}</label>
-                            <div id="person-capacity-select">
-                                <div class="select
-            select-large
-            select-block">
-                                    <select name="accommodates" id="basics-select-accommodates" data-saving="basics2">
 
-                                        @for($i=1;$i<=16;$i++)
-                                            <option class="accommodates"
-                                                    value="{{ $i }}" {{ ($i == $result->accommodates) ? 'selected' : '' }}>
-                                                {{ ($i == '16') ? $i.'+' : $i }}
-                                            </option>
-                                        @endfor
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <hr class="row-space-top-6 row-space-5">
