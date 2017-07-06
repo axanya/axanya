@@ -11,9 +11,9 @@
 <script src="{{ url('js/angular.js') }}"></script>
 <script src="{{ url('js/angular-sanitize.js') }}"></script>
 
-<script> 
+<script>
 var app = angular.module('App', ['ngSanitize']);
-var APP_URL = {!! json_encode(url('/')) !!}; 
+var APP_URL = {!! json_encode(url('/')) !!};
 </script>
 
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -50,7 +50,7 @@ var APP_URL = {!! json_encode(url('/')) !!};
     @endif
 
     @if (Route::current()->uri() == 'admin/add_room' || Route::current()->uri() == 'admin/edit_room/{id}')
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key={{ SERVER_MAP_KEY }}"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key={{ SERVER_MAP_KEY }}"></script>
       <script src="{{ url('admin_assets/plugins/jQuery/jquery.validate.js') }}"></script>
       <script src="{{ url('admin_assets/dist/js/rooms.js') }}"></script>
     @endif
@@ -61,7 +61,7 @@ var APP_URL = {!! json_encode(url('/')) !!};
 
     @if (Route::current()->uri() == 'admin/add_page' || Route::current()->uri() == 'admin/edit_page/{id}' || Route::current()->uri() == 'admin/send_email' || Route::current()->uri() == 'admin/add_help' || Route::current()->uri() == 'admin/edit_help/{id}')
     <script src="{{ url('admin_assets/plugins/editor/editor.js') }}"></script>
-      <script type="text/javascript"> 
+      <script type="text/javascript">
         $("[name='submit']").click(function(){
           $('#content').text($('#txtEditor').Editor("getText"));
           $('#message').text($('#txtEditor').Editor("getText"));
@@ -85,6 +85,7 @@ var APP_URL = {!! json_encode(url('/')) !!};
   $('#dataTableBuilder_length').addClass('dt-buttons');
   $('#dataTableBuilder_wrapper > div:not("#dataTableBuilder_length").dt-buttons').css('margin-left','20%');
 </script>
-
+{!! Html::script('js/jquery-ui.js') !!}
+{!! Html::script('js/i18n/datepicker-en.js') !!}
 </body>
 </html>

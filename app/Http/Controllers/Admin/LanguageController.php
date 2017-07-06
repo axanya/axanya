@@ -1,86 +1,172 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Language Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Language
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\LanguageDataTable;
+use App\Models\Language;
+use App\Http\Start\Helpers;
+use Validator;
+
+class LanguageController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Language
+     *
+     * @param array $dataTable  Instance of LanguageDataTable
+     * @return datatable
+     */
+    public function index(LanguageDataTable $dataTable)
+    {
+        return $dataTable->render('admin.language.view');
+    }
+
+    /**
+     * Add a New Language
+     *
+     * @param array $request  Input values
+     * @return redirect     to Language view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.language.add');
+        }
+        else if($request->submit)
+        {
+            // Add Language Validation Rules
+            $rules = array(
+                    'name'   => 'required|unique:language',
+                    'value'  => 'required|unique:language',
+                    'status' => 'required'
+                    );
+
+            // Add Language Validation Custom Names
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'value'   => 'Value',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $language = new Language;
+
+                $language->name   = $request->name;
+                $language->value  = $request->value;
+                $language->status = $request->status;
+
+                $language->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+
+                return redirect('admin/language');
+            }
+        }
+        else
+        {
+            return redirect('admin/language');
+        }
+    }
+
+    /**
+     * Update Language Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Language View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = Language::find($request->id);
+
+            return view('admin.language.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit Language Validation Rules
+            $rules = array(
+                    'name'   => 'required|unique:language,name,'.$request->id,
+                    'value'  => 'required|unique:language,value,'.$request->id,
+                    'status' => 'required'
+                    );
+
+            // Edit Language Validation Custom Fields Name
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'value'   => 'Value',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $language = Language::find($request->id);
+
+			    $language->name   = $request->name;
+                $language->value  = $request->value;
+                $language->status = $request->status;
+
+                $language->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/language');
+            }
+        }
+        else
+        {
+            return redirect('admin/language');
+        }
+    }
+
+    /**
+     * Delete Language
+     *
+     * @param array $request    Input values
+     * @return redirect     to Language View
+     */
+    public function delete(Request $request)
+    {
+        Language::find($request->id)->delete();
+
+        $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+
+        return redirect('admin/language');
+    }
+}

@@ -1,65 +1,119 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Permissions Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Permissions
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\PermissionsDataTable;
+use App\Models\Permission;
+use App\Http\Start\Helpers;
+
+class PermissionsController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Permissions
+     *
+     * @param array $dataTable  Instance of PermissionsDataTable
+     * @return datatable
+     */
+    public function index(PermissionsDataTable $dataTable)
+    {
+        return $dataTable->render('admin.permissions.view');
+    }
+
+    /**
+     * Add a New Permission
+     *
+     * @param array $request  Input values
+     * @return redirect     to Permissions view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.permissions.add');
+        }
+        else if($request->submit)
+        {
+            $role = new Permission;
+
+            $role->name = $request->name;
+            $role->display_name = $request->display_name;
+            $role->description = $request->description;
+
+            $role->save();
+
+            return redirect('admin/permissions');
+        }
+        else
+        {
+            return redirect('admin/permissions');
+        }
+    }
+
+    /**
+     * Update Permission Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Permissions View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+            $data['result'] = Permission::find($request->id);
+
+            return view('admin.permissions.edit', $data);
+        }
+        else if($request->submit)
+        {
+            $role = Permission::find($request->id);
+
+            $role->name = $request->name;
+            $role->display_name = $request->display_name;
+            $role->description = $request->description;
+
+            $role->save();
+
+            return redirect('admin/permissions');
+        }
+        else
+        {
+            return redirect('admin/permissions');
+        }
+    }
+
+    /**
+     * Delete Permission
+     *
+     * @param array $request    Input values
+     * @return redirect     to Permissions View
+     */
+    public function delete(Request $request)
+    {
+        Permission::find($request->id)->delete();
+
+        $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+
+        return redirect('admin/permissions');
+    }
+}

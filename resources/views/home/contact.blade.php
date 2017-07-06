@@ -1,9 +1,17 @@
   @extends('template')
-   
+
 	@section('main')
-	
+
     <main id="site-content" role="main">
-      
+@if(Session::has('message'))
+	<!--
+  <div class="alert {{ Session::get('alert-class') }}" role="alert">
+    <a href="#" class="alert-close" data-dismiss="alert"></a>
+  {{ Session::get('message') }}
+  </div>
+  -->
+@endif
+
 
 <div class="page-container-responsive page-container-auth row-space-top-4 row-space-8">
   <div class="row">
@@ -18,34 +26,35 @@
     @endforeach
 </ul>
 
-{!! Form::open(array('route' => 'contact_store', 'class' => 'form')) !!}
+{!! Form::open(array('url' => 'contact_store', 'class' => 'form', 'method' => 'post')) !!}
 
 <div class="form-group">
     {!! Form::label('Your Name') !!}
-    {!! Form::text('name', null, 
-        array('required', 
-              'class'=>'form-control', 
+    {!! Form::text('name', null,
+        array('required',
+              'class'=>'form-control',
               'placeholder'=>'Your name')) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('Your E-mail Address') !!}
-    {!! Form::text('email', null, 
-        array('required', 
-              'class'=>'form-control', 
-              'placeholder'=>'Your e-mail address')) !!}
+    {!! Form::email('email', null,
+        array('required',
+              'class'=>'form-control',
+              'placeholder'=>'Your e-mail address',
+              'oninvalid' => 'this.setCustomValidity(\'Invalid email\')')) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('Reason For Contacting Us') !!}
-    {!! Form::textarea('message', null, 
-        array('required', 
-              'class'=>'form-control', 
+    {!! Form::textarea('message', null,
+        array('required',
+              'class'=>'form-control',
               'placeholder'=>'Your message')) !!}
 </div>
 <br>
 <div class="form-group">
-    {!! Form::submit('Contact Us!', 
+    {!! Form::submit('Contact Us!',
       array('class'=>'btn btn-primary')) !!}
 </div>
 {!! Form::close() !!}
@@ -53,7 +62,7 @@
 
 
 
-  
+
       </div>
     </div>
   </div>

@@ -1,91 +1,173 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Religious Amenities Type Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Religious Amenities Type
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\ReligiousAmenitiesTypeDataTable;
+use App\Models\ReligiousAmenitiesType;
+use App\Models\ReligiousAmenities;
+use App\Http\Start\Helpers;
+use Validator;
+
+class ReligiousAmenitiesTypeController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Religious Amenities Type
+     *
+     * @param array $dataTable  Instance of ReligiousAmenitiesTypeDataTable
+     * @return datatable
+     */
+    public function index(ReligiousAmenitiesTypeDataTable $dataTable)
+    {
+        return $dataTable->render('admin.religious_amenities_type.view');
+    }
+
+    /**
+     * Add a New Religious Amenities Type
+     *
+     * @param array $request  Input values
+     * @return redirect     to Amenities view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.religious_amenities_type.add');
+        }
+        else if($request->submit)
+        {
+            // Add Religious Amenities Type Validation Rules
+            $rules = array(
+                    'name'    => 'required|unique:religious_amenities_type',
+                    'status'  => 'required'
+                    );
+
+            // Add Religious Amenities Type Validation Custom Names
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $religious_amenities_type = new ReligiousAmenitiesType;
+
+			    $religious_amenities_type->name        = $request->name;
+			    $religious_amenities_type->description = $request->description;
+			    $religious_amenities_type->status      = $request->status;
+
+                $religious_amenities_type->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+
+                return redirect('admin/religious_amenities_type');
+            }
+        }
+        else
+        {
+            return redirect('admin/religious_amenities_type');
+        }
+    }
+
+    /**
+     * Update Religious Amenities Type Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Amenities View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = ReligiousAmenitiesType::find($request->id);
+
+            return view('admin.religious_amenities_type.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit Religious Amenities Type Validation Rules
+            $rules = array(
+                    'name'    => 'required|unique:religious_amenities_type,name,'.$request->id,
+                    'status'  => 'required'
+                    );
+
+            // Edit Religious Amenities Type Validation Custom Fields Name
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $religious_amenities_type = ReligiousAmenitiesType::find($request->id);
+
+			    $religious_amenities_type->name        = $request->name;
+			    $religious_amenities_type->description = $request->description;
+			    $religious_amenities_type->status      = $request->status;
+
+                $religious_amenities_type->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/religious_amenities_type');
+            }
+        }
+        else
+        {
+            return redirect('admin/religious_amenities_type');
+        }
+    }
+
+    /**
+     * Delete Religious Amenities Type
+     *
+     * @param array $request    Input values
+     * @return redirect     to Amenities View
+     */
+    public function delete(Request $request)
+    {
+        $count = ReligiousAmenities::where('type_id', $request->id)->count();
+
+        if($count > 0)
+            $this->helper->flash_message('error', 'Religious Amenities have this type. So, Delete that Religious Amenities or Change that Religious Amenities.'); // Call flash message function
+        else {
+            ReligiousAmenitiesType::find($request->id)->delete();
+            $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+        }
+        return redirect('admin/religious_amenities_type');
+    }
+}

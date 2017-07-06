@@ -1,103 +1,147 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
-q0QOl6Cz8Yny80ur7RSr9wlk
+<?php
+
+/**
+ * Admin Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Admin
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Auth;
+use App\Models\Admin;
+use App\Models\User;
+use App\Models\Reservation;
+use App\Models\Rooms;
+use App\Http\Start\Helpers;
+
+class AdminController extends Controller
+{
+    protected $helper; // Global variable for instance of Helpers
+    
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Index View for Dashboard
+     *
+     * @return view index
+     */
+    public function index()
+    {
+        $data['users_count'] = User::get()->count();
+        $data['reservations_count'] = Reservation::get()->count();
+        $data['rooms_count'] = Rooms::get()->count();
+        $data['today_users_count'] = User::whereDate('created_at', '=', date('Y-m-d'))->count();
+        $data['today_reservations_count'] = Reservation::whereDate('created_at', '=', date('Y-m-d'))->count();
+        $data['today_rooms_count'] = Rooms::whereDate('created_at', '=', date('Y-m-d'))->count();
+
+        $chart = Reservation::whereYear('created_at', '<=', date('Y'))->whereYear('created_at', '>=', date('Y')-3)->where('status', 'Accepted')->get();
+
+        $quarter1 = [01, 02, 03];
+        $quarter2 = [04, 05, 06];
+        $quarter3 = [07, 08, 09];
+        $quarter4 = [10, 11, 12];
+
+        $chart_array = [];
+
+        foreach($chart as $row)
+        {
+            $month = date('m', strtotime($row->created_at));
+            $year = date('Y', strtotime($row->created_at));
+
+            if(in_array($month, $quarter1))
+                $quarter = 1;
+            if(in_array($month, $quarter2))
+                $quarter = 2;
+            if(in_array($month, $quarter3))
+                $quarter = 3;
+            if(in_array($month, $quarter4))
+                $quarter = 4;
+
+            $array['y'] = $year.' Q'.$quarter;
+            $array['amount'] = $row->total;
+
+            $chart_array[] = $array;
+        }
+
+        $data['line_chart_data'] = json_encode($chart_array);
+        
+        return view('admin.index', $data);
+    }
+
+    /**
+     * Load Login View
+     *
+     * @return view login
+     */
+    public function login()
+    {
+        return view('admin.login');
+    }
+
+    /**
+     * Login Authentication
+     *
+     * @param array $request Input values
+     * @return redirect     to dashboard
+     */
+    public function authenticate(Request $request)
+    {
+        $admin = Admin::where('username', $request->username)->first();
+        
+        if(@$admin->status != 'Inactive')
+        {
+            if(Auth::admin()->attempt(['username' => $request->username, 'password' => $request->password]))
+            {
+                return redirect()->intended('admin/dashboard'); // Redirect to dashboard page
+            }
+            else
+            {
+                $this->helper->flash_message('danger', 'Log In Failed. Please Check Your Email/Password'); // Call flash message function
+                return redirect('admin/login'); // Redirect to login page
+            }
+        }
+        else
+        {
+            $this->helper->flash_message('danger', 'Log In Failed. You are Blocked by Admin.'); // Call flash message function
+            return redirect('admin/login'); // Redirect to login page
+        }
+    }
+
+    /**
+     * Create a test admin user
+     * 
+     * @param array $request Input values
+     */
+    public function create(Request $request)
+    {
+        $admin = new Admin;
+
+        $admin->username =   "admin";
+        $admin->email    =   "admin@gmail.com";
+        $admin->password =   bcrypt("admin123");
+
+        $admin->save();
+    }
+
+    /**
+     * Admin Logout
+     */
+    public function logout()
+    {
+        Auth::admin()->logout();
+
+        return redirect('admin/login');
+    }
+}

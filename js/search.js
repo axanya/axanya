@@ -1,4 +1,4 @@
-app.directive('postsPagination', function(){  
+app.directive('postsPagination', function(){
    return{
       restrict: 'E',
       template: '<ul class="pagination">'+
@@ -40,7 +40,7 @@ app.directive('postsPagination', function(){
     $('.wl-modal__modal').removeClass('hide');
     $('.wl-modal__col:nth-child(2)').addClass('hide');
     $('.row-margin-zero').append('<div id="wish-list-signup-container" style="overflow-y:auto;" class="col-lg-5 wl-modal__col-collapsible"> <div class="loading wl-modal__col"> </div> </div>');
-    $http.get(APP_URL+"/wishlist_list?id="+$(this).data('room_id'), {  }).then(function(response) 
+    $http.get(APP_URL+"/wishlist_list?id="+$(this).data('room_id'), {  }).then(function(response)
     {
       $('#wish-list-signup-container').remove();
       $('.wl-modal__col:nth-child(2)').removeClass('hide');
@@ -50,7 +50,7 @@ app.directive('postsPagination', function(){
 
 $scope.wishlist_row_select = function(index) {
 
-  $http.post(APP_URL+"/save_wishlist", { data: $scope.room_id, wishlist_id: $scope.wishlist_list[index].id, saved_id: $scope.wishlist_list[index].saved_id }).then(function(response) 
+  $http.post(APP_URL+"/save_wishlist", { data: $scope.room_id, wishlist_id: $scope.wishlist_list[index].id, saved_id: $scope.wishlist_list[index].saved_id }).then(function(response)
   {
     if(response.data == 'null')
       $scope.wishlist_list[index].saved_id = null;
@@ -68,7 +68,7 @@ $(document).on('submit', '.wl-modal-footer__form', function(event) {
     event.preventDefault();
     $('.wl-modal__col:nth-child(2)').addClass('hide');
     $('.row-margin-zero').append('<div id="wish-list-signup-container" style="overflow-y:auto;" class="col-lg-5 wl-modal__col-collapsible"> <div class="loading wl-modal__col"> </div> </div>');
-    $http.post(APP_URL+"/wishlist_create", { data: $('.wl-modal-footer__input').val(), id: $scope.room_id }).then(function(response) 
+    $http.post(APP_URL+"/wishlist_create", { data: $('.wl-modal-footer__input').val(), id: $scope.room_id }).then(function(response)
     {
       $('.wl-modal-footer__form').addClass('hide');
       $('#wish-list-signup-container').remove();
@@ -82,7 +82,7 @@ $(document).on('submit', '.wl-modal-footer__form', function(event) {
 $('.wl-modal__modal-close').click(function()
 {
   var null_count = $filter('filter')($scope.wishlist_list, {saved_id : null});
-  
+
   if(null_count.length == $scope.wishlist_list.length)
     $('#wishlist-widget-'+$scope.room_id).prop('checked', false);
   else
@@ -97,18 +97,18 @@ var room_type = [];
     $('.room-type:checked').each(function(i){
     room_type[i] = $(this).val();
     });
-  
+
   var property_type = [];
     $('.property_type:checked').each(function(i){
     property_type[i] = $(this).val();
     });
-  
+
   var amenities = [];
     $('.amenities:checked').each(function(i){
     amenities[i] = $(this).val();
     });
    $('.search_tag').addClass('hide');
-  
+
  if(room_type !=''){
   $('.room-type_tag').removeClass('hide');
  }
@@ -168,12 +168,12 @@ $("#header-search-form").val(location_val);
 		$(this).children('span').toggleClass('hide');
 		 $(this).parent().parent().children('div').children().toggleClass('filters-more');
 		});
-		
-		
+
+
 		 $("#more_filters").click(function(){
 
 		$(".toggle-group").css("display", "block");
-		  $(".toggle-hide").css("display", "none");  
+		  $(".toggle-hide").css("display", "none");
 		  });
 	});
 
@@ -181,7 +181,7 @@ $("#header-search-form").val(location_val);
 
   var current_url = (window.location.href).replace('/s', '/searchResult');
 	var current_url_places = (window.location.href).replace('/s', '/places');
-	
+
 	pageNumber = 1;
 
 	if(pageNumber===undefined){
@@ -198,27 +198,27 @@ $("#header-search-form").val(location_val);
       	// Pagination Range
       var pages = [];
 
-      for(var i=1;i<=response.data.last_page;i++) {          
+      for(var i=1;i<=response.data.last_page;i++) {
         pages.push(i);
       }
 
-      $scope.range = pages; 
+      $scope.range = pages;
       $http.get(current_url_places).then(function(response) {
 
         $scope.place_result = response.data;
-      
+
          // marker_places(response.data);
          marker($scope.room_result);
-      }); 
+      });
 	  $('[data-toggle="tooltip"]').tooltip();
         // marker(response.data);
       });
   // $http.get(current_url_places).then(function(response) {
 
   //       $scope.place_result = response.data;
-      
+
   //        marker_places(response.data);
-  //     }); 
+  //     });
 
 $scope.on_mouse = function (index) {
   //markers[index].setIcon(getMarkerImage('hover'));
@@ -238,9 +238,9 @@ $scope.out_mouse = function (index) {
 		if(pageNumber===undefined){
       pageNumber = '1';
     }
-	 
-	 var max_price = $("#max_value").val(); 
-	 var min_price = $("#min_value").val(); 
+
+	 var max_price = $("#max_value").val();
+	 var min_price = $("#min_value").val();
 
 	var room_type = [];
     $('.room-type:checked').each(function(i){
@@ -250,7 +250,7 @@ $scope.out_mouse = function (index) {
     if(room_type==''){
       $('.room-type_tag').addClass('hide');
     }
-	
+
 	var property_type = [];
     $('.property_type:checked').each(function(i){
 		property_type[i] = $(this).val();
@@ -272,7 +272,7 @@ $scope.out_mouse = function (index) {
 	var min_bathrooms = $("#map-search-min-bathrooms").val();
 	var min_bedrooms = $("#map-search-min-bedrooms").val();
 	var guest_select = $("#guest-select").val();
-	
+
 	if( $.trim(localStorage.getItem("map_lat_long")) != 'null'){
 		var map_details = localStorage.getItem("map_lat_long");
 	}
@@ -294,7 +294,7 @@ $scope.out_mouse = function (index) {
 	setGetParameter('max_price', max_price);
 	setGetParameter('page', pageNumber);
   $('.search_tag').addClass('hide');
-  
+
  if(room_type !=''){
   $('.room-type_tag').removeClass('hide');
  }
@@ -313,52 +313,52 @@ $scope.out_mouse = function (index) {
 
       //  $scope.room_result = response;
        // alert(response.data[0].rooms_address.city);
-        $scope.room_result = response.data; 
+        $scope.room_result = response.data;
         $scope.checkin = checkin;
         $scope.checkout = checkout;
        $scope.totalPages   = response.data.last_page;
       	$scope.currentPage  = response.data.current_page;
       	// Pagination Range
       var pages = [];
-         
-      for(var i=1;i<=response.data.last_page;i++) {        
+
+      for(var i=1;i<=response.data.last_page;i++) {
         pages.push(i);
       }
 
-      $scope.range = pages; 
+      $scope.range = pages;
 
       var place_types = '';
     $('.place_types:checked').each(function() {
       place_types += $(this).val()+',';
     });
-        
+
         //$('.search-results').removeClass('loading');
         $('.load_show').removeClass('hide');
         $http.post('places', { location: location1, map_details: map_details, types: (place_types) ? place_types : 'empty' })
       .then(function(response) {
 
         $scope.place_result = response.data;
-      
+
          // marker_places(response.data);
          marker($scope.room_result);
          $('.load_show').addClass('hide');
-      }); 
+      });
          // marker(response.data);
-      }); 
+      });
 
    // $http.post('places', { location: location1, map_details: map_details })
    //    .then(function(response) {
 
    //      $scope.place_result = response.data;
-      
+
    //       marker_places(response.data);
-   //    }); 
+   //    });
 	};
 
 	$scope.apply_filter = function()
 	{
 		$(".toggle-hide").css("display", "block");
-		$(".toggle-group").css("display", "none"); 
+		$(".toggle-group").css("display", "none");
 
 		$scope.search_result();
 	};
@@ -380,7 +380,7 @@ $scope.out_mouse = function (index) {
         $('#map_canvas').removeClass('loading');
         $scope.place_result = response.data;
          marker($scope.room_result);
-      }); 
+      });
 
   });
 
@@ -452,17 +452,17 @@ var html = '';
 var markers = [];
 var map;
 	var infowindow = new google.maps.InfoWindow(
-	  { 
+	  {
       content: html
   	});
- 
+
   initialize();
 
 function initialize()
-{	
+{
 
   if($scope.zoom == ''){
-    var zoom_set = 10;
+    var zoom_set = 11;
   }
   else
   {
@@ -487,6 +487,8 @@ function initialize()
 var mapProp = {
 	scrollwheel: false,
   center:myCenter,
+  maxZoom:15,
+  minZoom:9,
   zoom:zoom_set,
   zoomControl: true,
     zoomControlOptions: {
@@ -496,7 +498,7 @@ var mapProp = {
   	mapTypeControl: false,
 	streetViewControl: false,
 		navigationControl: false,
-		
+
 	}
  map = new google.maps.Map(document.getElementById("map_canvas"),mapProp);
 	google.maps.event.addListener(map, 'click', function() {
@@ -512,29 +514,29 @@ var mapProp = {
 //  homeControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(homeControlDiv);
 
-	google.maps.event.addListener(map, 'dragend', function() { 
+	google.maps.event.addListener(map, 'dragend', function() {
     if(infoBubble != undefined){ if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
           maxWidth: 3000
         });
-        } }   
+        } }
 		$scope.zoom = map.getZoom();
-		
+
     var zoom = map.getZoom();
     var bounds = map.getBounds();
     var minLat = bounds.getSouthWest().lat();
     var minLong = bounds.getSouthWest().lng();
     var maxLat = bounds.getNorthEast().lat();
     var maxLong = bounds.getNorthEast().lng();
-    var cLat = bounds.getCenter().lat(); 
+    var cLat = bounds.getCenter().lat();
     var cLong = bounds.getCenter().lng();
 
     $scope.cLat = bounds.getCenter().lat();
     $scope.cLong = bounds.getCenter().lng();
 
 		var map_lat_long = zoom+'~'+bounds+'~'+minLat+'~'+minLong+'~'+maxLat+'~'+maxLong+'~'+cLat+'~'+cLong;
-    
+
 		localStorage.setItem("map_lat_long", map_lat_long);
     var redo_search = '';
     // $('#redo_search:checked').each(function(i){
@@ -549,7 +551,7 @@ var mapProp = {
   }
 	 } );
 
-  google.maps.event.addListener(map, 'click', function(e) { 
+  google.maps.event.addListener(map, 'click', function(e) {
     if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
@@ -558,23 +560,23 @@ var mapProp = {
         }
       });
 
-	google.maps.event.addListener(map, 'zoom_changed', function() { 
+	google.maps.event.addListener(map, 'zoom_changed', function() {
     if(infoBubble != undefined){ if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
           maxWidth: 3000
         });
-        } 
+        }
       }
 		$scope.zoom = map.getZoom();
-		
+
 		var zoom = map.getZoom();
 		var bounds = map.getBounds();
 		var minLat = bounds.getSouthWest().lat();
 		var minLong = bounds.getSouthWest().lng();
 		var maxLat = bounds.getNorthEast().lat();
 		var maxLong = bounds.getNorthEast().lng();
-		var cLat = bounds.getCenter().lat(); 
+		var cLat = bounds.getCenter().lat();
 		var cLong = bounds.getCenter().lng();
     $scope.cLat = bounds.getCenter().lat();
     $scope.cLong = bounds.getCenter().lng();
@@ -612,7 +614,7 @@ function HomeControl(controlDiv, map) {
   controlText.style.padding = '5px';
   controlText.style.margin = '0px 0px 0px 50px';
   controlText.style.fontSize='14px';
-  controlText.innerHTML = '<div class="map-refresh-controls google"><div class="panel map-auto-refresh display-icon" style="padding-top:6px; padding-bottom:6px;">Display: <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><small>Restaurants</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="kosher_vendor" id="kosher_vendor" value="Kosher Vendor" class="map-auto-refresh-checkbox place_types"><small>Kosher Vendor</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><small>Synagogues</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><small>Mikvahs</small></label></div></div>';  
+  controlText.innerHTML = '<div class="map-refresh-controls google"><div class="panel map-auto-refresh display-icon" style="padding-top:6px; padding-bottom:6px;">Display: <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><small>Restaurants</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="kosher_vendor" id="kosher_vendor" value="Kosher Vendor" class="map-auto-refresh-checkbox place_types"><small>Kosher Vendor</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><small>Synagogues</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><small>Mikvahs</small></label></div></div>';
 
   controlDiv.appendChild(controlText);
 
@@ -667,7 +669,7 @@ function HomeControl(controlDiv, map) {
       var panes = this.getPanes();
       panes.overlayMouseTarget.appendChild(div);
 
-      var me = this; 
+      var me = this;
       google.maps.event.addDomListener(div, 'click', function(event) {
         google.maps.event.trigger(me, 'click');
         event.stopPropagation();
@@ -699,7 +701,7 @@ function HomeControl(controlDiv, map) {
 
 
       }
-      //Optional: helper methods for removing and toggling the text overlay.  
+      //Optional: helper methods for removing and toggling the text overlay.
     TxtOverlay.prototype.onRemove = function() {
       this.div_.parentNode.removeChild(this.div_);
       this.div_ = null;
@@ -742,16 +744,16 @@ function marker(response){
       markers = [];
   $scope.place_info = [];
 angular.forEach(response.data, function(obj){
-		
+
 	if(obj["koshire"] == '1'){
 		var koshire = '<span title="This house is Kosher" class="h3 test hastooltip icon-k">K</span>';
-		
+
 	}
-	
- var html = '<div id="info_window_'+obj["id"]+'" class="listing listing-map-popover" data-price="'+obj["rooms_price"]["currency"]["symbol"]+'" data-id="'+obj["id"]+'" data-user="'+obj["user_id"]+'" data-url="/rooms/'+obj["id"]+'" data-name="'+obj["name"]+'" data-lng="'+obj['rooms_address']["longitude"]+'" data-lat="'+obj['rooms_address']["latitude"]+'"><div class="panel-image listing-img">';                   
- html += '<a class="media-photo media-cover" target="listing_'+obj["id"]+'" href="'+APP_URL+'/rooms/'+obj["id"]+'?checkin='+checkin+'&checkout='+checkout+'"><div class="listing-img-container media-cover text-center"><img id="marker_image_'+obj["id"]+'" rooms_image = "" alt="'+obj["name"]+'" class="img-responsive-height" data-current="0" src="'+APP_URL+'/images/'+obj["photo_name"]+'"></div></a>';           
+
+ var html = '<div id="info_window_'+obj["id"]+'" class="listing listing-map-popover" data-price="'+obj["rooms_price"]["currency"]["symbol"]+'" data-id="'+obj["id"]+'" data-user="'+obj["user_id"]+'" data-url="/rooms/'+obj["id"]+'" data-name="'+obj["name"]+'" data-lng="'+obj['rooms_address']["longitude"]+'" data-lat="'+obj['rooms_address']["latitude"]+'"><div class="panel-image listing-img">';
+ html += '<a class="media-photo media-cover" target="listing_'+obj["id"]+'" href="'+APP_URL+'/rooms/'+obj["id"]+'?checkin='+checkin+'&checkout='+checkout+'"><div class="listing-img-container media-cover text-center"><img id="marker_image_'+obj["id"]+'" rooms_image = "" alt="'+obj["name"]+'" class="img-responsive-height" data-current="0" src="'+APP_URL+'/images/'+obj["photo_name"]+'"></div></a>';
  html += '<div class="target-prev target-control block-link marker_slider" ng-click="marker_slider($event)"  data-room_id="'+obj["id"]+'"><i class="icon icon-chevron-left icon-size-2 icon-white"></i></div><a class="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label" target="listing_'+obj["id"]+'" href="'+APP_URL+'rooms/'+obj["id"]+'?checkin='+checkin+'&checkout='+checkout+'"><div>';
- 
+
  var instant_book = '';
 
  if(obj["booking_type"] == 'instant_book')
@@ -759,14 +761,14 @@ angular.forEach(response.data, function(obj){
 
  html += '<sup class="h6 text-contrast">'+obj["rooms_price"]["currency"]["symbol"]+'</sup><span class="h3 text-contrast price-amount">'+obj["rooms_price"]["night"]+'</span><sup class="h6 text-contrast"></sup>'+instant_book+'</div></a><div class="target-next target-control marker_slider block-link" ng-click="marker_slider($event)" data-room_id="'+obj["id"]+'"><i class="icon icon-chevron-right icon-size-2 icon-white"></i></div>'+koshire+'</div>';
  html += '<div class="panel-body panel-card-section"><div class="media"><h3 class="h5 listing-name text-truncate row-space-top-1" itemprop="name" title="'+obj["name"]+'">'+obj["name"]+'</a></h3>';
- 
+
  var star_rating = '';
 
  if(obj['overall_star_rating'] != '')
   star_rating = ' · '+obj['overall_star_rating'];
 
  var reviews_count = '';
- var review_plural = (obj['reviews_count'] > 1) ? 's' : ''; 
+ var review_plural = (obj['reviews_count'] > 1) ? 's' : '';
 
  if(obj['reviews_count'] != 0)
   reviews_count = ' · '+obj['reviews_count']+' review'+review_plural;
@@ -776,7 +778,7 @@ angular.forEach(response.data, function(obj){
             var lng = obj["rooms_address"]["longitude"];
             var point = new google.maps.LatLng(lat,lng);
             var name = obj["name"];
-            var currency_symbol = obj["rooms_price"]["currency"]["symbol"] ; 
+            var currency_symbol = obj["rooms_price"]["currency"]["symbol"] ;
             var currency_value = obj["rooms_price"]["night"];
            var marker = new google.maps.Marker({
         position: point,
@@ -786,7 +788,7 @@ angular.forEach(response.data, function(obj){
         zIndex: 1
         });
       customTxt = currency_symbol+' '+currency_value;
-      txt = new TxtOverlay(point, customTxt, "customBox", map); 
+      txt = new TxtOverlay(point, customTxt, "customBox", map);
       //console.log(txt);
       markers.push(txt);
   google.maps.event.addListener(marker, "mouseover", function() {
@@ -794,7 +796,7 @@ angular.forEach(response.data, function(obj){
   });
   google.maps.event.addListener(marker, "mouseout", function() {
     marker.setIcon(getMarkerImage('normal'));
-  }); 
+  });
              createInfoWindow(txt, html);
 			 $(document).on('mouseenter', '.hastooltip',function() {
 		var tool_title = $(this).attr('title');
@@ -804,7 +806,7 @@ angular.forEach(response.data, function(obj){
 		});
 
         });
-		
+
 //console.log($scope.place_result);
 angular.forEach($scope.place_result, function(obj) {
     var lat = obj["latitude"];
@@ -827,12 +829,12 @@ angular.forEach($scope.place_result, function(obj) {
         strokeColor: '',
         strokeWeight: 0
       },*/
-      icon : ' ', 
+      icon : ' ',
       map_icon_label: getMarkerLabel(obj['type'])
     });
     markers.push(marker);
 
-    place_info = '<p>'+obj['name']+'</p><p>'+obj['address_line_1']+' '+obj['address_line_2']+', '+obj['city']+'</p><p>'+obj['state']+', '+obj['country']+'</p>'; 
+    place_info = '<p>'+obj['name']+'</p><p>'+obj['address_line_1']+' '+obj['address_line_2']+', '+obj['city']+'</p><p>'+obj['state']+', '+obj['country']+'</p>';
     $scope.places_info.push(place_info);
 
     html = '<div style="font-size:16px"><h3 style="margin:0px; color:#000;">'+obj['name']+'</h3><div class="popup-review">'+obj['reviews_star_rating_div']+'</div><hr><div class="address-align">'+obj['address_line_1']+'</div><div class="address-align">'+obj['address_line_2']+'</div><div class="address-align">'+obj['city']+'</div><div class="address-align">'+obj['state']+'</div><div class="address-align">'+obj['country_name']+'</div><div class="address-align">'+obj['postal_code']+'</div>';
@@ -878,7 +880,7 @@ function marker_places(response) {
 //console.log(marker.pos);
     var contentString = $compile(popupContent)($scope);
     google.maps.event.addDomListener(marker, 'click', function() {
-        
+
         if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
@@ -889,21 +891,21 @@ function marker_places(response) {
         infoBubble.addTab('', contentString[0]);
 
         var borderRadius = 0;
-        infoBubble.setBorderRadius(borderRadius); 
+        infoBubble.setBorderRadius(borderRadius);
          var maxWidth = 300;
         infoBubble.setMaxWidth(maxWidth);
 
         var maxHeight = 300;
-        infoBubble.setMaxHeight(maxHeight);  
+        infoBubble.setMaxHeight(maxHeight);
         var minWidth = 282;
         infoBubble.setMinWidth(minWidth);
 
         var minHeight = 245;
         infoBubble.setMinHeight(minHeight);
-        infoBubble.setPosition(marker.pos); 
+        infoBubble.setPosition(marker.pos);
         infoBubble.open(map);
-        //console.log(infoBubble); 
-        });   
+        //console.log(infoBubble);
+        });
     }
 
     function createPlaceInfoWindow(marker, popupContent) {
@@ -913,7 +915,7 @@ function marker_places(response) {
 
     var contentString = popupContent;
     google.maps.event.addListener(marker, 'click', function() {
-        
+
         if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
@@ -924,12 +926,12 @@ function marker_places(response) {
         infoBubble.addTab('', contentString);
 
         var borderRadius = 0;
-        infoBubble.setBorderRadius(borderRadius); 
+        infoBubble.setBorderRadius(borderRadius);
          var maxWidth = 300;
         infoBubble.setMaxWidth(maxWidth);
 
         var maxHeight = 250;
-        infoBubble.setMaxHeight(maxHeight);  
+        infoBubble.setMaxHeight(maxHeight);
         var minWidth = 300;
         infoBubble.setMinWidth(minWidth);
 
@@ -937,8 +939,8 @@ function marker_places(response) {
         infoBubble.setMinHeight(minHeight);
 
         infoBubble.open(map,marker);
-        });  
-      
+        });
+
     }
 
 function getMarkerImage(type) {
@@ -949,16 +951,16 @@ function getMarkerImage(type) {
       else if(type == 'Restaurants')
        image = 'pin-restaurant.png';
       /*'<span class="map-icon map-icon-restaurant"></span>'*/
-           
+
 
       else if(type == 'Synagogues')
         image = 'pin-synagogues.png';
-      
+
       /*'<span class="map-icon map-icon-restaurant"></span>'*/
-     
+
     /*var point = new google.maps.LatLng(50,50),
 
-     
+
         myOptions = {
             zoom: 4,
             center: point,
@@ -977,7 +979,7 @@ function getMarkerImage(type) {
        labelAnchor: new google.maps.Point(22, 50),
        labelClass: "labels" // the CSS class for the label
      });
-    
+
     marker.setMap( map );
 }*/
       else if(type == 'Mikvahs')
@@ -991,21 +993,21 @@ function getMarkerImage(type) {
       new google.maps.Size(50, 50),
       new google.maps.Point(0,0),
       new google.maps.Point(9, 20));
-   
+
    return gicons;
 
 }
 
 function getMarkerLabel(type){
-  var label = ''; 
+  var label = '';
   if(type == 'Restaurants')
-    label = '<span class="map-icon map-icon-restaurant"></span>'; 
+    label = '<span class="map-icon map-icon-restaurant"></span>';
   else if(type == 'Synagogues')
-    label = '<span class="map-icon map-icon-synagogue"></span>'; 
+    label = '<span class="map-icon map-icon-synagogue"></span>';
   else if(type == 'Mikvahs')
-    label = '<span class="map-icon map-icon-florist"></span>'; 
+    label = '<span class="map-icon map-icon-florist"></span>';
   else if(type == 'Kosher Vendor')
-    label = '<span class="map-icon map-icon-grocery-or-supermarket"></span>'; 
+    label = '<span class="map-icon map-icon-grocery-or-supermarket"></span>';
 
   return label;
 
@@ -1016,7 +1018,7 @@ function setAllMap(map) {
           infoBubble = new InfoBubble({
           maxWidth: 3000
         });
-        } }   
+        } }
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
@@ -1030,11 +1032,11 @@ $('.footer-toggle').click(function()
   		{
     	$('.open-content').hide();
     	$('.close-content').show();
-  		}     
+  		}
 		else
   		{
     	$('.open-content').show();
-    	$('.close-content').hide(); 
+    	$('.close-content').hide();
   		}
   	});
 });
@@ -1046,10 +1048,10 @@ $(document).on('click', '.map-manual-refresh', function() {
   $scope.search_result();
 });
 $(document).on('click', '.rooms-slider', function() {
- 
+
   var rooms_id = $(this).attr("data-room_id");
   var dataurl = $("#rooms_image_"+rooms_id).attr("rooms_image");
-  var img_url =$("#rooms_image_"+rooms_id).attr("src"); 
+  var img_url =$("#rooms_image_"+rooms_id).attr("src");
   if($.trim(dataurl) ==''){
   $(this).parent().addClass("loading");
     $http.post('rooms_photos', {rooms_id: rooms_id})
@@ -1089,10 +1091,10 @@ $(document).on('click', '.rooms-slider', function() {
           }
          else
          {
-              
+
               var img = all_image[count];
          }
-        
+
         var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
         $(".panel-image").removeClass("loading");
@@ -1134,9 +1136,9 @@ var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
  $(".panel-image").removeClass("loading");
 $("#rooms_image_"+rooms_id).attr("src",set_img_url);
-    
+
   }
-  
+
 });
 $scope.marker_slider = function($event){
 
@@ -1145,7 +1147,7 @@ $scope.marker_slider = function($event){
 
   var rooms_id = $($event.currentTarget).attr("data-room_id");
   var dataurl = $("#marker_image_"+rooms_id).attr("rooms_image");
-  var img_url =$("#marker_image_"+rooms_id).attr("src"); 
+  var img_url =$("#marker_image_"+rooms_id).attr("src");
   if($.trim(dataurl) ==''){
   $($event.currentTarget).parent().addClass("loading");
     $http.post('rooms_photos', {rooms_id: rooms_id})
@@ -1185,10 +1187,10 @@ $scope.marker_slider = function($event){
           }
          else
          {
-              
+
               var img = all_image[count];
          }
-        
+
         var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
         $(".panel-image").removeClass("loading");
@@ -1230,16 +1232,16 @@ var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
  $(".panel-image").removeClass("loading");
 $("#marker_image_"+rooms_id).attr("src",set_img_url);
-    
+
   }
-  
+
 }
 
 $(document).on('click', '.marker_slider', function() {
- 
+
   var rooms_id = $(this).attr("data-room_id");
   var dataurl = $("#marker_image_"+rooms_id).attr("rooms_image");
-  var img_url =$("#marker_image_"+rooms_id).attr("src"); 
+  var img_url =$("#marker_image_"+rooms_id).attr("src");
   if($.trim(dataurl) ==''){
   $(this).parent().addClass("loading");
     $http.post('rooms_photos', {rooms_id: rooms_id})
@@ -1279,10 +1281,10 @@ $(document).on('click', '.marker_slider', function() {
           }
          else
          {
-              
+
               var img = all_image[count];
          }
-        
+
         var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
         $(".panel-image").removeClass("loading");
@@ -1324,9 +1326,9 @@ var set_img_url = img_explode[0]+'rooms/'+rooms_id+'/'+img;
 
  $(".panel-image").removeClass("loading");
 $("#marker_image_"+rooms_id).attr("src",set_img_url);
-    
+
   }
-  
+
 });
 $(document).on('change', '[id^="map-search"]', function() {
         var i = 0;
@@ -1342,7 +1344,7 @@ $(document).on('change', '[id^="map-search"]', function() {
             	i++
             }
         });
-        
+
         if (i == 0) {
             $('#more_filter_submit').attr('disabled', 'disabled');
         } else {
@@ -1356,7 +1358,7 @@ $(document).on('click', '#cancel-filter', function() {
         	{
         		$(this).attr('checked', false);
         	}
-        	else 
+        	else
         	{
         		$(this).val('');
         	}

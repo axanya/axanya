@@ -211,7 +211,7 @@
     width: 100%}
 .map {
     position: absolute;
-    top: 68px;
+    top: 61px;
     bottom: 300px;
     left: 0;
     right: 0;
@@ -251,7 +251,7 @@
 }
 .sidebar {
     position: fixed;
-    top: 68px;
+    top: 61px;
     left: 0;
     bottom: 0;
     width: 60%;
@@ -454,7 +454,6 @@
     margin: 2px;
 font-size: 13px;
 font-weight: bold;
-
 }
 .map {
     position: fixed;
@@ -1055,8 +1054,8 @@ font-weight: bold;
     max-height:none
 }
 .wl-modal__modal--loggedOut .modal-content {
-    max-width:320px}
-
+    max-width:320px
+  }
 }
 .wl-modal__header {
     height:17%;

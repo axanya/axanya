@@ -342,7 +342,7 @@ class ReservationController extends Controller
 
         $data['print'] = $request->print;
 
-        return view('reservation.my_reservations', $data);
+        return view('rooms.reservation.my_reservations', $data);
     }
 
     /**

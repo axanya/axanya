@@ -35,4 +35,10 @@ return [
         'secret' => '',
     ],
 
+    'google' => [
+      'client_id' => '365546960784-5khov6jm45inljn55d7oudj39568717p.apps.googleusercontent.com',
+      'client_secret' => '2226Ot50qV-VMLK_BzPNMETv',
+      'redirect' => 'https://www.axanya.com/googleAuthenticate'
+    ]
+
 ];

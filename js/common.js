@@ -1,3 +1,51 @@
+$('.AnnouncementBar__arrow').click(function(){
+    if($('.AnnouncementBar__arrow').hasClass('hidden')){
+        //alert('open');
+        $('.AnnouncementBar__content').addClass('AnnouncementBar__active');
+        $('.AnnouncementBar__content').removeClass('inactive');
+
+        $('.AnnouncementBar__arrow').removeClass('hidden');
+        $('.AnnouncementBar__arrow').addClass('AnnouncementBar__open');
+    }
+    else if($('.AnnouncementBar__arrow').hasClass('AnnouncementBar__open')){
+        //alert('close');
+        $('.AnnouncementBar__content').removeClass('AnnouncementBar__active');   
+        $('.AnnouncementBar__content').addClass('inactive');   
+
+        $('.AnnouncementBar__arrow').addClass('hidden');
+        $('.AnnouncementBar__arrow').removeClass('AnnouncementBar__open');  
+    }
+    //AnnouncementBar__icon hidden AnnouncementBar__arrow
+    //AnnouncementBar__icon AnnouncementBar__open AnnouncementBar__arrow
+    
+});
+
+$('.js-book-it-btn').click(function(){
+    var checkin = $("#list_checkin").val();
+    var checkout =  $("#list_checkout").val();
+    if(checkin == '' && checkout =='')
+    {
+        $("#list_checkin").trigger("select");
+        return false;
+    }else{
+        swal({
+          title: "",
+          text: "<div class='text-left'><h4>This listing requires that you submit the following before proceeding booking:</h4><ul><li>Update your payment information </li><li>Confirm identity with a government-issued ID </li><li>Provide host with a personal reference (phone or email)</li></ul></div>",
+          html: true
+        },function(){
+            $('#book_it_form').submit();
+        });
+    }
+
+    
+});
+
+$('#add-reference-user').click(function()
+{
+    $('#reference-flow-view .modal').fadeIn();
+    $('#reference-flow-view .modal').attr('aria-hidden','false');
+});
+
 $('.js-show-how-it-works').click(function()
 {
     $( ".js-how-it-works" ).slideToggle( "fast", function() {
@@ -365,20 +413,30 @@ $('.room_status_dropdown').change(function()
     var data = JSON.stringify(data_params);
 
     var id = $(this).attr('data-room-id');
-
-    $http.post('manage-listing/'+id+'/update_rooms', { data:data }).then(function(response) 
-    {
-        if(data_params['status'] == 'Unlisted')
-        {
-            $('[data-room-id="div_'+id+'"] > i').addClass('dot-danger');
-            $('[data-room-id="div_'+id+'"] > i').removeClass('dot-success');
+    var check = true;
+    
+    if($(this).val() == 'Unlisted'){
+        check = confirm("Unlisting will only affect future availability, but existing reservations are still effective!");    
+        if(check != true){
+            $(this).val("Listed");
         }
-        else if(data_params['status'] == 'Listed')
-        {
-            $('[data-room-id="div_'+id+'"] > i').removeClass('dot-danger');
-            $('[data-room-id="div_'+id+'"] > i').addClass('dot-success');
-        }
-    });
+    }    
+    
+    if(check){
+        $http.post('manage-listing/'+id+'/update_rooms', { data:data }).then(function(response) {
+            if(data_params['status'] == 'Unlisted')
+            {
+                $('[data-room-id="div_'+id+'"] > i').addClass('dot-danger');
+                $('[data-room-id="div_'+id+'"] > i').removeClass('dot-success');
+            }
+            else if(data_params['status'] == 'Listed')
+            {
+                $('[data-room-id="div_'+id+'"] > i').removeClass('dot-danger');
+                $('[data-room-id="div_'+id+'"] > i').addClass('dot-success');
+            }
+        });
+    }
+    
 });
 
 $(document).on('click', '.wl-modal-footer__text', function() {

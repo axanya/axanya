@@ -1,75 +1,94 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Api Credentials Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Api Credentials
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Start\Helpers;
+use App\Models\ApiCredentials;
+use Illuminate\Http\Request;
+use Validator;
+
+class ApiCredentialsController extends Controller {
+	protected $helper; // Global variable for instance of Helpers
+
+	public function __construct() {
+		$this->helper = new Helpers;
+	}
+
+	/**
+	 * Load View and Update Api Credentials
+	 *
+	 * @return redirect     to api_credentials
+	 */
+	public function index(Request $request) {
+		if (!$_POST) {
+			$data['result'] = ApiCredentials::get();
+
+			return view('admin.api_credentials', $data);
+		} else if ($request->submit) {
+			// Api Credentials Validation Rules
+			$rules = array(
+				'facebook_client_id' => 'required',
+				'facebook_client_secret' => 'required',
+				'google_client_id' => 'required',
+				'google_client_secret' => 'required',
+				'google_map_key' => 'required',
+				'linkedin_client_id' => 'required',
+				'linkedin_client_secret' => 'required',
+				'sms_key' => 'required',
+			);
+
+			// Api Credentials Validation Custom Names
+			$niceNames = array(
+				'facebook_client_id' => 'Facebook Client ID',
+				'facebook_client_secret' => 'Facebook Client Secret',
+				'google_client_id' => 'Google Client ID',
+				'google_client_secret' => 'Google Client Secret',
+				'google_map_key' => 'Google Map Key',
+				'linkedin_client_id' => 'LinkedIn Client ID',
+				'linkedin_client_secret' => 'LinkedIn Client Secret',
+				'sms_key' => 'Sms Api Secret',
+			);
+
+			$validator = Validator::make($request->all(), $rules);
+			$validator->setAttributeNames($niceNames);
+
+			if ($validator->fails()) {
+				return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+			} else {
+				ApiCredentials::where(['name' => 'client_id', 'site' => 'Facebook'])->update(['value' => $request->facebook_client_id]);
+
+				ApiCredentials::where(['name' => 'client_secret', 'site' => 'Facebook'])->update(['value' => $request->facebook_client_secret]);
+
+				ApiCredentials::where(['name' => 'client_id', 'site' => 'Google'])->update(['value' => $request->google_client_id]);
+
+				ApiCredentials::where(['name' => 'client_secret', 'site' => 'Google'])->update(['value' => $request->google_client_secret]);
+
+				ApiCredentials::where(['name' => 'key', 'site' => 'GoogleMap'])->update(['value' => $request->google_map_key]);
+
+				ApiCredentials::where(['name' => 'client_id', 'site' => 'LinkedIn'])->update(['value' => $request->linkedin_client_id]);
+
+				ApiCredentials::where(['name' => 'client_secret', 'site' => 'LinkedIn'])->update(['value' => $request->linkedin_client_secret]);
+
+				ApiCredentials::where(['name' => 'sms_key', 'site' => 'checkmobi'])->update(['value' => $request->sms_key]);
+
+				$this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+				return redirect('admin/api_credentials');
+			}
+		} else {
+			return redirect('admin/api_credentials');
+		}
+	}
+}

@@ -1,64 +1,88 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
-t/mtauYIaBz/+FdCiFzvlpN+
+<?php
+
+/**
+ * Payment Gateway Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Payment Gateway
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Models\PaymentGateway;
+use App\Http\Start\Helpers;
+use Validator;
+
+class PaymentGatewayController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load View and Update Payment Gateway Data
+     *
+     * @return redirect     to payment_gateway
+     */
+    public function index(Request $request)
+    {
+        if(!$_POST)
+        {
+            $data['result'] = PaymentGateway::get();
+
+            return view('admin.payment_gateway', $data);
+        }
+        else if($request->submit)
+        {
+            // Payment Gateway Validation Rules
+            $rules = array(
+                    'paypal_username'  => 'required',
+                    'paypal_password'  => 'required',
+                    'paypal_signature' => 'required'
+                    );
+
+            // Payment Gateway Validation Custom Names
+            $niceNames = array(
+                        'paypal_username'  => 'PayPal Username',
+                        'paypal_password'  => 'PayPal Password',
+                        'paypal_signature' => 'PayPal Signature'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                PaymentGateway::where(['name' => 'username', 'site' => 'PayPal'])->update(['value' => $request->paypal_username]);
+
+                PaymentGateway::where(['name' => 'password', 'site' => 'PayPal'])->update(['value' => $request->paypal_password]);
+
+                PaymentGateway::where(['name' => 'signature', 'site' => 'PayPal'])->update(['value' => $request->paypal_signature]);
+
+                PaymentGateway::where(['name' => 'mode', 'site' => 'PayPal'])->update(['value' => $request->paypal_mode]);
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+            
+                return redirect('admin/payment_gateway');
+            }
+        }
+        else
+        {
+            return redirect('admin/payment_gateway');
+        }
+    }
+}

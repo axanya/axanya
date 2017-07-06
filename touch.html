@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+<title>Drag and drop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+
+
+</style>
+
+<script>
+
+
+</script>
+</head>
+
+<body>
+
+
+
+<p style="font-size: 25px">This is a very basic drag-and-drop; it's mostly a proof of concept. The action
+is a bit stilted, especially on the Android, and when you drag the element beyond
+the page borders and then back to the centre, the action looks a bit odd.</p>
+
+
+</body>
+<script src="https://axanya.com/beta/js/jquery-1.11.3.js"></script>
+<script src="https://axanya.com/beta/js/jquery.mobile-1.4.5.js"></script>
+
+<script type="text/javascript">
+	
+	$( document ).on( "vmouseover", "p", function() {
+	  $( this ).append( "<span style='color:#108040;'> vmouseover fired...</span>" );
+	});
+
+
+	$('ul li.has-children').on("touchstart", function (e) {
+'use strict'; //satisfy code inspectors
+var link = $(this); //preselect the link
+if (link.hasClass('hover')) {
+    return true;
+ } 
+else {
+   link.addClass('hover');
+   $('ul > li').not(this).removeClass('hover');
+   e.preventDefault();
+   return false; //extra, and to make sure the function has consistent return points
+  }
+});
+</script>
+</html>

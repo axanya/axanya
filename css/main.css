@@ -104,15 +104,16 @@
 
 
 .hero__background {
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    
-    right: 0;
-    top: 0;
 	background:url(../images/axanya_why_choose_us.jpg);
 	background-size: cover;
 	background-position: center 0;
+}
+.hero__background {
+    margin-left: 0!important;
+    width: 100% !important;
+}
+.SearchForm__row {
+    background-color: white;
 }
 .hero__background video {
     bottom: 0;
@@ -671,7 +672,7 @@ body.p1 .flash-container {
     margin: 0px !important;
 	font-weight:300;
 }
-.why-host-div{padding:80px 60px; height:auto; width:38%; float:right; background:none; text-align:left;}
+.why-host-div{padding:80px 60px; height:auto; width:38%; float:right; background:none; text-align:left; margin: 70px;}
 .host-button{
     display: inline-block !important;
     border-radius: 64px !important;
@@ -771,7 +772,7 @@ body.p1 .flash-container {
 .menu-option.focused {
     outline: 0;
     color: #fff;
-    background: #ff5a5f
+    background: #CC0066
 }
 .saved-search-wrapper {
     position: relative
@@ -905,7 +906,7 @@ body.p1 .flash-container {
 }
 .search-top-destination:hover {
     color: #fff;
-    background: #ff5a5f;
+    background: #CC0066;
     cursor: pointer
 }
 .search-top-destination-tips {
@@ -1145,7 +1146,7 @@ body.p1 .flash-container {
 .axanya-header .search-form .search-bar .icon-search{top:18px;}
 .axanya-header .search-form .location{}
 .nav li{padding: 15px 0px;}
-.hero__content1{height:550px; position:relative;}
+.hero__content1{height:700px; position:relative;}
 .hero__content-footer{background:#fff; margin-bottom:50px;}
 .hero__content .h4 {
     line-height: 30px;

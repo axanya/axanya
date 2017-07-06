@@ -1,9 +1,9 @@
 ﻿ @extends('template')
 
 @section('main')
- 
+
   <main id="site-content" role="main" ng-controller="payment">
-  
+
 <div id="main-view" class="main-view page-container-responsive row-space-top-6 row-space-6">
 
   <form action="{{ url('payments/create_booking') }}" method="post" id="checkout-form">
@@ -79,7 +79,7 @@
   </div>
   <table id="billing-table" class="reso-info-table billing-table">
     <tbody>
-      
+
     <tr class="base-price">
       <td class="name">
         {{ $result->rooms_price->currency->symbol }}{{ $price_list->rooms_price }} x {{ $nights }} {{ trans_choice('messages.rooms.night',$nights) }}
@@ -87,7 +87,7 @@
       <td class="val text-right">
       {{ $result->rooms_price->currency->symbol }}{{ $price_list->total_night_price }}</td>
     </tr>
-    
+
     @if($price_list->service_fee)
     <tr class="service-fee">
       <td class="name">
@@ -99,7 +99,7 @@
     @endif
 
     @if($price_list->additional_guest)
-    <tr class="additional_price"> 
+    <tr class="additional_price">
       <td class="name">
         {{ trans('messages.rooms.addtional_guest_fee') }}
       </td>
@@ -108,7 +108,7 @@
     @endif
 
     @if($price_list->security_fee)
-    <tr class="security_price"> 
+    <tr class="security_price">
       <td class="name">
         {{ trans('messages.payments.security_deposit') }}
       </td>
@@ -117,14 +117,14 @@
     @endif
 
     @if($price_list->cleaning_fee)
-    <tr class="cleaning_price"> 
+    <tr class="cleaning_price">
       <td class="name">
         {{ trans('messages.lys.cleaning') }}
       </td>
     <td class="val text-right">{{ $result->rooms_price->currency->symbol }}{{ $price_list->cleaning_fee }}</td>
     </tr>
     @endif
-      
+
       <tr class="editable-fields" id="after_apply">
         <td colspan="2">
           <div class="row-condensed clearfix row-space-1">
@@ -168,16 +168,16 @@
 
     </tbody>
   </table>
-  
+
   <hr>
-  
+
   <table id="payment-total-table" class="reso-info-table billing-table">
     <tbody>
       <tr class="total">
         <td class="name"><span class="h3">{{ trans('messages.rooms.total') }}</span></td>
         <td class="text-special icon-dark-gray text-right"><span class="h3">{{ $result->rooms_price->currency->symbol }}</span> <span class="h3" id="payment_total">{{ $price_list->total }}</span></td>
       </tr>
-  
+
     </tbody>
   </table>
 
@@ -216,7 +216,7 @@
 </div>
 <div class="alert alert-with-icon alert-error alert-block hide row-space-2" id="verification-error">
   <i class="icon alert-icon icon-alert-alt"></i>
-            
+
             {{ trans('messages.payments.card_not_verified') }}
 </div>
         <section id="payment" class="checkout-main__section payment">
@@ -228,7 +228,7 @@
         <label for="country-select">
           {{ trans('messages.account.country') }}
         </label>
-        
+
         <div class="select select-block">
           {!! Form::select('payment_country', $country, $default_country, ['id' => 'country-select']) !!}
         </div>
@@ -303,9 +303,9 @@
   <div id="payment-methods-content">
     <div class="payment-method cc" id="payment-method-cc">
       <div class="payment-method-container">
-        
+
         <input type="hidden" name="payment_method_nonce" id="payment_method_nonce">
-    
+
         <div class="new-card">
           <div class="cc-details row">
             <div class="control-group cc-type col-md-6">
@@ -368,7 +368,7 @@
                 @if ($errors->has('cc_expire_month') == '')
                   {{ $errors->first('cc_expire_year') }}
                 @endif
-                </div> 
+                </div>
                 @endif
               </div>
               <div class="control-group cc-security-code col-md-4">
@@ -383,32 +383,32 @@
                 @if ($errors->has('cc_security_code')) <div class="label label-warning inline-error">{{ $errors->first('cc_security_code') }}</div> @endif
               </div>
             </div>
-    
-    
+
+
           <hr>
           <div class="row">
             <div class="col-sm-12">
               <h2>{{ trans('messages.payments.billing_info') }}</h2><p></p>
             </div>
           </div>
-    
-    
+
+
           <div class="row">
             <div class="control-group cc-first-name col-md-6">
               <label class="control-label" for="credit-card-first-name">
                 {{ trans('messages.login.first_name') }}
               </label>
-    
+
               {!! Form::text('first_name', '', ['id' => 'credit-card-first-name']) !!}
 
               @if ($errors->has('first_name')) <div class="label label-warning inline-error">{{ $errors->first('first_name') }}</div> @endif
             </div>
-    
+
             <div class="control-group cc-last-name col-md-6">
               <label class="control-label" for="credit-card-last-name">
                 {{ trans('messages.login.last_name') }}
               </label>
-    
+
               {!! Form::text('last_name', '', ['id' => 'credit-card-last-name']) !!}
 
               @if ($errors->has('last_name')) <div class="label label-warning inline-error">{{ $errors->first('last_name') }}</div> @endif
@@ -419,29 +419,29 @@
               <label class="control-label" for="credit-card-address1">
                 {{ trans('messages.payments.street_address') }}
               </label>
-    
+
               <input type="text" name="address1" id="credit-card-address1" disabled="">
               @if ($errors->has('address1')) <div class="label label-warning inline-error">{{ $errors->first('address1') }}</div> @endif
             </div>
-    
+
             <div class="col-md-2">
               <label for="credit-card-address2">
                 {{ trans('messages.payments.apt') }} #
               </label>
-    
+
               <input type="text" class="cc-short" name="address2" id="credit-card-address2" disabled="">
             </div>
           </div>
-    
+
           <div class="row">
             <div class="control-group cc-city
-                       
-                        col-md-6 col-lg-5 
+
+                        col-md-6 col-lg-5
                         hide ">
               <label for="credit-card-city">
                 {{ trans('messages.account.city') }}
               </label>
-    
+
               <input type="text" name="city" id="credit-card-city" disabled="">
               @if ($errors->has('city')) <div class="label label-warning inline-error">{{ $errors->first('city') }}</div> @endif
             </div>
@@ -450,22 +450,22 @@
               <label for="credit-card-state">
                 {{ trans('messages.account.state') }}
               </label>
-    
+
               <input type="text" class="cc-short" name="state" id="credit-card-state" disabled="">
             </div>
-    
+
             <div class="control-group cc-zip cc-zip-new
-                        
+
                          col-md-6 col-lg-3">
               <label for="credit-card-zip">
                 {{ trans('messages.payments.postal_code') }}
               </label>
-              
+
               {!! Form::text('zip', '', ['id' => 'credit-card-zip', 'class' => 'cc-short cc-zip-text']) !!}
 
               @if ($errors->has('zip')) <div class="label label-warning inline-error">{{ $errors->first('zip') }}</div> @endif
             </div>
-    
+
             <div class="col-md-6 col-lg-3">
               <label aria-hidden="true">
                 <span class="screen-reader-only"></span>
@@ -476,13 +476,13 @@
               </div>
             </div>
           </div>
-    
+
         </div>
       </div>
     </div>
-    
-    
-    
+
+
+
       <div class="payment-method paypal active" id="payment-method-paypal">
         <div class="paypal-instructions row-space-top-2">
           <p>
@@ -492,9 +492,9 @@
         </div>
       </div>
 
-<input name="payment_method" type="hidden" value="paypal">
-<input name="country" type="hidden" value="">
-<input name="digital_river[country]" type="hidden" value="">
+          <input name="payment_method" type="hidden" value="paypal">
+          <input name="country" type="hidden" value="">
+          <input name="digital_river[country]" type="hidden" value="">
 
         </section>
 
@@ -521,10 +521,10 @@
 
                   <div class="media space-3">
                     <div class="pull-left">
-                      
-<div class="media-photo-badge">
-  <a href="{{ url('users/show/'.$result->user_id) }}" class="media-photo media-round"><span class="" data-pin-nopin="true" style="background-image:url({{ $result->users->profile_picture->src }}); width:115px; height:115px;" title="{{ $result->users->first_name }}" ></span></a>
-</div>
+
+                      <div class="media-photo-badge">
+                        <a href="{{ url('users/show/'.$result->user_id) }}" class="media-photo media-round"><span class="" data-pin-nopin="true" style="background-image:url({{ $result->users->profile_picture->src }}); width:115px; height:115px;" title="{{ $result->users->first_name }}" ></span></a>
+                      </div>
 
                     </div>
                     <div class="media-body">
@@ -539,10 +539,10 @@
 
                 <div class="media">
                   <div class="pull-left">
-                    
-<div class="media-photo-badge">
-  <a href="{{ url('users/show/'.Auth::user()->user()->id) }}" class="media-photo media-round"><span class="" data-pin-nopin="true" style="background-image:url({{ Auth::user()->user()->profile_picture->src }}); width:115px; height:115px;" title="{{ Auth::user()->user()->first_name }}"></span></a>
-</div>
+
+                    <div class="media-photo-badge">
+                      <a href="{{ url('users/show/'.Auth::user()->user()->id) }}" class="media-photo media-round"><span class="" data-pin-nopin="true" style="background-image:url({{ Auth::user()->user()->profile_picture->src }}); width:115px; height:115px;" title="{{ Auth::user()->user()->first_name }}"></span></a>
+                    </div>
 
                   </div>
                   <div class="media-body">
@@ -559,27 +559,100 @@
                 </div>
             </section>
 
-        
 
-          <section id="house-rules-agreement" class="checkout-main__section">
+
+<section id="house-rules-agreement" class="checkout-main__section">
   <h2 class="section-title">
     {{ trans('messages.lys.house_rules') }}
   </h2>
   <p>
-    {{ trans('messages.payments.by_booking_this_space',['first_name'=>$result->users->first_name]) }}.
-  </p>
+    {{ trans('messages.payments.by_booking_this_space',['first_name'=> $result->users->first_name]) }}.
+  </p><?php //echo "<pre>"; print_r($result->rooms_policies); ?>
   <div class="row-space-2">
     <div class="expandable expandable-trigger-more house-rules-panel-body expanded">
       <div class="expandable-content" data-threshold="50">
-        <p>{{ $result->rooms_description->house_rules }}</p>
+
+          <div class="row-space-top-4">
+            <div class="list_frame">
+              <div class="list_frame_label">{{ trans('messages.lys.check_in_check_out') }}</div>
+
+              <div class="js-section list_inner_frame">
+
+                <div class="row row-space-2">
+                  <div class="col-md-8">
+                    <label class="label-large"><strong>{{ trans('messages.lys.check_in_window') }}</strong></label>
+                      {{ date('h:i A',strtotime(@$result->rooms_policies->from_time)) }} - {{ date('h:i A',strtotime(@$result->rooms_policies->to_time)) }}
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-large"><strong>{{ trans('messages.lys.checkout_by') }}</strong></label>
+                    {{ date('h:i A',strtotime(@$result->rooms_policies->checkout_time)) }}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          @if(@$result->rooms_policies->cancel_policy != '')
+          <div class="row-space-top-4">
+            <div class="list_frame">
+                <div class="list_frame_label"> {{ trans('messages.payments.cancellation_policy') }} </div>
+                <div class="js-section list_inner_frame">
+                    <div class=""><?php $cancel_policy = strtolower(@$result->rooms_policies->cancel_policy) . '_desc';?>
+                        <label>{{ trans('messages.lys.'.$cancel_policy) }}</label>
+                    </div>
+                </div>
+            </div>
+          </div>
+          @endif
+
+          <div class="row-space-top-4">
+            <div class="list_frame">
+              <div class="list_frame_label"> {{ trans('messages.lys.house_rules') }} </div>
+                <div class="js-section list_inner_frame">
+                  <div class="row row-space-2">
+                    <div class="col-md-12">
+
+                      <label class="label-large"><i class="fa {{ (@$result->rooms_policies->suitable_for_children == 'Yes') ? 'fa-check-circle green' : 'fa-times-circle red'}}"></i> {{ trans('messages.lys.suitable_for_children') }}</label>
+
+                      <label class="label-large"><i class="fa {{ (@$result->rooms_policies->suitable_for_infants == 'Yes') ? 'fa-check-circle green' : 'fa-times-circle red'}}"></i> {{ trans('messages.lys.suitable_for_infants') }}</label>
+
+                      <label class="label-large"><i class="fa {{ (@$result->rooms_policies->suitable_for_pets == 'Yes') ? 'fa-check-circle green' : 'fa-times-circle red'}}"></i> {{ trans('messages.lys.suitable_for_pets') }}</label>
+
+                      <label class="label-large"><i class="fa {{ (@$result->rooms_policies->smoking_allowed == 'Yes') ? 'fa-check-circle green' : 'fa-times-circle red'}}"></i> {{ trans('messages.lys.smoking_allowed') }}</label>
+
+                      <label class="label-large"><i class="fa {{ (@$result->rooms_policies->parties_allowed == 'Yes') ? 'fa-check-circle green' : 'fa-times-circle red'}}"></i> {{ trans('messages.lys.events_parties_allowed') }}</label>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          @if(@$result->rooms_policies->additional_rules != '')
+          <div class="row-space-top-4">
+            <div class="list_frame">
+                <div class="list_frame_label">{{ trans('messages.lys.additional_rules') }}</div>
+                <div class="js-section list_inner_frame">
+                  <div class="row-space-top-2 row-space-2">
+                    {{ @$result->rooms_policies->additional_rules }}
+                  </div>
+                </div>
+            </div>
+          </div>
+          @endif
+          </div>
+
         <div class="expandable-indicator"></div>
       </div>
     </div>
   </div>
+  </div>
 </section>
         <section id="policies" class="policies row-space-3">
           <div class="terms media">
-            
+
             <div class="media-body">
               <label for="agrees-to-terms">
                 {{ trans('messages.payments.by_clicking',['booking_type'=>($booking_type == 'instant_book') ? 'Book Now' : 'Continue']) }} <a href="{{ url('terms_of_service') }}" class="terms_link" target="_blank">{{ trans('messages.login.terms_service') }}</a>, <a href="#house-rules-agreement" class="house-rules-link">{{ trans('messages.lys.house_rules') }}</a>, <a href="{{ url('home/cancellation_policies#flexible') }}" class="cancel-policy-link" target="_blank">{{ trans('messages.payments.cancellation_policy') }}</a> {{ trans('messages.header.and') }} <a href="{{ url('guest_refund') }}" class="refund_policy_link" target="_blank">{{ trans('messages.login.guest_policy') }}</a>.
@@ -595,7 +668,7 @@
         <p></p>
 
         <p class="book-now-explanation default">
-            
+
         </p>
         <p class="book-now-explanation immediate_charge hide">
           {{ trans('messages.payments.clicking') }} <strong>{{ trans('messages.lys.continue') }}</strong> {{ trans('messages.payments.charge_your_payment') }}
@@ -657,7 +730,7 @@
 
 
     <div id="gmap-preload" class="hide"></div>
-   
+
 <div class="ipad-interstitial-wrapper"><span data-reactid=".1"></span></div>
 
 

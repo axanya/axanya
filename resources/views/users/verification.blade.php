@@ -3,9 +3,9 @@
 @section('main')
 
 <main id="site-content" role="main">
-      
- @include('common.subheader')  
-      
+
+ @include('common.subheader')
+
 <div id="notification-area"></div>
 <div class="page-container-responsive space-top-4 space-4">
   <div class="row">
@@ -16,7 +16,7 @@
       <a href="{{ url('users/show/'.Auth::user()->user()->id) }}" class="btn btn-block row-space-top-4">{{ trans('messages.dashboard.view_profile') }}</a>
     </div>
     <div class="col-md-9">
-      
+
       <div id="dashboard-content">
 
 <div class="panel verified-container">
@@ -31,6 +31,11 @@
           <p class="description">{{ trans('messages.profile.you_have_confirmed_email') }} <b>{{ Auth::user()->user()->email }}</b>.  {{ trans('messages.profile.email_verified') }}
         </p></li>
         @endif
+
+
+
+
+
 
 @if(Auth::user()->user()->users_verification->facebook == 'yes')
         <li class="edit-verifications-list-item clearfix google verified">
@@ -114,6 +119,9 @@
 
         </li>
 @endif
+
+
+
 
     @if(Auth::user()->user()->users_verification->facebook == 'no')
         <li class="facebook unverified row-space-4 clearfix">

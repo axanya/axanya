@@ -38,7 +38,7 @@
         @if(Auth::admin()->user()->can('rooms'))
           <li class="{{ (Route::current()->uri() == 'admin/rooms') ? 'active' : ''  }}"><a href="{{ url('admin/rooms') }}"><i class="fa fa-home"></i><span>Manage Rooms</span></a></li>
         @endif
-        
+
         @if(Auth::admin()->user()->can('reservations'))
           <li class="treeview {{ (Route::current()->uri() == 'admin/reservations' || Route::current()->uri() == 'admin/host_penalty') ? 'active' : ''  }}">
           <a href="#">

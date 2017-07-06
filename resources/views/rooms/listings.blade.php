@@ -46,12 +46,12 @@
         <a href="{{ url('rooms/'.$row->id) }}" class="text-normal">{{ ($row->name == '') ? $row->sub_name : $row->name }}</a>
         </span>
         <div class="actions row-space-top-1">
-        <a href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ trans('messages.your_listing.manage_listing_calendar') }}</a>
+        <a href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ trans('messages.your_listing.manage_listing_calendar') }}</a>
         </div>
         <div class="listing-criteria-header activation-notification hide-lg space-top-2">
         <div class="listing-criteria-header-message">
         @if($row->steps_count != 0)
-        <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
+        <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
         @else
         <div id="availability-dropdown" data-room-id="div_{{ $row->id }}">
         <i class="dot row-space-top-2 col-top dot-{{ ($row->status == 'Listed') ? 'success' : 'danger' }}"></i>&nbsp;
@@ -70,7 +70,7 @@
         <div class="listing-criteria-header activation-notification show-lg">
         <div class="listing-criteria-header-message">
         @if($row->steps_count != 0)
-        <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
+        <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
         @else
         <div id="availability-dropdown" data-room-id="div_{{ $row->id }}">
         <i class="dot row-space-top-2 col-top dot-{{ ($row->status == 'Listed') ? 'success' : 'danger' }}"></i>&nbsp;
@@ -118,14 +118,14 @@
         <a href="{{ url('rooms/'.$row->id) }}" class="text-normal">{{ ($row->name == '') ? $row->sub_name : $row->name }}</a>
         </span>
         <div class="actions row-space-top-1">
-        <a href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ trans('messages.your_listing.manage_listing_calendar') }}</a>
+        <a href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ trans('messages.your_listing.manage_listing_calendar') }}</a>
         </div>
         <div class="listing-criteria-header activation-notification hide-lg space-top-2">
         <div class="listing-criteria-header-message">
         @if($row->steps_count == 0 && $row->status == NULL)
-            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ trans('messages.your_listing.pending') }}</a>
+            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ trans('messages.your_listing.pending') }}</a>
         @elseif($row->steps_count != 0)
-            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
+            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
         @else
         <div id="availability-dropdown" data-room-id="div_{{ $row->id }}">
         <i class="dot row-space-top-2 col-top dot-{{ ($row->status == 'Listed') ? 'success' : 'danger' }}"></i>&nbsp;
@@ -144,9 +144,9 @@
         <div class="listing-criteria-header activation-notification show-lg">
         <div class="listing-criteria-header-message">
         @if($row->steps_count == 0 && $row->status == NULL)
-            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ trans('messages.your_listing.pending') }}</a>
+            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ trans('messages.your_listing.pending') }}</a>
         @elseif($row->steps_count != 0)
-            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/basics') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
+            <a class="btn btn-host" href="{{ url('manage-listing/'.$row->id.'/description') }}">{{ $row->steps_count }} {{ trans('messages.your_listing.steps_to_list') }}</a>
         @else
         <div id="availability-dropdown" data-room-id="div_{{ $row->id }}">
         <i class="dot row-space-top-2 col-top dot-{{ ($row->status == 'Listed') ? 'success' : 'danger' }}"></i>&nbsp;

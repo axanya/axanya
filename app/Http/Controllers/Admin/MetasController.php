@@ -1,66 +1,112 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Metas Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Metas
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\MetasDataTable;
+use App\Models\Metas;
+use App\Http\Start\Helpers;
+use Validator;
+
+class MetasController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Metas
+     *
+     * @param array $dataTable  Instance of MetasDataTable
+     * @return datatable
+     */
+    public function index(MetasDataTable $dataTable)
+    {
+        return $dataTable->render('admin.metas.view');
+    }
+
+    /**
+     * Update Meta Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Metas View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = Metas::find($request->id);
+
+            return view('admin.metas.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit Metas Validation Rules
+            $rules = array(
+                    'title'    => 'required'
+                    );
+
+            // Edit Metas Validation Custom Fields Name
+            $niceNames = array(
+                        'title'    => 'Page Title'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $metas = Metas::find($request->id);
+
+			    $metas->title        = $request->title;
+			    $metas->description = $request->description;
+			    $metas->keywords      = $request->keywords;
+
+                $metas->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/metas');
+            }
+        }
+        else
+        {
+            return redirect('admin/metas');
+        }
+    }
+
+    /**
+     * Delete Meta
+     *
+     * @param array $request    Input values
+     * @return redirect     to Metas View
+     */
+    public function delete(Request $request)
+    {
+        Metas::find($request->id)->delete();
+
+        $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+
+        return redirect('admin/metas');
+    }
+}

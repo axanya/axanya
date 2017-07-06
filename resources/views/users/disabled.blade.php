@@ -18,11 +18,14 @@
           <p>
           {{ trans('messages.profile.pls_email_us') }}
           </p>
-          <form action="mailto:account.inquiry@abv.com" method="GET">
+		  <a href="{{ url('contact') }}" class="search-button form-inline btn btn-primary btn-large">{{ trans('messages.profile.email_us') }}</a>
+          <!--
+		  <form action="mailto:account.inquiry@abv.com" method="GET">
             <button class="search-button form-inline btn btn-primary btn-large">
               {{ trans('messages.profile.email_us') }}
             </button>
           </form>
+		  -->
         </div>
       </div>
     </div>

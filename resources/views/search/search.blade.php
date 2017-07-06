@@ -15,22 +15,22 @@
 </style>
 
 @extends('template')
-   
+
   @section('main')
-  
+
   <div class="flash-container"></div>
 
- <main id="site-content" role="main" ng-controller="search-page">        
+ <main id="site-content" role="main" ng-controller="search-page">
 <div class="map-search">
   <div class="sidebar">
 <input type="hidden" id="location" value="{{ $location }}">
 <input type="hidden" id="lat" value="{{ $lat }}">
 <input type="hidden" id="long" value="{{ $long }}">
     <div class="filters collapse" style="bottom: 606px;">
-    
+
       <div class="panel-header filters-section show-sm">
         {{ trans('messages.search.filters') }}
-      </div>    
+      </div>
         <div class="filters-section intro-filter panel-body panel-light">
     <div class="row">
       <div class="col-lg-2 col-md-12 text-center-sm text-center-md row-space-sm-1 filter-label">
@@ -88,7 +88,7 @@
           <i class="icon icon-question hide-sm hide-md" id="room-type-tooltip"></i>
         </label>
 
-        
+
       </div>
 
       <div class="col-lg-9">
@@ -153,7 +153,7 @@
               <option value="{{ $i }}" >
               {{ $i}} {{ trans('messages.lys.bedrooms') }}
               </option>
-          @endfor 
+          @endfor
                   </select>
             </div>
           </div>
@@ -165,13 +165,13 @@
               </label>
               <select name="min_bathrooms" ng-model="bathrooms" class="min-bathrooms input-medium" id="map-search-min-bathrooms" ng-init="bathrooms = '{{ $bathrooms }}'">
                 <option value="">{{ trans('messages.lys.bathrooms') }}</option>
-    
+
           @for($i=0.5;$i<=8;$i+=0.5)
             <option class="bathrooms" value="{{ $i }}" >
             {{ ($i == '8') ? $i.'+' : $i }} {{ trans('messages.lys.bathrooms') }}
             </option>
            @endfor
-          
+
               </select>
             </div>
           </div>
@@ -187,7 +187,7 @@
             <option value="{{ $i }}" >
             {{ ($i == '16') ? $i.'+' : $i }} {{ trans('messages.lys.beds') }}
             </option>
-        @endfor 
+        @endfor
                  </select>
             </div>
           </div>
@@ -217,7 +217,7 @@
            @endif
            {{--*/ $row_inc++ /*--}}
           @endforeach
-          
+
         </div>
 
         <div class="filters-more collapse">
@@ -237,7 +237,7 @@
           @endif
            {{--*/ $amen_inc++ /*--}}
             @endforeach
-           
+
           </div>
         </div>
       </div>
@@ -259,7 +259,7 @@
       <div class="col-lg-2 col-md-12 filter-label">
         <label>{{ trans('messages.lys.property_type') }}</label>
       </div>
- 
+
       <div class="col-lg-9 col-md-11">
         <div class="row row-condensed filters-columns">
           {{--*/ $pro_inc = 1 /*--}}
@@ -275,7 +275,7 @@
            @endif
            {{--*/ $pro_inc++ /*--}}
             @endforeach
-      
+
         </div>
 
         <div class="filters-more collapse">
@@ -293,7 +293,7 @@
           </div>
            @endif
            {{--*/ $property_inc++ /*--}}
-         
+
              @endforeach
           </div>
         </div>
@@ -336,24 +336,24 @@
     </div>
     <div class="filters-placeholder hide hide-sm"></div>
     <a id="docked-filters"></a>
-    
+
     <div class="sidebar-header toggle-hide panel-body hide-sm clearfix panel-bg-medium">
       <button class="btn show-filters pull-left" id="more_filters">
         <span class="text-more-filters">{{ trans('messages.search.more_filters') }}</span>
         <span class="text-filters">{{ trans('messages.search.filters') }}</span>
       </button>
-    
+
     </div>
   <div class="sidebar-header-placeholder"></div>
     <div class="search-results toggle-hide">
       <div class="outer-listings-container row-space-2">
-        
+
 <div class="listings-container">
     <div class="row">
 
         <div class="col-sm-12 row-space-2 col-md-6" ng-repeat="rooms in room_result.data" ng-cloak>
           <div class="listing list_view" ng-mouseover="on_mouse($index);" ng-mouseleave="out_mouse($index);" data-room_id="@{{rooms.id}}"  >
-          
+
             <div class="panel-image listing-img">
                 <div class="listing-description wl-data-@{{ rooms.id }}">
                   <div class="summary">
@@ -361,38 +361,38 @@
                      @{{ rooms.summary }}
            <a href="{{ url('s') }}/@{{ location }}?checkin=@{{ checkin }}&checkout=@{{ checkout }}&guests=@{{ guests }}" id="tooltip-sticky-@{{ rooms.id }}" class="learn-more">{{ trans('messages.search.learn_more') }}</a>
                     </p>
-                      
+
                   </div>
                   <p class="address">@{{ rooms.city }}</p>
-                 
+
                 </div>
               <a href="{{ url('rooms') }}/@{{ rooms.id }}?checkin=@{{checkin}}&checkout=@{{checkout}}&guests=@{{ guests }}" target="listing_@{{ rooms.id }}" class="media-photo media-cover">
                 <div class="listing-img-container media-cover text-center">
                   <img id="rooms_image_@{{ rooms.id}}"  src="{{ url() }}/images/@{{ rooms.photo_name }}" class="img-responsive-height" alt="@{{ rooms.name }}">
                 </div>
               </a>
-				
+
                 <div class="target-prev target-control rooms-slider block-link"  data-room_id="@{{rooms.id}}">
                   <i class="icon icon-chevron-left icon-size-2 icon-white"></i>
                 </div>
-          
+
               <a href="{{ url('rooms') }}/@{{ rooms.id }}?checkin=@{{checkin}}&checkout=@{{checkout}}&guests=@{{ guests }}" target="listing_@{{ rooms.id }}" class="link-reset panel-overlay-bottom-left panel-overlay-label panel-overlay-listing-label">
                 <div>
                   <sup class="h6 text-contrast"><span ng-bind-html="rooms.rooms_price.currency.symbol"></span></sup>
                   <span class="h3 text-contrast price-amount"> @{{ rooms.rooms_price.night }}</span>
-					
+
                   <sup class="h6 text-contrast"></sup>
                   <span aria-label="Book Instantly" data-behavior="tooltip" class="h3 icon-beach" ng-if="rooms.booking_type == 'instant_book'">
                       <i class="icon icon-instant-book icon-flush-sides"></i>
                   </span>
                 </div>
-          
-              </a>			  
+
+              </a>
 			  <span title="This house is Kosher" class="h3 icon-k hastooltip" ng-if="rooms.koshire == '1'">K</span>
           <div class="target-next target-control rooms-slider block-link" data-room_id="@{{rooms.id}}">
                     <i class="icon icon-chevron-right icon-size-2 icon-white"></i>
                   </div>
-            
+
             <div class="panel-overlay-top-right wl-social-connection-panel">
                   <span class="rich-toggle wish_list_button wishlist-button not_saved">
                     <input type="checkbox" id="wishlist-widget-@{{ rooms.id }}" name="wishlist-widget-@{{ rooms.id }}" data-for-hosting="@{{ rooms.id }}" ng-checked="rooms.saved_wishlists">
@@ -403,11 +403,11 @@
                       <i class="icon icon-heart-alt icon-white icon-size-2" id="wishlist-widget-icon-@{{ rooms.id }}" data-room_id="@{{ rooms.id }}" data-img="{{ url('images') }}/@{{ rooms.photo_name }}" data-name="@{{ rooms.name }}" data-address="@{{ rooms.rooms_address.city }}" data-price="@{{ rooms.rooms_price.currency.symbol }}@{{ rooms.rooms_price.night }}" data-review_count="" data-host_img="@{{ rooms.users.profile_picture.src }}" data-star_rating="" data-summary="@{{ rooms.summary }}" data-room_type="@{{ rooms.room_type_name }}" data-property_type_name="@{{ rooms.property_type_name }}" data-person_capacity_string="" data-bedrooms_string="" data-space_tab_content="" data-neighborhood_tab_content=""></i>
                     </label>
                   </span>
-            
+
                 </div>
 
             </div>
-          
+
             <div class="panel-body panel-card-section">
               <div class="media">
                   <a href="{{ url('users/show/') }}/@{{ rooms.user_id }}" class="media-photo-badge pull-right card-profile-picture card-profile-picture-offset">
@@ -433,15 +433,15 @@
 </a>
 </div>
               </div>
-          
+
             </div>
           </div>
         </div>
-        
+
         <h2 ng-hide="room_result.data.length" class="text-center" ng-cloak>
         {{ trans('messages.search.no_results_found') }}
         </h2>
-       
+
     </div>
 
 </div>
@@ -463,13 +463,13 @@
 
   <div class="nearby-links">
     <div class="breadcrumbs row-space-top-1" itemprop="breadcrumb" ng-cloak>
-        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+        <span itemscope="" itemtype="https://data-vocabulary.org/Breadcrumb">
           <a href="{{ url('s/India') }}" itemprop="url">
             <span itemprop="title">@{{ room_result[0].rooms_address.country_name }}</span>
           </a>
           <i class="icon icon-chevron-right breadcrumb-spacer"></i>
         </span>
-        <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+        <span itemscope="" itemtype="https://data-vocabulary.org/Breadcrumb">
           <a href="{{ url('s/Tamil-Nadu--India') }}" itemprop="url">
             <span itemprop="title">@{{ room_result[0].rooms_address.state }}</span>
           </a>
@@ -490,10 +490,10 @@
   </div>
 
   <div class="map hide-sm">
-  
+
     <div id="map_canvas" role="presentation" class="map-canvas" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(164, 221, 245);">
   </div>
-  
+
   </div>
 
   <button class="hide-sm btn footer-toggle">
@@ -504,7 +504,7 @@
   </button>
   <div class="col-lg-12 col-md-12 map-content">
     <div class="col-lg-3 col-md-3" ng-repeat="place_info in places_info track by $index" ng-bind-html="place_info" >
-      
+
     </div>
   </div>
 </div>

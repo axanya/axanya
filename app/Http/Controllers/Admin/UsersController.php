@@ -1,104 +1,204 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Users Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Users
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\UsersDataTable;
+use App\Models\User;
+use App\Models\ProfilePicture;
+use App\Models\UsersVerification;
+use App\Http\Start\Helpers;
+use Validator;
+
+class UsersController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Users
+     *
+     * @param array $dataTable  Instance of UsersDataTable
+     * @return datatable
+     */
+    public function index(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('admin.users.view');
+    }
+
+    /**
+     * Add a New User
+     *
+     * @param array $request  Input values
+     * @return redirect     to Users view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.users.add');
+        }
+        else if($request->submit)
+        {
+            // Add User Validation Rules
+            $rules = array(
+                    'first_name' => 'required',
+                    'last_name'  => 'required',
+                    'email'      => 'required|email|unique:users',
+                    'password'   => 'required',
+                    'dob'        => 'required',
+                    'status'     => 'required'
+                    );
+
+            // Add User Validation Custom Names
+            $niceNames = array(
+                        'first_name' => 'First name',
+                        'last_name'  => 'Last name',
+                        'email'      => 'Email',
+                        'password'   => 'Password',
+                        'dob'        => 'DOB',
+                        'status'     => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $user = new User;
+
+                $user->first_name = $request->first_name;
+                $user->last_name  = $request->last_name;
+                $user->email      = $request->email;
+                $user->password   = bcrypt($request->password);
+                $user->dob        = date('Y-m-d', strtotime($request->dob));
+                $user->status     = $request->status;
+
+                $user->save();
+
+                $user_pic = new ProfilePicture;
+
+                $user_pic->user_id      =   $user->id;
+                $user_pic->src          =   "";
+                $user_pic->photo_source =   'Local';
+
+                $user_pic->save();
+
+                $users_verification = new UsersVerification;
+
+                $users_verification->user_id      =   $user->id;
+                $users_verification->email        =   "yes";
+
+                $users_verification->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+
+                return redirect('admin/users');
+            }
+        }
+        else
+        {
+            return redirect('admin/users');
+        }
+    }
+
+    /**
+     * Update User Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Users View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+            $data['result'] = User::find($request->id);
+
+            return view('admin.users.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit User Validation Rules
+            $rules = array(
+                    'first_name' => 'required',
+                    'last_name'  => 'required',
+                    'email'      => 'required|email|unique:users,email,'.$request->id,
+                    'dob'        => 'required',
+                    'status'     => 'required'
+                    );
+
+            // Edit User Validation Custom Fields Name
+            $niceNames = array(
+                        'first_name' => 'First name',
+                        'last_name'  => 'Last name',
+                        'email'      => 'Email',
+                        'dob'        => 'DOB',
+                        'status'     => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $user = User::find($request->id);
+
+                $user->first_name = $request->first_name;
+                $user->last_name  = $request->last_name;
+                $user->email      = $request->email;
+                $user->dob        = date('Y-m-d', strtotime($request->dob));
+                $user->status     = $request->status;
+
+                $user->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/users');
+            }
+        }
+        else
+        {
+            return redirect('admin/users');
+        }
+    }
+
+    /**
+     * Delete User
+     *
+     * @param array $request    Input values
+     * @return redirect     to Users View
+     */
+    public function delete(Request $request)
+    {
+        User::find($request->id)->delete();
+
+        $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+
+        return redirect('admin/users');
+    }
+}

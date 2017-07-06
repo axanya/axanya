@@ -1,95 +1,184 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Home Cities Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Home Cities
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\HomeCitiesDataTable;
+use App\Models\HomeCities;
+use App\Http\Start\Helpers;
+use Validator;
+
+class HomeCitiesController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Home Cities
+     *
+     * @param array $dataTable  Instance of HomeCitiesDataTable
+     * @return datatable
+     */
+    public function index(HomeCitiesDataTable $dataTable)
+    {
+        return $dataTable->render('admin.home_cities.view');
+    }
+
+    /**
+     * Add a New Home Cities
+     *
+     * @param array $request  Input values
+     * @return redirect     to Home Cities view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.home_cities.add');
+        }
+        else if($request->submit)
+        {
+            // Add Home Cities Validation Rules
+            $rules = array(
+                    'name'    => 'required',
+                    'image'   => 'required'
+                    );
+
+            // Add Home Cities Validation Custom Names
+            $niceNames = array(
+                        'name'    => 'City Name',
+                        'image'    => 'Image'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $image     =   $request->file('image');
+                $extension =   $image->getClientOriginalExtension();
+                $filename  =   'home_city_'.time() . '.' . $extension;
+
+                $success = $image->move('images/home_cities', $filename);
+        
+                if(!$success)
+                    return back()->withError('Could not upload Image');
+
+                $home_cities = new HomeCities;
+
+                $home_cities->name  = $request->name;
+                $home_cities->image = $filename;
+
+                $home_cities->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+                return redirect('admin/home_cities');
+            }
+        }
+        else
+        {
+            return redirect('admin/home_cities');
+        }
+    }
+
+    /**
+     * Update Home Cities Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Home Cities View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = HomeCities::find($request->id);
+
+            return view('admin.home_cities.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit Home Cities Validation Rules
+            $rules = array(
+                    'name'    => 'required'
+                    );
+
+            // Edit Home Cities Validation Custom Names
+            $niceNames = array(
+                        'name'    => 'City Name'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $home_cities = HomeCities::find($request->id);
+
+                $home_cities->name  = $request->name;
+
+                $image     =   $request->file('image');
+
+                if($image) {
+                    $extension =   $image->getClientOriginalExtension();
+                    $filename  =   'home_city_'.time() . '.' . $extension;
+    
+                    $success = $image->move('images/home_cities', $filename);
+        
+                    if(!$success)
+                        return back()->withError('Could not upload Image');
+
+                    $home_cities->image = $filename;
+                }
+
+                $home_cities->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+                return redirect('admin/home_cities');
+            }
+        }
+        else
+        {
+            return redirect('admin/home_cities');
+        }
+    }
+
+    /**
+     * Delete Home Cities
+     *
+     * @param array $request    Input values
+     * @return redirect     to Home Cities View
+     */
+    public function delete(Request $request)
+    {
+        HomeCities::find($request->id)->delete();
+
+        $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+
+        return redirect('admin/home_cities');
+    }
+}

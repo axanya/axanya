@@ -36,7 +36,8 @@ class UsersDataTable extends DataTable
             ->of($users)
             ->addColumn('action', function ($users) {
 
-                $edit = (Auth::admin()->user()->can('edit_user')) ? '<a href="'.url('admin/edit_user/'.$users->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;' : '';
+                // $edit = (Auth::admin()->user()->can('edit_user')) ? '<a href="'.url('admin/edit_user/'.$users->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;' : '';
+                $edit = '<a href="'.url('admin/edit_user/'.$users->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;';
 
                 // $delete = (Auth::admin()->user()->can('delete_user')) ? '<a data-href="'.url('admin/delete_user/'.$users->id).'" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-trash"></i></a>' : '';
 

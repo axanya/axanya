@@ -1823,6 +1823,7 @@ var currency_symbol = response.data.currency_symbol;
 
 $('#list_checkin').datepicker({
     minDate: 0,
+    maxDate:'+1Y',
     dateFormat:'dd-mm-yy',
     beforeShowDay: function(date){
         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
@@ -1880,6 +1881,7 @@ $(document).on('mouseenter', '.ui-datepicker-calendar .ui-state-hover', function
 
 jQuery('#list_checkout').datepicker({
     minDate: 1,
+    maxDate:'+1Y',
     dateFormat:'dd-mm-yy',
     beforeShowDay: function(date){
         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
@@ -2041,6 +2043,7 @@ $http.post(APP_URL+'/rooms/rooms_calendar', { data:data }).then(function(respons
 
   $('#message_checkin').datepicker({
       minDate: 0,
+      maxDate:'+1Y',
       dateFormat:'dd-mm-yy',
       setDate: new Date($('#message_checkin').val()),
       beforeShowDay: function(date) {
@@ -2073,6 +2076,7 @@ $http.post(APP_URL+'/rooms/rooms_calendar', { data:data }).then(function(respons
 
   jQuery('#message_checkout').datepicker({
     minDate: 1,
+    maxDate:'+1Y',
     dateFormat:'dd-mm-yy',
     setDate: new Date($('#message_checkout').val()),
     beforeShowDay: function(date) {

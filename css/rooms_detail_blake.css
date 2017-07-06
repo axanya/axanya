@@ -1,0 +1,10 @@
+.js-book-it-btn-container  {
+    text-align: center;
+}
+#toggle_error  {
+    margin-bottom: 20px !important;
+}
+#error_message {
+    font-size: 20px;
+    color: #fa0008;
+}

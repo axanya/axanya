@@ -1,8 +1,8 @@
-<div id="header" class="axanya-header new {{ (!isset($exception)) ? (Route::current()->uri() == '/' ? 'shift-with-hiw' : '') : '' }}">    
+<div id="header" class="axanya-header new {{ (!isset($exception)) ? (Route::current()->uri() == '/' ? 'shift-with-hiw' : '') : '' }}">
     <header class="header--sm show-sm" aria-hidden="true" role="banner">
-  
+
   <div class="title--sm text-center">
-      @if(!isset($exception)) 
+      @if(!isset($exception))
           <a href="javascript:void(0);" class="header-belo" style="{{ $logo_style }}">
             <span class="screen-reader-only">
               {{ $site_name }}
@@ -13,7 +13,7 @@
 			<span class="screen-reader-only">
 			  {{ $site_name }}
 			</span>
-		  </a>      
+		  </a>
 			<div class="title--sm text-center mob_search">
 			  <button class="btn btn-block search-btn--sm search-modal-trigger " style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
 				   <div id="icon-drawer-search-icon" data-reactid=".0.0.3"><svg viewBox="0 0 24 24" style="fill:currentColor;height:1em;width:1em;display:block;" data-reactid=".0.0.3.0"><path d="M23.53 22.47l-6.807-6.808A9.455 9.455 0 0 0 19 9.5 9.5 9.5 0 1 0 9.5 19c2.353 0 4.502-.86 6.162-2.277l6.808 6.807a.75.75 0 0 0 1.06-1.06zM9.5 17.5a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" data-reactid=".0.0.3.0.0"></path></svg></div>
@@ -29,18 +29,18 @@
 		  </div>
       @endif
   </div>
-  
+
   <div class="action--sm"></div>
-  
+
 <nav class="nav--sm" role="navigation"><div class="nav-mask--sm"></div>
-<div class="nav-content--sm panel text-white logged-in">  
+<div class="nav-content--sm panel text-white logged-in">
   <div class="nav-menu-wrapper space-top-8">
     <div class="nav-menu panel-body">
       <ul class="menu-group list-unstyled">
         <li>
 		 <a rel="nofollow" class="link-reset menu-item" href="{{ url() }}">
               {{ trans('messages.header.home') }}
-         </a>          
+         </a>
         </li>
         <hr>
         <li class="{{ (Auth::user()->user()) ? '' : 'items-logged-in' }}">
@@ -70,11 +70,43 @@
           </a>
           <i class="nav-icon nav-icon-message"></i>
         </li>
+        <!--host menu-->
+        <li class="{{ (Auth::user()->user()) ? '' : 'items-logged-in' }}">
+          <hr>
+        </li>
+
+        <li class="dropdown-trigger">
+          <a href="{{ url('rooms') }}" rel="nofollow" class="no-crawl link-reset menu-item item-trips">
+            {{ trans('messages.header.host') }} <i class="fa fa-angle-down pull-right"></i>
+          </a>
+          <ul class="tooltip tooltip-top-right dropdown-menu list-unstyled header-dropdown">
+              <li>
+                <a href="{{ url('rooms') }}" rel="nofollow" class="no-crawl link-reset menu-item item-listing">
+                  {{ trans('messages.header.manage_listing') }}
+                </a>
+              </li>
+              <li>
+                <a href="{{ url('my_reservations') }}" rel="nofollow" class="no-crawl link-reset menu-item header-reservations">
+                  {{ trans('messages.header.reservations') }}
+                </a>
+              </li>
+            <li>
+                <a href="{{ url('users/transaction_history') }}" rel="nofollow" class="no-crawl link-reset menu-item header-transaction">
+                  {{ trans('messages.header.transaction_history') }}
+                </a>
+              </li>
+            <li>
+                <a href="{{ url('users/reviews') }}" rel="nofollow" class="no-crawl link-reset menu-item header-reviews">
+                  {{ trans_choice('messages.header.review',2) }}
+                </a>
+            </li>
+          </ul>
+        </li>
 
         <li class="{{ (Auth::user()->user()) ? '' : 'items-logged-in' }}">
           <hr>
         </li>
-       
+
         <li>
           <a href="{{ url() }}/rooms/new" class="link-reset menu-item become-a-host" rel="nofollow">
             {{ trans('messages.header.list_your_space') }}
@@ -171,7 +203,7 @@
                 <div class="panel-body">
                   <div class="row text-center">
                    @foreach($header_room_type as $row)
-                    
+
                     <label class="col-sm-4 modal-filter needsclick" for="room-type-{{ $row->id }}--sm">
 					<input type="checkbox" id="room-type-{{ $row->id }}--sm" name="room_types[]" value="{{ $row->id }}" {{ (@in_array($row->id,@$room_type_selected)) ? 'checked' : '' }}>
                     @if($row->id == 1)
@@ -208,14 +240,14 @@
 
 
     <header class="regular-header clearfix hide-sm" id="old-header" role="banner">
-  <a aria-label="Homepage" href="{{ url() }}" class="header-belo pull-left {{ (!isset($exception)) ? (Route::current()->uri() == '/' ? 'home-logo' : '') : '' }}" style="{{ (!isset($exception)) ? (Route::current()->uri() == '/' ? $home_logo_style : $logo_style) : $logo_style }}">
+  <a aria-label="Homepage" href="{{ url() }}" class="header-belo pull-left rtl-right {{ (!isset($exception)) ? (Route::current()->uri() == '/' ? 'home-logo' : '') : '' }}" style="{{ (!isset($exception)) ? (Route::current()->uri() == '/' ? $home_logo_style : $logo_style) : $logo_style }}">
     <span class="screen-reader-only">
       {{ $site_name }}
     </span>
   </a>
 <!-- hide-sm -->
 @if(Request::segment(1) != 'help')
-  <ul class="nav pull-left  list-unstyled search-form-container" id="search-form-header">
+  <ul class="nav pull-left rtl-right list-unstyled search-form-container" id="search-form-header">
   <li id="header-search" class="search-bar-wrapper pull-left medium-right-margin">
   <form action="{{ url() }}/s" class="search-form">
   <div class="search-bar">
@@ -334,15 +366,15 @@
 @endif
 
 @if(Auth::user()->check())
-	
+
  <ul class="nav pull-right list-unstyled" role="navigation">
   <li class="user-item pull-left medium-right-margin dropdown-trigger header_item">
     <a class="link-reset header-avatar-trigger" id="header-avatar-trigger" href="{{ url('login') }}">
-      
+
       <span class="value_name">
         {{ Auth::user()->user()->first_name }}
       </span>
-	  <div class="media-photo media-round user-profile-image" style="background: rgba(0, 0, 0, 0) url({{ Auth::user()->user()->profile_picture->header_src }}) no-repeat scroll 0 0 / cover" ></div>
+	  <div class="media-photo media-round user-profile-image" style="background-image: url('{{ Auth::user()->user()->profile_picture->header_src }}')" ></div>
     </a>
     <ul class="tooltip tooltip-top-right dropdown-menu list-unstyled header-dropdown">
 		<li>
@@ -378,11 +410,11 @@
 </ul>
 @endif
 
- 
+
  <ul class="nav pull-right help-menu list-unstyled">
   <li id="header-help-menu" class="help-menu-container pull-right large-right-margin hide-md dropdown-trigger header_item">
     <a class="help-toggle link-reset" href="{{ url('help') }}">
-	  
+
       {{ trans('messages.header.help') }}
 	  @if(Auth::user()->check())
 		<i class="header-icon icon-lifesaver-alt-gray" data-reactid=".3.0.2"></i>
@@ -390,13 +422,13 @@
     </a>
   </li>
 </ul>
-  
-  
+
+
 @if(Auth::user()->check())
   <ul class="nav pull-right list-unstyled medium-right-margin">
   <li id="inbox-item" class="inbox-item pull-left dropdown-trigger js-inbox-comp header_item">
     <a href="{{ url('inbox') }}" rel="nofollow" class="no-crawl link-reset">{{ trans('messages.header.messages') }}
-     	
+
         <span class="text-hide hide">
           {{ trans('messages.header.inbox') }}
         </span>
@@ -404,7 +436,7 @@
 		<i class="js-message-icon header-icon message-icon icon-message-gray">
 			<i class="alert-count text-center {{ (Auth::user()->user()->inbox_count()) ? '' : 'fade' }}">{{ Auth::user()->user()->inbox_count() }}</i>
 		</i>
-     
+
     </a>
     <div class="tooltip tooltip-top-right dropdown-menu list-unstyled header-dropdown notifications-dropdown">
 		<div class="notifications-tooltip panel" data-reactid=".1">
@@ -415,30 +447,26 @@
 			<div class="panel-body" data-reactid=".1.1">
 				<ul class="notifications-list list-unstyled" data-reactid=".1.1.0">
         <?php
-          $messages = Auth::user()->user()->inbox();
-          foreach($messages as $message) { ?>
+$messages = Auth::user()->user()->inbox();
+foreach ($messages as $message) {
+	?>
             <li>
             <?php
-              if($message['host_check'] ==1 && $message['reservation']['status'] == 'Pending')
-              { ?>
-                <a href="{{ url('reservation')}}/<?php echo $message['reservation_id'];?>">
+if ($message['host_check'] == 1 && $message['reservation']['status'] == 'Pending') {?>
+                <a href="{{ url('reservation')}}/<?php echo $message['reservation_id']; ?>">
+              <?php } elseif ($message['guest_check']) {?>
+                <a href="{{ url('z/q')}}/<?php echo $message['reservation_id']; ?>">
+              <?php } elseif ($message['host_check'] == 1 && $message['reservation']['status'] != 'Pending') {?>
+                <a href="{{ url('messaging/qt_with')}}/<?php echo $message['reservation_id']; ?>">
               <?php }
-              elseif($message['guest_check'])
-              { ?>
-                <a href="{{ url('z/q')}}/<?php echo $message['reservation_id'];?>">
-              <?php }
-              elseif($message['host_check'] ==1 && $message['reservation']['status'] != 'Pending')
-              { ?>
-                <a href="{{ url('messaging/qt_with')}}/<?php echo $message['reservation_id'];?>">
-              <?php }
-            ?>
-            <img height="50" width="50" title="<?php echo $message['user_details']['first_name'];?>" src="<?php echo $message['user_details']['profile_picture']['src'];?>" class="media-round media-photo" alt="<?php echo $message['user_details']['first_name'];?>">
-              <?php echo $message['user_details']['first_name'];?>
-              <?php echo $message['created_time'];?>
-              <?php echo $message['message'];?>
+	?>
+            <img height="50" width="50" title="<?php echo $message['user_details']['first_name']; ?>" src="<?php echo $message['user_details']['profile_picture']['src']; ?>" class="media-round media-photo" alt="<?php echo $message['user_details']['first_name']; ?>">
+              <?php echo $message['user_details']['first_name']; ?>
+              <?php echo $message['created_time']; ?>
+              <?php echo $message['message']; ?>
               </a>
             </li>
-          <?php } ?>
+          <?php }?>
 				</ul>
 			</div>
 			<!-- <div data-reactid=".1.2">
@@ -460,7 +488,7 @@
 <ul class="nav pull-right list-unstyled medium-right-margin">
 <li class="header_item">
 	<a href="{{ url('trips/current') }}" rel="nofollow" class="no-crawl link-reset menu-item item-trips">
-		
+
 	  {{ trans('messages.header.trips') }}
 	  <i class="header-icon js-trips-icon icon-suitcase-gray">
 			<i class="alert-count js-trips-unread-count text-center fade">0</i>
@@ -471,7 +499,7 @@
 <ul class="nav pull-right list-unstyled medium-right-margin">
 <li class="header_item dropdown-trigger">
 	<a href="{{ url('rooms') }}" rel="nofollow" class="no-crawl link-reset menu-item item-trips">
-	
+
 	  {{ trans('messages.header.host') }}
 	  <i class="header-icon host-icon js-host-icon icon-home-alt-gray">
 		  <i class="alert-count js-host-item-count listing-count text-center fade in">!</i>
@@ -503,7 +531,7 @@
 </ul>
 @endif
 <ul class="nav pull-right last_menu list-unstyled">
- 
+
     <li class="list-your-space pull-right header_item">
         <a id="list-your-space" class="btn btn-special list-your-space-btn" href="{{ url('rooms/new') }}">
           {{ trans('messages.header.list_your_space') }}
@@ -516,7 +544,7 @@
 </div>
 <div class="load_show hide">
 <div class="loading_load1 loadicon"></div>
-<div class="modal-backdrop fade in"></div>      
+<div class="modal-backdrop fade in"></div>
 </div>
 <div class="flash-container">
 @if(Session::has('message') && (!Auth::user()->check() || Route::current()->uri() == 'rooms/{id}' || Route::current()->uri() == 'payments/book/{id?}'))

@@ -1,0 +1,241 @@
+.play-ico, .facebook-ico {
+  border: 2px solid #2998C0;
+  border-radius: 100%;
+  padding: 7px 6px 5px 12px;
+  color: #2998C0;
+  vertical-align: middle;
+}
+.play-ico:hover, .facebook-ico:hover {
+  background-color: #2998C0;
+  color: white;
+}
+.icon-hover {
+  background-color: #2998C0;
+  color: white;
+}
+.facebook-ico {
+  padding: 7px 13px 5px 11px;
+}
+.what-is {
+  display: inline-block;
+}
+.what-is:hover {
+  text-decoration: none;
+}
+.what-is:first-child {
+  margin-left: 12px;
+}
+.what-is-link {
+  font-size: 26px;
+  color: #2998C0;
+  margin-right: 35px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.what-is-link:hover {
+  text-decoration: underline;
+}
+.underline {
+  text-decoration: underline;
+}
+.hero_link_holder {
+  margin-top: 20px;
+}
+.SearchForm__row {
+  border-radius: 12px;
+}
+.btn-primary.btn:hover, .btn-primary.btn:focus {
+  border-color: #8f0048;
+  border-bottom-color: #8f0048;
+  background-color: #8f0048;
+}
+.home_become_host {
+  color: #CC0066;
+  font-size: 36px;
+}
+.sub_text {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.host_btn {
+  border-radius: 20px;
+  padding: 10px 21px;
+}
+.host_section {
+  margin-bottom: 40px;
+}
+.blue_head_title {
+  color: #2998C0;
+  font-size: 36px;
+}
+.icon-section > img {
+  margin-right: 10px;
+}
+.discovery-tiles {
+  margin-top: 15px;
+}
+.pointer-wrapper {
+  background-color: whitesmoke;
+}
+.point-ico {
+  height: 160px;
+}
+.point-title {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #CC0066;
+}
+.testimonial_pic {
+  height: 140px;
+  border-radius: 50%;
+}
+.border-right {
+  border-right: 1px solid #efefef;
+}
+.testimonial_name {
+  margin-top: 5px;
+}
+.inline {
+  display: inline-block;
+}
+.flipped_quote {
+  -moz-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  -ms-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+  margin-left:10px;
+}
+.quote-ico {
+    font-size: 20px !important;
+    margin-right: 10px;
+    color: #2998C0;
+}
+.testimonial_box {
+    padding: 0 65px;
+}
+
+/*Info Section*/
+.panel-blue {
+    background-color: #E9F4F9;
+    margin: 75px 0px;
+    padding: 30px 50px;
+}
+.question_title {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+.help_row {
+    margin: 40px 0;
+}
+.list_holder {
+    margin-bottom: 50px;
+}
+
+/*Favorites Section*/
+.favorites_img {
+    width: 100%;
+    position: relative;
+}
+.favorites_img:hover {
+    opacity: 0.75;
+}
+.favorite-price {
+    position: absolute;
+    margin-top: 15px;
+    background-color: rgba(8, 8, 8, 0.71);;
+    color: white;
+    padding: 10px 20px;
+    z-index: 6;
+}
+.favorite-holder {
+    padding: 0 20px;
+    margin-bottom: 15px;
+}
+.favorites_user {
+    height: 60px;
+    width: 60px;
+    background-size: cover;
+    border-radius: 50%;
+}
+.favorites_name {
+    font-weight: bold;
+}
+.favorite-info {
+    margin-top: 15px;
+}
+.favorites-holder {
+    margin-top: 60px;
+    margin-bottom: 70px;
+}
+.btn-primary.btn {
+    border-color: #CC0066;
+    border-bottom-color: #CC0066;
+    background-color: #CC0066;
+}
+
+/*Media Queries*/
+@media (max-width: 600px) {
+    #searchbar {
+        display: none;
+    }
+    .what-is {
+        display: block;
+        margin-top: 10px;
+        margin-left: 12px;
+    }
+    .why-host-div {
+        margin-left: 0;
+    }
+    .hero__background {
+        background-size: 800px;
+        background-position: center 0;
+        background-position-x: -140px;
+        background-position-y: -17px;
+    }
+    .pointer-wrapper > .page-container {
+        padding-left: 15px;
+    }
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+/*Popup*/
+html,
+body {
+    margin:0; padding:0; height:100%;
+}
+p {
+    margin:0;
+}
+.page {
+    height: 100%;
+}
+
+.popup {
+    position:absolute;
+    z-index:2;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255, 255, 255, 0.4);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s ease;
+}
+
+.show-popup .popup {
+    opacity: 1;
+    visibility: visible;
+    z-index: 100;
+}
+
+.popup > iframe {
+    position:absolute;
+    top:50px;
+    left:50%;
+    margin-left:-444px;
+}

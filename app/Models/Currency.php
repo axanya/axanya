@@ -55,6 +55,15 @@ class Currency extends Model
     	return $symbol;
     }
 
+    public static function user_symbol() {
+      $code = DB::table('users')->where('id', \Auth::user()->user()->id)->first()->currency_code;
+      if(!$code) {
+        $code = 'USD';
+      }
+      $symbol = DB::table('currency')->where('code', $code)->first()->symbol;
+    	return $symbol;
+    }
+
     // Get currenct record symbol
     public function getOriginalSymbolAttribute()
     {

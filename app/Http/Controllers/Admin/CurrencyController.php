@@ -1,98 +1,187 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-HR+cPoa22u7Qte+svCIUeXO0BWYwxUQ0IwxKgoaEPQZv9eJjRntjlKHId1cSEA6fuOux+TUu6HlY
-O4dBCturxWjLkMWz2M0h2YWkNDlkRwzHauVbCvgDWFxTS4JLwQBQfsg85ZFGvJKP+tt9RgBLE/oY
-rPRvvAgMTUFV3rL5RiN9XvLIQA89PtXcoXXXhdkU7W9bA1tozIdCP4H6ih+Rm4DNB9MKNlsFtxpk
-bKuBg6iD/47L3g5qsujUXcou2RlcibyvawgOFyNdJ0bh2/iskR5XDQOmy06e8ulJgUQRlD7lkTu5
-kWUeJL/cJXpBmxvmPe0H9jQ8pX+fBWX2NSM+cNER76TQjwHWvH4raLgzqohUyA4A3m/isOeT7Ya7
-vE+JZ+SX7vlO/xPZYGS+/dke4/+PZLsE0BnvUcpYQDJugqRfECmbdZbxtA1iZ3iZh5Fn5A+Jxu6f
-b93n0MD5/jJCWpr0wK2o02z1R/15mCl3iyxm98S3fsiLP2xf8Fy0nWPA/7brLs6nBOFoksh4BLQf
-viFPW7TRX6Iil39LFtPuUaDqDhul7p2HKQDdJWlVqbN6MLzEeASGYA3Yr38bTauxyyIJp8bQ+Wfh
-PIAihu+HCEnUndLQX1IQENDm2uZgVpgg8OwanhlFiLS8lQZSfe7sP07qnJSJG+K3bETE5oQ01jp3
-gJ7LKdtQs60SstIxqFk4sVfHy0QdQNCPQKtWXjgOlc3zpykyFwVjCMvXkg0TVlax/r+y33TvdVEb
-vZR9VD/SKSBn6/DDAX6xuKQX28Cw7fvkhzGkkQ4akI11+yLturgLY260YsmsGxW2d+ucMUQIKkyY
-2dKcUvwf0KIH8mAs5UcfUYEIa9iTQuu99SR0VNBamMHfYkLVKZ61icd+98dfLGiWxVqCTQYx+/mD
-TulckhwsYu9QDyyB0SM3xvraSUaQ7gfYd3wKJTsY/2YolzEsE2mN/ES+WBT9pj4Hc/ndYsmOWT8z
-Xz7A45j2OX+VBiuMmABkHSTtTIRBsWTOe4aOKU2q/WvQFyiN+IukfFPH+f4skwy8GOxOoxrX47hX
-Z/nhUPX4Ni/ds87jqFkJUdlK1Hp/n8NhIu4YykCBv/E3FTdMOkLiqDApeBo7uxlbDrXVKu0wdZNa
-dejiJWYd+6/t3eWMEv8gVG39CLpDY6UaXg3L//iL7NR4jDsHZSKER+kNog+ZZhKmgrLC43zbJnpd
-9g5h3Vuf9m/faVBTxblCKH1uzx6mTk+nNrYUgnjBt5G2D5KlIl1jJD4tDxpwGOojAxmQsokCRgj6
-PB7FMovmWxLGUh87WyeezYdm5HE9IuL9+KnQ4TJ4SuNgbaupJ8ZjqG1iNW+7i3zs8tPhZersruB1
-JkDPFUp/Dh2Wi/kjxjCeAoQK9s8enbVdaZ32lwuRt7XTt9Ns+PTLx0PPmusoUzeU6H1rKSp3mv0G
-Yb6RcJB2QCGjcKTVP3rGcCbzCjegJsqYvvgp0p9rUC9061HLW2GofWo8JED3/HW8oXEoepkoLShV
-xLkwf4kRzbK01WrwMGFDOScSiwKsXRt6z3O1RVtefI4Qch3sT5D4hchL7CGRID3d+2F8ndTu1GgV
-gaT5RVq3hQoy8CQR3hF4XxebmWjzWHTJPeLGcVEUOCflFcZoZUTuAKa4vgfJQywvY3gb/BX4hVPf
-FRIUMvTq+CjeUM9Ubr1XXyjDEkhIxbrrYrAlluDTyci95pOIKg7azL2BH+ET1G+w7hZSqj12XPob
-UY9tczyIhZGMUhESiE6s7iGu5+YDOai8LD3SqMOMBoWATML9nBNa3D4qUQOmBQuxgIwCoY4Tk2aO
-xqdtYL2ZRgU/nlphRYeh6Eyx4DfcP8vqMn/L61K/jFmWqiMoYXlXQUoSjhLWOjDg8/Va9YWss7GU
-SEkRS+A1+4YcdWWeJcTBoTQGeL+OyWZf7AkxXaOwyBYDYQ5IFefsR2BVyGil5/TEjcdOP9UBMm/z
-odOJ3irxVIaXgh8+MfuStb/0ZC5IC3jODcgX8rMwHupWKvltVomF1L+yVn8GdBSCpbCsn/VuyG67
-V9vrp+XnFNenRzxVaP915G/7rDDiFzGc8B0T1KR/RHELeNSbq5xwwwO9boX33Vz750CYijLTScYX
-40WNQvXWf//lPfnbBlbP1Z//kMo59oOx7J0FFHyOiLhzS9d1KnGZElt9EJPbcEmoCAhTJa4VsGLK
-we8o8/UX+1/YRZgI21rTXGSX6CH4xtHVTLOl4beidq1ATuWHRZFTlNf36DB+wrt0cz/LGris0ThL
-VpcUKhtPTrBUBQDyhTSl73dFIi0AHumhj++XH1w7Garzv9bd/Vomn8jv91/EfVlhKntTskaAkiZN
-2ZNypoo+cyEWlzhWpzNA41XQ4Kbs/ovTsZOBsqP5EaKfc3tilIEb2H+oMQU3X+nlcQ22Zp97h70N
-Ct9n+r4p2JCr3rOaDwi/ORj4Nt5hZwjpafdT4uUPu/j72N8hpHEocp/9A6A5BV/tSpgCJsv5Y6Eu
-/OM7SUuVirh4N+kztIDVA60oFGxjLcD0dmLn2ufc17neZYvQu2m0v5YVZZWEU6wupLlTEe8eWlSo
-3JcBvTxAvprv9I2TEHlG7WlBUavYm/rKfegMP0EduqgkwIc2MXuc8dnGgdAJb3ewq1d2QJCVa4Lp
-gQTCIS4qSRpAlKeBJN0DcApsVw/rUfhPVPaVdZF2SCsAHo2f4jZNUJ2YPPUvQ1hB6GYiGjOL5lMY
-EToc/ins4P8Nt1RQiNLEirMuM6CDQDkR9Wuq8IVlZHMQrhhhzakNezDRrGtngZ6STvO73rm1eu5s
-EYX3EhZlhyVGWl8Y/FLRh30YOV91Di0WXOSO7SEWyT8nOEQqh9e4uoRnfI7yr+KejIgeh5o5V/RR
-dyjXbz6ZezaQqiBMkYV64S2wz1Zv+fl9IBszfVAGNbcm6UGSYNlCEHEF3uTVghEeYfOgIQLWWYgf
-OM22f7YTew5jMGu1b0Wz9GRMGEUjjvCZRq4E4EfvJwwy/ihsa7fgiqbaBpydAIcDc/2Bj4UtZV25
-VOlWN47bkHeE8wQ2JAa6NjhgY5h+X7A08izYBAL0RhU5v9rx2cn6TGmC4l6hQmRiWMcS8fXEc39c
-2v3fXPxqimPVO1fd5yl9foNsTR9llWSYBwGq+pgdnwybow/n6VIDL+vV2FqNk/lQt4F/APFor17F
-3nlKzcbBLhjyyd+ka8iz3YGTqqh8/GpQVzNWq7ex9HzP0oSW1QrqNsrvKObFCF3SFh+/ZGZcfaO6
-J1PnxGZlIuMRD8UZV9b5C4fikW/55cEAvBvsG81qsM8fwkm8WuaOLzyE/Dy2Mh+gY7thb/LHm5n8
-ZiajkUrViZglirWTloeSHZ/bi7Ft8QygX/n+dXPOXqS0mxm+nbhpGpX8Qq8VYUC1jh8S9cP5EJjW
-3+WO4RbfGpevkUfzXR0NkLVrKHzS/rmw/CFKGgX6b2JnwC+ndJkSRL32CdUZVFYuOgLkQ/Gl7mFA
-IxAm5WIfXdN2Z7RGsuQ5ZFY2qoeTHd6OXABs9foD7Sgd5NztggHSXY8+3YlRY8h0vMeYUicAKRuB
-j/muvs/pwCxa3pT4ww5QK3U1QFvE4yc1l1yQN97ui9w6P7acD3/Dg0zCH44UPxAr3sGKaVEYy2pY
-BGPJFHJ40UzKxr0ZgMMuvAr8SMw7JuRp4OtRYv5lieRkzPRS9axt8MKzPVOaCfzp7OqsVsfUCafz
-LK8ZKHcMvHkQBnkVsc8eD8sUAp8zu/G1P8Y0dmdDm5pCVVJlHMwWjUWYcZ84Krq4t51X8HhVvMyV
-nxc83z2Q5AxE5LcVKy3K5xgu0nlBR5/GTslBHG6gQ/gWTnbffl8Q6qGShE1Jg81sPxf/L18B/z2x
-Tc/LiRrO0GStjA1FCpc9a4ULxIMGeSEHl1GH0/tbQ6ecUdF1OGHyU8QadvddaltL6Gb0BH+6XKzx
-PqnyGcLnONjW2bwxnyE3zNFRfv3pHhpXRZQDaB29HGvG/iWVovp3jctSsWaaJQ8JFRahPxfojDUV
-kkK9mfeM+hkzXe4G/bBGBKKe+Y1Cprm+cqqpEN0lgTjwkwRI1x8KqYghDu9OGmr0qnP/vsDrldWg
-enTe1298gSMyjUf2KXNdDaV9So5R5n5bpawj8ZHge72lUls1vSP+3He4DFobQLKLLY0Vsgule0rN
-9ZqMSg19XQ2SGJ5XcJ9qokhY77xl+iLRBq3/6r4nDkhCgD0SgcrekyYvVuEqU4hrxxMc/+nvpqLo
-m+NwiKGcg7qWywYpjbYW1Hb7aVxQ8kuigjEdqFqq2M/COGmeaP9AtTyC82cHgwqidK1meszljDAS
-DNYoAfj61v1p0QPzbrhB/jgSSuQ9fClOVkoquMcft3BNVW+qPtS2CILgCSm1RFMmN6uDWccbCbny
-XXNqjzUnmgL+Yg3k8W78WQNNK7wZWolRjmtatli4o5PKz7G5Y7shRZd/q++Al8rx8sT1/0VoNFnM
-XZXerBv3oUshJligyjl6IUzRUFH1QiMOBXB9l0G4eC9wUwFyXB+OOl5JCrXDrVniU58IkhkySz8n
-X5VhwRFmhH85PCNAzQxUV1OzNZLVMpPYNElxhGz3fKtXMZr53hO5OPt6aUeDxXU+yrpwuKcF2S6M
-LDlF14WW2VTjn+fpvAX2g5/mOMU2tIHZe3FRs9Rw7XrBWzNhl32F740uzUBpWrbHYgRaX5u/m84p
-qhx3tflz7LCrBQYpl6I4s8Ve/33tychdVZBnDuLMy55WcbcCmew2/GB0VQ9klcNhSTHSj1Ulw08g
-Hz+gMSeTvyto33xoUkoH9N+ZEYEy5crVp/ZSrljaA0fetLNuYUAJ6Zuig6Awt0x73jBjxPP6sBJu
-ZLSFiGzQ1S0voAjzPOGTTk/Qzl3ox31gntxTbfPIyW36WnkHiFXOJv4qwy6/YXzeEBKKwqZ1G4G9
-JZE+shARYaZC8jDQJ0YQW7HL2z35f+/NkVYTEi/WN/wHzAAb7bY70WfMAoU7Prx7S9ycTn19eRXJ
-1yBImQn1s8Z+x0H/ebjXt51vyfVeHZ+Mjv7NEIB+fXQiIfJPcEtXmQiIBuP8+Xqnj+/st9fQ66mG
-GDREBUbnprsjvaBPtfyc08xq9+5MpO5hq/vdM9XHFy19G3xS0guMoxXhqW8YioIImcWaAtuRivkI
-6zStVuYWB0RghwNaDoNa6nhI8EZF49esc5vbt3fNyoCrhm+o3A4fvPWQrsJtafXH38SBdDvm9cLC
-epyUD5R/eXCxahRJiQ5qVKUDj9UcbYeYfnSWuqdrhFuwBcAw6SKCHw+PFlOvKVfgDvFmLnsyIDDU
-DOG+oeRSztVHH+hXj2lg8Qjw8fXmdIQ64e1/77h6UUE5yOjkItn70KRiX7K8kryPmk67iP0gmO7H
-WbD5/llNGm2sxdlKcm3yFYVan83+RcaUK/o5Ab2Hp9ed1y2G7+rViaCADRY8KQ1JItXV5HBmVOnL
-Ztv4pl6YnStHbzqsX0xBloD90GehS2E1FQjzjk2pJMdeo1xbfIwfRQ+iVbAS6hLdAJixYPzARPxL
-cxuFVHEDcvnR/827R+yIZOYPH3D2iek57iJM68o8H1iSIRJWFv3Cz1i4qAzgnQtj4/k04mhwzGnd
-PxnUuea/f5eZ0bs7aOmaZ+9ah2QxL8Q7FYY+oGxTAP+O0YRhLACc71hXxccz6GRkg01Ao19AlkxR
-xv1L0hH2bmHHtat/qF0DC7Y1Y/FpIooSQGgTksq9y9YNZUYj3QI8ncCfkAW2vZ09aNjz0/RqqxFy
-sQ6sS/YjDk8gDkJTjPjUEXfvES2UyKi4/GoZch9HnBg7/sA30h8XZmg8w1o9Ypa9BaHILRewuvq3
-cKSoEI3llTvhGVEAJ+Lv3n7iNaG3NX2E0Figcz6SM9eDC7mAPXNus4t7b9bwpkj4anHo/Drc9TJT
-Lv7PYvAeUWOEAuaoiVfz//JiVkQvWVtUdKL0jWXsqNcuxLtl6J1plbRIUYc5K5ynuwH59dBqQX/n
-gsgeQvYwx7khdfdk0X8eHHuTB1FRfSuJLxzhOv/AEnu1ppQQLvzZ2dwnJW9WyjeoLakUs0hjgb6A
-NpMxGMgejovDsqwehj++nygI+19GVGkxmm6Nd3kfiCAXMBzI9iAD+mOqL7yhjdx6FxMuOoRvjsB8
-3/hnPlZhYcux5WIPYlMhlAgP3L3AvIqV1WP4bMn5OsIBHVJAkgNVMXUF1NLNGpzigDq1UPowNVxO
-Z3bDuegwZZQqPYrbQDL+/WwSgg4VrpcSs4WLg0U+Ax8vDlTFtsUld7irmdR/lVnPgcMvjhaLSdpo
-nJrb/DBm51sGr0YKrvbEB8Gb6L5t62cUSPuhTLHFoqHszYPr3T4J5fe4HLYnm25KeCJNvvpkyXWA
-83EHh9h/XnT+HhGM2NOEq/zsr43jkzuNsJN+HC84aEiU1r35dgbsFfaglTYCWIEcH7BwS3SCSxQ0
-KIM0HNTCdclSXdxRUgahFW32/QmoXL1jT/n5y3DiJf1kjGh21yDim/mJdvNKoKx0UkNamE7MNML9
-mYhAaLSwSktpNtu1qdNN2+S9JMsjYmAkxQpzPbc5vd6oMlJXCeMNzzzmDeAYfnUf9mGTH+vEI61Q
-hyYWq32H+8rOAehADglrSxhABDUgPdwfvO9jHsuS+f3vN0722r6DGcDB38Frd1CAz1Ce/K9x3qHF
-7nAmIt8orFeXUyKkQAwDx4sZQKFUhRC9CO8gBns9KGv6kWGkwzHJ3X6bWEdphGiugwOEdNYxYoFx
-tihS7JRc9Uu3zxgziox7RV8YTcZPL+7FiszFEOodKnCQykIYTu9wXgulQ/2Y1e6h7WqOMdsZ9Pjh
-gNcS9YwSUdci6u/ZIHH2eBjKo+OAA88LO/xFBNzDNnMJp0143WDu3i2wNoRR456gXosVWPjosjY0
-tkc+g8oD/BMj1VTf+i82T0GThCQO8N0ewTSBQJqITmzjLZ1V002vXkoKeiAP2+iC24LbVtXuc8H0
-Z9y09Yby6TLW0qvBXg3SV/W351+LO9E+toxGgAyGRi0Ex7PDDTGJpinFgwcec2m=
+<?php
+
+/**
+ * Currency Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Currency
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\CurrencyDataTable;
+use App\Models\Currency;
+use App\Models\RoomsPrice;
+use App\Http\Start\Helpers;
+use Validator;
+
+class CurrencyController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Currency
+     *
+     * @param array $dataTable  Instance of CurrencyDataTable
+     * @return datatable
+     */
+    public function index(CurrencyDataTable $dataTable)
+    {
+        return $dataTable->render('admin.currency.view');
+    }
+
+    /**
+     * Add a New Currency
+     *
+     * @param array $request  Input values
+     * @return redirect     to Currency view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.currency.add');
+        }
+        else if($request->submit)
+        {
+            $rules = array(
+                    'name'   => 'required|unique:currency',
+                    'code'   => 'required|unique:currency',
+                    'symbol' => 'required',
+                    'rate'   => 'required',
+                    'status' => 'required'
+                    );
+
+            $niceNames = array(
+                        'name'   => 'Name',
+                        'code'   => 'Code',
+                        'symbol' => 'Symbol',
+                        'rate'   => 'Rate',
+                        'status' => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $currency = new Currency;
+
+                $currency->name   = $request->name;
+                $currency->code   = $request->code;
+                $currency->symbol = $request->symbol;
+                $currency->rate   = $request->rate;
+                $currency->status = $request->status;
+
+                $currency->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+
+                return redirect('admin/currency');
+            }
+        }
+        else
+        {
+            return redirect('admin/currency');
+        }
+    }
+
+    /**
+     * Update Currency Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Currency View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = Currency::find($request->id);
+
+            return view('admin.currency.edit', $data);
+        }
+        else if($request->submit)
+        {
+            $rules = array(
+                    'name'   => 'required|unique:currency,name,'.$request->id,
+                    'code'   => 'required|unique:currency,code,'.$request->id,
+                    'symbol' => 'required',
+                    'rate'   => 'required',
+                    'status' => 'required'
+                    );
+
+            $niceNames = array(
+                        'name'   => 'Name',
+                        'code'   => 'Code',
+                        'symbol' => 'Symbol',
+                        'rate'   => 'Rate',
+                        'status' => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $currency = Currency::find($request->id);
+
+			    $currency->name   = $request->name;
+                $currency->code   = $request->code;
+                $currency->symbol = $request->symbol;
+                $currency->rate   = $request->rate;
+                $currency->status = $request->status;
+
+                $currency->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/currency');
+            }
+        }
+        else
+        {
+            return redirect('admin/currency');
+        }
+    }
+
+    /**
+     * Delete Currency
+     *
+     * @param array $request    Input values
+     * @return redirect     to Currency View
+     */
+    public function delete(Request $request)
+    {
+        $currency_code = Currency::find($request->id)->code;
+
+        $count = RoomsPrice::where('currency_code', $currency_code)->count();
+
+        if($count > 0)
+            $this->helper->flash_message('error', 'Rooms have this Currency. So, Delete that Rooms or Change that Rooms Currency.'); // Call flash message function
+        else {
+            Currency::find($request->id)->delete();
+            $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+        }
+        return redirect('admin/currency');
+    }
+}

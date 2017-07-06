@@ -1,113 +1,107 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Reports Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Reports
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Http\Start\Helpers;
+use Excel;
+use App\Models\User;
+use App\Models\Rooms;
+use App\Models\Reservation;
+use Validator;
+use DB;
+
+class ReportsController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Reports
+     *
+     * @return view file
+     */
+    public function index(Request $request)
+    {
+        if($request->isMethod('get'))
+            return view('admin.reports');
+        else {
+            $from = date('Y-m-d H:i:s', strtotime($request->from));
+            $to = date('Y-m-d H:i:s', strtotime($request->to));
+            $category = $request->category;
+
+            if($category == '') {
+                $result = User::where('created_at', '>=', $from)->where('created_at', '<=', $to)->get();
+                return $result;
+            }
+            if($category == 'rooms') {
+                $result = Rooms::where('created_at', '>=', $from)->where('created_at', '<=', $to)->get();
+                return $result;
+            }
+            if($category == 'reservations') {
+                $result = Reservation::where('reservation.created_at', '>=', $from)->where('reservation.created_at', '<=', $to)   ->join('rooms', function($join) {
+                                $join->on('rooms.id', '=', 'reservation.room_id');
+                            })
+                        ->join('users', function($join) {
+                                $join->on('users.id', '=', 'reservation.user_id');
+                            })
+                        ->join('currency', function($join) {
+                                $join->on('currency.code', '=', 'reservation.currency_code');
+                            })
+                        ->leftJoin('users as u', function($join) {
+                                $join->on('u.id', '=', 'reservation.host_id');
+                            })
+                        ->select(['reservation.id as id', 'u.first_name as host_name', 'users.first_name as guest_name', 'rooms.name as room_name', DB::raw('CONCAT(currency.symbol, reservation.total) AS total_amount'), 'reservation.status', 'reservation.created_at as created_at', 'reservation.updated_at as updated_at', 'reservation.*'])->get();
+                return $result;
+            }
+        }
+    }
+
+    public function export(Request $request)
+    {
+        if($request->category == 'users') {
+            $result = User::where('created_at', '>=', $request->from)->where('created_at', '<=', $request->to)->get();
+        }
+        if($request->category == 'rooms') {
+            $result = Rooms::where('created_at', '>=', $request->from)->where('created_at', '<=', $request->to)->get();
+        }
+        if($request->category == 'reservations') {
+            $result = Reservation::where('reservation.created_at', '>=', $request->from)->where('reservation.created_at', '<=', $request->to)->join('rooms', function($join) {
+                                $join->on('rooms.id', '=', 'reservation.room_id');
+                            })
+                        ->join('users', function($join) {
+                                $join->on('users.id', '=', 'reservation.user_id');
+                            })
+                        ->join('currency', function($join) {
+                                $join->on('currency.code', '=', 'reservation.currency_code');
+                            })
+                        ->leftJoin('users as u', function($join) {
+                                $join->on('u.id', '=', 'reservation.host_id');
+                            })
+                        ->select(['reservation.id as id', 'u.first_name as host_name', 'users.first_name as guest_name', 'rooms.name as room_name', DB::raw('CONCAT(currency.symbol, reservation.total) AS total_amount'), 'reservation.status', 'reservation.created_at as created_at', 'reservation.updated_at as updated_at'])->get();
+        }
+
+        Excel::create($request->category.'-report', function($excel) use($result) {
+            $excel->sheet('sheet1', function($sheet) use($result) {
+                $sheet->fromArray($result);
+            });
+        })->export('csv');
+    }
+}

@@ -17,9 +17,18 @@
 | into the script here so that we don't have to worry about manual
 | loading any of our classes later on. It feels nice to relax.
 |
-*/
-
-require __DIR__.'/bootstrap/autoload.php';
+ */
+/*echo "ocean";
+exit;*/
+/*print_r($_SERVER);
+exit;*/
+if (isset($_SERVER['HTTP_X_FORWARDED_PORT']) && $_SERVER['HTTP_X_FORWARDED_PORT'] != 443) {
+	$redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	header('HTTP/1.1 301 Moved Permanently');
+	header('Location: ' . $redirect);
+	exit();
+}
+require __DIR__ . '/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +40,9 @@ require __DIR__.'/bootstrap/autoload.php';
 | will load up this application so that we can run it and send
 | the responses back to the browser and delight our users.
 |
-*/
+ */
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -45,12 +54,12 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 | the client's browser allowing them to enjoy the creative
 | and wonderful application we have prepared for them.
 |
-*/
+ */
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
+	$request = Illuminate\Http\Request::capture()
 );
 
 $response->send();

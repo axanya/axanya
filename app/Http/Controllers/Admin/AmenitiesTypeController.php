@@ -1,90 +1,173 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Amenities Type Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Amenities Type
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\AmenitiesTypeDataTable;
+use App\Models\AmenitiesType;
+use App\Models\Amenities;
+use App\Http\Start\Helpers;
+use Validator;
+
+class AmenitiesTypeController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Amenities Type
+     *
+     * @param array $dataTable  Instance of AmenitiesTypeDataTable
+     * @return datatable
+     */
+    public function index(AmenitiesTypeDataTable $dataTable)
+    {
+        return $dataTable->render('admin.amenities_type.view');
+    }
+
+    /**
+     * Add a New Amenities Type
+     *
+     * @param array $request  Input values
+     * @return redirect     to Amenities view
+     */
+    public function add(Request $request)
+    {
+        if(!$_POST)
+        {
+            return view('admin.amenities_type.add');
+        }
+        else if($request->submit)
+        {
+            // Add Amenities Type Validation Rules
+            $rules = array(
+                    'name'    => 'required|unique:amenities_type',
+                    'status'  => 'required'
+                    );
+
+            // Add Amenities Type Validation Custom Names
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $amenities_type = new AmenitiesType;
+
+			    $amenities_type->name        = $request->name;
+			    $amenities_type->description = $request->description;
+			    $amenities_type->status      = $request->status;
+
+                $amenities_type->save();
+
+                $this->helper->flash_message('success', 'Added Successfully'); // Call flash message function
+
+                return redirect('admin/amenities_type');
+            }
+        }
+        else
+        {
+            return redirect('admin/amenities_type');
+        }
+    }
+
+    /**
+     * Update Amenities Type Details
+     *
+     * @param array $request    Input values
+     * @return redirect     to Amenities View
+     */
+    public function update(Request $request)
+    {
+        if(!$_POST)
+        {
+			$data['result'] = AmenitiesType::find($request->id);
+
+            return view('admin.amenities_type.edit', $data);
+        }
+        else if($request->submit)
+        {
+            // Edit Amenities Type Validation Rules
+            $rules = array(
+                    'name'    => 'required|unique:amenities_type,name,'.$request->id,
+                    'status'  => 'required'
+                    );
+
+            // Edit Amenities Type Validation Custom Fields Name
+            $niceNames = array(
+                        'name'    => 'Name',
+                        'status'  => 'Status'
+                        );
+
+            $validator = Validator::make($request->all(), $rules);
+            $validator->setAttributeNames($niceNames); 
+
+            if ($validator->fails()) 
+            {
+                return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
+            }
+            else
+            {
+                $amenities_type = AmenitiesType::find($request->id);
+
+			    $amenities_type->name        = $request->name;
+			    $amenities_type->description = $request->description;
+			    $amenities_type->status      = $request->status;
+
+                $amenities_type->save();
+
+                $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+
+                return redirect('admin/amenities_type');
+            }
+        }
+        else
+        {
+            return redirect('admin/amenities_type');
+        }
+    }
+
+    /**
+     * Delete Amenities Type
+     *
+     * @param array $request    Input values
+     * @return redirect     to Amenities View
+     */
+    public function delete(Request $request)
+    {
+        $count = Amenities::where('type_id', $request->id)->count();
+
+        if($count > 0)
+            $this->helper->flash_message('error', 'Amenities have this type. So, Delete that Amenities or Change that Amenities Type.'); // Call flash message function
+        else {
+            AmenitiesType::find($request->id)->delete();
+            $this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
+        }
+        return redirect('admin/amenities_type');
+    }
+}

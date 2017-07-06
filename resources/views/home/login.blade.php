@@ -1,9 +1,9 @@
   @extends('template')
-   
+
 	@section('main')
-	
+
     <main id="site-content" role="main">
-      
+
 
 <div class="page-container-responsive page-container-auth row-space-top-4 row-space-8">
   <div class="row">
@@ -19,7 +19,7 @@
   </span>
 </a>
 
-  
+
 <a href="{{URL::to('googleLogin')}}" class="btn icon-btn btn-block btn-large row-space-1 btn-google">
   <span class="icon-container">
     <i class="icon icon-google-plus"></i>
@@ -38,20 +38,14 @@
   {!! Form::open(['action' => 'UserController@authenticate', 'class' => 'signup-form login-form', 'data-action' => 'Signin', 'accept-charset' => 'UTF-8' , 'novalidate' => 'true']) !!}
 
   {!! Form::hidden('from', 'email_login', ['id' => 'from']) !!}
-  
+
   <div class="control-group row-space-1">
-
-    @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
-
   {!! Form::email('email', '', ['class' => $errors->has('email') ? 'decorative-input inspectletIgnore invalid' : 'decorative-input inspectletIgnore', 'placeholder' => trans('messages.login.email_address'), 'id' => 'signin_email']) !!}
-
+  @if ($errors->has('email')) <p class="help-block input-error">{{ $errors->first('email') }}</p> @endif
   </div>
   <div class="control-group row-space-2">
-
-    @if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
-
   {!! Form::password('password', ['class' => $errors->has('password') ? 'decorative-input inspectletIgnore invalid' : 'decorative-input inspectletIgnore', 'placeholder' => trans('messages.login.password'), 'id' => 'signin_password', 'data-hook' => 'signin_password']) !!}
-
+  @if ($errors->has('password')) <p class="help-block input-error">{{ $errors->first('password') }}</p> @endif
   </div>
 
   <div class="clearfix row-space-2">

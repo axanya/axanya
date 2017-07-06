@@ -11,7 +11,7 @@
  {!! Form::select('language',$language, (Session::get('language')) ? Session::get('language') : $default_language[0]->value, ['class' => 'language-selector', 'aria-labelledby' => 'language-selector-label', 'id' => 'language_footer']) !!}
 </div>
 
-          
+
 <div class="select select-large select-block row-space-2">
   <label id="currency-selector-label" class="screen-reader-only">{{ trans('messages.footer.choose_currency') }}</label>
   {!! Form::select('currency',$currency, (Session::get('currency')) ? Session::get('currency') : $default_currency[0]->code, ['class' => 'currency-selector', 'aria-labelledby' => 'currency-selector-label', 'id' => 'currency_footer']) !!}
@@ -26,9 +26,9 @@
       <ul class="list-layout">
 		<li><a href="{{ url('contact') }}" class="link-contrast">{{ trans('messages.footer.contact') }}</a></li>
       @foreach($company_pages as $company_page)
-        <li><a href="{{ url($company_page->url) }}" class="link-contrast">{{ $company_page->name }}</a></li>		
+        <li><a href="{{ url($company_page->url) }}" class="link-contrast">{{ $company_page->name }}</a></li>
       @endforeach
-		
+
       </ul>
     </div>
 
@@ -47,7 +47,7 @@
       <ul class="list-layout">
       @foreach($hosting_pages as $hosting_page)
         <li><a href="{{ url($hosting_page->url) }}" {{$hosting_page->url == 'kosher' ?'target=_blank':''}} class="link-contrast">{{ $hosting_page->name }}</a></li>
-      @endforeach         
+      @endforeach
       </ul>
     </div>
   </div>
@@ -62,13 +62,13 @@
 <hr class="footer-divider show-sm">
 
 <div class="footer-table">
-      <ul class="list-layout list-inline icon-list" itemscope="" itemtype="http://schema.org/Organization">
+      <ul class="list-layout list-inline icon-list" itemscope="" itemtype="https://schema.org/Organization">
         <i class="footer-logoicon" style="{{ (!isset($exception)) ? (Route::current()->uri() == '/' ? $home_logo_style : $logo_style) : $logo_style }}"></i>
           <div class="text-muted">
             © {{ $site_name }}, Inc.
           </div>
       </ul>
-      <ul class="list-layout list-inline icon-list right-list" itemscope="" itemtype="http://schema.org/Organization">
+      <ul class="list-layout list-inline icon-list right-list" itemscope="" itemtype="https://schema.org/Organization">
            <div class="hide-sm">
             <link itemprop="url" href="">
 			  <meta itemprop="logo" content="">
@@ -77,8 +77,8 @@
 					<li>
 					  <a href="{{ $join_us[$i]->value }}" class="link-contrast footer-icon-container" target="_blank">
 						<span class="screen-reader-only">{{ ucfirst($join_us[$i]->name) }}</span>
-						<i class="icon footer-icon icon-{{ str_replace('_','-',$join_us[$i]->name) }}"></i> 
-					  </a>        
+						<i class="icon footer-icon icon-{{ str_replace('_','-',$join_us[$i]->name) }}"></i>
+					  </a>
 					</li>
 				@endif
 			  @endfor

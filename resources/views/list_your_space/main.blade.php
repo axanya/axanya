@@ -7,7 +7,7 @@
 @section('main')
 
     <main id="site-content" role="main" ng-controller="manage_listing">
-    
+
 <div class="manage-listing  never-listed" id="js-manage-listing">
   <div class="manage-listing-alerts">
     <div id="js-disaster-alert"></div>
@@ -28,14 +28,14 @@
     @include('list_your_space.navigation')
    <div id="ajax_container" class="col-lg-10 col-md-9 mar-left-cont">
    @if($result->status != NULL && $room_step == 'calendar')
-    @include('list_your_space.'.$room_step) <!-- @include('list_your_space.edit_calendar') -->
+    @include('list_your_space.'.$room_step)
    @else
     @include('list_your_space.'.$room_step)
    @endif
    </div>
 
-   
-    
+
+
       <div class="manage-listing-background va-container-h" id="js-manage-listing-background">
         <div class="illustration-container va-container-v va-container-h">
           <!-- {!! Html::image('images/amenities.png', '', ['class' => 'bg-illustration illst-amenities hide']) !!}
@@ -59,7 +59,7 @@
 </div>
 
     <div id="gmap-preload" class="hide"></div>
-    
+
     <div class="ipad-interstitial-wrapper"><span data-reactid=".2"></span></div>
 
 <div class="modal welcome-new-host-modal" aria-hidden="{{ ($result->started == 'Yes') ? 'true' : 'false' }}">
@@ -101,9 +101,25 @@
       <div class="modal-content">
 	  <a class="modal1-close" href=""></a>
       <div id="js-address-container">
-        
+
       </div>
-        
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="bedroom-flow-view">
+<div aria-hidden="true" style="" class="modal" role="dialog" data-sticky="true">
+  <div class="modal-table">
+    <div class="modal-cell">
+      <div class="modal-content">
+	  <a class="modal1-close" data-behavior="modal-close" href=""></a>
+            <div id="js-bedroom-container">
+
+            </div>
+
       </div>
     </div>
   </div>
@@ -115,7 +131,7 @@
     <div class="modal-cell">
       <div class="modal-content">
         <div class="panel-header">
-          
+
         </div>
         <div class="panel-body">
           <p> </p>
@@ -153,19 +169,19 @@
       <div class="modal-content content-container">
         <div class="panel">
           <a class="modal-close" href="{{url('rooms')}}"></a>
-          
+
             <div class="finish-modal-header"></div>
             <div class="listing-card-container">
-              
+
 <div class="listing">
 
   <div class="panel-image listing-img">
-    
+
     <a class="media-photo media-cover" target="" href="{{ url('rooms/'.$result->id) }}">
       <div class="listing-img-container media-cover text-center">
-        
+
         <img alt="@{{ room_name }}" class="img-responsive-height" src="{{ url() }}/images/@{{ popup_photo_name }}" data-current="0" itemprop="image">
-        
+
       </div>
     </a>
 
@@ -174,29 +190,29 @@
         <sup class="h6 text-contrast"><span id="symbol_finish"></span></sup>
         <span class="h3 text-contrast price-amount">@{{ popup_night }}</span>
         <sup class="h6 text-contrast"></sup>
-        
+
       </div>
-      
+
     </a>
-    
+
     <div class="panel-overlay-top-right wl-social-connection-panel">
-      
+
     </div>
 
   </div>
 
   <div class="panel-body panel-card-section">
     <div class="media">
-      
+
         <a class="media-photo-badge pull-right card-profile-picture card-profile-picture-offset" href="{{ url('users/show/'.$result->user_id) }}">
           <div class="media-photo media-round">
             <img alt="" src="{{ $result->users->profile_picture->src }}">
           </div>
-          
+
         </a>
-      
+
       <h3 class="h5 listing-name text-truncate row-space-top-1" itemprop="name" title="d">
-        
+
         <a class="text-normal" target="" href="{{ url('rooms/'.$result->id) }}">
           @{{ popup_room_name }}
         </a>
@@ -207,7 +223,7 @@
   </div>
 </div>
             </div>
-          
+
           <div>
             <div class="panel-body finish-modal-body">
               <h3 class="text-center">
@@ -216,8 +232,8 @@
               <p class="col-11 col-center text-center">
                 {{ trans('messages.lys.listing_published_desc1') }}
               </p>
-			  
-              
+
+
 			  <div class="col-10 col-offset-1">
         <p style="text-align:center;" class="hide">{{ trans('messages.lys.listing_published_desc1') }}</p>
         </div>
@@ -234,7 +250,7 @@
           <i class="icon icon-facebook social-icon-size"></i>
         </a>
         </div>
-        
+
                 <!-- <div class="col-5">
                   <a href="{{ url('manage-listing/'.$result->id.'/calendar') }}" data-prevent-default="true" class="btn btn-block btn-primary calender_pop">{{ trans('messages.lys.go_to_calendar') }}</a>
                 </div> -->

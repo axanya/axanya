@@ -97,6 +97,17 @@
                   </div>
                 </div>
               </div>
+
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="input_sms_key" class="col-sm-3 control-label">Sms Secret Key<em class="text-danger">*</em></label>
+                  <div class="col-sm-6">
+                    {!! Form::text('sms_key', $result[7]->value, ['class' => 'form-control', 'id' => 'sms_key', 'placeholder' => 'Sms Secret Key']) !!}
+                    <span class="text-danger">{{ $errors->first('sms_key') }}</span>
+                  </div>
+                </div>
+              </div>
+
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="submit" class="btn btn-default" name="cancel" value="cancel">Cancel</button>

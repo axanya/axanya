@@ -21,7 +21,7 @@
   </li>
 @endif
 
-@if (Route::current()->uri() == 'users/edit' || Route::current()->uri() == 'users/reviews' || Route::current()->uri() == 'users/edit/media' || Route::current()->uri() == 'users/edit_verification')
+@if (Route::current()->uri() == 'users/edit' || Route::current()->uri() == 'users/reviews' || Route::current()->uri() == 'users/edit/media' || Route::current()->uri() == 'users/edit_verification' || Route::current()->uri() == 'verification' || Route::current()->uri() == 'users/phone_list' || Route::current()->uri() == 'users/references')
     <li>
       <a href="{{ url('users/edit') }}" aria-selected="{{ (Route::current()->uri() == 'users/edit') ? 'true' : 'false' }}" class="sidenav-item">{{ trans('messages.header.edit_profile') }}</a>
     </li>
@@ -32,10 +32,13 @@
       <a href="{{ url('users/edit_verification') }}" aria-selected="{{ (Route::current()->uri() == 'users/edit_verification') ? 'true' : 'false' }}" class="sidenav-item">{{ trans('messages.header.trust_verification') }}</a>
     </li>
     <li>
+      <a href="{{ url('verification') }}" aria-selected="{{ (Route::current()->uri() == 'users/phone_list' || Route::current()->uri() == 'verification') ? 'true' : 'false' }}" class="sidenav-item">{{ trans('messages.lys.phone_verifications') }}</a>
+    </li>
+    <li>
       <a href="{{ url('users/reviews') }}" aria-selected="{{ (Route::current()->uri() == 'users/reviews') ? 'true' : 'false' }}" class="sidenav-item">{{ trans_choice('messages.header.review', 2) }}</a>
     </li>
     <li>
-      <a href="{{ url('users/references') }}" aria-selected="false" class="hide sidenav-item">{{ trans_choice('messages.header.reference', 2) }}</a>
+      <a href="{{ url('users/references') }}" aria-selected="{{ (Route::current()->uri() == 'users/references') ? 'true' : 'false' }}" class="sidenav-item">{{ trans_choice('messages.header.reference', 2) }}</a>
     </li>
 @endif
 

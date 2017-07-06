@@ -1,49 +1,56 @@
-<?php //00543
-// Copyright Trioangle Technologies Pvt Ltd 2016
-// All Rights Reserved
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * Wish List Controller
+ *
+ * @package     Makent
+ * @subpackage  Controller
+ * @category    Wish List
+ * @author      Trioangle Product Team
+ * @version     0.9
+ * @link        http://trioangle.com
+ */
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\DataTables\WishlistDataTable;
+use App\Models\Wishlists;
+use App\Http\Start\Helpers;
+use Validator;
+
+class WishlistController extends Controller
+{
+    protected $helper;  // Global variable for instance of Helpers
+
+    public function __construct()
+    {
+        $this->helper = new Helpers;
+    }
+
+    /**
+     * Load Datatable for Wishlists
+     *
+     * @param array $dataTable  Instance of WishlistDataTable
+     * @return datatable
+     */
+    public function index(WishlistDataTable $dataTable)
+    {
+        return $dataTable->render('admin.wishlists.view');
+    }
+
+    public function pick(Request $request)
+    {
+        $prev = Wishlists::find($request->id)->pick;
+
+        if($prev == 'Yes')
+            Wishlists::where('id',$request->id)->update(['pick'=>'No']);
+        else
+            Wishlists::where('id',$request->id)->update(['pick'=>'Yes']);
+
+        $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
+        return redirect('admin/wishlists');
+    }
+}

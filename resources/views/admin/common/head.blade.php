@@ -7,10 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="shortcut icon" href="{{ $favicon }}">
-  @if (Route::current()->uri() == 'admin/edit_room/{id}')
-    <link rel="stylesheet" href="{{ url('css/common.css') }}">
-    <link rel="stylesheet" href="{{ url('css/manage_listing.css') }}">
-  @endif
+
   <!-- Bootstrap 3.3.5 -->
   <link rel="stylesheet" href="{{ url('admin_assets/bootstrap/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
@@ -27,11 +24,20 @@
   <!-- Morris chart -->
   <link rel="stylesheet" href="{{ url('admin_assets/plugins/morris/morris.css') }}">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="{{ url('admin_assets/plugins/datepicker/datepicker3.css') }}">
+
   <!-- text editor -->
   <link rel="stylesheet" href="{{ url('admin_assets/plugins/editor/editor.css') }}">
 
+
+@if (Route::current()->uri() != 'admin/edit_room/{id}')
+  <link rel="stylesheet" href="{{ url('admin_assets/plugins/datepicker/datepicker3.css') }}">
   <link rel="stylesheet" href="{{ url('admin_assets/plugins/jQueryUI/jquery-ui.css') }}">
+@endif
+@if (Route::current()->uri() == 'admin/edit_room/{id}')
+    <link rel="stylesheet" href="{{ url('css/common.css') }}">
+    <link rel="stylesheet" href="{{ url('css/manage_listing.css') }}">
+@endif
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

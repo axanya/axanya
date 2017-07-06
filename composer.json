@@ -35,7 +35,8 @@
         "intervention/image": "dev-master",
         "rachidlaasri/laravel-installer": "dev-laravel-5",
         "spatie/laravel-backup": "^3.4",
-        "tymon/jwt-auth": "0.5.*"
+        "tymon/jwt-auth": "0.5.*",
+        "checkmobi/checkmobi-php": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
