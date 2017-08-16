@@ -31,12 +31,15 @@ class Currency extends Model
     protected $appends = ['original_symbol'];
 
     // Get default currency symbol if session is not set
-    public function getSymbolAttribute()
+    public function getSymbolAttribute($value)
     {
-        if(Session::get('symbol'))
-           return Session::get('symbol');
-        else
-           return DB::table('currency')->where('default_currency', 1)->first()->symbol;
+        if( $value ) {
+            return $value;
+        } else if( Session::get( 'symbol' ) ) {
+           return Session::get( 'symbol' );
+        } else {
+           return DB::table( 'currency' )->where( 'default_currency', 1 )->first()->symbol;
+        }
     }
 
     // Get default currency symbol if session is not set

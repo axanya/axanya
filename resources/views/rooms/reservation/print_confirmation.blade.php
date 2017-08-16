@@ -1,11 +1,11 @@
-﻿@extends('template')
+@extends('template')
 
 {!! Html::style('css/itinerary.css') !!}
 {!! Html::style('css/print.css',array('media' => 'print')) !!}
 
 @section('main')
     <main id="site-content" role="main">
-      
+
 <div class="page-container page-container-responsive">
   <div class="col-center col-9 panel row-space-top-2 row-space-4">
     <div class="panel-body clearfix">

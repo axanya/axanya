@@ -1,9 +1,9 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
 
 <main id="site-content" role="main" ng-controller="rooms_new">
-      
+
 <div class="page-container-full">
 
 
@@ -26,7 +26,7 @@
       <div class="page-container-responsive">
           <div class="row">
   <div class="col-lg-9 col-md-11 col-md-push-1 col-lg-push-0" style="left:20%;">
-    
+
 <div id="alert-row" class="row">
   <div id="alert-status" class="col-lg-10 col-md-11 lys-alert"></div>
 </div>
@@ -44,13 +44,13 @@
   {!! Form::hidden('hosting[street_number]', '', ['id' => 'street_number', 'ng-model' => 'street_number', 'ng-value' => 'street_number']) !!}
   {!! Form::hidden('hosting[route]', '', ['id' => 'route', 'ng-model' => 'route', 'ng-value' => 'route']) !!}
   {!! Form::hidden('hosting[postal_code]', '', ['id' => 'postal_code', 'ng-model' => 'postal_code', 'ng-value' => 'postal_code']) !!}
-  
+
   {!! Form::hidden('hosting[city]', '', ['id' => 'city', 'ng-model' => 'city', 'ng-value' => 'city']) !!}
   {!! Form::hidden('hosting[state]', '', ['id' => 'state', 'ng-model' => 'state', 'ng-value' => 'state']) !!}
   {!! Form::hidden('hosting[country]', '', ['id' => 'country', 'ng-model' => 'country', 'ng-value' => 'country']) !!}
   {!! Form::hidden('hosting[latitude]', '', ['id' => 'latitude', 'ng-model' => 'latitude', 'ng-value' => 'latitude']) !!}
   {!! Form::hidden('hosting[longitude]', '', ['id' => 'longitude', 'ng-model' => 'longitude', 'ng-value' => 'longitude']) !!}
-    
+
 
   <div class="row space-top-4 space-1">
     <div id="property-type-id-header" class="h5 text-light">
@@ -225,7 +225,7 @@
   </div>
 
   <div class="row fieldset fieldset_city">
-    
+
 <div class="row" ng-hide="city_show">
   <div class="col-sm-12">
     <div class="panel location lys-location alert-highlighted-element">

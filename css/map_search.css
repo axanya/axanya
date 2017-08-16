@@ -480,15 +480,26 @@ font-weight: bold;
 }
 }
 .map-refresh-controls.Google {
+  /*
     position: absolute;
     top: 46px;
     left: 31px;
+    */
 }
 .touch .map-refresh-controls.Google {
     left: 40px;
 }
-.map-refresh-controls.Google label.checkbox {
-    padding: 8px 0;
+
+.map-refresh-controls.google #redo_search {
+  width: 1em;
+  height: 1em;
+}
+.map-refresh-controls.google #redo_search:checked::before {
+  font-size: 0.8em;
+  left: 1px;
+  top: 1px;
+  width: auto;
+  line-height: 1em;
 }
 .map-refresh-controls.Mapbox {
     position: absolute;
@@ -502,7 +513,7 @@ font-weight: bold;
     padding: 8px 0;
 }
 .map-auto-refresh {
-    padding: 0 8px;
+    padding: 0;
 }
 .map-controls .panel {
     position: absolute;

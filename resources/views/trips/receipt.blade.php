@@ -1,4 +1,4 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
 <main role="main" id="site-content">
@@ -171,7 +171,7 @@
           <th class="receipt-label">
             {{ trans('messages.your_trips.payment_received') }}:
             {{ $reservation_details->receipt_date }}
-            
+
           </th>
         <td class="receipt-amount">
           {{ $reservation_details->currency->symbol.$reservation_details->total }}

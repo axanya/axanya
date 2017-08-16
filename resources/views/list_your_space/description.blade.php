@@ -73,10 +73,54 @@
 
 
     </form>
+
+
+
+    <form name="house_rules" class="">
+
+        <div class="js-section list_inner_frame">
+            <div class="js-saving-progress saving-progress save_guests_req2" style="display: none;">
+                <h5>{{ trans('messages.lys.select') }}...</h5>
+            </div>
+
+            <div class="row row-space-top-4">
+                <div class="col-12" ng-init="is_kosher = {{ (@$rooms_policies->is_kosher == 'Yes') ? 'true' : 'false' }}">
+                    <label class="label-large label-inline terms-panel">
+                        <input id="is_kosher_termscheckbox" type="checkbox" value="0" name="is_kosher" ng-model="is_kosher" data-saving="save_guests_req2" {{ (@$rooms_policies->is_kosher == 'Yes') ? 'checked' : '' }}>
+                        <span>{{ trans('messages.lys.this_space_must_be_kept_kosher') }}</span>
+                        <a href="{{ url('/kosher') }}" target="_blank">{{ trans('messages.search.learn_more') }}</a>
+                    </label>
+                    <div style="font-size: 0.9rem;" ng-show="is_kosher">{{ trans('messages.lys.kosher_notes') }}</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="js-section list_inner_frame">
+            <div class="js-saving-progress saving-progress save_guests_req3" style="display: none;">
+                <h5>{{ trans('messages.lys.select') }}...</h5>
+            </div>
+
+            <div class="row">
+                <div class="col-12" ng-init="is_special_accommodation = {{ (@$rooms_policies->is_special_accommodation == 'Yes') ? 'true' : 'false' }}">
+                    <label class="label-large label-inline terms-panel">
+                        <input id="is_special_accommodation_termscheckbox" type="checkbox" value="0" name="is_special_accommodation" ng-model="is_special_accommodation" data-saving="save_guests_req3" {{ (@$rooms_policies->is_special_accommodation == 'Yes') ? 'checked' : '' }}>
+                        <span>{{ trans('messages.lys.special_accommodation_checkbox') }}</span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+
+
+
    </div>
 
     <div style = "margin: 30px">
-        {{ trans('messages.lys.kosher_notes') }}
+        <!--{{ trans('messages.lys.kosher_notes') }}-->
     </div>
   <p class="row-space-top-6 not-post-listed hide">
     {{ trans('messages.lys.you_can_add_more') }} <a href="{{ url('manage-listing/'.$room_id.'/description') }}" id="js-write-more">{{ trans('messages.lys.details') }}</a> {{ trans('messages.lys.tell_travelers_about_your_space') }}

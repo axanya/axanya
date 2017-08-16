@@ -1,4 +1,4 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
     <main id="site-content" role="main">
@@ -195,7 +195,7 @@
   @endif
 
     </div>
-      
+
     </div>
   </div>
    @if($upcoming_trips->count() > 0 || $current_trips->count() > 0)
@@ -237,7 +237,7 @@
                 </label>
                 <textarea id="decline_reason_other" name="decline_reason_other" rows="4"></textarea>
               </div>
-             
+
             </div>
 
             <label for="cancel_message" class="row-space-top-2">
@@ -261,4 +261,3 @@
 </main>
 
 @stop
-

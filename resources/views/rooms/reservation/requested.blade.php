@@ -1,9 +1,9 @@
-﻿ @extends('template')
+ @extends('template')
 
 @section('main')
- 
+
 <main role="main" id="site-content">
-      
+
   <div class="share-itinerary" id="p5-app-container">
   <div>
   <div class="cover-photo-container show-sm show-md">

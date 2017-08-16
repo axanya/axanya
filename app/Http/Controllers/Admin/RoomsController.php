@@ -20,6 +20,7 @@ use App\Http\Start\Helpers;
 use App\Models\Amenities;
 use App\Models\AmenitiesType;
 use App\Models\BedType;
+use App\Models\Calendar;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\GuestGender;
@@ -33,6 +34,7 @@ use App\Models\RoomsPhotos;
 use App\Models\RoomsPolicies;
 use App\Models\RoomsPrice;
 use App\Models\RoomsStepsStatus;
+use App\Models\RoomsBathroom;
 use App\Models\RoomType;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -485,7 +487,16 @@ class RoomsController extends Controller {
 	 * @return redirect     to Rooms View
 	 */
 	public function delete(Request $request) {
-		Rooms::find($request->id)->delete();
+		$id = $request->id;
+		RoomsPolicies::where(['room_id' => $id])->delete();
+		RoomsPhotos::where(['room_id' => $id])->delete();
+		RoomsPrice::where(['room_id' => $id])->delete();
+		RoomsDescription::where(['room_id' => $id])->delete();
+		RoomsBathroom::where(['room_id' => $id])->delete();
+		RoomsAddress::where(['room_id' => $id])->delete();
+		RoomsStepsStatus::where(['room_id' => $id])->delete();
+		Calendar::where(['room_id' => $id])->delete();
+		Rooms::find($id)->delete();
 
 		$this->helper->flash_message('success', 'Deleted Successfully'); // Call flash message function
 		return redirect('admin/rooms');

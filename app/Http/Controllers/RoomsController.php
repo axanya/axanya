@@ -108,8 +108,14 @@ class RoomsController extends Controller {
 	 * @return redirect     to manage listing
 	 */
 	public function create(Request $request) {
-		$user_id = Auth::user()->user()->id;
+		if(Auth::admin()->check()) {
+			return redirect('admin/dashboard');
+		}
+		if(Auth::user()->guest()) {
+			return redirect('login');
+		}
 
+		$user_id = Auth::user()->user()->id;
 		$rooms = Rooms::where('user_id', $user_id)->whereNull('status')->first();
 
 		if (!$rooms) {
@@ -130,7 +136,6 @@ class RoomsController extends Controller {
 			$rooms->save(); // Store data to rooms Table
 
 			$rooms_address = new RoomsAddress;
-
 			$rooms_address->room_id = $rooms->id;
 			/*$rooms_address->address_line_1 = $request->hosting['route'];
 				            $rooms_address->city           = $request->hosting['city'];
@@ -143,22 +148,16 @@ class RoomsController extends Controller {
 			$rooms_address->save(); // Store data to rooms_address Table
 
 			$rooms_price = new RoomsPrice;
-
 			$rooms_price->room_id = $rooms->id;
 			$rooms_price->currency_code = Session::get('currency');
-
 			$rooms_price->save(); // Store data to rooms_price table
 
 			$rooms_status = new RoomsStepsStatus;
-
 			$rooms_status->room_id = $rooms->id;
-
 			$rooms_status->save(); // Store data to rooms_steps_status table
 
 			$rooms_description = new RoomsDescription;
-
 			$rooms_description->room_id = $rooms->id;
-
 			$rooms_description->save(); // Store data to rooms_description table
 		}
 
@@ -220,15 +219,11 @@ class RoomsController extends Controller {
 		$data['bed_type'] = BedType::active_all();
 		$data['amenities'] = Amenities::active_all();
 		$data['amenities_type'] = AmenitiesType::active_all();
-
 		$data['religious_amenities'] = ReligiousAmenities::active_all();
 		$data['religious_amenities_types'] = ReligiousAmenitiesType::active_all();
-
 		$data['room_id'] = $request->id;
 		$data['room_step'] = $request->page; // It will get correct view file based on page name
-
 		$data['result'] = Rooms::check_user($request->id); // Check Room Id and User Id is correct or not
-
 		$data['rooms_status'] = RoomsStepsStatus::where('room_id', $request->id)->first();
 		$data['rooms_description'] = RoomsDescription::where('room_id', $request->id)->first();
 		$data['rooms_policies'] = RoomsPolicies::where('room_id', $request->id)->first();
@@ -238,11 +233,9 @@ class RoomsController extends Controller {
 		}
 
 		$data['calendar'] = $calendar->generate($request->id);
-
 		$data['prev_amenities'] = explode(',', $data['result']->amenities);
 		$data['prev_religious_amenities'] = explode(',', $data['result']->religious_amenities);
 		$data['religious_amenities_extra_data'] = unserialize($data['result']->religious_amenities_extra_data);
-
 		$data['get_currency'] = Currency::get();
 
 		if (Auth::user()->user()->status != 'Active') {
@@ -250,18 +243,32 @@ class RoomsController extends Controller {
 		}
 
 		//24 hour time array
-		$data['time_array'] = array('00:00:00' => '12:00 AM (midnight)', '01:00:00' => '01:00 AM',
-			'02:00:00' => '02:00 AM', '03:00:00' => '03:00 AM',
-			'04:00:00' => '04:00 AM', '05:00:00' => '05:00 AM',
-			'06:00:00' => '06:00 AM', '07:00:00' => '07:00 AM',
-			'08:00:00' => '08:00 AM', '09:00:00' => '09:00 AM',
-			'10:00:00' => '10:00 AM', '11:00:00' => '11:00 AM',
-			'12:00:00' => '12:00 PM (noon)', '13:00:00' => '01:00 PM',
-			'14:00:00' => '02:00 PM', '15:00:00' => '03:00 PM',
-			'16:00:00' => '04:00 PM', '17:00:00' => '05:00 PM',
-			'18:00:00' => '06:00 PM', '19:00:00' => '07:00 PM',
-			'20:00:00' => '08:00 PM', '21:00:00' => '09:00 PM',
-			'22:00:00' => '10:00 PM', '23:00:00' => '11:00 PM');
+		$data['time_array'] = array(
+			'00:00:00' => '12:00 AM',
+			'01:00:00' => '01:00 AM',
+			'02:00:00' => '02:00 AM',
+			'03:00:00' => '03:00 AM',
+			'04:00:00' => '04:00 AM',
+			'05:00:00' => '05:00 AM',
+			'06:00:00' => '06:00 AM',
+			'07:00:00' => '07:00 AM',
+			'08:00:00' => '08:00 AM',
+			'09:00:00' => '09:00 AM',
+			'10:00:00' => '10:00 AM',
+			'11:00:00' => '11:00 AM',
+			'12:00:00' => '12:00 PM',
+			'13:00:00' => '01:00 PM',
+			'14:00:00' => '02:00 PM',
+			'15:00:00' => '03:00 PM',
+			'16:00:00' => '04:00 PM',
+			'17:00:00' => '05:00 PM',
+			'18:00:00' => '06:00 PM',
+			'19:00:00' => '07:00 PM',
+			'20:00:00' => '08:00 PM',
+			'21:00:00' => '09:00 PM',
+			'22:00:00' => '10:00 PM',
+			'23:00:00' => '11:00 PM'
+		);
 
 		return view('list_your_space.main', $data);
 	}
@@ -311,12 +318,10 @@ class RoomsController extends Controller {
 							$up_phone_data['send_count'] = $phone_info->send_count + 1;
 							UsersPhoneNumber::where(['id' => $phone_info->id])->update($up_phone_data);
 						}
-
 						$verification_status = 'Pending';
 					} else {
 						$rooms->contact_number = $data['selected_phone'];
 						$verification_status = 'Verified';
-
 					}
 					$rooms->verification_status = $verification_status;
 					$rooms->save();
@@ -332,20 +337,14 @@ class RoomsController extends Controller {
 		$data['bed_type'] = BedType::active_all();
 		$data['amenities'] = Amenities::active_all();
 		$data['amenities_type'] = AmenitiesType::active_all();
-
 		$data['religious_amenities'] = ReligiousAmenities::active_all();
 		$data['religious_amenities_types'] = ReligiousAmenitiesType::active_all();
-
 		$data['room_id'] = $request->id;
 		$data['room_step'] = $request->page; // It will get correct view file based on page name
-
 		$data['result'] = Rooms::check_user($request->id); // Check Room Id and User Id is correct or not
-
 		$data['prev_amenities'] = explode(',', $data['result']->amenities);
-
 		$data['prev_religious_amenities'] = explode(',', $data['result']->religious_amenities);
 		$data['religious_amenities_extra_data'] = unserialize($data['result']->religious_amenities_extra_data);
-
 		$data['rooms_status'] = RoomsStepsStatus::where('room_id', $request->id)->first();
 		$data['rooms_policies'] = RoomsPolicies::where('room_id', $request->id)->first();
 		if ($data['result']->status != NULL && $request->page == 'calendar') {
@@ -566,17 +565,11 @@ class RoomsController extends Controller {
 	 * @return json success, steps_count
 	 */
 	public function get_rooms_status(Request $request) {
-
 		$total_bedrooms = [];
-
 		$data = $request;
-
 		$data = json_decode($data['data']); // AngularJS data decoding
-
 		$rooms = Rooms::find($request->id); // Where condition for Update
-
 		$rooms_status = RoomsStepsStatus::where('room_id', $request->id)->first();
-
 		return json_encode(['success' => 'true', 'steps_count' => $rooms->steps_completed, 'rooms_status' => $rooms_status]);
 	}
 
@@ -587,17 +580,12 @@ class RoomsController extends Controller {
 	 * @return json success, steps_count
 	 */
 	public function update_rooms(Request $request, EmailController $email_controller) {
-
 		$response = [];
-
 		$data = $request;
-
 		$data = json_decode($data['data']); // AngularJS data decoding
-
 		$rooms = Rooms::find($request->id); // Where condition for Update
 
 		$email = '';
-
 		foreach ($data as $key => $value) {
 			$rooms->$key = str_replace("'", "\'", $value); // Dynamic Update
 
@@ -799,7 +787,7 @@ class RoomsController extends Controller {
 		$total_bedrooms = RoomsBedroom::get_bedroom_count($id);
 		$total_bathrooms = RoomsBathroom::count($id);
 
-		if (($result_rooms->bedrooms != '' || $result_rooms->bedrooms == '0') && ($result_rooms->bathrooms != '' || $result_rooms->bathrooms == '0') && ($total_bedrooms > 0) && ($total_bathrooms > 0)) {
+		if (($result_rooms->bathrooms != '' || $result_rooms->bathrooms == '0') && ($total_bathrooms > 0)) {
 			$rooms_status->basics = 1;
 		} else {
 			$rooms_status->basics = 0;
@@ -836,7 +824,7 @@ class RoomsController extends Controller {
 		}
 
 		// $result_rooms->verification_status == 'Verified'
-		if ($rooms_status->referral == 1 && Auth::user()->user()->users_verification->email == 'yes' && Auth::user()->user()->users_verification->phone == 'yes' && Auth::user()->user()->gender != '' && Auth::user()->user()->profile_picture->src != '' && Auth::user()->user()->profile_picture->src != url('/images/user_pic-225x225.png')) {
+		if ($rooms_status->referral == 1 && Auth::user()->check() && Auth::user()->user()->users_verification->email == 'yes' && Auth::user()->user()->users_verification->phone == 'yes' && Auth::user()->user()->gender != '' && Auth::user()->user()->profile_picture->src != '' && Auth::user()->user()->profile_picture->src != url('/images/user_pic-225x225.png')) {
 			$rooms_status->verification = 1;
 		} else {
 			$rooms_status->verification = 0;
@@ -901,7 +889,8 @@ class RoomsController extends Controller {
 
 		$data = json_decode($data['data']); // AngularJS data decoding
 		$bedroom_id = $data->data_id;
-		$data_result['bed_type'] = BedType::select('bedroom_id', 'bed_type.id', 'name', 'quantity')
+		$column_name = \App::getLocale() == 'iw' ? 'name_iw' : 'name';
+		$data_result['bed_type'] = BedType::select('bedroom_id', 'bed_type.id', $column_name, 'quantity')->orderBy('priority', 'asc')
 			->leftJoin('rooms_bed_option', function ($join) use ($bedroom_id) {
 				$join->on('rooms_bed_option.bed_type_id', '=', 'bed_type.id')
 					->where('rooms_bed_option.bedroom_id', '=', $bedroom_id);
@@ -1130,6 +1119,28 @@ class RoomsController extends Controller {
 		return json_encode(['success' => 'true', 'steps_count' => $rooms->steps_completed]);
 	}
 
+	public function rotate_photo( Request $request ) {
+		$photo = RoomsPhotos::find( $request->id );
+		$path = "/var/www/html/images/rooms/" . $photo->room_id . "/" . $photo->name;
+		if( is_file( $path ) ) {
+			$ext = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) );
+			if( $ext == 'jpg' || $ext == 'jpeg' ) {
+				$source = imagecreatefromjpeg( $path );
+				$rotate = imagerotate( $source, -90, 0 );
+				imagejpeg( $rotate, $path );
+				imagedestroy( $rotate );
+				imagedestroy( $source );
+			} else if( $ext == 'png' ) {
+				$source = imagecreatefrompng( $path );
+				$rotate = imagerotate( $source, -90, 0 );
+				imagepng( $rotate, $path );
+				imagedestroy( $rotate );
+				imagedestroy( $source );
+			}
+		}
+		return json_encode( ['success' => true] );
+	}
+
 	/**
 	 * Ajax List Your Space Photos List
 	 *
@@ -1168,6 +1179,8 @@ class RoomsController extends Controller {
 
 		$data['room_id'] = $request->id;
 
+		$img_path = "/var/www/html/images/rooms/10736/1502423454_20170216_190051.jpg";
+
 		$data['result'] = Rooms::find($request->id);
 		//get facebook mutual friends
 		if (Auth::user()->user()) {
@@ -1185,7 +1198,6 @@ class RoomsController extends Controller {
 				$headers = array(
 					'Accept: application/json',
 					'Content-Type: application/json',
-
 				);
 
 				curl_setopt($ch, CURLOPT_URL, $url);
@@ -1205,9 +1217,7 @@ class RoomsController extends Controller {
 
 					$fb_ids = [];
 					foreach ($mutual_friends as $key => $value) {
-						# code...
 						$fb_ids[] = $value->id;
-
 					}
 
 					$fields = array('users.id', 'first_name', 'last_name', 'src', 'photo_source');
@@ -1235,15 +1245,10 @@ class RoomsController extends Controller {
 			->where(['rooms_bedroom.room_id' => $request->id])->get();
 
 		$data['beds'] = $beds[0]->beds;
-
 		$data['total_bedrooms'] = RoomsBedroom::get_bedroom_details($request->id);
-
 		$data['total_bathrooms'] = RoomsBathroom::where(['room_id' => $request->id])->get();
-
 		$data['amenities'] = Amenities::selected($request->id);
-
 		$data['safety_amenities'] = Amenities::selected_security($request->id);
-
 		$data['religious_amenities'] = ReligiousAmenitiesType::get_selected_by_type($request->id);
 		$data['religious_amenities_extra_data'] = unserialize($data['result']->religious_amenities_extra_data);
 
@@ -1255,7 +1260,6 @@ class RoomsController extends Controller {
 		$rooms_address = $data['result']->rooms_address;
 
 		$latitude = $rooms_address->latitude;
-
 		$longitude = $rooms_address->longitude;
 
 		if ($request->checkin != '' && $request->checkout != '') {
@@ -1288,7 +1292,7 @@ class RoomsController extends Controller {
 		/*echo "<pre>";
 			print_r($data['similar']);die;
 		*/
-		$data['title'] = $data['result']->name . ' in ' . $data['result']->rooms_address->city;
+		$data['title'] = stripslashes( $data['result']->name ) . ' in ' . stripslashes( $data['result']->rooms_address->city );
 		return view('rooms.rooms_detail', $data);
 	}
 
@@ -1539,6 +1543,34 @@ class RoomsController extends Controller {
 			];
 
 			Calendar::updateOrCreate(['room_id' => $request->id, 'date' => $date], $data);
+		}
+		$rooms = Rooms::find($request->id);
+		return json_encode(['success' => 'true', 'steps_count' => $rooms->steps_completed]);
+	}
+
+	public function calendar_set_default(Request $request) {
+		$first_date = \DateTime::createFromFormat('Y-m-d', $request->first_date);
+		$first_date = $first_date->format('Y-m-d');
+		$first_date = strtotime($first_date);
+
+		$last_date = \DateTime::createFromFormat('Y-m-d', $request->last_date);
+		$last_date = $last_date->format('Y-m-d');
+		$last_date = strtotime($last_date);
+
+		for ($i = $first_date; $i <= $last_date; $i += 86400) {
+			$date = date("Y-m-d", $i);
+
+			$data = [
+				'room_id' => $request->id,
+				'status' => ucfirst($request->status)
+			];
+
+			if($request->status == 'Available') {
+				Calendar::where(['room_id' => $request->id, 'date' => $date, 'status' => 'Not available'])->delete();
+			} else {
+				Calendar::updateOrCreate(['room_id' => $request->id, 'date' => $date], $data);
+			}
+
 		}
 		$rooms = Rooms::find($request->id);
 		return json_encode(['success' => 'true', 'steps_count' => $rooms->steps_completed]);

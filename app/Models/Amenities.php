@@ -36,14 +36,14 @@ class Amenities extends Model
     // Get Selected All Amenities Data
     public static function selected($room_id)
     {
-        $result = DB::select("select amenities.name as name, amenities.id as id, amenities.icon, rooms.id as status from amenities left join rooms on find_in_set(amenities.id, rooms.amenities) and rooms.id = $room_id where type_id != 5 and type_id != 4");
+        $result = DB::select("select amenities.name as name, amenities.name_iw as name_iw, amenities.id as id, amenities.icon, rooms.id as status from amenities left join rooms on find_in_set(amenities.id, rooms.amenities) and rooms.id = $room_id where type_id != 5 and type_id != 4");
         return $result;
     }
 
     // Get Selected Security Amenities Data
     public static function selected_security($room_id)
     {
-        $result = DB::select("select amenities.name as name, amenities.id as id, amenities.icon, rooms.id as status from amenities left join rooms on find_in_set(amenities.id, rooms.amenities) and rooms.id = $room_id where type_id = 4");
+        $result = DB::select("select amenities.name as name, amenities.name_iw as name_iw, amenities.id as id, amenities.icon, rooms.id as status from amenities left join rooms on find_in_set(amenities.id, rooms.amenities) and rooms.id = $room_id where type_id = 4");
         return $result;
     }
 

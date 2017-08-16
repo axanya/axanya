@@ -39,7 +39,7 @@ var citymap = {
 var homeControlDiv = document.createElement('div');
   var homeControl = new HomeControl(homeControlDiv, map);
 //  homeControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(homeControlDiv);
+  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(homeControlDiv);
 google.maps.event.addListener(map, 'bounds_changed', function() {
     var zoom = map.getZoom();
     var bounds = map.getBounds();
@@ -196,12 +196,21 @@ function setAllMap(map) {
 
 function HomeControl(controlDiv, map) {
   var controlText = document.createElement('div');
-  controlText.style.position = 'relative';
-  controlText.style.padding = '5px';
-  controlText.style.margin = '0px 0px 0px 50px';
-  controlText.style.fontSize='14px';
-  controlText.style.float='left';
-  controlText.innerHTML = '<div class="map-refresh-controls google"><div class="panel map-auto-refresh" style="padding-top:6px; padding-bottom:6px;">Display: <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><small>Restaurants</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="kosher_vendor" id="kosher_vendor" value="Kosher Vendor" class="map-auto-refresh-checkbox place_types"><small>Kosher Vendor</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><small>Synagogues</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><small>Mikvahs</small></label></div></div>';
+  controlText.style.position = 'absolute';
+  controlText.style.padding = '0';
+  controlText.style.margin = '0';
+  controlText.style.fontSize = '14px';
+  controlText.style.bottom = '10px';
+  controlText.style.left = '10px';
+  var checkHtml = '<div class="map-refresh-controls google"> ';
+  checkHtml += '<div class="panel map-auto-refresh display-icon" style="padding: 0; box-shadow: 0 0 3px rgba(0,0,0,0.2);">';
+  checkHtml += '';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><span class="map-icon map-icon-restaurant"></span><small class="abs">Restaurants</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="kosher_vendor" id="kosher_vendor" value="Kosher Vendor" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-grocery-or-supermarket"></span><small class="abs">Kosher Vendor</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><span class="map-icon map-icon-synagogue"></span><small class="abs">Synagogues</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-florist"></span><small class="abs">Mikvahs</small></label>';
+  checkHtml += '</div></div>';
+  controlText.innerHTML = checkHtml;
 
   controlDiv.appendChild(controlText);
 

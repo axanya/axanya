@@ -1,4 +1,4 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
     <script>
@@ -25,43 +25,53 @@
             <div class="page">
 
                 <div class="popup" id="media-popup">
-                    <iframe width="888" height="500" src="" frameborder="0" allowfullscreen></iframe>
+                    <!--<iframe width="888" height="500" src="" frameborder="0" allowfullscreen></iframe>-->
+                    <div class="player_holder">
+                      <a href="javascript:void(0)" class="btn-close">&times;</a>
+                      <div id="player"></div>
+                    </div>
+
+                    <script>
+
+
+                    </script>
                 </div>
             </div>
             {{--Popup YouTube--}}
             <div class="hero__content page-container">
                 <div class="textHeaderContainer_1sy11fq text-left">
                     <h1 class="textHeader_1o0y24x" id="home-intro" style="text-align: left !important;;">
-                        <img src="images/top_homepage.png" style="display:block; margin: 0 !important;">
-                        <span class="block rtl-text-right">{{ trans('messages.home.text1') }}</span>
-                        <span class="block rtl-text-right">{{ trans('messages.home.text2') }}</span>
-                        {{--Links--}}
-                        <div class="row hero_link_holder rtl-text-right" id="link_holder" style="display: none;">
-                          <a href="#media-popup" data-media="//www.youtube.com/embed/ZcPBcyEzpAU?rel=0" class="what-is">
-                            <i class="fa fa-play play-ico ico" aria-hidden="true"></i>
-                            <span class="what-is-link">What is Axanya?</span>
-                          </a>
-                          <a href="#" class="what-is" id="shareBtn" href="Javascript:void(0)">
-                            <i class="fa fa-facebook facebook-ico ico" aria-hidden="true"></i>
-                            <span class="what-is-link">Share with friends</span>
-                          </a>
+                      <img src="images/top_homepage<?php echo \App::getLocale() == 'iw' ? '_rtl' : ''; ?>.png" style="display:block; margin: 0 !important;">
+                      <span class="block rtl-text-right">{{ trans('messages.home.text1') }}</span>
+                      <span class="block rtl-text-right">{{ trans('messages.home.text2') }}</span>
+                      {{--Links--}}
+                      <div class="row hero_link_holder rtl-text-right" id="link_holder" style="display: none;">
+                        <a href="#media-popup" data-media="//www.youtube.com/embed/ZcPBcyEzpAU?rel=0&autoplay=1" class="what-is">
+                          <i class="fa fa-play play-ico ico" aria-hidden="true"></i>
+                          <span class="what-is-link">{{ trans('messages.home.what_is_axanya') }}</span>
+                        </a>
+                        <a href="#" class="what-is" id="shareBtn" href="Javascript:void(0)">
+                          <i class="fa fa-facebook facebook-ico ico" aria-hidden="true"></i>
+                          <span class="what-is-link">{{ trans('messages.home.share_with_friends') }}</span>
+                        </a>
 
-                            <script>
-                                document.getElementById('shareBtn').onclick = function() {
-                                    FB.ui({
-                                        method: 'share',
-                                        display: 'popup',
-                                        href: "{{ url('/') }}",
-                                    }, function(response){});
-                                }
-
-                            </script>
-                        </div>
                         <script>
-                            setTimeout(function () {
-                                var hero_links = document.getElementById('link_holder');
-                                hero_links.style.display = 'block';
-                            }, 1200)
+                          document.getElementById('shareBtn').onclick = function() {
+                            FB.ui({
+                              method: 'share',
+                              display: 'popup',
+                              href: "{{ url('/') }}",
+                            }, function(response){});
+                          }
+                        </script>
+                      </div>
+
+
+                        <script>
+                          setTimeout(function () {
+                            var hero_links = document.getElementById('link_holder');
+                            hero_links.style.display = 'block';
+                          }, 1200)
                         </script>
                     </h1>
                 </div>
@@ -83,9 +93,9 @@
                     <div class="col-lg-8 why-host-div">
                         <h2 class="headerText_17uhuaw">{{ trans('messages.home.why_host') }}</h2>
                         <p class="subtitle_1eiruqk">{{ trans('messages.home.why_host_text') }}</p>
-                        <a href="Javascript:void(0)" id="otherShare" class="host-button">{{ trans('messages.home.learn_more') }}</a>
+                        <a href="{{ url() }}/signup_login" id="otherShare" class="host-button">{{ trans('messages.home.learn_more') }}</a>
                         <script>
-                            document.getElementById('otherShare').onclick = function() {
+                            document.getElementById('otherShare1').onclick = function() {
                                 FB.ui({
                                     method: 'share',
                                     display: 'popup',
@@ -140,8 +150,16 @@
                                                     <span class="screen-reader-only">{{ trans('messages.home.no_of_guests') }}</span>
                                                     <div class="select select-large">
                                                         <select id="guests" name="guests">
-                                                            @for($i=1;$i<=16;$i++)
-                                                                <option value="{{ $i }}"> {{ ($i == '16') ? $i.'+ '.trans_choice('messages.home.guest',$i) : $i.' '.trans_choice('messages.home.guest',$i) }} </option>
+                                                            @for($i = 1; $i <= 16; $i++)
+                                                              @if($i == 1)
+                                                                <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guest') }} </option>
+                                                              @else
+                                                                @if($i == 16)
+                                                                  <option value="{{ $i }}"> {{ $i . '+ ' . trans('messages.home.guests') }} </option>
+                                                                @else
+                                                                  <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guests') }} </option>
+                                                                @endif
+                                                              @endif
                                                             @endfor
                                                         </select>
                                                     </div>
@@ -235,10 +253,10 @@
                         {{--Buttons--}}
                         <div>
                             <a href="{{ url('/why_host') }}">
-                                <button class="btn btn-default host_btn">Learn More</button>
+                              <button class="btn btn-default host_btn">{{ trans('messages.home.learn_more_2') }}</button>
                             </a>
                             <a href=" {{ url('/rooms/new') }}">
-                                <button class="btn btn-primary host_btn">List your space</button>
+                              <button class="btn btn-primary host_btn">{{ trans('messages.home.list_your_space') }}</button>
                             </a>
                         </div>
                     </div>
@@ -270,14 +288,14 @@
                             {{--Point--}}
                             <div class="col-md-4 col-md-offset-2">
                                 <img src="/images/icons/big_4.png" class="point-ico">
-                                <h3 class="point-title">Earn Extra Cash!</h3>
-                                <p class="sub_text">Set your own nightly rates and receive payments directly to your PayPal or personal bank account.</p>
+                                <h3 class="point-title">{{ trans('messages.home.earn_extra_cash') }}</h3>
+                                <p class="sub_text">{{ trans('messages.home.earn_extra_cash_text') }}</p>
                             </div>
                             {{--Point--}}
                             <div class="col-md-4">
                                 <img src="/images/icons/big_2.png" class="point-ico">
-                                <h3 class="point-title">Peace of Mind</h3>
-                                <p class="sub_text">Multilayered security, including guest and host profiles, reviews, personal references, and intelligent ID check.</p>
+                                <h3 class="point-title">{{ trans('messages.home.peace_of_mind') }}</h3>
+                                <p class="sub_text">{{ trans('messages.home.peace_of_mind_text') }}</p>
                             </div>
                         </div>
                         {{--Row--}}
@@ -285,14 +303,14 @@
                             {{--Point--}}
                             <div class="col-md-4 col-md-offset-2">
                                 <img src="/images/icons/big_3.png" class="point-ico">
-                                <h3 class="point-title">Connect with the Community</h3>
-                                <p class="sub_text">Connect with the global Jewish community, experience places like a local and make new friends.</p>
+                                <h3 class="point-title">{{ trans('messages.home.connect_with_community') }}</h3>
+                                <p class="sub_text">{{ trans('messages.home.connect_with_community_text') }}</p>
                             </div>
                             {{--Point--}}
                             <div class="col-md-4">
                                 <img src="/images/icons/big_1.png" class="point-ico">
-                                <h3 class="point-title">Feel Welcome</h3>
-                                <p class="sub_text">Free to be you with whomever you host. Be yourself, wherever you go.</p>
+                                <h3 class="point-title">{{ trans('messages.home.motivated_guests') }}</h3>
+                                <p class="sub_text">{{ trans('messages.home.motivated_guests_text') }}</p>
                             </div>
                         </div>
                     </div>
@@ -301,7 +319,7 @@
                 {{--Testimonial Section--}}
                 <div class="panel">
                     <div class="row section-intro text-center row-space row-space-top">
-                        <h3 class="blue_head_title">Voices from our Community</h3>
+                        <h3 class="blue_head_title">{{ trans('messages.home.voices_from_community') }}</h3>
                     </div>
                     <div class="row">
                         {{--Testimonial--}}
@@ -310,7 +328,7 @@
                             <h4 class="testimonial_name">Hilla</h4>
                             <p class="sub_text inline">
                                 <i class="fa fa-quote-left quote-ico" aria-hidden="true"></i>
-                                The service we've been waiting for.
+                                {{ trans('messages.home.service_waiting_for') }}
                                 <i class="fa fa-quote-left flipped_quote quote-ico" aria-hidden="true"></i>
                             </p>
                         </div>
@@ -320,7 +338,7 @@
                             <h4 class="testimonial_name">David</h4>
                             <p class="sub_text inline">
                                 <i class="fa fa-quote-left quote-ico" aria-hidden="true"></i>
-                                Thanks for making it so easy and safe to convert our space into money.
+                                {{ trans('messages.home.thanks_for_easy_and_safe') }}
                                 <i class="fa fa-quote-left flipped_quote quote-ico" aria-hidden="true"></i>
                             </p>
                         </div>
@@ -330,57 +348,35 @@
                 <div class="panel panel-blue">
                     {{--Head--}}
                     <div class="row text-center row-space row-space-top">
-                        <h3 class="blue_head_title">Common Questions</h3>
+                        <h3 class="blue_head_title">{{ trans('messages.home.common_questions') }}</h3>
                     </div>
                     <div class="row">
                         {{--Left Side--}}
-                        <div class="col-md-6 question-holder">
-                            <h5 class="question_title">Is hosting safe?</h5>
-                            <p class="sub_text">
-                                As the largest Jewish hotelier in the world, Axanya makes a considerable effort
-                                to create a safe & friendly enviroment. We've partnered with the world's top
-                                digital security firms to verify and detect suspcious activity. Our platform
-                                uses a two way review system to help travelers and hosts verify who they are
-                                connecting with. We encourage hosts to ask potential guests questions before
-                                confirming the reservation.
-                            </p>
-                            <h5 class="question_title">What does it cost me?</h5>
-                            <p class="sub_text">
-                                Listing your space on Axanya is 100% free. With bookings, Axanya takes a 5%
-                                host service fee on each reservation. This is deducted from the total booking
-                                amount.
-                            </p>
+                        <div class="col-md-6 question-holder rtl-right">
+                            <h5 class="question_title">{{ trans('messages.home.is_hosting_safe') }}</h5>
+                            <p class="sub_text">{{ trans('messages.home.is_hosting_safe_answer') }}</p>
+                            <h5 class="question_title">{{ trans('messages.home.what_does_it_cost') }}</h5>
+                            <p class="sub_text">{{ trans('messages.home.what_does_it_cost_answer') }}</p>
                         </div>
                         {{--Right Side--}}
-                        <div class="col-md-6">
-                            <h5 class="question_title">When do I get paid?</h5>
-                            <p class="sub_text">
-                                Payment will be processed 5 to 7 days after check-in of your guest (bank transfer)
-                                or 24 to 72 hours after check-in if you choose PayPal. All payments are processed
-                                securely through secure servers and managed by our payment processing team.
-                            </p>
-                            <h5 class="question_title">Do I have to pay taxes?</h5>
-                            <p class="sub_text">
-                                Before you can become a host with Axanya, you must conduct thorough research and
-                                understand your local laws regarding the acceptance of payment for hosting guests. Your
-                                city may even prohibit certain short-booking arrangements. To learn more, please see
-                                our "Contact & Help" section.
-                            </p>
+                        <div class="col-md-6 rtl-right">
+                            <h5 class="question_title">{{ trans('messages.home.when_get_paid') }}</h5>
+                            <p class="sub_text">{{ trans('messages.home.when_get_paid_answer') }}</p>
+                            <h5 class="question_title">{{ trans('messages.home.do_i_pay_taxes') }}</h5>
+                            <p class="sub_text">{{ trans('messages.home.do_i_pay_taxes_answer') }}</p>
                         </div>
                     </div>
                     {{--Here to help--}}
                     <div class="row text-center help_row">
-                        <h3 class="blue_head_title">We're here to help</h3>
-                        <p class="sub_text">Our service team is more than willing to help you with any questions,
-                        big or small. You can reach us by email, or leave your phone number and we'll get back to you
-                        immediately.</p>
+                        <h3 class="blue_head_title">{{ trans('messages.home.here_to_help') }}</h3>
+                        <p class="sub_text">{{ trans('messages.home.here_to_help_text') }}</p>
                     </div>
                 </div>
                 {{--List Space--}}
                 <div class="panel">
                     <div class="row text-center row-space row-space-top list_holder">
                         <a href="{{ url('/rooms/new') }}">
-                            <button class="btn btn-primary list_btn host_btn">List Your Space for Free, Now!</button>
+                            <button class="btn btn-primary list_btn host_btn">{{ trans('messages.home.list_your_space_free_now') }}</button>
                         </a>
                     </div>
                     <hr>
@@ -530,7 +526,7 @@
                 {{--Favorites Section--}}
                 <div class="panel page-container favorites-holder">
                     <div class="row text-center row-space row-space-top list_holder">
-                        <h3 class="blue_head_title">See some of our favorites</h3>
+                        <h3 class="blue_head_title">{{ trans('messages.home.some_of_our_favorites') }}</h3>
                     </div>
                     {{--Places--}}
                     <div class="row">

@@ -35,7 +35,8 @@ class PropertyType extends Model
     // Get all Active status records in lists type
     public static function dropdown()
     {
-        return PropertyType::whereStatus('Active')->lists('name','id');
+      $column_name = \App::getLocale() == 'iw' ? 'name_iw' : 'name';
+        return PropertyType::whereStatus('Active')->lists($column_name,'id');
     }
-    
+
 }

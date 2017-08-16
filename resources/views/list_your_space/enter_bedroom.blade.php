@@ -1,6 +1,7 @@
 
 <div style = "padding: 14px 0px; text-align: center;">
-    {{ $result->bedroom_type }} {{ $result->data_index }}
+    {{ trans('messages.lys.bedroom') }} {{ $result->data_index }}
+    <!-- {{ $result->bedroom_type }} -->
 </div>
 <div class="panel" style = "background:#fafafa; pading-top:10px;">
   <div class="flash-container" id="js-flash-error-clicked-frozen-field"></div>
@@ -18,8 +19,8 @@
   <!--<div class="row-space-1">-->
     <input type="hidden" name="bedroom_id" id="bedroom_id" value="{{$result->data_id}}">
     @foreach($bed_type as $key => $val)
-    <div class="col-sm-12 col-md-4">
-        <label for="king">{{$val->name}}</label>
+    <div class="col-sm-12 col-md-4 rtl-right">
+        <label for="king">{{ \App::getLocale() == 'iw' ? $val->name_iw : $val->name }}</label>
         <div id="king-select">
             <div class="select select-block">
                 <?php
@@ -27,12 +28,10 @@
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     if($val->quantity != null)
                     $selected_value = $val->quantity;
-                    
-
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select($val->id,$value_array,$selected_value,['id'=>'king']) !!} 
+                {!! Form::select($val->id,$value_array,$selected_value,['id'=>'king']) !!}
             </div>
         </div>
     </div>
@@ -44,10 +43,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('2',$value_array,$selected_value,['id'=>'queen']) !!} 
+                {!! Form::select('2',$value_array,$selected_value,['id'=>'queen']) !!}
             </div>
         </div>
     </div>
@@ -58,15 +57,15 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('4',$value_array,$selected_value,['id'=>'double']) !!} 
+                {!! Form::select('4',$value_array,$selected_value,['id'=>'double']) !!}
             </div>
         </div>
-    </div>      
+    </div>
   <!--</div>-->
-    
+
     <!--<div class="row-space-1">-->
     <div class="col-sm-12 col-md-4">
         <label for="single">{{ trans('messages.bedroom.single') }}</label>
@@ -75,10 +74,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('3',$value_array,$selected_value,['id'=>'single']) !!} 
+                {!! Form::select('3',$value_array,$selected_value,['id'=>'single']) !!}
             </div>
         </div>
     </div>
@@ -89,10 +88,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('5',$value_array,$selected_value,['id'=>'sofa_bed']) !!} 
+                {!! Form::select('5',$value_array,$selected_value,['id'=>'sofa_bed']) !!}
             </div>
         </div>
     </div>
@@ -103,15 +102,15 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('6',$value_array,$selected_value,['id'=>'couch']) !!} 
+                {!! Form::select('6',$value_array,$selected_value,['id'=>'couch']) !!}
             </div>
         </div>
-    </div>      
+    </div>
   <!--</div>-->
-    
+
     <!--<div class="row-space-1">-->
     <div class="col-sm-12 col-md-4">
         <label for="air_mattress">{{ trans('messages.bedroom.air_mattress') }}</label>
@@ -120,10 +119,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('7',$value_array,$selected_value,['id'=>'air_mattress']) !!} 
+                {!! Form::select('7',$value_array,$selected_value,['id'=>'air_mattress']) !!}
             </div>
         </div>
     </div>
@@ -134,10 +133,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('8',$value_array,$selected_value,['id'=>'bunk_bed']) !!} 
+                {!! Form::select('8',$value_array,$selected_value,['id'=>'bunk_bed']) !!}
             </div>
         </div>
     </div>
@@ -148,16 +147,16 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('9',$value_array,$selected_value,['id'=>'floor_mattress']) !!} 
+                {!! Form::select('9',$value_array,$selected_value,['id'=>'floor_mattress']) !!}
             </div>
         </div>
-    </div>      
+    </div>
   <!--</div>-->
-    
-    
+
+
     <!--<div class="row-space-1">-->
     <div class="col-sm-12 col-md-4">
         <label for="toddler_bed">{{ trans('messages.bedroom.toddler_bed') }}</label>
@@ -166,10 +165,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('10',$value_array,$selected_value,['id'=>'toddler_bed']) !!} 
+                {!! Form::select('10',$value_array,$selected_value,['id'=>'toddler_bed']) !!}
             </div>
         </div>
     </div>
@@ -180,10 +179,10 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('11',$value_array,$selected_value,['id'=>'crib']) !!} 
+                {!! Form::select('11',$value_array,$selected_value,['id'=>'crib']) !!}
             </div>
         </div>
     </div>
@@ -194,16 +193,16 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('12',$value_array,$selected_value,['id'=>'water_bed']) !!} 
+                {!! Form::select('12',$value_array,$selected_value,['id'=>'water_bed']) !!}
             </div>
         </div>
-    </div>      
+    </div>
   <!--</div>-->
-    
-    
+
+
     <!--<div class="row-space-1">-->
     <div class="col-sm-12 col-md-4">
         <label for="hammock">{{ trans('messages.bedroom.hammock') }}</label>
@@ -212,24 +211,24 @@
                 <?php
                     $value_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
                     $selected_value = 0;
-                ?>       
+                ?>
 
                 <!--  1th: name, 2th: array, 3th: selected, 4th: additional-->
-                {!! Form::select('13',$value_array,$selected_value,['id'=>'hammock']) !!} 
+                {!! Form::select('13',$value_array,$selected_value,['id'=>'hammock']) !!}
             </div>
         </div>
     </div>*/?>
     <!--</div>-->
-    
-    
+
+
 <!--  <div id="localized-fields">
   <div class="row-space-1">
     <label for="bedroom_line_1">{{ 'asdfasdf' }}</label>
     <input type="text" placeholder="asdfasdf" value="asdfasdf" class="focus" id="bedroom_line_1" name="bedroom_line_1" autocomplete="off">
   </div>
 </div>-->
-    
-    
+
+
 
   </div>
 

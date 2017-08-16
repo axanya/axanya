@@ -1,8 +1,7 @@
 <div id="js-manage-listing-content-container" class="manage-listing-content-container">
-      <div class="manage-listing-content-wrapper">
-        <div id="js-manage-listing-content" class="manage-listing-content">
-
-        <div>
+  <div class="manage-listing-content-wrapper">
+    <div id="js-manage-listing-content" class="manage-listing-content">
+      <div>
 <!--        <div>
         <div class="space-4">
         <h3>{{ trans('messages.lys.amenities_title') }}</h3>
@@ -48,7 +47,7 @@ if ($i == 1 || $i == 3) {
         <h5>{{ trans('messages.lys.saving') }}...</h5>
         </div>
 
-        <h4 style = "margin-top:20px; margin-bottom: 10px;">{{ $row_type->name }}</h4>
+        <h4 style = "margin-top:20px; margin-bottom: 10px;">{{ \App::getLocale() == 'iw' ? $row_type->name_iw : $row_type->name }}</h4>
 
         @if($row_type->description != '')
         <p class="text-muted" style = "display:none;">{{ $row_type->description }}</p>
@@ -62,7 +61,7 @@ if ($i == 1 || $i == 3) {
         <span>&nbsp;&nbsp;</span>
         <label class="label-large label-inline amenity-label">
         <input type="checkbox" value="{{ $row_amenities->id }}" name="amenities" data-saving="{{ $row_type->id }}" {{ in_array($row_amenities->id, $prev_amenities) ? 'checked' : '' }}>
-        <span>{{ $row_amenities->name }}</span>
+        <span>{{ \App::getLocale() == 'iw' ? $row_amenities->name_iw : $row_amenities->name }}</span>
         </label>
         <span>&nbsp;</span>
 
@@ -89,15 +88,19 @@ if ($i == 2 || $i == 7) {
 
             <!--</form>-->
             </div>
+            <div class="calendar_section border-top" style="display:{{ ($rooms_policies && ($rooms_policies->is_special_accommodation == 'Yes' || $rooms_policies->is_kosher == 'Yes')) ? 'none' : 'block' }};">
+              <p>{{ trans('messages.lys.do_not_have_special_accommodations') }}</p>
+              <a href="javascript:void(0)" id="special_accommodation_toggle">{{ trans('messages.lys.toggle_special_accommodations') }}</a>
+            </div>
         </div>
 
 
-        <div>
+        <div id="special_accommodation_wrapper" style="display:{{ ($rooms_policies && ($rooms_policies->is_special_accommodation == 'Yes' || $rooms_policies->is_kosher == 'Yes')) ? 'block' : 'none' }};">
             <div class="list_frame" style = "margin-top: 30px;">
-                    <div class="list_frame_label">
-                        {{ trans('messages.lys.religious_accomodations_optional') }}
-                    </div>
-                    <div class = "list_inner_frame clearfix" style = "margin-bottom:10px;">
+              <div class="list_frame_label">
+                  {{ trans('messages.lys.religious_accomodations_optional') }}
+              </div>
+              <div class = "list_inner_frame clearfix" style = "margin-bottom:10px;">
 
             <div class="js-section">
                 <div style="display:none;" class="js-saving-progress saving-progress save_religious_amenities">
@@ -108,7 +111,7 @@ if ($i == 2 || $i == 7) {
                     <div class="col-md-6 rtl-right">
                         @foreach($religious_amenities_type_array as $religious_amenities_type)
                             <div class="space-3">
-                                <h4 style = "margin-top:20px; margin-bottom: 10px;">{{$religious_amenities_type->name}} @if($religious_amenities_type->description != '')<span class="" style="font-weight:normal;">({{$religious_amenities_type->description}})</span>  @endif</h4>
+                                <h4 style = "margin-top:20px; margin-bottom: 10px;">{{ \App::getLocale() == 'iw' ? $religious_amenities_type->name_iw : $religious_amenities_type->name }} @if($religious_amenities_type->description != '')<span class="" style="font-weight:normal;">({{$religious_amenities_type->description}})</span>  @endif</h4>
                                 <ul class="list-unstyled">
                                     @foreach($religious_amenities as $religous_amenity)
                                         @if($religous_amenity->type_id == $religious_amenities_type->id)
@@ -116,7 +119,7 @@ if ($i == 2 || $i == 7) {
                                             <!-- <span>&nbsp;&nbsp;</span> -->
                                             <label class="label-large label-inline amenity-label">
                                                 <input type="checkbox" data-extra="@if($religous_amenity->extra_input == 'text')Yes @endif" value="{{ $religous_amenity->id }}" name="religious_amenities" data-saving="save_religious_amenities" {{ in_array($religous_amenity->id, $prev_religious_amenities) ? 'checked' : '' }}>
-                                                <span>{{ $religous_amenity->name }} @if($religous_amenity->description != '')({{$religous_amenity->description}})@endif</span>
+                                                <span>{{ \App::getLocale() == 'iw' ? $religous_amenity->name_iw : $religous_amenity->name }} @if($religous_amenity->description != '')({{$religous_amenity->description}})@endif</span>
                                             </label>
                                             @if($religous_amenity->extra_input == 'text')
                                             <div class="row row-condensed religious_amenity_extra_block {{ in_array($religous_amenity->id, $prev_religious_amenities) ? '' : 'hide' }}" id="religious_amenity_extra_{{$religous_amenity->id}}">

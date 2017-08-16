@@ -1,11 +1,11 @@
-﻿@extends('template')
+@extends('template')
 
 {!! Html::style('css/shared_itinerary.css') !!}
 {!! Html::style('css/shared_itinerary_print.css',array('media' => 'print')) !!}
 
 @section('main')
 <main role="main" id="site-content">
-      
+
 <div class="shared-itinerary-container">
 <div class="page-container-responsive">
 <div class="show-sm space-4 listing-photo-main-sm">

@@ -1,18 +1,18 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
     <main id="site-content" role="main">
-    
-    @include('common.subheader')  
+
+    @include('common.subheader')
 
   <div class="page-container-responsive space-top-4 space-4">
     <div class="row">
       <div class="col-md-3">
-        
+
         @include('common.sidenav')
 
       </div>
-      
+
       <div class="col-md-9">
       @if($previous_trips->count() == 0)
         <div class="panel">
@@ -93,7 +93,7 @@
   </div>
   @endif
     </div>
-      
+
     </div>
   </div>
 </main>

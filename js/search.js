@@ -50,8 +50,13 @@ app.directive('postsPagination', function(){
 
 $scope.wishlist_row_select = function(index) {
 
-  $http.post(APP_URL+"/save_wishlist", { data: $scope.room_id, wishlist_id: $scope.wishlist_list[index].id, saved_id: $scope.wishlist_list[index].saved_id }).then(function(response)
-  {
+  var params = {
+    data: $scope.room_id,
+    wishlist_id: $scope.wishlist_list[index].id,
+    saved_id: $scope.wishlist_list[index].saved_id
+  };
+
+  $http.post(APP_URL+"/save_wishlist", params).then(function(response) {
     if(response.data == 'null')
       $scope.wishlist_list[index].saved_id = null;
     else
@@ -364,11 +369,22 @@ $scope.out_mouse = function (index) {
 	};
 
  $(document).on('click', '#restaurant, #mikvahs, #synagogues, #kosher_vendor', function() {
-  var place_types = '';
-    $('.place_types:checked').each(function() {
-      place_types += $(this).val()+',';
-    });
+  // var place_types = '';
+  var $self = $(this);
+  angular.forEach(markers, function(m) {
+    if(m.place_type === $self.val()) {
+      if($self.is(':checked')) {
+        m.setMap(map);
+      } else {
+        m.setMap(null);
+      }
+    }
+  });
+    // $('.place_types:checked').each(function() {
+    //   place_types += $(this).val()+',';
+    // });
 
+    /*
     if( $.trim(localStorage.getItem("map_lat_long")) != 'null')
       var map_details = localStorage.getItem("map_lat_long");
     else
@@ -381,6 +397,7 @@ $scope.out_mouse = function (index) {
         $scope.place_result = response.data;
          marker($scope.room_result);
       });
+      */
 
   });
 
@@ -435,15 +452,23 @@ initializeMap();
   var place = autocomplete.getPlace();
   var latitude  = place.geometry.location.lat();
   var longitude = place.geometry.location.lng();
+  if( !place.geometry ) {
+    alert("No details available for location: '" + place.name + "'");
+    return false;
+  }
   $scope.cLat = latitude;
   $scope.cLong = longitude;
+  localStorage.removeItem('map_lat_long');
   $scope.search_result();
-  initialize();
+  if( place.geometry.viewport ) {
+    initialize(place.geometry);
+  } else {
+    initialize();
+  }
+  
   // window.location.href = window.location.href;
   });
 }
-
-
 
 $scope.zoom = '';
 $scope.cLat = '';
@@ -451,68 +476,88 @@ $scope.cLong= '';
 var html = '';
 var markers = [];
 var map;
-	var infowindow = new google.maps.InfoWindow(
-	  {
-      content: html
-  	});
+var infowindow = new google.maps.InfoWindow({
+  content: html
+});
 
-  initialize();
+initialize();
 
-function initialize()
-{
+var mapLoaded = false;
+var mapBounds = null;
 
-  if($scope.zoom == ''){
+function initialize(map_geometry) {
+  map_geometry = map_geometry || null;
+
+  if( $scope.zoom == '' ) {
     var zoom_set = 11;
+  } else {
+    var zoom_set = $scope.zoom;
   }
-  else
-  {
-     var zoom_set = $scope.zoom;
-  }
-  if($("#lat").val() == 0)
-  {
+
+  if( $("#lat").val() == 0 ) {
     var zoom_set = 1;
   }
-  if($scope.cLat == '' && $scope.cLong == '' ){
+  if( $scope.cLat == '' && $scope.cLong == '' ) {
     var latitude = $("#lat").val();
     var longitude = $("#long").val();
-     }
-     else
-     {
-      var latitude = $scope.cLat;
-      var longitude = $scope.cLong;
-     }
+  } else {
+    var latitude = $scope.cLat;
+    var longitude = $scope.cLong;
+  }
 
-      var myCenter=new google.maps.LatLng(latitude,longitude);
-
-var mapProp = {
-	scrollwheel: false,
-  center:myCenter,
-  maxZoom:15,
-  minZoom:9,
-  zoom:zoom_set,
-  zoomControl: true,
+  var myCenter = new google.maps.LatLng(latitude,longitude);
+  
+  var mapProp = {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  scrollwheel: false,
+    // center:geocode.results[0].geometry.location,
+    // maxZoom:15,
+    // minZoom:9,
+    // zoom:zoom_set,
+    zoomControl: true,
     zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_TOP,
-        style:google.maps.ZoomControlStyle.SMALL
+      position: google.maps.ControlPosition.LEFT_TOP,
+      style:google.maps.ZoomControlStyle.SMALL
     },
-  	mapTypeControl: false,
-	streetViewControl: false,
-		navigationControl: false,
+    mapTypeControl: false,
+	  streetViewControl: false,
+	  navigationControl: false,
+  }
+  var map_container = document.getElementById("map_canvas");
+  map = new google.maps.Map(map_container, mapProp);
+  // map.setCenter(geocode.results[0].geometry.location);
+  if(map_geometry) {
+    map.fitBounds(map_geometry.viewport);
+  } else {
+    var sw = new google.maps.LatLng(geocode.results[0].geometry.viewport.southwest.lat, geocode.results[0].geometry.viewport.southwest.lng);
+    var ne = new google.maps.LatLng(geocode.results[0].geometry.viewport.northeast.lat, geocode.results[0].geometry.viewport.northeast.lng);
+    mapBounds = new google.maps.LatLngBounds(sw, ne);
+    map.fitBounds(mapBounds);
+    
+  }
 
-	}
- map = new google.maps.Map(document.getElementById("map_canvas"),mapProp);
+  google.maps.event.addListener(map, 'idle', function() {
+    mapLoaded = true;
+    if( map_container.offsetHeight > 0 && map_container.offsetWidth > 0 ) {
+      google.maps.event.trigger(map, 'zoom_changed');
+    }
+    
+  });
+
 	google.maps.event.addListener(map, 'click', function() {
-    if(infoBubble != undefined){ if (infoBubble.isOpen()) {
-          infoBubble.close();
-          infoBubble = new InfoBubble({
+    if(mapLoaded && infoBubble != undefined) {
+      if (infoBubble.isOpen()) {
+        infoBubble.close();
+        infoBubble = new InfoBubble({
           maxWidth: 3000
         });
-        } }
-    });
-   var homeControlDiv = document.createElement('div');
+      }
+    }
+  });
+  var homeControlDiv = document.createElement('div');
   var homeControl = new HomeControl(homeControlDiv, map);
 //  homeControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(homeControlDiv);
+  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(homeControlDiv);
 
 	google.maps.event.addListener(map, 'dragend', function() {
     if(infoBubble != undefined){ if (infoBubble.isOpen()) {
@@ -561,66 +606,76 @@ var mapProp = {
       });
 
 	google.maps.event.addListener(map, 'zoom_changed', function() {
-    if(infoBubble != undefined){ if (infoBubble.isOpen()) {
+    if(mapLoaded) {
+      if(infoBubble != undefined) {
+        if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
-          maxWidth: 3000
-        });
+            maxWidth: 3000
+          });
         }
       }
-		$scope.zoom = map.getZoom();
+  		$scope.zoom = map.getZoom();
 
-		var zoom = map.getZoom();
-		var bounds = map.getBounds();
-		var minLat = bounds.getSouthWest().lat();
-		var minLong = bounds.getSouthWest().lng();
-		var maxLat = bounds.getNorthEast().lat();
-		var maxLong = bounds.getNorthEast().lng();
-		var cLat = bounds.getCenter().lat();
-		var cLong = bounds.getCenter().lng();
-    $scope.cLat = bounds.getCenter().lat();
-    $scope.cLong = bounds.getCenter().lng();
-		var map_lat_long = zoom+'~'+bounds+'~'+minLat+'~'+minLong+'~'+maxLat+'~'+maxLong+'~'+cLat+'~'+cLong;
-		localStorage.setItem("map_lat_long", map_lat_long);
-		 var redo_search = '';
-    // $('#redo_search:checked').each(function(i){
-    redo_search = $('#redo_search:checked').val();
-    // });
-  //  alert(redo_search);
-    if(redo_search == 'true'){
-    $scope.search_result();
-  }else{
-    $(".map-auto-refresh").addClass('hide');
-    $(".map-manual-refresh").removeClass('hide');
-  }
-	 });
+  		var zoom = map.getZoom();
+  		var bounds = map.getBounds();
+  		var minLat = bounds.getSouthWest().lat();
+  		var minLong = bounds.getSouthWest().lng();
+  		var maxLat = bounds.getNorthEast().lat();
+  		var maxLong = bounds.getNorthEast().lng();
+  		var cLat = bounds.getCenter().lat();
+  		var cLong = bounds.getCenter().lng();
+      $scope.cLat = bounds.getCenter().lat();
+      $scope.cLong = bounds.getCenter().lng();
+  		var map_lat_long = zoom+'~'+bounds+'~'+minLat+'~'+minLong+'~'+maxLat+'~'+maxLong+'~'+cLat+'~'+cLong;
+  		localStorage.setItem("map_lat_long", map_lat_long);
+  		var redo_search = '';
+      redo_search = $('#redo_search:checked').val();
+      if(redo_search == 'true') {
+        $scope.search_result();
+      } else {
+        $(".map-auto-refresh").addClass('hide');
+        $(".map-manual-refresh").removeClass('hide');
+      }
+    }
+	});
 
 
 //marker(response);
 }
 function HomeControl(controlDiv, map) {
   var controlText = document.createElement('div');
-  controlText.style.position = 'relative';
-  controlText.style.padding = '5px';
-  controlText.style.margin = '-65px 338px 0px 50px';
+  controlText.style.position = 'absolute';
+  controlText.style.padding = '0';
+  controlText.style.margin = '0';
   controlText.style.fontSize='14px';
-  controlText.style.width='230px';
-  controlText.innerHTML = '<div class="map-refresh-controls google"><a class="map-manual-refresh btn btn-primary hide" style="background-color:#ff5a5f;color: #ffffff;">Redo Search Here<i class="icon icon-refresh icon-space-left"></i></a><div class="panel map-auto-refresh"><label class="checkbox"><input type="checkbox" checked="checked" name="redo_search" value="true" class="map-auto-refresh-checkbox" id="redo_search"><small>Search as I move the map</small></label></div></div>';
+  controlText.style.left = '0';
+  controlText.style.bottom = '24px';
+  controlText.innerHTML = '<div class="map-refresh-controls google"><a class="map-manual-refresh btn btn-primary hide" style="background-color:#ff5a5f;color: #ffffff;">Redo Search Here<i class="icon icon-refresh icon-space-left"></i></a><div class="panel map-auto-refresh" style="margin-left: 10px; box-shadow: 0 0 3px rgba(0,0,0,0.2);"><label class="checkbox"><input type="checkbox" checked="checked" name="redo_search" value="true" class="map-auto-refresh-checkbox" id="redo_search"><small>Search as I move the map</small></label></div></div>';
 
   controlDiv.appendChild(controlText);
 
   var controlText = document.createElement('div');
-  controlText.style.position = 'relative';
-  controlText.style.padding = '5px';
-  controlText.style.margin = '0px 0px 0px 50px';
-  controlText.style.fontSize='14px';
-  controlText.innerHTML = '<div class="map-refresh-controls google"><div class="panel map-auto-refresh display-icon" style="padding-top:6px; padding-bottom:6px;">Display: <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><small>Restaurants</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="kosher_vendor" id="kosher_vendor" value="Kosher Vendor" class="map-auto-refresh-checkbox place_types"><small>Kosher Vendor</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><small>Synagogues</small></label> <label class="checkbox" style="display:inline;"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><small>Mikvahs</small></label></div></div>';
-
+  controlText.style.position = 'absolute';
+  controlText.style.padding = '0';
+  controlText.style.margin = '0';
+  controlText.style.fontSize = '14px';
+  controlText.style.bottom = '62px';
+  controlText.style.left = '10px';
+  var checkHtml = '<div class="map-refresh-controls google">';
+  checkHtml += '<div class="panel map-auto-refresh display-icon" style="padding: 0; box-shadow: 0 0 3px rgba(0,0,0,0.2);">';
+  checkHtml += '';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><span class="map-icon map-icon-restaurant"></span><small class="abs">Kosher Restaurants</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="kosher_vendor" value="Kosher Vendor" id="kosher_vendor" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-grocery-or-supermarket"></span><small class="abs">Kosher Vendor</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><span class="map-icon map-icon-synagogue"></span><small class="abs">Synagogues</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-florist"></span><small class="abs">Mikvahs</small></label>';
+  checkHtml += '</div></div>';
+  controlText.innerHTML = checkHtml;
   controlDiv.appendChild(controlText);
 
   // Setup click-event listener: simply set the map to London
   google.maps.event.addDomListener(controlText, 'click', function() {
-    });
+  });
 }
 
 /*Overlay Script*/
@@ -693,8 +748,8 @@ function HomeControl(controlDiv, map) {
         //todo fix this
         //the box is approx. 40px wide, we need a center of it
         //not sure how to calculate it unless we add this box to the DOM
-        div.style.left = (position.x - 20) + 'px';
-        div.style.top = (position.y - 23) + 'px';
+        div.style.left = (position.x - 24) + 'px';
+        div.style.top = (position.y - 45) + 'px';
         div.style.position ='absolute';
         //div.style.maxWidth='100px';
         div.style.cursor ='pointer';
@@ -819,8 +874,21 @@ angular.forEach($scope.place_result, function(obj) {
          icon: getMarkerImage(obj['type'])
     });*/
 
+    var oMap = null;
+    if(obj.type === 'Restaurants' && $('#restaurant').is(':checked')) {
+      oMap = map;
+    }
+    if(obj.type === 'Kosher Vendor' && $('#kosher_vendor').is(':checked')) {
+      oMap = map;
+    }
+    if(obj.type === 'Synagogues' && $('#synagogues').is(':checked')) {
+      oMap = map;
+    }
+    if(obj.type === 'Mikvahs' && $('#mikvahs').is(':checked')) {
+      oMap = map;
+    }
     var marker = new Marker({
-      map: map,
+      map: oMap,
       position: point,
       /*icon: {
         path: MAP_PIN,
@@ -830,14 +898,24 @@ angular.forEach($scope.place_result, function(obj) {
         strokeWeight: 0
       },*/
       icon : ' ',
+      place_type: obj.type,
       map_icon_label: getMarkerLabel(obj['type'])
     });
     markers.push(marker);
+    // console.log(markers);
 
     place_info = '<p>'+obj['name']+'</p><p>'+obj['address_line_1']+' '+obj['address_line_2']+', '+obj['city']+'</p><p>'+obj['state']+', '+obj['country']+'</p>';
     $scope.places_info.push(place_info);
 
-    html = '<div style="font-size:16px"><h3 style="margin:0px; color:#000;">'+obj['name']+'</h3><div class="popup-review">'+obj['reviews_star_rating_div']+'</div><hr><div class="address-align">'+obj['address_line_1']+'</div><div class="address-align">'+obj['address_line_2']+'</div><div class="address-align">'+obj['city']+'</div><div class="address-align">'+obj['state']+'</div><div class="address-align">'+obj['country_name']+'</div><div class="address-align">'+obj['postal_code']+'</div>';
+    html = '<div style="font-size:16px">';
+    html += '<h5 style="text-align: center; font-family: Circular; font-weight: normal; color: #00A699;">' + (obj['type'] === 'Restaurants' ? 'Kosher Restaurants' : obj['type']) + '</h5>';
+    html += '<h3 style="margin: 0px; margin-bottom: 10px; color: #333; text-align: center; font-family: Circular;">' + obj['name'] + '</h3>';
+    html += '<div class="popup-review">' + obj['reviews_star_rating_div'] + '</div>';
+    html += '<div style="font-size: 15px; color: #333; text-align: center; font-family: Circular;">';
+    html += '<div>' + obj['address_line_1'] + ' ' + obj['address_line_2'] + '</div>';
+    html += '<div>' + obj['city'] + ' ' + obj['state'] + '</div>';
+    html += '<div>' + obj['country_name'] + ' ' + obj['postal_code'] + '</div>';
+    html += '</div>';
    // html += '<br><br><a class="review-btn-pop" href="'+APP_URL+'/add_place_reviews/place/'+obj['id']+'" target="_blank" >Review</a>';
     html += '<div class="review-search-popup"><div onclick="reviews_popup(event, this)" class="close" >close</div>';
     angular.forEach(obj['reviews'], function(review) {
@@ -915,7 +993,6 @@ function marker_places(response) {
 
     var contentString = popupContent;
     google.maps.event.addListener(marker, 'click', function() {
-
         if (infoBubble.isOpen()) {
           infoBubble.close();
           infoBubble = new InfoBubble({
@@ -935,8 +1012,8 @@ function marker_places(response) {
         var minWidth = 300;
         infoBubble.setMinWidth(minWidth);
 
-        var minHeight = 150;
-        infoBubble.setMinHeight(minHeight);
+        var minHeight = 170;
+        // infoBubble.setMinHeight(minHeight);
 
         infoBubble.open(map,marker);
         });

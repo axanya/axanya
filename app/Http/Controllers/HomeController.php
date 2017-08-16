@@ -131,6 +131,14 @@ class HomeController extends Controller {
 		}
 	}
 
+	public function set_lang_iw(Request $request) {
+		// print_r($request->headers->get('referrer'));
+		// die();
+		Session::put('language', 'iw');
+		App::setLocale('iw');
+		return redirect('/');
+	}
+
 	/**
 	 * View Cancellation Policies
 	 *

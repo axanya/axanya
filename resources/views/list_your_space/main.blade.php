@@ -114,7 +114,7 @@
 <div aria-hidden="true" style="" class="modal" role="dialog" data-sticky="true">
   <div class="modal-table">
     <div class="modal-cell">
-      <div class="modal-content">
+      <div class="modal-content content-large">
 	  <a class="modal1-close" data-behavior="modal-close" href=""></a>
             <div id="js-bedroom-container">
 
@@ -126,7 +126,7 @@
 </div>
 </div>
 
-<div id="js-error" class="modal show" aria-hidden="true" style="" tabindex="-1">
+<div id="js-error" class="modal" aria-hidden="true" style="" tabindex="-1">
   <div class="modal-table">
     <div class="modal-cell">
       <div class="modal-content">
@@ -205,10 +205,7 @@
     <div class="media">
 
         <a class="media-photo-badge pull-right card-profile-picture card-profile-picture-offset" href="{{ url('users/show/'.$result->user_id) }}">
-          <div class="media-photo media-round">
-            <img alt="" src="{{ $result->users->profile_picture->src }}">
-          </div>
-
+          <div class="media-photo media-round listing-final-profile" style="background-image: url('{{ $result->users->profile_picture->src }}')"></div>
         </a>
 
       <h3 class="h5 listing-name text-truncate row-space-top-1" itemprop="name" title="d">
@@ -239,14 +236,14 @@
         </div>
 		  <div class="row row-space-top-5">
                 <div class="col-6">
-                  <a target="_blank" href="{{ url('rooms/'.$result->id) }}" id="view-listing-button" class="btn btn-block">{{ trans('messages.lys.view_listing') }}</a>
+                  <a target="_blank" href="{{ url('rooms/'.$result->id) }}" id="view-listing-button" class="btn btn-block" style="padding: 7px 30px;">{{ trans('messages.lys.view_listing') }}</a>
                 </div>
 				<div class="col-6">
 					<a target="_blank" href="{{ url('rooms/') }}" id="view-listing-button" class="btn btn-block">{{ trans('messages.lys.manage_listing') }}</a>
 				</div>
         <div class="face_book_icon">
         <a class="fb-button fb-blue btn icon-btn btn-block btn-large row-space-1 btn-facebook" data-network="facebook" rel="nofollow" title="Facebook" href="http://www.facebook.com/sharer.php?u={{ url('rooms/'.$result->id) }}" target="_blank">
-         Share your space on Facebook
+          {{ trans('messages.lys.share_listing_on_fb') }}
           <i class="icon icon-facebook social-icon-size"></i>
         </a>
         </div>
@@ -263,7 +260,7 @@
   </div>
 </div>
 
-<div tabindex="-1" aria-hidden="true" role="dialog" class="modal show" id="export_popup">
+<div tabindex="-1" aria-hidden="true" role="dialog" class="modal" id="export_popup">
 <div class="modal-table">
 <div class="modal-cell">
 <div class="modal-content">
@@ -285,7 +282,7 @@
 </div>
 </div>
 
-<div tabindex="-1" aria-hidden="{{ ($errors->has('name')) ? 'false' : 'true' }}" role="dialog" class="modal show" id="import_popup">
+<div tabindex="-1" aria-hidden="{{ ($errors->has('name')) ? 'false' : 'true' }}" role="dialog" class="modal" id="import_popup">
 <div class="modal-table">
 <div class="modal-cell">
 <div style="max-width:552px;" class="modal-content">

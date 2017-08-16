@@ -33,7 +33,7 @@ use Auth;
 class SearchController extends Controller
 {
     protected $payment_helper; // Global variable for Helpers instance
-    
+
     /**
      * Constructor to Set PaymentHelper instance in Global variable
      *
@@ -55,8 +55,9 @@ class SearchController extends Controller
         $full_address = $request->input('location');
         $address      = str_replace(" ", "+", "$full_address");
         $geocode      = @file_get_contents('https://maps.google.com/maps/api/geocode/json?key='.SERVER_MAP_KEY.'&address='.$address.'&sensor=false');
+        $data['geocode'] = $geocode;
         $json         = json_decode($geocode);
-        
+
         if(@$json->{'results'})
         {
             $data['lat']  = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
@@ -78,7 +79,7 @@ class SearchController extends Controller
                     join('users',function($join){
                         $join->on('rooms.user_id','=',"users.id");
                     })->where('rooms_address.latitude')->where('rooms.status','Listed')->get();
-        
+
         $data['location']           = $request->input('location');
         $data['checkin']            = $request->input('checkin');
         $data['checkout']           = $request->input('checkout');
@@ -91,12 +92,12 @@ class SearchController extends Controller
         $data['amenities']          = $request->input('amenities');
         $data['min_price']          = $request->input('min_price');
         $data['max_price']          = $request->input('max_price');
-        
+
         $data['room_type']          = RoomType::dropdown();
         $data['property_type']      = PropertyType::dropdown();
         $data['amenities']          = Amenities::active_all();
         $data['amenities_type']     = AmenitiesType::active_all();
-        
+
         $data['property_type_selected'] = explode(',', $request->input('property_type'));
         $data['room_type_selected'] = explode(',', $request->input('room_type'));
         $data['amenities_selected'] = explode(',', $request->input('amenities'));
@@ -125,7 +126,7 @@ class SearchController extends Controller
     function searchResult(Request $request)
     {
         $full_address  = $request->input('location');
-        
+
         $checkin       = $request->input('checkin');
         $checkout      = $request->input('checkout');
         $guest         = $request->input('guest');
@@ -152,7 +153,7 @@ class SearchController extends Controller
             else
              $room_type = [];
         }
-        
+
         if(!is_array($property_type))
         {
             if($property_type != '')
@@ -173,38 +174,34 @@ class SearchController extends Controller
         $rooms_whereIn       = [];
         $room_type_val       = [];
         $rooms_address_where = [];
-        
+
         $address      = str_replace([" ","%2C"], ["+",","], "$full_address");
         $geocode      = @file_get_contents('https://maps.google.com/maps/api/geocode/json?key='.SERVER_MAP_KEY.'&address='.$address.'&sensor=false&libraries=places');
         $json         = json_decode($geocode);
-
-        if(@$json->results)
-        {
-        foreach($json->results as $result)
-        {
-            foreach($result->address_components as $addressPart)
-            {
-                if((in_array('locality', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                {
-                    $city1 = $addressPart->long_name;
-                    $rooms_address_where['rooms_address.city'] = $city1;
-                }
-                if((in_array('administrative_area_level_1', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                {
-                    $state = $addressPart->long_name;
-                    $rooms_address_where['rooms_address.state'] = $state;
-                }
-                if((in_array('country', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                {
-                    $country = $addressPart->short_name;
-                    $rooms_address_where['rooms_address.country'] = $country;
+        // print_r($json);
+        if(@$json->results) {
+            foreach($json->results as $result) {
+                foreach($result->address_components as $addressPart) {
+                    if((in_array('locality', $addressPart->types)) && (in_array('political', $addressPart->types)))
+                    {
+                        $city1 = $addressPart->long_name;
+                        $rooms_address_where['rooms_address.city'] = $city1;
+                    }
+                    if((in_array('administrative_area_level_1', $addressPart->types)) && (in_array('political', $addressPart->types)))
+                    {
+                        $state = $addressPart->long_name;
+                        $rooms_address_where['rooms_address.state'] = $state;
+                    }
+                    if((in_array('country', $addressPart->types)) && (in_array('political', $addressPart->types)))
+                    {
+                        $country = $addressPart->short_name;
+                        $rooms_address_where['rooms_address.country'] = $country;
+                    }
                 }
             }
         }
-        }
-        
-        if($map_details != '')
-        {
+
+        if($map_details != '') {
             $map_detail =   explode('~', $map_details);
             $zoom       =   $map_detail[0];
             $bounds     =   $map_detail[1];
@@ -212,38 +209,52 @@ class SearchController extends Controller
             $minLong    =   $map_detail[3];
             $maxLat     =   $map_detail[4];
             $maxLong    =   $map_detail[5];
-            $cLat       =   $map_detail[6]; 
+            $cLat       =   $map_detail[6];
             $cLong      =   $map_detail[7];
-        }
-        else
-        {
-            if(@$json->{'results'})
-            {
+        } else {
+            if(@$json->{'results'}) {
+
                 $data['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
                 $data['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 
+                $northeast_lat = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'northeast'}->{'lat'};
+                $northeast_lng = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'northeast'}->{'lng'};
+
+                $southwest_lat = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'southwest'}->{'lat'};
+                $southwest_lng = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'southwest'}->{'lng'};
+
+                /*
                 $minLat = $data['lat']-0.30;
                 $maxLat = $data['lat']+0.30;
                 $minLong = $data['long']-0.30;
                 $maxLong = $data['long']+0.30;
-            }
-            else
-            {
+                */
+
+                $minLat = $northeast_lat < $southwest_lat ? $northeast_lat : $southwest_lat;
+                $maxLat = $northeast_lat > $southwest_lat ? $northeast_lat : $southwest_lat;
+                $minLong = $northeast_lng < $southwest_lng ? $northeast_lng : $southwest_lng;
+                $maxLong = $northeast_lng > $southwest_lng ? $northeast_lng : $southwest_lng;
+            } else {
                 $data['lat'] = 0;
                 $data['long'] = 0;
-
                 $minLat = -1000;
                 $maxLat = 1000;
                 $minLong = -1000;
                 $maxLong = 1000;
             }
         }
+
+        // var_dump($minLat);
+        // var_dump($maxLat);
+        // var_dump($minLong);
+        // var_dump($maxLong);
+        
         $users_where['users.status']    = 'Active';
 
         $checkin  = date('Y-m-d', strtotime($checkin));
         $checkout = date('Y-m-d', strtotime($checkout));
-        
-        $days     = $this->get_days($checkin, $checkout);
+
+        $days = $this->get_days($checkin, $checkout);
 
         unset($days[count($days)-1]);
 
@@ -252,26 +263,26 @@ class SearchController extends Controller
         $not_available_room_ids = Calendar::whereIn('date', $days)->whereStatus('Not available')->distinct()->lists('room_id');
 
         $rooms_where['rooms.accommodates'] = $guest;
-        
-        $rooms_where['rooms.status']       = 'Listed';
-            
+
+        $rooms_where['rooms.status'] = 'Listed';
+
         if($bathrooms)
             $rooms_where['rooms.bathrooms'] = $bathrooms;
-            
+
         if($bedrooms)
-            $rooms_where['rooms.bedrooms']  = $bedrooms;
-            
+            $rooms_where['rooms.bedrooms'] = $bedrooms;
+
         if($beds)
-            $rooms_where['rooms.beds']      = $beds;
-        
+            $rooms_where['rooms.beds'] = $beds;
+
         if(count($property_type))
-        {                    
+        {
             foreach($property_type as $property_value)
                 array_push($property_type_val, $property_value);
 
-            $rooms_whereIn['rooms.property_type'] = $property_type_val;     
+            $rooms_whereIn['rooms.property_type'] = $property_type_val;
         }
-        
+
         if(count($room_type))
         {
             foreach($room_type as $room_value)
@@ -279,40 +290,41 @@ class SearchController extends Controller
 
             $rooms_whereIn['rooms.room_type'] = $room_type_val;
         }
-        
+
         $currency_rate = Currency::where('code', Currency::find(1)->session_code)->first()->rate;
 
         $max_price_check = $this->payment_helper->currency_convert('', 'USD', $max_price);
 
-        $rooms = Rooms::with(['rooms_address' => function($query) use($minLat, $maxLat, $minLong, $maxLong) { },
-                            'rooms_price' => function($query) use($min_price, $max_price) {
-                                $query->with('currency');
-                            },
-                            'users' => function($query) use($users_where) {
-                                $query->with('profile_picture')
-                                      ->where($users_where);
-                            },
-                            'saved_wishlists' => function($query) {
-                                $query->where('user_id', @Auth::user()->user()->id);
-                            }])
-                            ->whereHas('rooms_address', function($query) use($minLat, $maxLat, $minLong, $maxLong) {
-                                 $query->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
-                            })
-                            ->whereHas('rooms_price', function($query) use($min_price, $max_price, $currency_rate, $max_price_check) {
-                                    $query->join('currency', 'currency.code', '=', 'rooms_price.currency_code');
-                                    if($max_price_check >= 750)
-                                    {
-                                        $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price);
-                                    }
-                                    else
-                                    {
-                                        $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price.' and ((night / currency.rate) * '.$currency_rate.') <= '.$max_price);
-                                    }
-                            })
-                            ->whereHas('users', function($query) use($users_where) {
-                                $query->where($users_where);
-                            })
-                            ->whereNotIn('id', $not_available_room_ids);
+        $rooms = Rooms::with(
+            [
+                'rooms_address' => function($query) use($minLat, $maxLat, $minLong, $maxLong) { },
+                'rooms_price' => function($query) use($min_price, $max_price) {
+                    $query->with('currency');
+                },
+                'users' => function($query) use($users_where) {
+                    $query->with('profile_picture')
+                        ->where($users_where);
+                },
+                'saved_wishlists' => function($query) {
+                    $query->where('user_id', @Auth::user()->user()->id);
+                }
+            ]
+        )
+        ->whereHas('rooms_address', function($query) use($minLat, $maxLat, $minLong, $maxLong) {
+                $query->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
+        })
+        ->whereHas('rooms_price', function($query) use($min_price, $max_price, $currency_rate, $max_price_check) {
+            $query->join('currency', 'currency.code', '=', 'rooms_price.currency_code');
+            if($max_price_check >= 750) {
+                $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price);
+            } else {
+                $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price.' and ((night / currency.rate) * '.$currency_rate.') <= '.$max_price);
+            }
+        })
+        ->whereHas('users', function($query) use($users_where) {
+            $query->where($users_where);
+        })
+        ->whereNotIn('id', $not_available_room_ids);
 
         if($rooms_where)
         {
@@ -343,6 +355,7 @@ class SearchController extends Controller
         }
 
         $rooms = $rooms->paginate(18)->toJson();
+        //$rooms['geocode'] = $geocode;
         echo $rooms;
         /* $rooms = $rooms->get();
         $queries = DB::getQueryLog();
@@ -355,9 +368,9 @@ class SearchController extends Controller
         $full_address  = $request->input('location');
         $map_details   = $request->input('map_details');
         $types = $request->input('types');
-        
+
         $place_where = [];
-        
+
         $address      = str_replace([" ","%2C"], ["+",","], "$full_address");
         $geocode      = @file_get_contents('https://maps.google.com/maps/api/geocode/json?key='.SERVER_MAP_KEY.'&address='.$address.'&sensor=false&libraries=places');
         $json         = json_decode($geocode);
@@ -386,7 +399,7 @@ class SearchController extends Controller
             }
         }
         }
-        
+
         if($map_details != '')
         {
             $map_detail =   explode('~', $map_details);
@@ -396,7 +409,7 @@ class SearchController extends Controller
             $minLong    =   $map_detail[3];
             $maxLat     =   $map_detail[4];
             $maxLong    =   $map_detail[5];
-            $cLat       =   $map_detail[6]; 
+            $cLat       =   $map_detail[6];
             $cLong      =   $map_detail[7];
         }
         else
@@ -445,18 +458,18 @@ class SearchController extends Controller
         }])->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
 
 
-        if(@$where_types)
-         $places = $places->whereIn('type', $where_types);
+        // if(@$where_types)
+        $places = $places->whereIn('type', ['Restaurants', 'Kosher Vendor', 'Synagogues', 'Mikvahs']);
 
-        if($types != 'empty')
-        {
+        // if($types != 'empty')
+        // {
             if( $minLat = "-1000" && $maxLat = "1000" )
                 echo $places->take(500)->get();
             else
                 echo $places->get();
-        }
-        else
-            echo 'false';
+        // }
+        // else
+            // echo 'false';
 
         // $queries = DB::getQueryLog();
         // print_r($queries);exit;
@@ -470,17 +483,17 @@ class SearchController extends Controller
      * @return array $days      Between two dates
      */
     public function get_days($sStartDate, $sEndDate)
-    {            
-        $aDays[]      = $sStartDate;  
-        $sCurrentDate = $sStartDate;  
-       
+    {
+        $aDays[]      = $sStartDate;
+        $sCurrentDate = $sStartDate;
+
         while($sCurrentDate < $sEndDate)
         {
-            $sCurrentDate = gmdate("Y-m-d", strtotime("+1 day", strtotime($sCurrentDate)));  
-            $aDays[]      = $sCurrentDate;  
+            $sCurrentDate = gmdate("Y-m-d", strtotime("+1 day", strtotime($sCurrentDate)));
+            $aDays[]      = $sCurrentDate;
         }
-      
-        return $aDays;  
+
+        return $aDays;
     }
 
     /**
@@ -490,7 +503,7 @@ class SearchController extends Controller
      * @return json $rooms_photo    Rooms Photos Details
      */
     public function rooms_photos(Request $request)
-    {            
+    {
         $rooms_id  = $request->rooms_id;
         $roomsDetails =  RoomsPhotos::where('room_id', $request->rooms_id)->get();
 

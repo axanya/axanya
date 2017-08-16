@@ -39,11 +39,17 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="input_name" class="col-sm-3 control-label">Name<em class="text-danger">*</em></label>
-
+                  <label for="input_name" class="col-sm-3 control-label">English Name<em class="text-danger">*</em></label>
                   <div class="col-sm-6">
-                    {!! Form::text('name', '', ['class' => 'form-control', 'id' => 'input_name', 'placeholder' => 'Name']) !!}
+                    {!! Form::text('name', '', ['class' => 'form-control', 'id' => 'input_name', 'placeholder' => 'English Name']) !!}
                     <span class="text-danger">{{ $errors->first('name') }}</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="input_name_iw" class="col-sm-3 control-label">Hebrew Name<em class="text-danger">*</em></label>
+                  <div class="col-sm-6">
+                    {!! Form::text('name_iw', '', ['class' => 'form-control', 'id' => 'input_name_iw', 'placeholder' => 'Hebrew Name', 'dir' => 'rtl']) !!}
+                    <span class="text-danger">{{ $errors->first('name_iw') }}</span>
                   </div>
                 </div>
                 <div class="form-group">

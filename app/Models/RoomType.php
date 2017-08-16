@@ -35,7 +35,8 @@ class RoomType extends Model
     // Get all Active status records in lists type
     public static function dropdown()
     {
-        return RoomType::whereStatus('Active')->lists('name','id');
+      $column_name = \App::getLocale() == 'iw' ? 'name_iw' : 'name';
+        return RoomType::whereStatus('Active')->lists($column_name,'id');
     }
 
     // Get single field data by using id and field name

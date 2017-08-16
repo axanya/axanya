@@ -44,7 +44,7 @@
                                             <select name="currency_code" id="price-select-currency_code" data-saving="base_price">
 
                                                 @foreach($get_currency as $val)
-                                                @if($val->code == 'USD' || $val->code == 'AUD' || $val->code == 'GBP' || $val->code == 'EUR' || $val->code == 'CAD')
+                                                @if($val->code == 'USD' || $val->code == 'ILS' || $val->code == 'AUD' || $val->code == 'GBP' || $val->code == 'EUR' || $val->code == 'CAD')
                                                 <option value="{{$val->code}}"<?php echo $result->rooms_price->currency_code == $val->code ? ' selected="selected"' : '' ?>>{{$val->code}} - {{$val->name}}</option>
                                                 @endif
                                                 @endforeach
@@ -52,7 +52,7 @@
                                                 <option disabled="">------------------------------------</option>
 
                                                 @foreach($get_currency as $val)
-                                                @if($val->code != 'USD' && $val->code != 'AUD' && $val->code != 'GBP' && $val->code != 'EUR' && $val->code != 'CAD')
+                                                @if($val->code != 'USD' && $val->code != 'ILS' && $val->code != 'AUD' && $val->code != 'GBP' && $val->code != 'EUR' && $val->code != 'CAD')
                                                 <option value="{{$val->code}}"<?php echo $result->rooms_price->currency_code == $val->code ? ' selected="selected"' : '' ?>>{{$val->code}} - {{$val->name}}</option>
                                                 @endif
                                                 @endforeach
@@ -80,6 +80,36 @@
 
                         </div>
                     </div>
+
+                    <hr>
+
+                    <div class="list_inner_frame clearfix" style="margin-bottom:10px;">
+                        <p>Your listing accommodates <b>{{ @$result->accommodates }}</b> guests.</p>
+                        <div class="row row-table row-space-1" ng-init="base_guests = {{ $result->rooms_price->guests ? $result->rooms_price->guests : $result->accommodates }}; additional_guest_price = {{ $result->rooms_price->original_additional_guest ? $result->rooms_price->original_additional_guest : '\'\'' }}; accommodates = {{ $result->accommodates }}">
+                            <div class="col-4">
+                                <label class="label-large">Base rate includes</label>
+                                <select name="guests" class="additional_guest_pricing" data-saving="base_price" ng-model="base_guests">
+                                    @for ( $i = 1; $i <= $result->accommodates; $i++ )
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="label-large">Additional charge / guest</label>
+                                <div class="input-addon">
+                                    <span class="input-prefix">{{ $result->rooms_price->currency->original_symbol }}</span>
+                                    <input type="number"
+                                        class="additional_guest_pricing"
+                                        name="additional_guest"
+                                        class="input-stem input-large autosubmit-text"
+                                        data-saving="base_price"
+                                        ng-model="additional_guest_price"
+                                        ng-disabled="base_guests == accommodates">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 @if($result->rooms_price->original_week == 0 || $result->rooms_price->original_month == 0)

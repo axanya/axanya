@@ -1,4 +1,7 @@
 <!-- Center Part Starting  -->
+<script type="text/javascript">
+window.trans_lys = <?php echo json_encode( \Lang::get('messages.lys') ); ?>
+</script>
 <div class="manage-listing-content-container" id="js-manage-listing-content-container">
    <div class="manage-listing-content-wrapper">
       <div class="manage-listing-content" id="js-manage-listing-content">
@@ -247,11 +250,11 @@
                        + '<label class="label-large" id = "bedroom_child_label">{{ trans("messages.lys.bedroom") }} ' + i + '</label>'
                    + '</div>';
                    if(bed_option != ''){
-                       html +=  '<div class="col-5 label-large">'
+                       html +=  '<div class="col-5 label-large rtl-right">'
                                + '<span class ="">' + bed_option + '</span>'
                                + '</div>'
                                +'<div class="col-4 label-large">'
-                               + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">Modify<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
+                               + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">{{ trans("messages.lys.modify") }}<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
                                    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
                                + '</div>';
                    }else{
@@ -272,8 +275,8 @@
            if(total_bathrooms.length > 0){
                var html1 = '<div class="row">'
                               +'<div class="col-4"></div>'
-                               +'<div class="col-4"><label class="label-large">{{ trans("messages.lys.bathroom_details") }}</label></div>'
                                +'<div class="col-4"><label class="label-large">{{ trans("messages.account.type") }}</label></div>'
+                               +'<div class="col-4"><label class="label-large">{{ trans("messages.lys.bathroom_details") }}</label></div>'
                            +'</div>';
                $('#bathroom_parent').append(html1);
            }
@@ -283,7 +286,7 @@
            var html = '<div class="row row-space-top-2 bathroom_child" id="bathroom_child">'
                    +'<div class="col-4"><label class="label-large" id="bathroom_child_label">{{ trans("messages.lys.bathroom") }} '+i+'</label></div>'
                    +'<div class="col-md-4 col-sm-12"><div class="select select-block">'
-                   +'<select name="bathrooms_details" id="basics-select-bathrooms-details-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">{{ trans("messages.lys.select") }}...</option><option value="private">Private Bathroom</option><option value="shared">Shared Bathroom</option></select>'
+                   +'<select name="bathrooms_details" id="basics-select-bathrooms-details-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">{{ trans("messages.lys.select") }}...</option><option value="private">{{ trans("messages.lys.bathroom_private") }}</option><option value="shared">{{ trans("messages.lys.bathroom_shared") }}</option></select>'
                    +'</div></div>'
                    +'<div class="col-md-4 col-sm-12"><div class="select select-block">'
                    +'<select name="bathrooms_type" id="basics-select-bathrooms-type-'+i+'" data-id="'+total_bathrooms[i-1].id+'"  data-saving="basics3"><option disabled="" selected="" value="">{{ trans("messages.lys.select") }}...</option><option value="toilet_shower">{{ trans("messages.lys.bathroom_toilet_shower") }}</option><option value="toilet_only">{{ trans("messages.lys.bathroom_toilet_only") }}</option><option value="shower_only">{{ trans("messages.lys.bathroom_shower_only") }}</option></select>'
@@ -292,6 +295,7 @@
 
 
                $('#bathroom_parent').append(html);
+               console.log(total_bathrooms[i-1].bathroom_details);
                $('#basics-select-bathrooms-details-'+i).val(total_bathrooms[i-1].bathroom_details);
                $('#basics-select-bathrooms-type-'+i).val(total_bathrooms[i-1].type);
            }

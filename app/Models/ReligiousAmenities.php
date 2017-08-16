@@ -36,13 +36,13 @@ class ReligiousAmenities extends Model
     // Get Selected All ReligiousAmenities Data
     public static function selected($room_id)
     {
-        $result = DB::select("select religious_amenities.name as name, religious_amenities.id as id, rooms.id as status from religious_amenities left join rooms on find_in_set(religious_amenities.id, rooms.religious_amenities) and rooms.id = $room_id");
+        $result = DB::select("select religious_amenities.name as name, religious_amenities.name_iw as name_iw, religious_amenities.id as id, rooms.id as status from religious_amenities left join rooms on find_in_set(religious_amenities.id, rooms.religious_amenities) and rooms.id = $room_id");
         return $result;
     }
 
     public static function selected_type($room_id, $type_id)
     {
-        $result = DB::select("select religious_amenities.name as name, religious_amenities.description as description, religious_amenities.id as id, rooms.id as status from religious_amenities left join rooms on find_in_set(religious_amenities.id, rooms.religious_amenities) and rooms.id = $room_id where type_id = $type_id");
+        $result = DB::select("select religious_amenities.name as name, religious_amenities.name_iw as name_iw, religious_amenities.description as description, religious_amenities.id as id, rooms.id as status from religious_amenities left join rooms on find_in_set(religious_amenities.id, rooms.religious_amenities) and rooms.id = $room_id where type_id = $type_id");
         return $result;
     }
 }

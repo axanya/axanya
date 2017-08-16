@@ -59,19 +59,21 @@ class ReligiousAmenitiesTypeController extends Controller
             // Add Religious Amenities Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:religious_amenities_type',
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Add Religious Amenities Type Validation Custom Names
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -80,6 +82,7 @@ class ReligiousAmenitiesTypeController extends Controller
                 $religious_amenities_type = new ReligiousAmenitiesType;
 
 			    $religious_amenities_type->name        = $request->name;
+          $religious_amenities_type->name_iw     = $request->name_iw;
 			    $religious_amenities_type->description = $request->description;
 			    $religious_amenities_type->status      = $request->status;
 
@@ -115,19 +118,21 @@ class ReligiousAmenitiesTypeController extends Controller
             // Edit Religious Amenities Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:religious_amenities_type,name,'.$request->id,
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Edit Religious Amenities Type Validation Custom Fields Name
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -136,6 +141,7 @@ class ReligiousAmenitiesTypeController extends Controller
                 $religious_amenities_type = ReligiousAmenitiesType::find($request->id);
 
 			    $religious_amenities_type->name        = $request->name;
+          $religious_amenities_type->name_iw     = $request->name_iw;
 			    $religious_amenities_type->description = $request->description;
 			    $religious_amenities_type->status      = $request->status;
 

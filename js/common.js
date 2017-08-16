@@ -9,15 +9,15 @@ $('.AnnouncementBar__arrow').click(function(){
     }
     else if($('.AnnouncementBar__arrow').hasClass('AnnouncementBar__open')){
         //alert('close');
-        $('.AnnouncementBar__content').removeClass('AnnouncementBar__active');   
-        $('.AnnouncementBar__content').addClass('inactive');   
+        $('.AnnouncementBar__content').removeClass('AnnouncementBar__active');
+        $('.AnnouncementBar__content').addClass('inactive');
 
         $('.AnnouncementBar__arrow').addClass('hidden');
-        $('.AnnouncementBar__arrow').removeClass('AnnouncementBar__open');  
+        $('.AnnouncementBar__arrow').removeClass('AnnouncementBar__open');
     }
     //AnnouncementBar__icon hidden AnnouncementBar__arrow
     //AnnouncementBar__icon AnnouncementBar__open AnnouncementBar__arrow
-    
+
 });
 
 $('.js-book-it-btn').click(function(){
@@ -37,7 +37,7 @@ $('.js-book-it-btn').click(function(){
         });
     }
 
-    
+
 });
 
 $('#add-reference-user').click(function()
@@ -86,7 +86,7 @@ homeAutocomplete();
 var home_autocomplete;
 var home_mob_autocomplete;
 
-function homeAutocomplete() 
+function homeAutocomplete()
 {
     if(document.getElementById('location'))
     {
@@ -114,7 +114,7 @@ if(last_part+last_part1[0] != '/s')
 var header_autocomplete;
 var sm_autocomplete;
 
-function headerAutocomplete() 
+function headerAutocomplete()
 {
     if(document.getElementById('header-search-form'))
     {
@@ -122,6 +122,7 @@ function headerAutocomplete()
         google.maps.event.addListener(header_autocomplete, 'place_changed', function() {
             $('#header-search-settings').addClass('shown');
             $("#header-search-checkin").datepicker("show");
+            // $('#header-search-form').closest('form').trigger('submit');
         });
     }
     if(document.getElementById('search-modal--sm'))
@@ -146,7 +147,7 @@ function headerAutocomplete()
 $("#header-search-checkin").datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 0,
-    onSelect: function (date) 
+    onSelect: function (date)
     {
         var header_checkout = $('#header-search-checkin').datepicker('getDate');
         header_checkout.setDate(header_checkout.getDate() + 1);
@@ -160,11 +161,11 @@ $("#header-search-checkin").datepicker({
 $('#header-search-checkout').datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 1,
-    onClose: function () 
+    onClose: function ()
     {
         var header_checkin = $('#checkin').datepicker('getDate');
         var header_checkout = $('#header-search-checkout').datepicker('getDate');
-        if (header_checkout <= header_checkin) 
+        if (header_checkout <= header_checkin)
         {
             var minDate = $('#header-search-checkout').datepicker('option', 'minDate');
             $('#header-search-checkout').datepicker('setDate', minDate);
@@ -175,7 +176,7 @@ $('#header-search-checkout').datepicker({
 $("#modal_checkin").datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 0,
-    onSelect: function (date) 
+    onSelect: function (date)
     {
         var modal_checkout = $('#modal_checkin').datepicker('getDate');
         modal_checkout.setDate(modal_checkout.getDate() + 1);
@@ -190,11 +191,11 @@ $("#modal_checkin").datepicker({
 $('#modal_checkout').datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 1,
-    onClose: function () 
+    onClose: function ()
     {
         var modal_checkin = $('#checkin').datepicker('getDate');
         var modal_checkout = $('#modal_checkout').datepicker('getDate');
-        if (modal_checkout <= modal_checkin) 
+        if (modal_checkout <= modal_checkin)
         {
             var minDate = $('#modal_checkout').datepicker('option', 'minDate');
             $('#modal_checkout').datepicker('setDate', minDate);
@@ -280,7 +281,7 @@ function trigger_checkin()
 $("#checkin").datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 0,
-    onSelect: function (date) 
+    onSelect: function (date)
     {
         var checkout = $('#checkin').datepicker('getDate');
         checkout.setDate(checkout.getDate() + 1);
@@ -292,21 +293,21 @@ $("#checkin").datepicker({
     }
 });
 
-$('#checkout').datepicker({	
+$('#checkout').datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 1,
-    onClose: function () 
+    onClose: function ()
     {
         var checkin = $('#checkin').datepicker('getDate');
         var checkout = $('#checkout').datepicker('getDate');
-        if (checkout <= checkin) 
+        if (checkout <= checkin)
         {
             var minDate = $('#checkout').datepicker('option', 'minDate');
             $('#checkout').datepicker('setDate', minDate);
         }
     }
 });
- 
+
 // Coupon Code
 app.controller('payment', ['$scope', '$http', function($scope, $http) {
 $('.open-coupon-section-link').click(function()
@@ -325,7 +326,7 @@ $('#apply-coupon').click(function()
 {
     var coupon_code = $('.coupon-code-field').val();
 
-    $http.post(APP_URL+'/payments/apply_coupon', { coupon_code :coupon_code }).then(function(response) 
+    $http.post(APP_URL+'/payments/apply_coupon', { coupon_code :coupon_code }).then(function(response)
     {
         if(response.data.message)
         {
@@ -341,22 +342,22 @@ $('#apply-coupon').click(function()
             $("#after_apply_remove").show();
             $("#after_apply_coupon").show();
             $("#after_apply_amount").show();
-            $('#applied_coupen_amount').text(response.data.coupon_amount); 
+            $('#applied_coupen_amount').text(response.data.coupon_amount);
             $('#payment_total').text(response.data.coupen_applied_total);
-            window.location.reload();   
+            window.location.reload();
         }
-     }); 
+     });
 });
 
 $('#remove_coupon').click(function(){
-    $http.post(APP_URL+'/payments/remove_coupon', { }).then(function(response) 
+    $http.post(APP_URL+'/payments/remove_coupon', { }).then(function(response)
     {
-        window.location.reload(); 
-    }); 
+        window.location.reload();
+    });
 });
 
 }]);
-// Coupon Codeopen-coupon-section-link 
+// Coupon Codeopen-coupon-section-link
 
 
 $('#payment-method-select').change(function()
@@ -414,14 +415,14 @@ $('.room_status_dropdown').change(function()
 
     var id = $(this).attr('data-room-id');
     var check = true;
-    
+
     if($(this).val() == 'Unlisted'){
-        check = confirm("Unlisting will only affect future availability, but existing reservations are still effective!");    
+        check = confirm("Unlisting will only affect future availability, but existing reservations are still effective!");
         if(check != true){
             $(this).val("Listed");
         }
-    }    
-    
+    }
+
     if(check){
         $http.post('manage-listing/'+id+'/update_rooms', { data:data }).then(function(response) {
             if(data_params['status'] == 'Unlisted')
@@ -436,7 +437,7 @@ $('.room_status_dropdown').change(function()
             }
         });
     }
-    
+
 });
 
 $(document).on('click', '.wl-modal-footer__text', function() {
@@ -446,7 +447,7 @@ $(document).on('click', '.wl-modal-footer__text', function() {
 $('#send-email').unbind("click").click(function() {
     var emails = $('#email-list').val();
     if(emails != '') {
-        $http.post('invite/share_email', { emails: emails }).then(function(response) 
+        $http.post('invite/share_email', { emails: emails }).then(function(response)
         {
             $('#success_message').fadeIn();
             $('#success_message').fadeOut();
@@ -515,6 +516,7 @@ $('#select-payout-method-submit').click(function()
     $('#payout_info_payout3_zip').val($('#payout_info_payout2_zip').val());
     $('#payout_info_payout3_country').val($('#payout_info_payout2_country').val());
     $('#payout3_method').val($('#payout2_method').val());
+    $('#payout_currency_final').val($('#payout_currency').val());
 
     $('#payout_popup2').addClass('hide');
     $('#payout_popup3').removeClass('hide');
@@ -532,7 +534,7 @@ $('[id$="_flash-container"]').on('click', '.alert-close', function()
 
 }]);
 
-app.directive('postsPaginationTransaction', function(){  
+app.directive('postsPaginationTransaction', function(){
    return{
       restrict: 'E',
       template: '<ul class="pagination"><h3 class="status-text text-center" ng-show="loading">Loading...</h3><h3 class="status-text text-center" ng-hide="result.length">No Transactions</h3>'+
@@ -596,7 +598,7 @@ $scope.pagination_result = function(type, page)
 
     $scope.result_show = false;
     $scope.loading = true;
-    $http.post(APP_URL+'/users/result_transaction_history?page='+page, { data:data }).then(function(response) 
+    $http.post(APP_URL+'/users/result_transaction_history?page='+page, { data:data }).then(function(response)
     {
         $scope.loading = false;
         $scope.result = response.data.data;
@@ -607,7 +609,7 @@ $scope.pagination_result = function(type, page)
         $scope.type = type;
 
         var pages = [];
-        for(var i=1;i<=response.data.last_page;i++) {          
+        for(var i=1;i<=response.data.last_page;i++) {
           pages.push(i);
         }
         $scope.range = pages;
@@ -759,8 +761,8 @@ $(document).ready(function()
 
     $("[id$='-trigger']").click(function()
     {
-     
-        
+
+
         var reservation_id = $(this).attr('id').replace('-trigger','');
         $("#reserve_code").val(reservation_id);
         $("#reserve_id").val(reservation_id);
@@ -785,9 +787,9 @@ $(document).ready(function()
     //         $('#decline_reason_other_div').addClass('show');
     //     }
     // });
-	
+
 	$('[data-toggle="tooltip"]').tooltip();
-	
+
 	$(document).on('mouseenter', '.hastooltip',function() {
 		console.log('3');
 		var tool_title = $(this).attr('title');
@@ -796,17 +798,17 @@ $(document).ready(function()
 		  console.log('4');
 		$( this ).find( ".tooltip" ).remove();
 	  });
-	  
-																				
+
+
 		var stickyNavTop = 350;
 		 
 		var stickyNav = function(){
 		var scrollTop = $(window).scrollTop();
 		      
-		if (scrollTop > stickyNavTop) { 
+		if (scrollTop > stickyNavTop) {
 		    $('#header').addClass('fixed_header');
 		} else {
-		    $('#header').removeClass('fixed_header'); 
+		    $('#header').removeClass('fixed_header');
 		}
 		};
 		 
@@ -815,7 +817,7 @@ $(document).ready(function()
 		$(window).scroll(function() {
 		  stickyNav();
 		});
-			
+
 });
 
 
@@ -829,7 +831,7 @@ $(document).ready(function()
 			//$(".js-modalbox").fadeIn(500);
 			var modalBox = $(this).attr('data-modal-id');
 			$('#'+modalBox).fadeIn($(this).data());
-			});  
+			});
 			 setTimeout(function(){
 				/*$('.js-open-modal').trigger('click');
 				$("#welcomepopup").css({
@@ -841,17 +843,17 @@ $(document).ready(function()
 				  });
 				});*/
 			},2000);
-			
-		  
-		
-		
-		 
+
+
+
+
+
 		$(window).resize(function() {
 		  /*$("#welcomepopup").css({
 			top: ($(window).height() - $("#welcomepopup").outerHeight()) / 2
 		  });*/
 		});
-		 
+
 		$(window).resize();
-		 
+
 		});

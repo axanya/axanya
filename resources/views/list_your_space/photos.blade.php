@@ -23,8 +23,9 @@
                               {!! Html::image('images/rooms/@{{ item.room_id }}/@{{ item.name }}', '', ['class' => 'img-responsive-height']) !!}
                               </a>
                               <button data-photo-id="@{{ item.id }}" ng-click="delete_photo(item,item.id)" class="delete-photo-btn overlay-btn js-delete-photo-btn">
-                              <i class="icon icon-trash"></i>
+                                <i class="icon icon-trash"></i>
                               </button>
+                              <button data-photo-id="@{{ item.id }}" ng-click="rotate_photo(item, item.id)">Rotate</button>
                               <div class="panel-body panel-condensed">
                                  <textarea id="text_heighlight_@{{$index}}" name="@{{ item.id }}" ng-model="item.highlights" ng-keyup="keyup_highlights(item.id, item.highlights)" rows="3" placeholder="{{ trans('messages.lys.highlights_photo') }}" class="input-large highlights" tabindex="1"></textarea>
                               </div>

@@ -58,6 +58,7 @@ class PagesController extends Controller
             // Add Page Validation Rules
             $rules = array(
                     'name'    => 'required|unique:pages',
+                    'name_iw' => 'required',
                     'content' => 'required',
                     'footer'  => 'required',
                     'status'  => 'required'
@@ -68,7 +69,8 @@ class PagesController extends Controller
 
             // Add Page Validation Custom Names
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'content' => 'Content',
                         'footer'  => 'Footer',
                         'under'   => 'Under',
@@ -76,9 +78,9 @@ class PagesController extends Controller
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -87,6 +89,7 @@ class PagesController extends Controller
                 $pages = new Pages;
 
                 $pages->name    = $request->name;
+                $pages->name_iw = $request->name_iw;
                 $pages->url     = str_slug($request->name, '_');
                 $pages->content = $request->content;
                 $pages->footer  = $request->footer;
@@ -139,9 +142,9 @@ class PagesController extends Controller
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -150,6 +153,7 @@ class PagesController extends Controller
                 $pages = Pages::find($request->id);
 
                 $pages->name    = $request->name;
+                $pages->name_iw = $request->name_iw;
                 $pages->url     = str_slug($request->name, '_');
                 $pages->content = $request->content;
                 $pages->footer  = $request->footer;

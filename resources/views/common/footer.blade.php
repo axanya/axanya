@@ -26,7 +26,7 @@
       <ul class="list-layout">
 		<li><a href="{{ url('contact') }}" class="link-contrast">{{ trans('messages.footer.contact') }}</a></li>
       @foreach($company_pages as $company_page)
-        <li><a href="{{ url($company_page->url) }}" class="link-contrast">{{ $company_page->name }}</a></li>
+        <li><a href="{{ url($company_page->url) }}" class="link-contrast">{{ \App::getLocale() == 'iw' ? $company_page->name_iw : $company_page->name }}</a></li>
       @endforeach
 
       </ul>
@@ -37,7 +37,7 @@
       <ul class="list-layout">
         <li><a href="{{ url('invite') }}" class="link-contrast">{{ trans('messages.footer.invite_friends') }}</a></li>
       @foreach($discover_pages as $discover_page)
-        <li><a href="{{ url($discover_page->url) }}" class="link-contrast">{{ $discover_page->name }}</a></li>
+        <li><a href="{{ url($discover_page->url) }}" class="link-contrast">{{ \App::getLocale() == 'iw' ? $discover_page->name_iw : $discover_page->name }}</a></li>
       @endforeach
       </ul>
     </div>
@@ -46,7 +46,7 @@
       <h2 class="h5">{{ trans('messages.footer.hosting') }}</h2>
       <ul class="list-layout">
       @foreach($hosting_pages as $hosting_page)
-        <li><a href="{{ url($hosting_page->url) }}" {{$hosting_page->url == 'kosher' ?'target=_blank':''}} class="link-contrast">{{ $hosting_page->name }}</a></li>
+        <li><a href="{{ url($hosting_page->url) }}" {{ $hosting_page->url == 'kosher' ? 'target=_blank' : '' }} class="link-contrast">{{ \App::getLocale() == 'iw' ? $hosting_page->name_iw : $hosting_page->name }}</a></li>
       @endforeach
       </ul>
     </div>

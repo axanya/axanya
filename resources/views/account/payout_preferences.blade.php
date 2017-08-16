@@ -62,7 +62,7 @@
                     </li>
                   </ul>
               </li>
-              @endif        
+              @endif
               </td>
             </tr>
             @endforeach
@@ -146,7 +146,7 @@
   <div class="flash-container" id="popup2_flash-container"> </div>
   <form class="modal-add-payout-pref" id="country_options" accept-charset="UTF-8">
   {!! Form::token() !!}
-  
+
     <input type="hidden" id="payout_info_payout2_address1" value="" name="address1">
     <input type="hidden" id="payout_info_payout2_address2" value="" name="address2">
     <input type="hidden" id="payout_info_payout2_city" value="" name="city">
@@ -165,7 +165,7 @@
           <th>{{ trans('messages.account.payout_method') }}</th>
           <th>{{ trans('messages.account.processing_time') }}</th>
           <th>{{ trans('messages.account.additional_fees') }}</th>
-          <th>{{ trans('messages.account.currency') }}</th>
+          <th width="20%">{{ trans('messages.account.currency') }}</th>
           <th>{{ trans('messages.your_reservations.details') }}</th>
         </tr></thead>
         <tbody>
@@ -176,7 +176,9 @@
             <td class="type"><label for="payout_method">PayPal</label></td>
             <td>3-5 {{ trans('messages.account.business_days') }}</td>
             <td>{{ trans('messages.account.none') }}</td>
-            <td>EUR</td>
+            <td>
+              {!! Form::select('payout_currency', $currency, (Session::get('currency')) ? Session::get('currency') : $default_currency[0]->code, ['class' => 'currency', 'id' => 'payout_currency']) !!}
+            </td>
             <td>{{ trans('messages.account.business_day_processing') }}</td>
           </tr>
         </tbody>
@@ -205,6 +207,7 @@
   <input type="hidden" id="payout_info_payout3_state" value="" name="state">
   <input type="hidden" id="payout_info_payout3_zip" value="" name="postal_code">
   <input type="hidden" id="payout3_method" value="" name="payout_method">
+  <input type="hidden" id="payout_currency_final" value="" name="payout_currency">
 
   <div class="panel-body">
   PayPal {{ trans('messages.account.email_id') }}

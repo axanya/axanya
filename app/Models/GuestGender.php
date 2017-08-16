@@ -32,7 +32,8 @@ class GuestGender extends Model {
 
 	// Get all Active status records in lists type
 	public static function dropdown() {
-		return GuestGender::whereStatus('Active')->orderBy('id', 'DESC')->lists('name', 'id');
+		$column_name = \App::getLocale() == 'iw' ? 'name_iw' : 'name';
+		return GuestGender::whereStatus('Active')->orderBy('id', 'DESC')->lists($column_name, 'id');
 	}
 
 	// Get single field data by using id and field name

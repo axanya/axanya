@@ -20,8 +20,10 @@ use App\DataTables\UsersDataTable;
 use App\Models\User;
 use App\Models\ProfilePicture;
 use App\Models\UsersVerification;
+use App\Models\UsersPhoneNumber;
 use App\Http\Start\Helpers;
 use Validator;
+use Image;
 
 class UsersController extends Controller
 {
@@ -141,21 +143,21 @@ class UsersController extends Controller
         {
             // Edit User Validation Rules
             $rules = array(
-                    'first_name' => 'required',
-                    'last_name'  => 'required',
-                    'email'      => 'required|email|unique:users,email,'.$request->id,
-                    'dob'        => 'required',
-                    'status'     => 'required'
-                    );
+                'first_name' => 'required',
+                'last_name'  => 'required',
+                'email'      => 'required|email|unique:users,email,'.$request->id,
+                'dob'        => 'required',
+                'status'     => 'required'
+            );
 
             // Edit User Validation Custom Fields Name
             $niceNames = array(
-                        'first_name' => 'First name',
-                        'last_name'  => 'Last name',
-                        'email'      => 'Email',
-                        'dob'        => 'DOB',
-                        'status'     => 'Status'
-                        );
+                'first_name' => 'First name',
+                'last_name'  => 'Last name',
+                'email'      => 'Email',
+                'dob'        => 'DOB',
+                'status'     => 'Status'
+            );
 
             $validator = Validator::make($request->all(), $rules);
             $validator->setAttributeNames($niceNames); 
@@ -172,9 +174,51 @@ class UsersController extends Controller
                 $user->last_name  = $request->last_name;
                 $user->email      = $request->email;
                 $user->dob        = date('Y-m-d', strtotime($request->dob));
+                $user->gender     = $request->gender;
                 $user->status     = $request->status;
 
                 $user->save();
+
+                $phone_number = UsersPhoneNumber::find($user->phone_number->id);
+                $phone_number->phone_code = '0';
+                $phone_number->phone_number = $request->phone_number;
+                $phone_number->status = 'Pending';
+                $phone_number->save();
+
+                $image = $request->file('profile_pic');
+                if($image) {
+                    $extension = $image->getClientOriginalExtension();
+                    $filename = 'profile_pic_' . time() . '.' . $extension;
+                    $imageRealPath = $image->getRealPath();
+                    $img = Image::make($imageRealPath);
+
+                    $path = dirname( $_SERVER[ 'SCRIPT_FILENAME' ] ) . '/images/users/' . $request->id;
+
+                    if ( !file_exists( $path ) ) {
+                        mkdir(dirname($_SERVER['SCRIPT_FILENAME']) . '/images/users/' . $request->id, 0777, true);
+                    }
+
+                    $success = $img->save('images/users/' . $request->id . '/' . $filename);
+
+                    if ( !$success ) {
+                        // return json_encode(['success' => false, 'error' => trans('messages.profile.cannot_upload')]);
+                    }
+
+                    $user_pic = ProfilePicture::find($request->id);
+
+                    $user_pic->user_id = $request->id;
+                    $user_pic->src = $filename;
+                    $user_pic->photo_source = 'Local';
+
+                    $user_pic->save(); // Update a profile picture record
+
+                    // return json_encode(['success' => true, 'message' => trans('messages.profile.picture_uploaded'), 'src' => Auth::user()->user()->profile_picture->src]);
+                }
+
+                $verification = UsersVerification::find($request->id);
+                $verification->email = "yes";
+                $verification->phone = "yes";
+                $verification->save();
 
                 $this->helper->flash_message('success', 'Updated Successfully'); // Call flash message function
 
@@ -201,4 +245,5 @@ class UsersController extends Controller
 
         return redirect('admin/users');
     }
+
 }

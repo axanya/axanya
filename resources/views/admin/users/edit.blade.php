@@ -27,9 +27,20 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            {!! Form::open(['url' => 'admin/edit_user/'.$result->id, 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['url' => 'admin/edit_user/'.$result->id, 'class' => 'form-horizontal', 'files' => true]) !!}
               <div class="box-body">
               <span class="text-danger">(*)Fields are Mandatory</span>
+
+                <div class="form-group">
+                  <span class="col-sm-3 control-label"><b>Profile</b></span>
+                  <div class="col-sm-6">
+                    @if( $result->profile_picture->src )
+                      <img src="{{ $result->profile_picture->src }}" style="display: block; width: auto; height: auto; max-width: 120px;">
+                    @endif
+                    <input type="file" name="profile_pic" accept=".jpg,.png,.gif,.jpeg" placeholder="Upload Profile">
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="input_first_name" class="col-sm-3 control-label">First Name<em class="text-danger">*</em></label>
 
@@ -46,6 +57,14 @@
                     <span class="text-danger">{{ $errors->first('last_name') }}</span>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="input_phone_number" class="col-sm-3 control-label">Phone</label>
+                  <div class="col-sm-6">
+                    {!! Form::text('phone_number', ($result->phone_number && $result->phone_number->phone_number) ? $result->phone_number->phone_number : '', ['class' => 'form-control', 'id' => 'input_phone_number', 'placeholder' => 'Phone Number']) !!}
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="input_email" class="col-sm-3 control-label">Email<em class="text-danger">*</em></label>
 
@@ -54,6 +73,14 @@
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="input_gender" class="col-sm-3 control-label">Gender</label>
+                  <div class="col-sm-6">
+                    {!! Form::select('gender', array('Male' => 'Male', 'Female' => 'Female'), $result->gender, ['class' => 'form-control', 'id' => 'input_gender']) !!}
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <label for="input_dob" class="col-sm-3 control-label">D.O.B<em class="text-danger">*</em></label>
 
@@ -70,6 +97,7 @@
                     <span class="text-danger">{{ $errors->first('status') }}</span>
                   </div>
                 </div>
+                
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

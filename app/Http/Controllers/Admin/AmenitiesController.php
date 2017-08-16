@@ -62,20 +62,22 @@ class AmenitiesController extends Controller
             $rules = array(
                     'type_id' => 'required',
                     'name'    => 'required|unique:amenities',
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Add Amenities Validation Custom Names
             $niceNames = array(
                         'type_id' => 'Type',
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -85,6 +87,7 @@ class AmenitiesController extends Controller
 
 			    $amenities->type_id     = $request->type_id;
 			    $amenities->name        = $request->name;
+          $amenities->name_iw     = $request->name_iw;
 			    $amenities->description = $request->description;
 			    $amenities->icon        = $request->icon;
 			    $amenities->status      = $request->status;
@@ -123,20 +126,22 @@ class AmenitiesController extends Controller
             $rules = array(
                     'type_id' => 'required',
                     'name'    => 'required|unique:amenities,name,'.$request->id,
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Edit Amenities Validation Custom Fields Name
             $niceNames = array(
                         'type_id' => 'Type',
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -146,6 +151,7 @@ class AmenitiesController extends Controller
 
 			    $amenities->type_id     = $request->type_id;
 			    $amenities->name        = $request->name;
+          $amenities->name_iw     = $request->name_iw;
 			    $amenities->description = $request->description;
 			    $amenities->icon        = $request->icon;
 			    $amenities->status      = $request->status;

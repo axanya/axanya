@@ -1,21 +1,21 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
     <main id="site-content" role="main">
-    
-    @include('common.subheader')  
+
+    @include('common.subheader')
 
   <div class="page-container-responsive space-top-4 space-4">
     <div class="row">
       <div class="col-md-3">
-        
+
         @include('common.sidenav')
 
       </div>
-    
+
       <div class="col-md-9">
         <div class="your-listings-flash-container"></div>
-        
+
   <div class="panel" id="print_area">
   @if($reservations->count() == 0 && $code != 1)
   <div class="panel-body">
@@ -157,7 +157,7 @@
                 {{ trans('messages.your_reservations.reason_cancel_reservation') }}
               </p>
               <p>
-                
+
               </p>
               <div class="select">
                 <select id="cancel_reason" name="cancel_reason"><option value="">Why are you Cancelling?</option>
@@ -176,9 +176,9 @@
                 <textarea id="decline_reason_other" name="decline_reason_other" rows="4"></textarea>
               </div>
  -->
-             
+
             </div>
-           
+
             <label for="cancel_message" class="row-space-top-2">
               {{ trans('messages.your_reservations.type_msg_guest') }}...
             </label>

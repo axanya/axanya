@@ -59,19 +59,21 @@ class PropertyTypeController extends Controller
             // Add Property Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:property_type',
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Add Property Type Validation Custom Names
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -80,6 +82,7 @@ class PropertyTypeController extends Controller
                 $property_type = new PropertyType;
 
 			    $property_type->name        = $request->name;
+          $property_type->name_iw     = $request->name_iw;
 			    $property_type->description = $request->description;
 			    $property_type->status      = $request->status;
 
@@ -115,19 +118,21 @@ class PropertyTypeController extends Controller
             // Edit Property Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:property_type,name,'.$request->id,
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Edit Property Type Validation Custom Fields Name
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -136,6 +141,7 @@ class PropertyTypeController extends Controller
                 $property_type = PropertyType::find($request->id);
 
 			    $property_type->name        = $request->name;
+          $property_type->name_iw     = $request->name_iw;
 			    $property_type->description = $request->description;
 			    $property_type->status      = $request->status;
 

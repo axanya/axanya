@@ -7,7 +7,7 @@
   @if ($errors->has('email'))
   <div class="alert alert-danger" role="alert">
     <a href="#" class="alert-close" data-dismiss="alert"></a>
-  {{ $errors->first('email') }}
+    This email is already registered in our system. <a href="javascript:void(0)" onclick="document.getElementById('user_email').focus();return false;">Click here</a> to change your email.
   </div>
   @endif
 

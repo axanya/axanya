@@ -19,7 +19,9 @@
   @section('main')
 
   <div class="flash-container"></div>
-
+  <script type="text/javascript">
+var geocode = <?php echo $geocode; ?>;
+</script>
  <main id="site-content" role="main" ng-controller="search-page">
 <div class="map-search">
   <div class="sidebar">

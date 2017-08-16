@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="" lang="en-IN" xmlns:fb="https://ogp.me/ns/fb#">
+<html class="" lang="{{ \App::getLocale() }}" xmlns:fb="https://ogp.me/ns/fb#">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

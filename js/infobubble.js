@@ -220,6 +220,7 @@ InfoBubble.prototype.buildDom_ = function() {
 
   // Close button
   var close = this.close_ = document.createElement('IMG');
+  close.className = 'infobubble_close';
   close.style['display'] = 'none';//hide the close button
   close.style['position'] = 'absolute';
   close.style['width'] = this.px(12);
@@ -237,6 +238,7 @@ InfoBubble.prototype.buildDom_ = function() {
 
   // Content area
   var contentContainer = this.contentContainer_ = document.createElement('DIV');
+  contentContainer.className = 'infobubble_content_container';
   contentContainer.style['cursor'] = 'default';
   contentContainer.style['clear'] = 'both';
   contentContainer.style['position'] = 'relative';
@@ -247,6 +249,7 @@ InfoBubble.prototype.buildDom_ = function() {
 
   var content = this.content_ = document.createElement('DIV');
   contentContainer.appendChild(content);
+  content.className = 'infobubble_content';
   content.style['background-color'] = '#fff';
   content.style['padding'] = '0';
   content.style['height'] = '100%';
@@ -1124,6 +1127,7 @@ InfoBubble.prototype.panToView = function() {
   var anchorHeight = this.getAnchorHeight_();                     // height of the marker icon - pixels
   var arrowHeight = this.getArrowSize_();                       // height of the infobubble bottom arrow - pixels
   var infobubbleHeight = this.bubble_.offsetHeight;                     // height of the infobubble - pixels
+  console.log(infobubbleHeight);
   var infobubbleWidth = this.bubble_.offsetWidth;                     // width of the infobubble - pixels
 
   var map = this.get('map');
@@ -1652,7 +1656,7 @@ InfoBubble.prototype.figureOutSize_ = function() {
     for (var i = 0, tab; tab = this.tabs_[i]; i++) {
       var tabSize = this.getElementSize_(tab.tab, maxWidth, maxHeight);
       var contentSize = this.getElementSize_(tab.content, maxWidth, maxHeight);
-
+      
       if (width < tabSize.width) {
         width = tabSize.width;
       }
@@ -1729,7 +1733,9 @@ InfoBubble.prototype.figureOutSize_ = function() {
   }
   
   this.contentContainer_.style['width'] = this.px(width);
-  this.contentContainer_.style['height'] = this.px(height);
+
+  // this.contentContainer_.style['height'] = this.px(height + 20);
+  this.contentContainer_.style['height'] = 'auto';
 };
 
 

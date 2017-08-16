@@ -345,11 +345,11 @@
         <label class="text-right col-sm-3" for="user_email">
           {{ trans('messages.dashboard.email_address') }} <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
         </label>
-        <div class="col-sm-6">
-          {!! Form::email('email', Auth::user()->user()->email, ['id' => 'user_email', 'size' => '30', 'class' => 'focus', 'required' => 'required']) !!}
+        <div class="col-sm-6 rtl-right">
+          {!! Form::email('email', Auth::user()->user()->email, ['id' => 'user_email', 'size' => '30', 'class' => 'focus', 'required' => 'required', 'style' => 'direction: ltr;']) !!}
         </div>
-        <div class="col-sm-3">
-          <button type="submit" class="btn btn-primary">Change</button>
+        <div class="col-sm-3 rtl-right">
+          <button type="submit" class="btn btn-primary">{{ trans('messages.lys.change') }}</button>
         </div>
       </div>
 
@@ -366,15 +366,15 @@
 
       <form method="post" id="form-verify-email-otp" action="">
         <div class="row">
-          <p class="text-center">Enter the code you've received via email.</p>
+          <p class="text-center">{{ trans('messages.lys.enter_email_otp') }}</p>
         </div>
           <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-9 rtl-right">
               <div class="form-group">
                  <input type="text" class="form-control" name="input-email-otp" id="input-email-otp" maxlength="8" required="">
               </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 rtl-right">
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ trans('messages.lys.verify') }}</button>
               </div>
@@ -394,14 +394,16 @@
       </div>
 
       <div class="row row-condensed space-4">
+        <!--
         <label class="text-right col-sm-5 rtl-right rtl-text-left" for="user_gender">
           {{ trans('messages.profile.i_am') }} <i class="icon icon-lock icon-ebisu" data-behavior="tooltip" aria-label="Private"></i>
         </label>
-        <div class="col-sm-6 rtl-right">
+        -->
+        <div class="col-sm-4 col-sm-offset-4">
           <div class="select">
             {!! Form::select('gender', ['Male' => trans('messages.profile.male'), 'Female' => trans('messages.profile.female')], Auth::user()->user()->gender, ['id' => 'user_gender', 'placeholder' => trans('messages.profile.gender'), 'class' => 'focus', 'required' => 'required']) !!}
           </div>
-          <button type="submit" class="btn btn-primary" style="margin-left: 15px;">Done</button>
+          <button type="submit" class="btn btn-primary" style="margin-left: 12px;">{{ trans('messages.lys.done') }}</button>
         </div>
       </div>
 
@@ -420,8 +422,8 @@
 
         <form method="post" id="dashboard-change-number" action="" style="display: none;">
           <div class="row" id="change-number-section">
-            <div class="col-md-4 col-sm-12 text-left">
-              <label>{{ trans('messages.lys.country_code') }}</label>
+            <div class="col-md-4 col-sm-12 text-left rtl-right">
+              <label class="rtl-text-right">{{ trans('messages.lys.country_code') }}</label>
               <select class="form-control" name="phone_code" id="phone_code">
                 <option value="0">{{ trans('messages.lys.select') }}...</option>
                 @foreach($country as $val)
@@ -429,36 +431,36 @@
                 @endforeach
               </select>
             </div>
-            <div class="col-md-5 col-sm-12 text-left">
-              <label>{{ trans('messages.lys.phone_number') }}</label>
-              <input type="text" class="form-control" name="phone_number" id="phone_number" maxlength="15" placeholder="{{ trans('messages.lys.Enter_mobile_number') }}" required="">
+            <div class="col-md-5 col-sm-12 text-left rtl-right">
+              <label class="rtl-text-right">{{ trans('messages.lys.phone_number') }}</label>
+              <input type="text" class="form-control" name="phone_number" id="phone_number" maxlength="15" placeholder="{{ trans('messages.lys.Enter_mobile_number') }}" style="direction: ltr;" required="">
             </div>
-            <div class="col-md-3 col-sm-12 text-left">
+            <div class="col-md-3 col-sm-12 text-left rtl-right rtl-text-right">
               <label>&nbsp;</label>
-               <button type="submit" class="btn btn-primary" data-value="change">Submit</button>
+               <button type="submit" class="btn btn-primary" data-value="change">{{ trans('messages.lys.submit') }}</button>
             </div>
           </div>
         </form>
 
       <form method="post" id="dashboard-verify-number" action="" style="display: none;" data-phone-id="{{$phone_info->id}}">
         <div class="row">
-          <p class="text-center">Enter the code you've received via SMS.</p>
+          <p class="text-center">{{ trans('messages.lys.enter_phone_otp') }}</p>
         </div>
           <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-8 col-sm-offset-1 rtl-right">
               <div class="form-group">
-                 <input type="text" class="form-control" name="otp" id="otp" ng-model="otp" maxlength="4" placeholder="{{ trans('messages.lys.Enter_your_code') }}" required="">
+                 <input type="text" class="form-control" name="otp" id="otp" ng-model="otp" maxlength="4" required="">
               </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 rtl-right">
               <div class="form-group">
                 <button type="submit" class="btn btn-primary" data-value="verify">{{ trans('messages.lys.verify') }}</button>
               </div>
             </div>
           </div>
-          <p style="margin-top: 10px; max-width: 80%; margin-left: auto; margin-right: auto;" class="text-left">
-            <a href="javascript:void(0)" id="mobile-verification-resend-code" data-value="resend" data-phone-id="{{$phone_info->id}}" class="pull-left">{{ trans('messages.lys.resend_otp') }}</a>
-            <a href="javascript:void(0)" id="mobile-verification-change-number" class="pull-right">{{ trans('messages.lys.change_phone_number') }}</a>
+          <p style="margin-top: 10px; max-width: 80%; margin-left: auto; margin-right: auto;" class="text-left clearfix">
+            <a href="javascript:void(0)" id="mobile-verification-resend-code" data-value="resend" data-phone-id="{{$phone_info->id}}" class="pull-left rtl-right">{{ trans('messages.lys.resend_otp') }}</a>
+            <a href="javascript:void(0)" id="mobile-verification-change-number" class="pull-right rtl-left">{{ trans('messages.lys.change_phone_number') }}</a>
           </p>
       </form>
 

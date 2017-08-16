@@ -130,7 +130,8 @@ class CalendarController extends Controller {
 
 			$month = date('m') + $j;
 			// echo $running_month."----".$year;
-			if ($month > 12) {
+			
+			while($month > 12) {
 				$month = $month - 12;
 			}
 			$total_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
@@ -278,7 +279,9 @@ class CalendarController extends Controller {
 						$currency_symbol = $rooms_price->currency->symbol;
 					}
 
-					$out .= '<li class="tile ' . $class . ' ' . $available_class . ' ' . $bottom_green . ' ' . $next_year_class . ' no-tile-status both" id="' . $date . '" data-day="' . $day . '" data-month="' . $month . '" data-year="' . $year . '" data-price = "' . $day_price . '"> <div class="date"><span class ="day-number"> <span>';
+					$datetime = \DateTime::createFromFormat( 'Y-n-j', $date );
+
+					$out .= '<li class="tile ' . $class . ' ' . $available_class . ' ' . $bottom_green . ' ' . $next_year_class . ' no-tile-status both" data-date="' . $datetime->format('m-d-Y') . '" id="' . $date . '" data-day="' . $day . '" data-month="' . $month . '" data-year="' . $year . '" data-price = "' . $day_price . '"> <div class="date"><span class ="day-number"> <span>';
 					$month_name = date('F', strtotime($date));
 
 					if ($final_day == 1) {

@@ -158,7 +158,7 @@ class EmailController extends Controller {
 			$message->to($user->email, $user->first_name)->subject('Please confirm your e-mail address');
 		});
 
-		return true;
+		return $data['otp'];
 	}
 
 	public function generate_otp( $length = 8 ) {

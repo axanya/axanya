@@ -37,7 +37,8 @@ class ReligiousAmenitiesType extends Model
         $types = ReligiousAmenitiesType::active_all(); 
         $selected_type_amenities = array(); 
         foreach($types as $type){
-            $selected_type_amenities[$type->name] = ReligiousAmenities::selected_type($room_id, $type->id); 
+            $key = \App::getLocale() == 'iw' ? $type->name_iw : $type->name;
+            $selected_type_amenities[$key] = ReligiousAmenities::selected_type($room_id, $type->id); 
         }
 
         return $selected_type_amenities;

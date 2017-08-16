@@ -313,9 +313,41 @@ class PaymentHelper {
 		$result['service_fee'] = number_format(($percentage / 100) * $result['total_night_price']);
 		$result['host_fee'] = number_format(($host_fee_percentage / 100) * $result['total_night_price']);
 
+		$exact_month = false;
+
+		if($price_details->month) {
+			$from_timestamp = $from->getTimestamp();
+			//var_dump($from_timestamp);
+			$to_timestamp = $to->getTimestamp();
+			//var_dump($to_timestamp);
+			$month_count = 0;
+			
+			$next_month = strtotime("+1 MONTH", $from_timestamp);
+			$next_month = strtotime("-1 DAY", $next_month);
+			//var_dump($next_month);
+			while($next_month <= $to_timestamp) {
+				$month_count++;
+				if($next_month == $to_timestamp) {
+					$exact_month = true;
+				}
+				$next_month = strtotime("+1 MONTH", $next_month);
+				$next_month = strtotime("-1 DAY", $next_month);
+				//var_dump($next_month);
+			}
+			//var_dump($month_count);
+			if($exact_month) {
+				$result['total_night_price'] = $price_details->month * $month_count;
+			}
+		}
+
+		if(!$exact_month && $total_nights % 7 == 0 && $price_details->week) {
+			$result['total_night_price'] = $price_details->week * $total_nights / 7;
+		}
+
 		if ($guest_count > $price_details->guests) {
 			$additional_guest_count = $guest_count - $price_details->guests;
-			$result['additional_guest'] = $additional_guest_count * $price_details->additional_guest;
+			// $result['additional_guest'] = $additional_guest_count * $price_details->additional_guest;
+			$result['additional_guest'] = $additional_guest_count * $price_details->original_additional_guest * $total_nights;
 		}
 
 		if ($price_details->security) {

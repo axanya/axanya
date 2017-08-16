@@ -215,13 +215,13 @@ p {
 }
 
 .popup {
-    position:absolute;
+    position:fixed;
     z-index:2;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    background:rgba(255, 255, 255, 0.4);
+    background:rgba(255, 255, 255, 0.5);
     opacity:0;
     visibility:hidden;
     transition:.3s ease;
@@ -230,12 +230,27 @@ p {
 .show-popup .popup {
     opacity: 1;
     visibility: visible;
-    z-index: 100;
+    z-index: 9999;
 }
-
-.popup > iframe {
-    position:absolute;
-    top:50px;
-    left:50%;
-    margin-left:-444px;
+.popup .player_holder {
+  position: absolute;
+  width: auto;
+  max-width: 888px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup .player_holder .btn-close {
+  position: absolute;
+  display: block;
+  right: -15px;
+  top: -15px;
+  color: #fff;
+  background: #666;
+  text-decoration: none;
+  line-height: 30px;
+  width: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 22px;
 }

@@ -157,6 +157,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+del {
+    color: #ccc;
+}
 .btn-green.btn {
     background-color: #3fb34f;
     border-color: #3fb34f #3fb34f #1c3f20;
@@ -1547,7 +1550,7 @@ ul.panel-body>li>*:last-child, ol.panel-body>li>*:last-child {
     background-color: #edefed;
 }
 .panel-light {
-    background-color: #fff;
+    background-color: #eee;
 }
 @media (max-width: 767px) {
     .panel-header {
@@ -1725,6 +1728,9 @@ ul.panel-body>li>*:last-child, ol.panel-body>li>*:last-child {
     margin-left: auto;
     margin-right: auto;
     max-width: 520px;
+}
+.modal-content.content-large {
+  max-width: 720px;
 }
 .modal-close {
     padding: 8px;
@@ -3565,7 +3571,7 @@ table col[class^="col-"], table td[class^="col-"], table th[class^="col-"] {
     text-align: right;
 }
 @media (max-width: 767px) {
-    .pagination-responsive li: not(.prev):not(.next) {
+    .pagination-responsive li:not(.prev):not(.next) {
     display: none;
 }
 .pagination-responsive .next a {
@@ -5979,7 +5985,6 @@ body.slideout .axanya-header .header--sm .nav--sm .nav-mask--sm {
 .footer-logoicon{
 	width: 24px;
     height: 24px;
-    display: inline-block;
     background-size: contain!important;
 	filter: grayscale(100%);
 	float:left;
@@ -5987,7 +5992,7 @@ body.slideout .axanya-header .header--sm .nav--sm .nav-mask--sm {
 	display:none;
 }
 .footer-icon {
-    position: relative
+    /*position: relative*/
 }
 .footer-icon.icon-facebook, .footer-icon.icon-vk, .footer-icon.icon-pinterest {
     top: 7px;
@@ -7766,7 +7771,7 @@ display: block;
 {
 content: "";
 position: absolute;
-top: 22px;
+top: 19px;
 left: 36%;
 border-style: solid;
 border-width: 6px 6px 0;
@@ -7858,8 +7863,8 @@ img{max-width:100%;}
     font-size: 13px;
 }
 
-.header_item{margin:0!important; border-left:0; padding:20px 20px!important;}
-.list-your-space.header_item{padding:20px 20px!important;}
+.header_item{margin:0!important; border-left:0; padding:18px 20px!important;}
+.list-your-space.header_item{ padding:19px 20px !important; }
 .header_item:hover{background:#fff;}
 .list-your-space.header_item a{border:none; margin-top:0; background:none!important; color:#000!important;}
 .axanya-header{padding:0!important; border-bottom:1px solid #dce0e0;}
@@ -8501,6 +8506,12 @@ div#ajax_container {
     color: #484848;
     border-top: 1px solid #dce0e0!important;
 }
+.container-brand-light .col-md-2 {
+    position: static;
+}
+.container-brand-light .select {
+    position: static;
+}
 hr {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -8599,7 +8610,7 @@ hr {
 		text-align: left
 	}
 
-	.axanya-header.  .header--sm .title--sm .search-placeholder--sm {
+	.axanya-header .header--sm .title--sm .search-placeholder--sm {
 		color: #767676;
 			top: 0;
 	}
@@ -9220,7 +9231,7 @@ li.col-4.row-space-4.ng-scope {
 .map-icon-florist:before{
 	background:url(../images/mikvahs.png) no-repeat scroll center center;
 }
-.map-icon-grocery-or-supermarket{
+.map-icon-grocery-or-supermarket:before{
 	 background:url(../images/kosher.png) no-repeat scroll center center;
 }
 .contact-modal .modal-content{border:1px solid #ddd;}
@@ -9645,4 +9656,52 @@ li.col-4.row-space-4.ng-scope {
 }
 .input-error {
   color: #f00;
+}
+.listing-final-profile {
+  height: 100%;
+}
+
+.map-refresh-controls.google label.checkbox {
+  white-space: nowrap;
+  padding: 7px;
+}
+.map-refresh-controls.google label.checkbox input[type="checkbox"] {
+  margin-bottom: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.map-refresh-controls.google label.checkbox-icon input[type="checkbox"] {
+  position: absolute;
+  top: 0;
+  left: -999px;
+}
+.map-refresh-controls.google label.checkbox small {
+  display: inline-block;
+  vertical-align: middle;
+}
+.map-refresh-controls.google label.checkbox-icon {
+  display: block;
+  position: relative;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  height: 28px;
+}
+.map-refresh-controls.google label.checkbox-icon small.abs {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+  display: block !important;
+  top: 0;
+  padding: 7px 10px;
+  padding-bottom: 6px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  opacity: 0;
+  transition: all 0.4s;
+}
+.map-refresh-controls.google label.checkbox-icon:hover small.abs,
+.map-refresh-controls.google label.checkbox-icon input[type="checkbox"]:checked ~ small.abs {
+  opacity: 1;
+  left: 100%;
 }

@@ -32,23 +32,14 @@
 
                         <div class="box-header with-border">
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10 btn-active" id="btn_1" ng-click="step(1)">Overview</a>
-
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_2" {{ (@$rooms_status->description != 1) ? 'disabled' : '' }} ng-click="step(2)">The Space</a>
-
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_3" {{ (@$rooms_status->basics != 1) ? 'disabled' : '' }} ng-click="step(3)">Photos</a>
-
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_4" {{ (@$rooms_status->photos != 1) ? 'disabled' : '' }} ng-click="step(4)">Location</a>
-
-                          <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_5" {{ (@$rooms_status->location != 1) ? 'disabled' : '' }} ng-click="step(5)">Amenities & Accommodations</a>
-
-                          <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_6" {{ (@$rooms_status->amenities != 1) ? 'disabled' : '' }} ng-click="step(6)">Fees & Discounts</a>
-
+                          <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_5" {{ (@$rooms_status->location != 1) ? 'disabled' : '' }} ng-click="step(5)">Amenities &amp; Accommodations</a>
+                          <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_6" {{ (@$rooms_status->amenities != 1) ? 'disabled' : '' }} ng-click="step(6)">Fees &amp; Discounts</a>
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_7" {{ (@$rooms_status->pricing != 1) ? 'disabled' : '' }} ng-click="step(7)">Availability</a>
-
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_8" {{ (@$rooms_status->calendar != 1) ? 'disabled' : '' }} ng-click="step(8)">Policies</a>
-
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_9" {{ (@$rooms_status->terms != 1) ? 'disabled' : '' }} ng-click="step(9)">Select User</a>
-
                       </div>
                         <div id="sf1" class="frm">
                             {{-- <div class="box-header with-border">

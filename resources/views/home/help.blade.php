@@ -1,7 +1,7 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
-  
+
 <main id="site-content" role="main" ng-controller="help">
 
 <div id="help-search-container-banner-id" class="media-photo media-photo-block help-search-container help-search-container-banner">
@@ -49,7 +49,7 @@
     <div class="col-md-3 left-menu">
       <div class="navtree">
         <ul class="sidenav-list navtree-list" id="navtree" style="display: block; {{ (Route::current()->uri() == 'help' || $is_subcategory == 'no') ? 'left: 0px;' : 'left: -300px;' }}">
-       @for($i=0; $i<count($category); $i++) 
+       @for($i=0; $i<count($category); $i++)
     <li>
     <a href="{{ (count($category[$i]->subcategory)) ? 'javascript:void(0);' : url('help/topic/'.$category[$i]->category_id.'/'.str_slug($category[$i]->category_name,'-')) }}" class="sidenav-item {{ (count($category[$i]->subcategory)) ? 'navtree-next' : '' }}" data-id="{{ $category[$i]->category_id }}" data-name="{{ $category[$i]->category->name }}" aria-selected="{{ ((Route::current()->uri() == 'help/topic/{id}/{category}' || Route::current()->uri() == 'help/article/{id}/{question}') && ($category[$i]->category->id == @$result[0]->category_id)) ? 'true' : 'false' }}"> {{ $category[$i]->category->name }}
       <span class="show-sm"><i class="icon icon-chevron-right"></i></span>
@@ -98,7 +98,7 @@
     </div>
 @elseif (Route::current()->uri() == 'help/article/{id}/{question}')
 <div class="col-sm-12 col-sm-offset-0 col-md-8 col-offset-1 help-content text-copy navtree-content breadcrumbs-content">
-      
+
 <div class="help-center-sm">
   <div class="space-8">
     <h2>{{ str_replace('SITE_NAME', $site_name, $result[0]->question) }}</h2>
@@ -110,7 +110,7 @@
     </div>
 @else
       <div class="col-md-8 col-offset-1 help-content text-copy navtree-content breadcrumbs-content">
-      
+
 <div class="popular-topics">
   <div class="row row-space-6">
     <div class="h2 space-md-2 space-lg-2 help-section-header">

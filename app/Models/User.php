@@ -60,6 +60,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsTo('App\Models\ProfilePicture','id','user_id');
     }
 
+    // Join with users_phone_numbers table
+    public function phone_number()
+    {
+        return $this->belongsTo('App\Models\UsersPhoneNumber', 'id', 'user_id');
+    }
+
     // Join with users_verification table
     public function users_verification()
     {

@@ -489,6 +489,7 @@ class UserController extends Controller {
 			$user_verification = new UsersVerification;
 
 			$user_verification->user_id = $user->id;
+			$user_verification->email = 'no';
 
 			$user_verification->save(); // Create a users verification record
 
@@ -611,10 +612,11 @@ class UserController extends Controller {
 			$user_verification = new UsersVerification;
 
 			$user_verification->user_id = $user->id;
+			$user_verification->email = 'yes';
 
 			$user_verification->save(); // Create a users verification record
 
-			$email_controller->welcome_email_confirmation($user);
+			// $email_controller->welcome_email_confirmation($user);
 
 			if (Session::get('referral')) {
 
@@ -925,6 +927,7 @@ class UserController extends Controller {
 		);
 		$messages = array(
 			'required' => ':attribute is required.',
+			'unique' => 'This email is already registered in our system.',
 		);
 		$niceNames = array(
 			'email' => 'Email',
@@ -972,7 +975,7 @@ class UserController extends Controller {
 	public function confirm_email(Request $request) {
 		$password_resets = PasswordResets::whereToken($request->code);
 
-		if ($password_resets->count() && Auth::user()->user()->email == $password_resets->first()->email) {
+		if ($password_resets && $password_resets->count() && Auth::user() && Auth::user()->user() && $password_resets->first() && Auth::user()->user()->email == $password_resets->first()->email) {
 			$password_result = $password_resets->first();
 
 			$datetime1 = new DateTime();
@@ -1136,7 +1139,7 @@ class UserController extends Controller {
 			return view('account/payout_preferences', $data);
 		} else {
 			$payout = new PayoutPreferences;
-
+			
 			$payout->user_id = Auth::user()->user()->id;
 			$payout->address1 = $request->address1;
 			$payout->address2 = $request->address2;
@@ -1146,7 +1149,7 @@ class UserController extends Controller {
 			$payout->country = $request->country;
 			$payout->payout_method = $request->payout_method;
 			$payout->paypal_email = $request->paypal_email;
-			$payout->currency_code = 'EUR';
+			$payout->currency_code = $request->payout_currency;
 
 			$payout->save();
 
@@ -1634,8 +1637,8 @@ class UserController extends Controller {
 
 	public function request_email_otp( Request $request, EmailController $email_controller ) {
 		$user = User::find(Auth::user()->user()->id);
-		$email_controller->email_otp($user);
-		return json_encode( [ 'success' => true ] );
+		$otp = $email_controller->email_otp($user);
+		return json_encode( [ 'success' => true, 'otp' => $otp ] );
 	}
 
 	public function verification(Request $request) {

@@ -5,7 +5,7 @@
 
     <div id="fb-root"></div>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ $map_key }}&sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{ $map_key }}&libraries=drawing,geometry,places,visualization"></script>
 
 
     {!! Html::script('js/jquery-1.11.3.js') !!}
@@ -174,7 +174,7 @@
 
           var address = '';
           if (place.address_components) {
-            console.log(JSON.stringify(place.address_components));
+            // console.log(JSON.stringify(place.address_components));
 
             var results = get_address_components(place);
             if(results){
@@ -289,33 +289,48 @@ function get_address_components(args){
   var document = window.document;
 
   $(function() {
-    var $phoneCode = $('#phone_code');
-    var $phoneNumber = $('#phone_number');
-    if($phoneCode.length > 0) {
-      $phoneCode.on('change', function() {
-        var code = $phoneCode.val();
-        $phoneNumber.val('+' + code);
-        $phoneNumber.trigger('focus');
-      });
-    }
-    if($phoneNumber.length > 0) {
-      $phoneNumber.on('keypress keyup', function() {
-        var code = '+' + $phoneCode.val();
-        if($(this).val().substr(0, code.length) != code) {
-          $phoneCode.val('0');
+
+    function setAutoPhoneCode() {
+
+      var $phoneCode = $('#phone_code');
+      var $phoneNumber = $('#phone_number');
+      if($phoneCode.length > 0) {
+        $phoneCode.on('change', function() {
+          var code = $phoneCode.val();
+          $phoneNumber.val('+' + code);
+          $phoneNumber.trigger('focus');
+        });
+      }
+      if($phoneNumber.length > 0) {
+        $phoneNumber.on('keypress keyup', function() {
+          var code = '+' + $phoneCode.val();
+          if($(this).val().substr(0, code.length) != code) {
+            $phoneCode.val('0');
+          }
+        });
+      }
+
+      $.getJSON('https://freegeoip.net/json/', function(response) {
+        // console.log(response);
+        if($phoneCode.length > 0) {
+          $phoneCode.find('option').filter(function(){
+            return $(this).text() == response.country_name;
+          }).prop('selected', true);
+          $phoneCode.trigger('change');
+          // $phoneCode.val(response.country_name);
         }
       });
+
     }
-    $.getJSON('https://freegeoip.net/json/', function(response) {
-      console.log(response);
-      if($phoneCode.length > 0) {
-        $phoneCode.find('option').filter(function(){
-          return $(this).text() == response.country_name;
-        }).prop('selected', true);
-        $phoneCode.trigger('change');
-        // $phoneCode.val(response.country_name);
-      }
-    });
+
+    setAutoPhoneCode();
+
+    $(window).on('listingtabloaded', function() {
+      console.log('listingtabloaded');
+      setAutoPhoneCode();
+    });  
+    
+    
   });
 
 })(window);

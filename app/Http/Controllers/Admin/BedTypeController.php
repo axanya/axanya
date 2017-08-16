@@ -59,19 +59,21 @@ class BedTypeController extends Controller
             // Add Bed Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:bed_type',
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Add Bed Type Validation Custom Names
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -80,6 +82,7 @@ class BedTypeController extends Controller
                 $bed_type = new BedType;
 
 			    $bed_type->name        = $request->name;
+          $bed_type->name_iw     = $request->name_iw;
 			    $bed_type->status      = $request->status;
 
                 $bed_type->save();
@@ -114,19 +117,21 @@ class BedTypeController extends Controller
             // Edit Bed Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:bed_type,name,'.$request->id,
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Edit Bed Type Validation Custom Fields Name
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -135,6 +140,7 @@ class BedTypeController extends Controller
                 $bed_type = BedType::find($request->id);
 
 			    $bed_type->name        = $request->name;
+          $bed_type->name_iw     = $request->name_iw;
 			    $bed_type->status      = $request->status;
 
                 $bed_type->save();

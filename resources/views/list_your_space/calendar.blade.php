@@ -8,13 +8,50 @@
     <div class="list_frame_label">
         {{ trans('messages.lys.calendar') }}
     </div>
-    <div class="list_note">
+
+    <div class="row" style="display:none;">
+      <div class="col-md-3 text-right">
+        <label for="default-availability">Default Availability</label>
+      </div>
+      <div class="col-md-3">
+        <select id="default-availability">
+          <option value="available">Available</option>
+          <option value="not available">Not Available</option>
+        </select>
+      </div>
+    </div>
+
+    <?php
+    $default_availability = 'Available';
+    if( $rooms_policies && $rooms_policies->default_availability ) {
+      $default_availability = $rooms_policies->default_availability;
+    }
+    ?>
+
+    <div class="calendar_section" ng-init="default_availability = '{{ $default_availability }}'">
+      <div class="radio">
+        <label>
+          <input type="radio" name="default_availability" value="Available" ng-model="default_availability">
+          <span>{{ trans('messages.lys.defaul_availability_available') }}</span>
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="default_availability" value="Not available" ng-model="default_availability">
+          <span>{{ trans('messages.lys.defaul_availability_unavailable') }}</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="calendar_section">
         {{trans('messages.lys.cal_note')}}
     </div>
+
     <div class = "list_inner_frame_margin-10 clearfix" style = "margin-bottom:10px;margin-left: 10px;">
         <div style="display:none;" class="js-saving-progress saving-progress calendar1">
             <h5>{{ trans('messages.lys.saving') }}...</h5>
         </div>
+        <br>
             <div id="calendar" class="my-calendar" ng-init="get_calendar(18)">
                 <h3 class="text-center" style="margin-top: 30px">{{ trans('messages.lys.loading') }}</h3>
               </div>
@@ -25,8 +62,7 @@
 
 
   <div class="calendar-settings-btn-container pull-right post-listed">
-    <span class="label-contrast label-new
-      hide">{{ trans('messages.lys.new') }}</span>
+    <span class="label-contrast label-new hide">{{ trans('messages.lys.new') }}</span>
     <a href="#" id="js-calendar-settings-btn" class="text-normal link-icon">
       <i class="icon icon-cog text-lead"></i>
       <span class="link-icon__text">{{ trans('messages.lys.header') }}</span>

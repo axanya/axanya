@@ -7,7 +7,7 @@
   @if ($errors->has('email'))
   <div class="alert alert-danger" role="alert">
     <a href="#" class="alert-close" data-dismiss="alert"></a>
-  {{ $errors->first('email') }}
+    This email is already registered in our system. <a href="javascript:void(0)" data-popup="email-verification">Click here</a> to change your email.
   </div>
   @endif
 
@@ -159,13 +159,13 @@
 
                 @if(Auth::user()->user()->users_verification->phone == 'no')
                   <li class="space-2">
-                    <a href="{{ url('verification') }}" data-popup="phone-verification">{{ trans('messages.dashboard.Verify_your_phone_number') }}</a>
+                    <a href="{{ url('verification') }}" data-popup="phone-verification">{{ trans('messages.lys.verification_phone') }}</a>
                   </li>
                 @endif
 
                 @if(Auth::user()->user()->gender == '')
                 <li class="space-2">
-                  <a href="javascript:void(0)" data-popup="change-gender">Select your gender</a>
+                  <a href="javascript:void(0)" data-popup="change-gender">{{ trans('messages.lys.verification_gender') }}</a>
                 </li>
                 @endif
 
@@ -186,7 +186,7 @@
 
             </ol>
 
-            <p>Wishing you great experiences and safe travels!</p>
+            <p>{{ trans('messages.dashboard.wishing_note') }}</p>
 
           </div>
         </div>
@@ -352,7 +352,7 @@
         </div>
         <div class="col-md-5 col-sm-12 text-left">
           <label>{{ trans('messages.lys.phone_number') }}</label>
-          <input type="text" class="form-control" name="phone_number" id="phone_number" maxlength="15" placeholder="{{ trans('messages.lys.Enter_mobile_number') }}" required="">
+          <input type="text" class="form-control" name="phone_number" id="phone_number" maxlength="15" placeholder="{{ trans('messages.lys.Enter_mobile_number') }}" style="direction: ltr;" required="">
         </div>
         <div class="col-md-3 col-sm-12 text-left">
           <label>&nbsp;</label>

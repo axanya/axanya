@@ -42,7 +42,8 @@ class RoomsBedroom extends Model {
 
 	// Get number of bedrooms and its bed option using room id
 	public static function get_bedroom_details($id) {
-		$total_bedrooms = RoomsBedroom::select(DB::raw("rooms_bedroom.id as bedroom_id,room_id,group_concat(`quantity`, ' ',  `name` SEPARATOR ', ') as bed_options"))
+		$column_name = \App::getLocale() == 'iw' ? 'name_iw' : 'name';
+		$total_bedrooms = RoomsBedroom::select(DB::raw("rooms_bedroom.id as bedroom_id,room_id,group_concat(`quantity`, ' ',  `{$column_name}` SEPARATOR ', ') as bed_options"))
 			->leftJoin('rooms_bed_option', 'rooms_bedroom.id', '=', 'rooms_bed_option.bedroom_id')
 			->leftJoin('bed_type', 'rooms_bed_option.bed_type_id', '=', 'bed_type.id')
 			->where(['rooms_bedroom.room_id' => $id])

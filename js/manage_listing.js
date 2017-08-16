@@ -111,19 +111,19 @@ $(document).on('change', '[id^="basics-select-"], [id^="select-"]', function() {
 						}
 	                    var html = '<div class = "row bedroom_child" id = "bedroom_child">'
 	                        + '<div class="col-3">'
-	                            + '<label class="label-large" id = "bedroom_child_label">Bedroom ' + i + '</label>'
+	                            + '<label class="label-large" id = "bedroom_child_label">' + trans_lys.bedroom + ' ' + i + '</label>'
 	                        + '</div>';
 	                        if(bed_option != ''){
 	                        	html +=  '<div class="col-5 label-large">'
 				                        + '<span class ="">' + bed_option + '</span>'
 				                        + '</div>'
 			                        	+'<div class="col-4 label-large">'
-			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">Modify<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
+			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">' + trans_lys.modify + '<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
 			    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
 			                        	+ '</div>';
 	                        }else{
 								html +=  '<div class="col-4 label-large">'
-			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">Add Beds<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
+			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">' + trans_lys.add_beds + '<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
 			    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
 			                        	+ '</div>';
 	                        }
@@ -140,20 +140,20 @@ $(document).on('change', '[id^="basics-select-"], [id^="select-"]', function() {
 	    			var total_bathrooms = response.data.total_bathrooms;
 	    			var html1 = '<div class="row">'
 						           +'<div class="col-4"></div>'
-	                    			+'<div class="col-4"><label class="label-large">Bathroom Details</label></div>'
-	                    			+'<div class="col-4"><label class="label-large">Type</label></div>'
+	                    			+'<div class="col-4"><label class="label-large">' + trans_lys.bathroom_details + '</label></div>'
+	                    			+'<div class="col-4"><label class="label-large">' + trans_lys.type + '</label></div>'
 	                			+'</div>';
 	                $('#bathroom_parent').append(html1);
 	    			for( var i = 1 ; i <= total_bathrooms.length ; i++ ) {
 
 
 	                var html = '<div class="row row-space-top-2 bathroom_child" id="bathroom_child">'
-	                    	+'<div class="col-4"><label class="label-large" id="bathroom_child_label">Bathroom '+i+'</label></div>'
+	                    	+'<div class="col-4"><label class="label-large" id="bathroom_child_label">' + trans_lys.bathroom + ' '+i+'</label></div>'
 	                    	+'<div class="col-md-4 col-sm-12 "><div class="select select-block">'
-	                        +'<select name="bathrooms_details" id="basics-select-bathrooms-details-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">Select...</option><option value="private">Private Bathroom</option><option value="shared">Shared Bathroom</option></select>'
+	                        +'<select name="bathrooms_details" id="basics-select-bathrooms-details-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">' + trans_lys.select + '</option><option value="private">' + trans_lys.bathroom_private + '</option><option value="shared">' + trans_lys.bathroom_shared + '</option></select>'
 	                    	+'</div></div>'
 	                    	+'<div class="col-md-4 col-sm-12 "><div class="select select-block">'
-	                       	+'<select name="bathrooms_type" id="basics-select-bathrooms-type-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">Select...</option><option value="toilet_shower">Toilet + Shower</option><option value="toilet_only">Toilet Only</option><option value="shower_only">Shower Only</option></select>'
+	                       	+'<select name="bathrooms_type" id="basics-select-bathrooms-type-'+i+'" data-id="'+total_bathrooms[i-1].id+'" data-saving="basics3"><option disabled="" selected="" value="">' + trans_lys.select + '</option><option value="toilet_shower">' + trans_lys.bathroom_toilet_shower + '</option><option value="toilet_only">' + trans_lys.bathroom_toilet_only + '</option><option value="shower_only">' + trans_lys.bathroom_shower_only + '</option></select>'
 	                    	+'</div></div>'
 	                		+'</div>';
 
@@ -211,6 +211,27 @@ $(document).on('change', '[id^="terms-select-"], [id^="select-"], [name="cancel_
     $('#beds_show').show();
   }
 });
+
+
+$(document).on('change', '[name="default_availability"]', function() {
+	var data_params = {};
+	data_params[$(this).attr('name')] = $(this).val();
+	var data = JSON.stringify(data_params);
+	var saving_class = $(this).attr('data-saving');
+	$('.'+saving_class+' h5').text('Saving...');
+	$('.'+saving_class).fadeIn();
+	var select_type = $(this).attr('name');
+	$http.post('update_rooms_policies', { data:data }).then(function(response) {
+
+		if(response.data.success == 'true') {
+			$('.'+saving_class+' h5').text('Saved!');
+	 		$('.'+saving_class).fadeOut();
+	 		$('#steps_count').text(response.data.steps_count);
+	 		$scope.steps_count = response.data.steps_count;
+		}
+	});
+});
+
 
 $(document).on('change', '[id$="_termscheckbox"]', function() {
 	var data_params = {};
@@ -315,6 +336,7 @@ $(document).on('click', '.nav-item a, .next_step a', function() {
 
 	$http.post($(this).attr('href').replace('manage-listing','ajax-manage-listing'), { data: data_params }).then(function(response) {
 		$( "#ajax_container" ).html( $compile(response.data)($scope) );
+		$(window).trigger('listingtabloaded');
 		if(next_step == 'location') {
 			initMap2();
 		}
@@ -1255,6 +1277,18 @@ $scope.delete_photo = function(item, id) {
   $('.js-delete-photo-confirm').attr('data-index',index);
 };
 
+$scope.rotate_photo = function ( item, id ) {
+	var data = {
+		item: item,
+		id: id
+	};
+	$http.post( 'rotate_photo', data ).then( function( response ) {
+		if( response.data.success ) {
+			window.location.reload( true );
+		}
+	} );
+};
+
 $(document).on('click', '.js-delete-photo-confirm', function()
 {
 	var index = $(this).attr('data-index');
@@ -1395,6 +1429,39 @@ $(document).on('change', '[id^="price-select-"]', function()
      	}
     });
 });
+
+	$(document).on('change', '.additional_guest_pricing', function(event) {
+
+		if( $scope.base_guests == $scope.accommodates ) {
+			$scope.$apply(function() {
+				$scope.additional_guest_price = '';
+			});
+		}
+		var data = {};
+		data['guests'] = $scope.base_guests;
+		data['additional_guest'] = $scope.additional_guest_price ? $scope.additional_guest_price : 0;
+		console.log(data);
+
+		var saving_class = $(this).attr('data-saving');
+
+		$('.' + saving_class + ' h5').text('Saving...');
+		$('.' + saving_class).fadeIn();
+
+		$http.post('update_price', { data: JSON.stringify(data) }).then(function (response) {
+			if (response.data.success == 'true') {
+				$('.' + saving_class + ' h5').text('Saved!');
+				$('.' + saving_class).fadeOut();
+				$('#steps_count').text(response.data.steps_count);
+				$scope.steps_count = response.data.steps_count;
+				//$('html, body').animate({ scrollTop: $('#js-list-space-button').offset().top+1000 }, 'slow');
+			}
+			else {
+				$('.' + saving_class).fadeOut();
+			}
+		});
+
+	});
+
 // $(document).on('keypress', '.autosubmit-text[id^="price-"]', function()
 // {
 //  setTimeout(function(){
@@ -1940,10 +2007,63 @@ $(document).on('change', '#calendar_dropdown', function()
 	return false;
 });
 
+
+
+$(document).on('change', '[name="default_availability"]', function(e) {
+
+	var $self = $(this);
+
+	var $selection = $('#calendar_selection');
+	if($selection.length < 1) {
+		return false;
+	}
+
+	var $ul = $selection.find('ul.list-unstyled');
+	if($ul.length < 1) {
+		return false;
+	}
+
+	var $li = $ul.find('li.available-date');
+	var $first = $li.filter(':first');
+	var $last = $li.filter(':last');
+	var first_date = changeFormat($first.attr('id'));
+	var last_date = changeFormat($last.attr('id'));
+
+	var params = {
+		status: $self.val(),
+		first_date: first_date,
+		last_date: last_date,
+	};
+
+	$http.post('calendar_set_default', params).then(function(response) {
+
+		$('.calendar-sub-modal').attr('aria-hidden','true');
+		$('.calendar-sub-modal').addClass('hide');
+		$('li.tile').removeClass('other-day-selected first-day-selected last-day-selected selected');
+		$('.tile-selection-handle').remove();
+		$('.tile-selection-container').remove();
+
+		$('.my-calendar').html('<h3 class="text-center" style="margin-top: 30px">Loading...</h3>');
+		$('.load_show').removeClass('hide').hide();
+
+		$('#custom_calendar').hide();
+		$scope.get_calendar(18);
+
+		return false;
+	});
+
+});
+
+function changeFormat(date) {
+	var split_date = date.split('-');
+	return split_date[0] + '-' + (split_date[1].length < 2 ? '0' + split_date[1] : split_date[1]) + '-' + (split_date[2].length < 2 ? '0' + split_date[2] : split_date[2]);
+}
+
+
+
  /*Start - Calendar Date Selection*/
 
-$(document).on('click', '.available-date', function()
-{
+$(document).on('click', '.available-date', function() {
 	if($(this).hasClass('bottom-green')){
 		//alert('available')
 		$scope.$apply( function() {
@@ -1997,8 +2117,15 @@ $(document).on('click', '.available-date', function()
 		$('<div class="tile-selection-container"><div class="tile-selection"></div></div>').insertBefore('#'+current_tile+'> .date');
 
 		var clicked_li = $(this).index();
+		// console.log($(document.body).css('direction'));
+		// console.log($(this).position().left);
+		// console.log(sub);
+		var start_top = $(this).position().top+top;
+		var start_left = $(document.body).css('direction') === 'rtl' ? $(this).position().left + sub : $(this).position().left;
+		var end_top = start_top;
+		var end_left = $(document.body).css('direction') === 'rtl' ? start_left - sub : start_left + sub;
 
-		var start_top = $(this).position().top+top, start_left = $(this).position().left, end_top = start_top, end_left = start_left+sub;
+		// console.log(start_left, end_left);
 
 		var html = '<div><div style="left:'+start_left+'px;top:'+start_top+'px;" class="tile-selection-handle tile-handle-left"><div class="tile-selection-handle__inner"><span class="tile-selection-handle__ridge"></span><span class="tile-selection-handle__ridge"></span><span class="tile-selection-handle__ridge"></span></div></div></div><div><div style="left: '+end_left+'px; top: '+end_top+'px;" class="tile-selection-handle tile-handle-right"><div class="tile-selection-handle__inner"><span class="tile-selection-handle__ridge"></span><span class="tile-selection-handle__ridge"></span><span class="tile-selection-handle__ridge"></span></div></div></div>';
 
@@ -2089,7 +2216,10 @@ $(document).on('mouseup', '.available-date', function()
 			}
 		});
 
-		var start_top = first_position.top+top, start_left = first_position.left, end_top = position.top+top, end_left = position.left+sub;
+		var start_top = first_position.top + top;
+		var start_left = $(document.body).css('direction') === 'rtl' ? first_position.left + sub : first_position.left;
+		var end_top = position.top + top;
+		var end_left = $(document.body).css('direction') === 'rtl' ? position.left : position.left + sub;
 
 		$('.days-container > div > .tile-selection-handle:last').remove();
 		$('.days-container > div > .tile-selection-handle:first').remove();
@@ -2397,22 +2527,15 @@ $(document).on('click', '.cal-close', function()
 
 });
 
-function calendar_edit_form()
-{
-
-	//$('.calendar-edit-form').removeClass('hide');
-
+function calendar_edit_form() {
 	$('.calendar-sub-modal').attr('aria-hidden','false');
 	$('.calendar-sub-modal').removeClass('hide');
 
-	if($('.selected').length > 1)
-	{
+	if($('.selected').length > 1) {
 		$('.calendar-edit-form > form > .panel-body').first().show();
 		$('.calendar-sub-modal').show();
 		$('#custom_calendar').show();
-	}
-	else
-	{
+	} else {
 		$('.calendar-edit-form > form > .panel-body').first().show();
 		$('.calendar-sub-modal').show();
 		$('#custom_calendar').show();
@@ -2424,7 +2547,6 @@ function calendar_edit_form()
 		$('#available_label').removeClass('segmented-control__option--selected');
 		$('#not_available_label').addClass('segmented-control__option--selected');
 	}*/
-
 
 	/*if($('.selected').hasClass('status-b'))
 		$scope.segment_status = 'not available';
@@ -2439,54 +2561,86 @@ function calendar_edit_form()
 	$scope.isAddNote = ($scope.notes != '') ? true : false;
 
 	$("#calendar-edit-start").datepicker({
-    	dateFormat: "mm-dd-yy",
-    	minDate: 0,
-    	onSelect: function (date)
-    	{
-    		var checkin = $("#calendar-edit-start").datepicker('getDate');
-    	    var checkout = $("#calendar-edit-start").datepicker('getDate');
-    	    $('#calendar-edit-end').datepicker('option', 'minDate', checkin);
-    	    $('#calendar-edit-start').datepicker('option', 'maxDate', checkout);
-    	    setTimeout(function(){
-    	        $('#calendar-edit-end').datepicker("show");
-    	    },20);
-    	}
+    dateFormat: "mm-dd-yy",
+    minDate: 0,
+    onSelect: function (date) {
+    	var checkin = $("#calendar-edit-start").datepicker('getDate');
+    	var checkout = $("#calendar-edit-start").datepicker('getDate');
+    	$('#calendar-edit-end').datepicker('option', 'minDate', checkin);
+    	$('#calendar-edit-start').datepicker('option', 'maxDate', checkout);
+    	setTimeout(function() {
+    	  $('#calendar-edit-end').datepicker("show");
+    	}, 20);
+    }
 	});
 
 	$('#calendar-edit-end').datepicker({
-    	dateFormat: "mm-dd-yy",
-    	minDate: 1,
-    	onClose: function ()
-    	{
-    	    var checkin = $("#calendar-edit-start").datepicker('getDate');
-    	    var checkout = $('#calendar-edit-end').datepicker('getDate');
-    	    $('#calendar-edit-end').datepicker('option', 'minDate', checkin);
-    	    $('#calendar-edit-start').datepicker('option', 'maxDate', checkout);
-    	    if (checkout <= checkin)
-    	    {
-    	        var minDate = $('#calendar-edit-end').datepicker('option', 'minDate');
-    	        $('#calendar-edit-end').datepicker('setDate', minDate);
-    	    }
-    	}
+    dateFormat: "mm-dd-yy",
+    minDate: 1,
+    onClose: function () {
+    	var checkin = $("#calendar-edit-start").datepicker('getDate');
+    	var checkout = $('#calendar-edit-end').datepicker('getDate');
+    	$('#calendar-edit-end').datepicker('option', 'minDate', checkin);
+    	$('#calendar-edit-start').datepicker('option', 'maxDate', checkout);
+    	if (checkout <= checkin) {
+    	  var minDate = $('#calendar-edit-end').datepicker('option', 'minDate');
+    	  $('#calendar-edit-end').datepicker('setDate', minDate);
+    	} else {
+			// console.log(checkin, checkout);
+			var cin = get_formatted_date(checkin);
+			var cout = get_formatted_date(checkout);
+			var $ul = $('#calendar_selection ul');
+			for(var t = checkin; t <= checkout; t.setDate(t.getDate() + 1)) {
+				var selector = get_formatted_date(t);
+				var $el = $ul.find('li[data-date="' + selector + '"]');
+				$el.removeClass('first-day-selected')
+					.removeClass('last-day-selected')
+					.removeClass('selected')
+					.removeClass('other-day-selected');
+				$el.addClass('selected');
+				if($el.find('.tile-selection-container').length < 1) {
+					$el.prepend('<div class="tile-selection-container"> <div class="tile-selection"></div> </div>');
+				}
+				if(selector == cin) {
+					$el.addClass('first-day-selected');
+				}
+				if(selector == cout) {
+					$el.addClass('last-day-selected');
+				}
+			}
+			$ul.find('li[data-date="' + cout + '"]').trigger('mouseup');
+			// $('.tile-selection-handle.tile-handle-right').trigger('mouseup');
+		}
+    }
 	});
 
 	console.log(start_date+'========='+end_date)
 
-
-   	$('#calendar-edit-start').datepicker('option', 'maxDate', change_format(start_date));
-   	$('#calendar-edit-end').datepicker('option', 'minDate', change_format(end_date));
-
-   	$('#calendar-edit-start').datepicker('setDate', change_format(start_date));
+  	$('#calendar-edit-start').datepicker('option', 'maxDate', change_format(start_date));
+  	$('#calendar-edit-end').datepicker('option', 'minDate', change_format(end_date));
+  	$('#calendar-edit-start').datepicker('setDate', change_format(start_date));
 	$('#calendar-edit-end').datepicker('setDate', change_format(end_date));
 }
 
-function change_format(date)
-{
-	if(date != undefined){
+function get_formatted_date(dt) {
+	var day = dt.getDate();
+	if(day < 10) {
+		day = '0' + day;
+	}
+	var month = dt.getMonth();
+	month += 1;
+	if(month < 10) {
+		month = '0' + month;
+	}
+	var year = dt.getFullYear();
+	return (month + '-' + day + '-' + year);
+}
+
+function change_format(date) {
+	if(date != undefined) {
 		var split_date = date.split('-');
 		return split_date[1]+'-'+split_date[2]+'-'+split_date[0];
 	}
-
 }
 
 $scope.calendar_edit_submit = function(href)
@@ -2642,62 +2796,52 @@ $(document).on('submit', 'form#veryfyotp', function(e) {
 });
 
 
+$(document).on('click', '#trigger_profile_uploader', function(e) {
+	console.log(1);
+	var $profileUploader = $('#profile_pic_uploader');
 
-var $profileUploader = $('#profile_pic_uploader');
-
-$profileUploader.on('change', function(e) {
-	var files = e.target.files;
-	if(files.length === 0) {
-		return false;
-	}
-	var file = files[0];
-	if(file.size > 10 * 1024 * 1024) {
-		alert('File size cannot be more than 10 MB.');
-		$profileUploader.val('');
-		return false;
-	}
-	if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-		alert('Please upload only image');
-		$profileUploader.val('');
-		return false;
-	}
-	var fd = new FormData();
-	fd.append('profile_pic', file);
-	fd.append('user_id', $profileUploader.data('user_id'));
-	/*
-	$('.profile-overlay').show();
-	$('.profile-overlay .progress .bar').css({
-		'width': '0%'
-	});
-	*/
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState === 4 && xhr.status === 200) {
-			try {
-				var response = JSON.parse(xhr.response);
-				if(response.success) {
-					window.location.reload(true);
-				} else {
-					alert(response.error);
-				}
-			} catch (ex) {
-
-			}
+	$profileUploader.on('change', function(e) {
+		var files = e.target.files;
+		if(files.length === 0) {
+			return false;
 		}
-	};
-	xhr.upload.addEventListener('progress', function(e) {
-		console.log(e.loaded, e.total);
-		var percent = Math.round(e.loaded / e.total * 100);
-		console.log(percent);
+		var file = files[0];
+		if(file.size > 10 * 1024 * 1024) {
+			alert('File size cannot be more than 10 MB.');
+			$profileUploader.val('');
+			return false;
+		}
+		if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+			alert('Please upload only image');
+			$profileUploader.val('');
+			return false;
+		}
+		var fd = new FormData();
+		fd.append('profile_pic', file);
+		fd.append('user_id', $profileUploader.data('user_id'));
 
-	}, false);
-	xhr.open('POST', '/ajax_upload_profile_image');
-	xhr.send(fd);
-	console.log(file);
-});
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState === 4 && xhr.status === 200) {
+				try {
+					var response = JSON.parse(xhr.response);
+					if(response.success) {
+						window.location.reload(true);
+					} else {
+						alert(response.error);
+					}
+				} catch (ex) {
 
-
-$('#trigger_profile_uploader').on('click', function(e) {
+				}
+			}
+		};
+		xhr.upload.addEventListener('progress', function(e) {
+			var percent = Math.round(e.loaded / e.total * 100);
+			console.log(percent);
+		}, false);
+		xhr.open('POST', '/ajax_upload_profile_image');
+		xhr.send(fd);
+	});
 	$profileUploader.trigger('click');
 	e.preventDefault();
 	return false;
@@ -2709,12 +2853,12 @@ var overlay_selector = '.page-overlay';
 var popup_selector = '.dashboard-popup'
 var $pageOverlay = $(overlay_selector);
 var $popup = $(popup_selector);
-$popup.find('[data-action="close"]').on('click', function(e) {
+$(document).on('click', '.dashboard-popup [data-action="close"]', function(e) {
 	var $self = $(this);
 	$self.closest(popup_selector).hide();
-	var $visible = $popup.filter(':visible');
+	var $visible = $(popup_selector).filter(':visible');
 	if($visible.length < 1) {
-		$pageOverlay.hide();
+		$(overlay_selector).hide();
 	}
 	$('.axanya-header').css({
 		'position': 'relative'
@@ -2731,7 +2875,7 @@ $(document).on('click', '[data-popup]', function(e) {
 		$('.axanya-header').css({
 			'position': 'static'
 		});
-		$pageOverlay.show();
+		$(overlay_selector).show();
 		$target.show();
 		$(window).trigger('popupdisplayed', {
 			'id': id
@@ -2806,7 +2950,7 @@ $(document).on('submit', '#dashboard-verify-number', function(e) {
 	return false;
 });
 
-$('#mobile-verification-change-number').on('click', function(e) {
+$(document).on('click', '#mobile-verification-change-number', function(e) {
 	$('#dashboard-verify-number').hide();
 	$('#dashboard-change-number').show();
 	$('#dashboard-change-number').find('#phone_number').val('');
@@ -2815,7 +2959,7 @@ $('#mobile-verification-change-number').on('click', function(e) {
 	return false;
 });
 
-$('#mobile-verification-resend-code').on('click', function(e) {
+$(document).on('click', '#mobile-verification-resend-code', function(e) {
 	var $self = $(this);
 	$.ajax({
 		url: '/mobile_verification',
@@ -2932,6 +3076,13 @@ $(window).on('popupdisplayed', function(e, data) {
 		});
 	}
 
+});
+
+
+$(document).on('click', '#special_accommodation_toggle', function(e) {
+	$('#special_accommodation_wrapper').slideToggle();
+	e.preventDefault();
+	return false;
 });
 
 

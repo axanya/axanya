@@ -59,19 +59,21 @@ class RoomTypeController extends Controller
             // Add Room Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:room_type',
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Add Room Type Validation Custom Names
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -80,6 +82,7 @@ class RoomTypeController extends Controller
                 $room_type = new RoomType;
 
 			    $room_type->name        = $request->name;
+          $room_type->name_iw     = $request->name_iw;
 			    $room_type->description = $request->description;
 			    $room_type->status      = $request->status;
 
@@ -115,19 +118,21 @@ class RoomTypeController extends Controller
             // Edit Room Type Validation Rules
             $rules = array(
                     'name'    => 'required|unique:room_type,name,'.$request->id,
+                    'name_iw' => 'required',
                     'status'  => 'required'
                     );
 
             // Edit Room Type Validation Custom Fields Name
             $niceNames = array(
-                        'name'    => 'Name',
+                        'name'    => 'English Name',
+                        'name_iw' => 'Hebrew Name',
                         'status'  => 'Status'
                         );
 
             $validator = Validator::make($request->all(), $rules);
-            $validator->setAttributeNames($niceNames); 
+            $validator->setAttributeNames($niceNames);
 
-            if ($validator->fails()) 
+            if ($validator->fails())
             {
                 return back()->withErrors($validator)->withInput(); // Form calling with Errors and Input values
             }
@@ -136,6 +141,7 @@ class RoomTypeController extends Controller
                 $room_type = RoomType::find($request->id);
 
 			    $room_type->name        = $request->name;
+          $room_type->name_iw     = $request->name_iw;
 			    $room_type->description = $request->description;
 			    $room_type->status      = $request->status;
 

@@ -124,18 +124,21 @@
         </li>
 
         <hr>
-
+        <!--
         <li>
           <a href="{{ url() }}/help" rel="nofollow" class="link-reset menu-item">
             {{ trans('messages.header.help') }}
           </a>
         </li>
+      -->
         <li class="{{ (Auth::user()->user()) ? '' : 'items-logged-in' }}">
           <a href="{{ url() }}/invite" rel="nofollow" class="link-reset menu-item">
             {{ trans('messages.header.invite_friends') }}
           </a>
         </li>
-		<li><a href="{{ url('contact') }}" class="link-reset menu-item">{{ trans('messages.footer.contact') }}</a></li>
+		    <li>
+          <a href="{{ url('contact') }}" class="link-reset menu-item">{{ trans('messages.footer.contact') }}</a>
+        </li>
         <li class="{{ (Auth::user()->user()) ? '' : 'items-logged-in' }}">
           <a href="{{ url() }}/logout" rel="nofollow" class="link-reset menu-item logout">
             {{ trans('messages.header.logout') }}
@@ -399,6 +402,11 @@
           {{ trans('messages.header.edit_password') }}
         </a>
       </li>
+      <li>
+        <a href="{{ url('help') }}" rel="nofollow" class="no-crawl link-reset menu-item header-logout">
+          {{ trans('messages.header.help') }}
+        </a>
+      </li>
 
       <li>
         <a href="{{ url('logout') }}" rel="nofollow" class="no-crawl link-reset menu-item header-logout">
@@ -410,7 +418,7 @@
 </ul>
 @endif
 
-
+<!--
  <ul class="nav pull-right help-menu list-unstyled">
   <li id="header-help-menu" class="help-menu-container pull-right large-right-margin hide-md dropdown-trigger header_item">
     <a class="help-toggle link-reset" href="{{ url('help') }}">
@@ -422,7 +430,7 @@
     </a>
   </li>
 </ul>
-
+-->
 
 @if(Auth::user()->check())
   <ul class="nav pull-right list-unstyled medium-right-margin">

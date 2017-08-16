@@ -79,7 +79,7 @@
 
 
       <h1 itemprop="name" class="overflow h3 row-space-1 text-center-sm" id="listing_name">
-        {{ $result->name }}
+        {{ stripslashes( $result->name ) }}
       </h1>
 
 
@@ -356,7 +356,7 @@
         </div>
         @endif
         <div class="other-actions hide-sm text-center">
-          <div class="social-share-widget space-top-3 p3-share-widget">
+          <div class="social-share-widget space-top-3 p3-share-widget" style="margin: 0;">
   <span class="share-title">
     {{ trans('messages.rooms.share') }}:
   </span>
@@ -421,7 +421,7 @@
 		</p>
 	@endif
 
-    <p>{{ $result->summary }}</p>
+    <p>{{ stripslashes($result->summary) }}</p>
 
 @if(Auth::user()->check())
 @if(Auth::user()->user()->id != $result->user_id)
@@ -470,9 +470,9 @@
                   @if($result->bed_type_name != NULL)
                     <div>{{ trans('messages.rooms.bed_type') }}: <strong>{{ $result->bed_type_name }}</strong></div>
                     @endif
-                    <div>{{ trans('messages.rooms.property_type') }}: <strong><a href="#" class="link-reset">{{ $result->property_type_name }}</a></strong></div>
+                    <div>{{ trans('messages.rooms.property_type') }}: <a href="#" class="link-reset">{{ $result->property_type_name }}</a></div>
 
-                    <div>{{ trans('messages.lys.accommodates') }}: <strong>{{ $result->accommodates }}</strong></div>
+                    <div>{{ trans('messages.lys.accommodates') }}: {{ $result->accommodates }}</div>
               </div>
               <div class="col-md-6">
 
@@ -499,12 +499,8 @@
           @for($i = 0; $i < count($total_bedrooms); $i++)
 
             <div class="row">
-                <div class="col-md-6">
-                      {{ trans('messages.lys.bedroom') }} {{$i + 1}}:
-                </div>
-                <div class="col-md-6">
-                      <strong>{{ $total_bedrooms[$i]->bed_options }}</strong>
-                </div>
+                <div class="col-md-6">{{ trans('messages.lys.bedroom') }} {{$i + 1}}:</div>
+                <div class="col-md-6">{{ $total_bedrooms[$i]->bed_options }}</div>
             </div>
 
           @endfor
@@ -524,12 +520,8 @@
             @for($i = 0; $i < count($total_bathrooms); $i++)
               @if($total_bathrooms[$i]->bathroom_details != '' && $total_bathrooms[$i]->type != '')
               <div class="row">
-                  <div class="col-md-6">
-                        {{ trans('messages.lys.bathroom') }} {{$i + 1}}:
-                  </div>
-                  <div class="col-md-6">
-                        <strong>{{ trans('messages.lys.bathroom_'.$total_bathrooms[$i]->bathroom_details) }} ({{ trans('messages.lys.bathroom_'.$total_bathrooms[$i]->type) }} )</strong>
-                  </div>
+                  <div class="col-md-6">{{ trans('messages.lys.bathroom') }} {{$i + 1}}:</div>
+                  <div class="col-md-6">{{ trans('messages.lys.bathroom_'.$total_bathrooms[$i]->bathroom_details) }} ({{ trans('messages.lys.bathroom_'.$total_bathrooms[$i]->type) }} )</div>
               </div>
               @endif
 
@@ -572,16 +564,15 @@
 
                 <i class="icon h3 icon-{{ $all_amenities->icon }}"></i>
                     &nbsp;
-                  <span class="js-present-safety-feature"><strong>
+                  <span class="js-present-safety-feature">
                         @if($all_amenities->status == null)
                         <del>
                         @endif
-                        {{ $all_amenities->name }}
+                        {{ \App::getLocale() == 'iw' ? $all_amenities->name_iw : $all_amenities->name }}
                         @if($all_amenities->status == null)
                         </del>
                         @endif
-                      </strong></span>
-
+                  </span>
                 </div>
 
 
@@ -618,15 +609,15 @@
                 @endif
                 <i class="icon h3 icon-{{ $all_amenities->icon }}"></i>
                     &nbsp;
-                  <span class="js-present-safety-feature"><strong>
+                  <span class="js-present-safety-feature">
                          @if($all_amenities->status == null)
                         <del>
                         @endif
-                        {{ $all_amenities->name }}
+                        {{ \App::getLocale() == 'iw' ? $all_amenities->name_iw : $all_amenities->name }}
                         @if($all_amenities->status == null)
                         </del>
                         @endif
-                      </strong></span>
+                  </span>
 
                 </div>
 
@@ -648,6 +639,49 @@
 
 <hr>
 
+@if(count($religious_amenities) !=0)
+  <div class="row">
+      <div class="col-md-3">
+            <div class="text-muted">
+      {{ trans('messages.new.religious_accommadations') }}
+    </div>
+
+      </div>
+      <div class="col-md-9">
+        <div class="js-no-safety-features-text hide">
+          {{ trans('messages.account.none') }}
+        </div>
+        <div class="row">
+          @foreach(array_chunk($religious_amenities,ceil(count($religious_amenities)/2), true) as $religious_amenities_type_array)
+            <div class="col-md-6">
+              @foreach($religious_amenities_type_array as $k => $religious_amenity_type)
+                <div class="space-2">
+                  <h4 class="text-muted">{{$k}}</h4>
+                  @foreach($religious_amenity_type as $religious_amenity)
+                    <div class="row-space-1 @if($religious_amenity->status == null)text-muted @endif " style="margin-left:10px;">
+                      <span class="js-present-safety-feature">
+                        @if($religious_amenity->status == null)
+                          <del>
+                        @endif
+                        {{ \App::getLocale() == 'iw' ? $religious_amenity->name_iw : $religious_amenity->name }} @if($religious_amenity->description != '')( {{ $religious_amenity->description }} )@endif @if(@$religious_amenities_extra_data[$religious_amenity->id]) - {{$religious_amenities_extra_data[$religious_amenity->id]}} @endif
+                        @if($religious_amenity->status == null)
+                          </del>
+                        @endif
+                      </span>
+                    </div>
+                  @endforeach
+                </div>
+              @endforeach
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+
+  </div>
+ <hr>
+ @endif
+
 
 
     <div class="row">
@@ -660,6 +694,7 @@
       <div class="col-md-9">
         <div class="row">
             <div class="col-md-6">
+                <!--
                 <div>{{ trans('messages.rooms.extra_people') }}: <strong>
                 @if($result->rooms_price->guests !=0)
 
@@ -669,6 +704,7 @@
                 <span >{{ trans('messages.rooms.no_charge') }}</span>
                 @endif
                 </strong></div>
+                -->
                 <div>{{ trans('messages.lys.weekly_price') }}:
                 @if($result->rooms_price->week != 0)
                 <strong> <span id="weekly_price_string">{{ $result->rooms_price->currency->symbol }} {{ $result->rooms_price->week }}</span> /{{ trans('messages.rooms.week') }}</strong>
@@ -803,15 +839,15 @@
                 @endif
                 <i class="icon h3 icon-{{ $row_safety->icon }}"></i>
                     &nbsp;
-                  <span class="js-present-safety-feature"><strong>
+                  <span class="js-present-safety-feature">
                          @if($row_safety->status == null)
                         <del>
                         @endif
-                        {{ $row_safety->name }}
+                        {{ \App::getLocale() == 'iw' ? $row_safety->name_iw : $row_safety->name }}
                         @if($row_safety->status == null)
                         </del>
                         @endif
-                      </strong></span>
+                  </span>
 
                 </div>
 
@@ -829,48 +865,7 @@
   </div>
  <hr>
  @endif
- @if(count($religious_amenities) !=0)
-  <div class="row">
-      <div class="col-md-3">
-            <div class="text-muted">
-      {{ trans('messages.new.religious_accommadations') }}
-    </div>
-
-      </div>
-      <div class="col-md-9">
-        <div class="js-no-safety-features-text hide">
-          {{ trans('messages.account.none') }}
-        </div>
-        <div class="row">
-          @foreach(array_chunk($religious_amenities,ceil(count($religious_amenities)/2), true) as $religious_amenities_type_array)
-            <div class="col-md-6">
-              @foreach($religious_amenities_type_array as $k => $religious_amenity_type)
-                <div class="space-2">
-                  <h4 class="text-muted">{{$k}}</h4>
-                  @foreach($religious_amenity_type as $religious_amenity)
-                    <div class="row-space-1 @if($religious_amenity->status == null)text-muted @endif " style="margin-left:10px;">
-                      <span class="js-present-safety-feature"><strong>
-                        @if($religious_amenity->status == null)
-                            <del>
-                        @endif
-                            {{ $religious_amenity->name }} @if($religious_amenity->description != '')( {{ $religious_amenity->description }} )@endif @if(@$religious_amenities_extra_data[$religious_amenity->id]) - {{$religious_amenities_extra_data[$religious_amenity->id]}} @endif
-                        @if($religious_amenity->status == null)
-                            </del>
-                        @endif
-                      </strong></span>
-                    </div>
-                  @endforeach
-                </div>
-              @endforeach
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-
-  </div>
- <hr>
- @endif
+ 
   <div class="row">
     <div class="col-md-3">
           <div class="text-muted">
@@ -890,7 +885,112 @@
     </div>
   </div>
 
+<hr>
 
+<div class="row">
+  <div class="col-md-3">{{ trans('messages.your_trips.location') }}</div>
+  <div class="col-md-9">
+    <p>{{ trans('messages.lys.direction_helpful_tips_frontend') }}<br>{{ stripslashes($result->rooms_description->direction_helpful_tips) }}</p>
+    <p>{{ trans('messages.lys.the_neighborhood') }}<br>{{ stripslashes($result->rooms_description->overview) }}</p>
+    <p>{{ trans('messages.lys.getting_around') }}<br>{{ stripslashes($result->rooms_description->getting_arround) }}</p>
+    <p>{{ trans('messages.lys.local_jewish_life') }}<br>{{ stripslashes($result->rooms_description->local_jewish_life) }}</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">{{ trans('messages.lys.check_in_check_out') }}</div>
+  <div class="col-md-9">
+    <p>{{ trans('messages.lys.check_in_window') }}: {{ ( $result->rooms_policies && $result->rooms_policies->from_time ) ? date( "g:i A", strtotime( $result->rooms_policies->from_time ) ) : '' }} {{ trans('messages.lys.separator_to') }} {{ ( $result->rooms_policies && $result->rooms_policies->to_time ) ? date( "g:i A", strtotime( $result->rooms_policies->to_time ) ) : '' }}</p>
+    <p>{{ trans('messages.lys.checkout_by') }}: {{ ( $result->rooms_policies && $result->rooms_policies->checkout_time ) ? date( "g:i A", strtotime( $result->rooms_policies->checkout_time ) ) : '' }}</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">{{ trans('messages.payments.cancellation_policy') }}</div>
+  <div class="col-md-9">
+    @if( $result->rooms_policies && $result->rooms_policies->cancel_policy == 'Flexible' )
+      {{ trans('messages.lys.flexible_desc') }}
+    @elseif( $result->rooms_policies && $result->rooms_policies->cancel_policy == 'Moderate' )
+      {{ trans('messages.lys.moderate_desc') }}
+    @elseif( $result->rooms_policies && $result->rooms_policies->cancel_policy == 'Strict' )
+      {{ trans('messages.lys.strict_desc') }}
+    @else
+    @endif
+  </div>
+</div>
+
+<hr>
+
+@if( $result->rooms_policies && $result->rooms_policies->is_kosher == 'Yes' )
+<div class="row">
+  <div class="col-md-3">Kosher</div>
+  <div class="col-md-9">{{ @$result->rooms_policies->kosher_expectations }}</div>
+</div>
+<hr>
+@endif
+
+<div class="row">
+  <div class="col-md-3">{{ trans('messages.lys.house_rules') }}</div>
+  <div class="col-md-9">
+    <p>
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_children != 'Yes' )
+        <del>
+      @endif
+      {{ trans('messages.lys.suitable_for_children') }}
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_children != 'Yes' )
+        </del>
+      @endif
+    </p>
+    <p>
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_infants != 'Yes' )
+        <del>
+      @endif
+      {{ trans('messages.lys.suitable_for_infants') }}
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_infants != 'Yes' )
+        </del>
+      @endif
+    </p>
+    <p>
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_pets != 'Yes' )
+        <del>
+      @endif
+      {{ trans('messages.lys.suitable_for_pets') }}
+      @if( $result->rooms_policies && $result->rooms_policies->suitable_for_pets != 'Yes' )
+        </del>
+      @endif
+    </p>
+    <p>
+      @if( $result->rooms_policies && $result->rooms_policies->smoking_allowed != 'Yes' )
+        <del>
+      @endif
+      {{ trans('messages.lys.smoking_allowed') }}
+      @if( $result->rooms_policies && $result->rooms_policies->smoking_allowed != 'Yes' )
+        </del>
+      @endif
+    </p>
+    <p>
+      @if( $result->rooms_policies && $result->rooms_policies->events_parties_allowed != 'Yes' )
+        <del>
+      @endif
+      {{ trans('messages.lys.events_parties_allowed') }}
+      @if( $result->rooms_policies && $result->rooms_policies->events_parties_allowed != 'Yes' )
+        </del>
+      @endif
+    </p>
+    <p><b>{{ trans('messages.lys.additional_rules_frontend') }}</b><br>{{ ( $result->rooms_policies && $result->rooms_policies->additional_rules ) ? stripslashes( $result->rooms_policies->additional_rules ) : '' }}</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">{{ trans('messages.lys.host_guest_interaction') }}</div>
+  <div class="col-md-9">{{ ( $result->rooms_policies && $result->rooms_policies->host_interaction ) ? stripslashes( $result->rooms_policies->host_interaction ) : '' }}</div>
+</div>
 
 
   <div id="photo-gallery" class="photo-grid row-space-4 row-space-top-4 hide-sm ">

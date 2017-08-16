@@ -1,9 +1,9 @@
-﻿@extends('template')
+@extends('template')
 
 @section('main')
 
   <main id="site-content" role="main" ng-controller="inbox">
-      
+
 @include('common.subheader')
 
 <div class="page-container-responsive page-container-inbox space-4 space-top-4">
@@ -23,7 +23,7 @@
             </div>
 </form>          <div class="hide-sm col-md-8">
             <div class="pull-right">
-              
+
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
 <input type="hidden" ng-model="user_id" ng-init="user_id = {{ $user_id }}">
       <ul id="threads" class="list-layout panel-body">
 
-      
+
           <li id="thread_153062093" class="panel-body js-thread is-starred thread"  ng-repeat="all in message_result.data" ng-class="(all.read == '1') ? ' thread--read' : ''" ng-cloak>
 
   <div class="row">
@@ -43,15 +43,15 @@
         </div>
         <div class="col-sm-7 thread-name">
           @{{ all.user_details.first_name }}
-          
+
           <br>
           <span class="thread-date">@{{ all.created_time }}</span>
         </div>
       </div>
     </div>
-      
+
     <a  class="thread-link link-reset text-muted" ng-show="all.host_check ==1 && all.reservation.status == 'Pending'"  href="{{ url('reservation')}}/@{{ all.reservation_id }}">
-    
+
      <div class="col-sm-7 col-md-5 col-lg-6 thread-body" >
 
       <span class="thread-subject" ng-class="(all.read == '1') ? '' : 'unread_message'">
@@ -63,10 +63,10 @@
               (@{{ all.reservation.checkin | date : 'MMM dd'  }} , @{{ all.reservation.checkout | date : 'MMM dd, yyyy'  }})
         </div>
       </div>
-</a>  
-    
+</a>
+
     <a  class="thread-link link-reset text-muted" ng-show="all.host_check ==1 && all.reservation.status != 'Pending'"  href="{{ url('messaging/qt_with')}}/@{{ all.reservation_id }}">
-    
+
      <div class="col-sm-7 col-md-5 col-lg-6 thread-body" >
 
       <span class="thread-subject" ng-class="(all.read == '1') ? '' : 'unread_message'">
@@ -78,7 +78,7 @@
               (@{{ all.reservation.checkin | date : 'MMM dd'  }} , @{{ all.reservation.checkout | date : 'MMM dd, yyyy'  }})
         </div>
       </div>
-</a>  
+</a>
 
 
     <a  class="thread-link link-reset text-muted" ng-show="all.guest_check"  href="{{ url('z/q')}}/@{{ all.reservation_id }}">
@@ -91,7 +91,7 @@
               (@{{ all.reservation.checkin | date : 'MMM dd'  }} , @{{ all.reservation.checkout | date : 'MMM dd, yyyy'  }})
         </div>
       </div>
-</a>    
+</a>
 
 <div class="col-sm-7 col-md-4 col-lg-3 thread-label">
       <div class="row">
@@ -99,7 +99,7 @@
           <span class="label label-@{{ all.reservation.status_color }}">@{{ all.reservation.status }}</span>
             <br>
             <span id="price-breakdown-153062093" class="hide-sm price-breakdown-trigger">
-             <span ng-bind-html="all.reservation.currency.original_symbol"></span>@{{ all.reservation.check_total }} 
+             <span ng-bind-html="all.reservation.currency.original_symbol"></span>@{{ all.reservation.check_total }}
             </span>
         </div>
         <div id="options_153062093" class="col-sm-6 options thread-actions hide-sm">
@@ -139,7 +139,7 @@
       <posts-pagination></posts-pagination>
     </div>
     <div>
-      
+
     </div>
   </div>
 
@@ -155,5 +155,3 @@
     </main>
 
   @stop
-
-

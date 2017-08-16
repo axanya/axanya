@@ -328,7 +328,7 @@
 
 
                     <!-- Kosher html-->
-                    <div class="row-space-top-4">
+                    <div class="row-space-top-4" style="display:{{ ($rooms_policies && $rooms_policies->is_kosher == 'Yes') ? 'block' : 'none' }};">
                         <div class="list_frame">
                             <div class="list_frame_label">
                                 {{ trans('messages.lys.kosher_optional') }}
@@ -340,6 +340,7 @@
                                         <h5>{{ trans('messages.lys.select') }}...</h5>
                                     </div>
 
+                                    <!--
                                     <div class="row row-space-top-4">
                                         <div class="col-12">
                                             <label class="label-large label-inline terms-panel">
@@ -348,6 +349,7 @@
                                             </label>
                                         </div>
                                     </div>
+                                  -->
 
                                     <div class="row row-space-top-4">
 
@@ -357,7 +359,6 @@
                                         </div>
 
                                     </div>
-
 
                                 </div>
                             </form>

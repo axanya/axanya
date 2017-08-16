@@ -46,9 +46,9 @@ class RoomsDataTable extends DataTable
 
                 $edit = (Auth::admin()->user()->can('edit_room')) ? '<a href="'.url('admin/edit_room/'.$rooms->room_id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;' : '';
 
-                // $delete = (Auth::admin()->user()->can('delete_room')) ? '<a data-href="'.url('admin/delete_room/'.$rooms->id).'" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-trash"></i></a>' : '';
+                $delete = (Auth::admin()->user()->can('delete_room')) ? '<a data-href="'.url('admin/delete_room/'.$rooms->room_id).'" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-trash"></i></a>' : '';
 
-                return $edit;
+                return $edit . $delete;
             })
             ->make(true);
     }

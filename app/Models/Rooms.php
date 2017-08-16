@@ -289,7 +289,7 @@ class Rooms extends Model {
 
 	// Get rooms featured photo_name URL
 	public function getPhotoNameAttribute() {
-		$result = RoomsPhotos::where('room_id', $this->attributes['id'])->where('featured', 'Yes');
+		$result = RoomsPhotos::where('room_id', $this->attributes['id'])->orderBy('id', 'asc'); //where('featured', 'Yes');
 
 		if ($result->count() == 0) {
 			return "room_default_no_photos.png";
@@ -301,7 +301,7 @@ class Rooms extends Model {
 
 	// Get rooms featured photo_name URL
 	public function getSrcAttribute() {
-		$result = RoomsPhotos::where('room_id', $this->attributes['id'])->where('featured', 'Yes');
+		$result = RoomsPhotos::where('room_id', $this->attributes['id'])->orderBy('id', 'asc'); //where('featured', 'Yes');
 
 		if ($result->count() == 0) {
 			return url() . "/images/room_default_no_photos.png";
