@@ -246,19 +246,19 @@ window.trans_lys = <?php echo json_encode( \Lang::get('messages.lys') ); ?>
                        bed_option = total_bedrooms[i-1].bed_options;
                    }
                var html = '<div class = "row bedroom_child" id = "bedroom_child">'
-                   + '<div class="col-3">'
+                   + '<div class="col-md-3 mobile-block">'
                        + '<label class="label-large" id = "bedroom_child_label">{{ trans("messages.lys.bedroom") }} ' + i + '</label>'
                    + '</div>';
                    if(bed_option != ''){
-                       html +=  '<div class="col-5 label-large rtl-right">'
+                       html +=  '<div class="col-md-5 label-large rtl-right mobile-block">'
                                + '<span class ="">' + bed_option + '</span>'
                                + '</div>'
-                               +'<div class="col-4 label-large">'
+                               +'<div class="col-md-4 label-large mobile-block">'
                                + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">{{ trans("messages.lys.modify") }}<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
                                    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
                                + '</div>';
                    }else{
-                       html +=  '<div class="col-4 label-large">'
+                       html +=  '<div class="col-md-4 label-large mobile-block">'
                                + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">{{ trans("messages.lys.add_beds") }}<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
                                    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
                                + '</div>';

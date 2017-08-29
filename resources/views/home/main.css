@@ -433,7 +433,7 @@
 .searchbar button,
 .searchbar .select {
   display: block;
-  min-height: 30px
+  /* height: 30px; */
 }
 .searchbar input:focus {
   position: relative;
@@ -641,11 +641,9 @@ body.p1 .flash-container {
 	text-align:left;
 }
 .section-intro{
-    /*
-    display: inline-block;
-    width: 100%;
-    */
-    margin-top:50px;
+  display: inline-block;
+  width: 100%;
+	margin-top:50px;
 }
 
 
@@ -1149,9 +1147,7 @@ body.p1 .flash-container {
 }
 
 .simple-header .axanya-header .logged-out li, .simple-header .axanya-header .user-item .value_name, .simple-header .axanya-header .help-toggle{color:#000!important;}
-/*
 .simple-header .axanya-header .nav.search-form-container{display:none;}
-*/
 .axanya-header .search-form .search-bar .icon-search{top:18px;}
 .axanya-header .search-form .location{}
 .nav li{padding: 15px 0px;}
@@ -1224,7 +1220,7 @@ font-size: 18px !important;
 	height:48px;
 }
 .DateInput {
-    padding: 6px 0;
+    padding: 6px 2px;
     width: 140px;
 	background: #fff;
     position: relative;
@@ -1241,29 +1237,13 @@ font-size: 18px !important;
     letter-spacing: -0.5px;
     line-height: 22px !important;
 }
-.SearchForm__inputs-wrapper input {
-    background: none;
-    margin-left: -16px;
-    padding-left: 16px !important;
-    padding-bottom: 14px !important;
-    margin-bottom: -14px;
-}
-.SearchForm__inputs-wrapper input:focus, .SearchForm__inputs-wrapper select:focus, .DateInput__display-text, .SearchForm__guests .guest-label__text {
-    outline: 0;
-    border: 0;
-}
-.SearchForm__inputs-wrapper input[readonly] {
-    cursor: pointer;
-}
 .DateRangePickerInput, .LocationInput, .GuestInput, .SearchForm__guests .GuestPickerTrigger__button {
     border-style: hidden;
 }
 .GuestInput, .LocationInput {
     color: #888;
 }
-/*
 .p1 .axanya-header .nav.search-form-container{display:none!important;}
-*/
 .p1 .axanya-header.fixed_header{
     position: fixed;
     top: 0;

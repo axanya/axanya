@@ -49,6 +49,13 @@ class PaymentHelper {
 		$calendar_result = Calendar::where(['room_id' => $room_id])->whereIn('date', $days)->get();
 		$rooms_details = Rooms::find($room_id);
 		$price_details = $rooms_details->rooms_price;
+		$policy_details = $rooms_details->rooms_policies;
+
+		// Checking duration with minimum stay
+		if($total_nights < $policy_details->minimum_stay) {
+			return json_encode(['error' => true, 'type' => 'minimum_stay']);
+		}
+
 		$price = $price_details->night;
 		$special_nights_price = 0;
 		$i = 0;
@@ -218,17 +225,20 @@ class PaymentHelper {
 				$result['total_night_price'] = $total_month_price + $total_week_price + $month_price_days + $week_end_price;
 			}
 		} else {
+			// var_dump($price_details->original_weekend);
 			if ($price_details->weekend != 0) {
+				$thuday = 0;
 				$friday = 0;
 				$satday = 0;
-				$satday_count = 0;
+				$thuday_count = 0;
 				$friday_count = 0;
+				$satday_count = 0;
 
 				for ($i = strtotime($checkin); $i < strtotime($checkout); $i = strtotime('+1 day', $i)) {
 					if (date('N', $i) == 4) {
 						if ($price_details->thursday == 'Yes') {
-							$friday_count = 1 + $friday;
-							$friday++;
+							$thuday_count = 1 + $thuday;
+							$thuday++;
 						}
 					}
 					if (date('N', $i) == 5) {
@@ -245,7 +255,7 @@ class PaymentHelper {
 					}
 				}
 
-				$week_end_days = ($friday_count + $satday_count) - $special_week_end_days;
+				$week_end_days = ($thuday_count + $friday_count + $satday_count) - $special_week_end_days;
 				$week_end_remainig_nights = $total_nights - $week_end_days;
 				$week_end_price = round($price_details->weekend * $week_end_days);
 			}
@@ -308,6 +318,17 @@ class PaymentHelper {
 			}
 		}
 
+		$result['price_breakup'] = array(
+			'weekday' => array(
+				'price' => $price_details->night,
+				'count' => $night_diff
+			),
+			'weekend' => array(
+				'price' => $price_details->weekend,
+				'count' => $week_end_days
+			)
+		);
+
 		$result['rooms_price'] = round($result['total_night_price'] / $total_nights);
 		$result['total_nights'] = $total_nights;
 		$result['service_fee'] = number_format(($percentage / 100) * $result['total_night_price']);
@@ -347,7 +368,12 @@ class PaymentHelper {
 		if ($guest_count > $price_details->guests) {
 			$additional_guest_count = $guest_count - $price_details->guests;
 			// $result['additional_guest'] = $additional_guest_count * $price_details->additional_guest;
-			$result['additional_guest'] = $additional_guest_count * $price_details->original_additional_guest * $total_nights;
+			$result['additional_guest'] = $additional_guest_count * $price_details->additional_guest * $total_nights;
+			$result['price_breakup']['additional_guest'] = array(
+				'count' => $additional_guest_count,
+				'price' => $price_details->additional_guest,
+				'night' => $total_nights
+			);
 		}
 
 		if ($price_details->security) {

@@ -2395,7 +2395,8 @@ a.icon {
 }
 .share-btn {
     min-width: 16px;
-    margin-right: 8px;
+    margin: 0 6px;
+    display: inline-block;
 }
 .share-btn:hover, .share-btn:active, .share-btn:focus {
     text-decoration: none;
@@ -2702,19 +2703,21 @@ a.icon {
 }
 }
 .wl-modal__header {
-    height: 17%;
-    padding: 0 30px;
+    padding: 28px 30px;
 }
 .wl-modal__modal-close {
     position: absolute;
-    right: 5px;
-    top: 32px;
+    right: 0;
+    top: 0;
+    padding: 2px;
+    margin: 0;
 }
 .wl-modal-footer {
     text-align: left;
     height: 14%;
     padding: 11px;
     padding-left: 30px;
+    border-top: 1px solid #ccc;
 }
 .wl-modal-footer__form {
     height: 100%}
@@ -2724,8 +2727,16 @@ a.icon {
     padding: 0;
 }
 .wl-modal-footer__text {
+    /*
     position: relative;
     top: -1px;
+    */
+    margin-top: 7px;
+    color: #008489;
+}
+.wl-modal-footer__text.wl-modal-footer__input {
+    margin-top: 0;
+    margin-bottom: 7px;
 }
 .wl-modal-footer__no-thanks {
     padding-right: 20px;
@@ -2805,7 +2816,8 @@ a.icon {
     transition: max-height 500ms cubic-bezier(0, 1, 0, 1);
 }
 .wl-modal-wishlists {
-    height: 83%}
+    height: 427px;
+}
 .wl-modal-wishlists__body {
     padding: 10px 30px;
     padding-right: 32px;
@@ -2815,7 +2827,8 @@ a.icon {
     padding-right: 32px;
 }
 .wl-modal-wishlists__body--scroll {
-    height: 86%}
+    height: 86%
+}
 .wl-modal-wishlists__body--scroll-short {
     height: 70%}
 .wl-modal-wishlists--error {
@@ -2824,11 +2837,14 @@ a.icon {
     line-height: 17px;
 }
 .wl-modal-wishlist-row {
-    height: 47px;
+    /* height: 47px; */
     position: relative;
+    padding: 10px 0;
 }
 .wl-modal-wishlist-row__name {
-    width: 70%}
+    width: 70%;
+    padding: 3px 0;
+}
 .wl-modal-wishlist-row__icons {
     padding-right: 1px;
 }

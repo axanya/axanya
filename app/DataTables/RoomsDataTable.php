@@ -50,6 +50,12 @@ class RoomsDataTable extends DataTable
 
                 return $edit . $delete;
             })
+            ->editColumn('host_name', function ( $rooms ) {
+                $fname = $rooms->users->first_name;
+                $lname = $rooms->users->last_name;
+                $name = $fname . ' ' . $lname;
+                return '<a href="' . url('admin/edit_user/' . $rooms->users->id) . '" target="_blank">' . $name . '</a>';
+            })
             ->make(true);
     }
 

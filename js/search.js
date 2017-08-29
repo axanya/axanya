@@ -321,6 +321,7 @@ $scope.out_mouse = function (index) {
         $scope.room_result = response.data;
         $scope.checkin = checkin;
         $scope.checkout = checkout;
+        $scope.guests = guest_select;
        $scope.totalPages   = response.data.last_page;
       	$scope.currentPage  = response.data.current_page;
       	// Pagination Range
@@ -654,7 +655,7 @@ function HomeControl(controlDiv, map) {
   controlText.innerHTML = '<div class="map-refresh-controls google"><a class="map-manual-refresh btn btn-primary hide" style="background-color:#ff5a5f;color: #ffffff;">Redo Search Here<i class="icon icon-refresh icon-space-left"></i></a><div class="panel map-auto-refresh" style="margin-left: 10px; box-shadow: 0 0 3px rgba(0,0,0,0.2);"><label class="checkbox"><input type="checkbox" checked="checked" name="redo_search" value="true" class="map-auto-refresh-checkbox" id="redo_search"><small>Search as I move the map</small></label></div></div>';
 
   controlDiv.appendChild(controlText);
-
+  // console.log(trans_search);
   var controlText = document.createElement('div');
   controlText.style.position = 'absolute';
   controlText.style.padding = '0';
@@ -665,10 +666,10 @@ function HomeControl(controlDiv, map) {
   var checkHtml = '<div class="map-refresh-controls google">';
   checkHtml += '<div class="panel map-auto-refresh display-icon" style="padding: 0; box-shadow: 0 0 3px rgba(0,0,0,0.2);">';
   checkHtml += '';
-  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><span class="map-icon map-icon-restaurant"></span><small class="abs">Kosher Restaurants</small></label> ';
-  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="kosher_vendor" value="Kosher Vendor" id="kosher_vendor" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-grocery-or-supermarket"></span><small class="abs">Kosher Vendor</small></label> ';
-  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><span class="map-icon map-icon-synagogue"></span><small class="abs">Synagogues</small></label> ';
-  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-florist"></span><small class="abs">Mikvahs</small></label>';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="restaurant" value="Restaurants" class="map-auto-refresh-checkbox place_types" id="restaurant"><span class="map-icon map-icon-restaurant"></span><small class="abs">' + trans_search.kosher_restaurants + '</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="kosher_vendor" value="Kosher Vendor" id="kosher_vendor" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-grocery-or-supermarket"></span><small class="abs">' + trans_search.kosher_vendor + '</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="synagogues" value="Synagogues" class="map-auto-refresh-checkbox place_types" id="synagogues"><span class="map-icon map-icon-synagogue"></span><small class="abs">' + trans_search.synagogues + '</small></label> ';
+  checkHtml += '<label class="checkbox-icon"><input type="checkbox" checked="checked" name="mikvahs" value="Mikvahs" id="mikvahs" class="map-auto-refresh-checkbox place_types"><span class="map-icon map-icon-florist"></span><small class="abs">' + trans_search.mikvahs + '</small></label>';
   checkHtml += '</div></div>';
   controlText.innerHTML = checkHtml;
   controlDiv.appendChild(controlText);

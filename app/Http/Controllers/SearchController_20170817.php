@@ -84,7 +84,6 @@ class SearchController extends Controller
         $data['checkin']            = $request->input('checkin');
         $data['checkout']           = $request->input('checkout');
         $data['guest']              = $request->input('guest');
-        $data['guests']             = $request->input('guests');
         $data['bedrooms']           = $request->input('bedrooms');
         $data['bathrooms']          = $request->input('bathrooms');
         $data['beds']               = $request->input('beds');
@@ -296,16 +295,12 @@ class SearchController extends Controller
 
         $max_price_check = $this->payment_helper->currency_convert('', 'USD', $max_price);
 
-        $request_checkin = $request->input('checkin');
-        $request_checkout = $request->input('checkout');
-
         $rooms = Rooms::with(
             [
                 'rooms_address' => function($query) use($minLat, $maxLat, $minLong, $maxLong) { },
                 'rooms_price' => function($query) use($min_price, $max_price) {
                     $query->with('currency');
                 },
-                'rooms_policies' => function($query) use($request_checkin, $request_checkout) {},
                 'users' => function($query) use($users_where) {
                     $query->with('profile_picture')
                         ->where($users_where);
@@ -324,14 +319,6 @@ class SearchController extends Controller
                 $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price);
             } else {
                 $query->whereRaw('((night / currency.rate) * '.$currency_rate.') >= '.$min_price.' and ((night / currency.rate) * '.$currency_rate.') <= '.$max_price);
-            }
-        })
-        ->whereHas('rooms_policies', function($query) use($request_checkin, $request_checkout) {
-            if ( $request_checkin && $request_checkout ) {
-                $checkin  = new \DateTime($request_checkin);
-                $checkout = new \DateTime($request_checkout);
-                $total_nights = $checkout->diff($checkin)->format("%a");
-                $query->where('rooms_policies.minimum_stay', '<=', $total_nights);
             }
         })
         ->whereHas('users', function($query) use($users_where) {
@@ -390,27 +377,27 @@ class SearchController extends Controller
 
         if(@$json->results)
         {
-            foreach($json->results as $result)
+        foreach($json->results as $result)
+        {
+            foreach($result->address_components as $addressPart)
             {
-                foreach($result->address_components as $addressPart)
+                if((in_array('locality', $addressPart->types)) && (in_array('political', $addressPart->types)))
                 {
-                    if((in_array('locality', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                    {
-                        $city1 = $addressPart->long_name;
-                        $place_where['rooms_address.city'] = $city1;
-                    }
-                    if((in_array('administrative_area_level_1', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                    {
-                        $state = $addressPart->long_name;
-                        $place_where['rooms_address.state'] = $state;
-                    }
-                    if((in_array('country', $addressPart->types)) && (in_array('political', $addressPart->types)))
-                    {
-                        $country = $addressPart->short_name;
-                        $place_where['rooms_address.country'] = $country;
-                    }
+                    $city1 = $addressPart->long_name;
+                    $place_where['rooms_address.city'] = $city1;
+                }
+                if((in_array('administrative_area_level_1', $addressPart->types)) && (in_array('political', $addressPart->types)))
+                {
+                    $state = $addressPart->long_name;
+                    $place_where['rooms_address.state'] = $state;
+                }
+                if((in_array('country', $addressPart->types)) && (in_array('political', $addressPart->types)))
+                {
+                    $country = $addressPart->short_name;
+                    $place_where['rooms_address.country'] = $country;
                 }
             }
+        }
         }
 
         if($map_details != '')
@@ -432,44 +419,26 @@ class SearchController extends Controller
                 $data['lat'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
                 $data['long'] = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
 
-                $northeast_lat = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'northeast'}->{'lat'};
-                $northeast_lng = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'northeast'}->{'lng'};
-
-                $southwest_lat = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'southwest'}->{'lat'};
-                $southwest_lng = $json->{'results'}[0]->{'geometry'}->{'viewport'}->{'southwest'}->{'lng'};
-
-                /*
                 $minLat = $data['lat']-0.30;
                 $maxLat = $data['lat']+0.30;
                 $minLong = $data['long']-0.30;
                 $maxLong = $data['long']+0.30;
-                */
-
-                $minLat = $northeast_lat < $southwest_lat ? $northeast_lat : $southwest_lat;
-                $maxLat = $northeast_lat > $southwest_lat ? $northeast_lat : $southwest_lat;
-                $minLong = $northeast_lng < $southwest_lng ? $northeast_lng : $southwest_lng;
-                $maxLong = $northeast_lng > $southwest_lng ? $northeast_lng : $southwest_lng;
             }
             else
             {
                 $data['lat'] = 0;
                 $data['long'] = 0;
 
-                $minLat = -1000;
-                $maxLat = 1000;
-                $minLong = -1000;
-                $maxLong = 1000;
-                // $minLat = -51;
-                // $maxLat = 90;
-                // $minLong = -180;
-                // $maxLong = 180;
+                // $minLat = -1000;
+                // $maxLat = 1000;
+                // $minLong = -1000;
+                // $maxLong = 1000;
+                $minLat = -51;
+                $maxLat = 90;
+                $minLong = -180;
+                $maxLong = 180;
             }
         }
-
-        // var_dump($minLat);
-        // var_dump($maxLat);
-        // var_dump($minLong);
-        // var_dump($maxLong);
 
         if($types) {
             if($types != 'empty') {
@@ -487,6 +456,7 @@ class SearchController extends Controller
                 $query->with('profile_picture');
             }]);
         }])->whereRaw("latitude between $minLat and $maxLat and longitude between $minLong and $maxLong");
+
 
         // if(@$where_types)
         $places = $places->whereIn('type', ['Restaurants', 'Kosher Vendor', 'Synagogues', 'Mikvahs']);

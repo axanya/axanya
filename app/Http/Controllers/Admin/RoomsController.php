@@ -319,7 +319,7 @@ class RoomsController extends Controller {
 			$data['get_currency'] = Currency::get();
 			$data['rooms_status'] = RoomsStepsStatus::where('room_id', $request->id)->first();
 
-			$data['users_list'] = User::lists('first_name', 'id');
+			$data['users_list'] = User::get()->lists('full_name', 'id');
 
 			//24 hour time array
 			$data['time_array'] = array('00:00:00' => '12:00 AM (midnight)', '01:00:00' => '01:00 AM',

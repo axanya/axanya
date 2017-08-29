@@ -52,8 +52,19 @@
                                         </div>
                                     </div>
 
-
                                 </div>
+
+                                <hr>
+
+                                <div class="js-section list_inner_frame">
+                                    <div class="row row-space-2">
+                                        <div class="col-4">
+                                            <label class="label-large">Minimum stay (nights)</label>
+                                            <input type="number" min="1" name="minimum_stay" value="{{ $rooms_policies ? $rooms_policies->minimum_stay : 1 }}" class="input-large" data-saving="basics2">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                     </div>

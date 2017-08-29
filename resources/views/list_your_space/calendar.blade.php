@@ -194,9 +194,11 @@
     .modal-container, .modal{
       background: transparent;
     }
+    /*
     .tile.no-tile-status.both.selected {
       background-color: #fff !important;
     }
+    */
     .host-calendar-container{
       overflow: visible;
     }

@@ -1757,6 +1757,7 @@ $scope.step = function(step)
         var data_params = {};
 
         data_params[$(this).attr('name')] = $(this).val();
+
         data_params['currency_code'] = $('#price-select-currency_code').val();
 
         var data = JSON.stringify(data_params);
@@ -1793,39 +1794,7 @@ $scope.step = function(step)
             });
         }
 
-    });
 
-    $(document).on('change', '.additional_guest_pricing', function (event) {
-
-        if ($scope.base_guests == $scope.accommodates) {
-            $scope.$apply(function () {
-                $scope.additional_guest_price = '';
-            });
-        }
-        var data = {};
-        data['guests'] = $scope.base_guests;
-        data['additional_guest'] = $scope.additional_guest_price ? $scope.additional_guest_price : 0;
-
-        var saving_class = $(this).attr('data-saving');
-
-        $('.' + saving_class + ' h5').text('Saving...');
-        $('.' + saving_class).fadeIn();
-
-        var url = window.location.href.replace('admin/edit_room/', 'manage-listing/');
-        url = url + '/update_price';
-
-        $http.post(url, { data: JSON.stringify(data) }).then(function (response) {
-            if (response.data.success == 'true') {
-                $('.' + saving_class + ' h5').text('Saved!');
-                $('.' + saving_class).fadeOut();
-                $('#steps_count').text(response.data.steps_count);
-                $scope.steps_count = response.data.steps_count;
-                //$('html, body').animate({ scrollTop: $('#js-list-space-button').offset().top+1000 }, 'slow');
-            }
-            else {
-                $('.' + saving_class).fadeOut();
-            }
-        });
 
     });
 
@@ -2019,38 +1988,6 @@ $scope.step = function(step)
             }
         });
     });
-
-    $(document).on('change', '[name="minimum_stay"]', function (event) {
-        var $this = $(this);
-        var data = {
-            'minimum_stay': $this.val()
-        };
-        var saving_class = $this.attr('data-saving');
-        $('.' + saving_class + ' h5').text('Saving...');
-        $('.' + saving_class).fadeIn();
-
-        var url = window.location.href.replace('admin/edit_room/', 'manage-listing/');
-        url = url + '/update_rooms_policies';
-
-        $http.post(url, { data: JSON.stringify(data) }).then(function (response) {
-            if (response.data.success == 'true') {
-                $('.' + saving_class + ' h5').text('Saved!');
-                $('.' + saving_class).fadeOut();
-                $('#steps_count').text(response.data.steps_count);
-                $scope.steps_count = response.data.steps_count;
-            }
-        });
-    });
-
-    $(document).on('change', '#basics-select-user_id', function(event) {
-        var user_id = $(this).val();
-        var room_id = $('#room_id').val();
-        var url = window.location.href.replace('edit_room', 'edit_user');
-        url = url.replace(room_id, user_id);
-        // console.log(url);
-        $('#user_details_link').attr('href', url);
-    });
-    $('#basics-select-user_id').trigger('change');
 
     /******End Policies section ******/
 

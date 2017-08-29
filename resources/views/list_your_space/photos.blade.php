@@ -7,12 +7,13 @@
                </div>
                <div class="js-section list_inner_frame">
                   <div id="photos">
-                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <div id="js-first-photo-text" class="row-space-top-2 h5 invisible">
+                    <div class="col-md-12" style="margin: 15px 0;">
+                      <div>- {{ trans('messages.lys.first_photo_appears_search_results') }}</div>
+                      <div>- {{ trans('messages.lys.guests_are_likely_to_book_with_photos') }}</div>
+                        <div id="js-first-photo-text1" class="row-space-top-2 h5 invisible" style="display:none;">
                            {{ trans('messages.lys.first_photo_appears_search_results') }}!
                         </div>
-                     </div>
-
+                    </div>
 
                      <ul id="js-photo-grid" class="row list-unstyled sortable">
                         <li ng-repeat="item in photos_list" class="col-4 row-space-4" data-id="@{{ item.id }}" data-index="0" draggable="true" style="display: list-item;" ng-mouseover="over_first_photo($index)" ng-mouseout="out_first_photo($index)">

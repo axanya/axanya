@@ -130,7 +130,7 @@ ul#search-form-header {
 	text-align: right;
 }
 .axanya-header .header-belo {
-	margin: 9px auto 9px 15px;
+	margin: 9px auto 10px 15px;
 }
 .nav-item a {
 	padding: 9px 20px 9px 0px;
@@ -427,4 +427,20 @@ div#ajax_container {
 }
 .btn-large .icon.icon-facebook {
   margin-right: 0 !important;
+}
+.info-square-popup {
+  left: auto;
+  right: 0;
+}
+.info-square-popup .close {
+  right: auto;
+  left: 3px;
+}
+.info-square {
+  margin-right: 0;
+  margin-left: 6px;
+}
+.rich-toggle input[type="checkbox"] {
+  margin-left: 0;
+  margin-right: -9999px;
 }

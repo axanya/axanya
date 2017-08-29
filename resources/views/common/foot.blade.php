@@ -12,12 +12,14 @@
     {!! Html::script('js/jquery-ui.js') !!}
     {!! Html::script('js/i18n/datepicker-'.Session::get('language').'.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('js/moment.min.js') !!}
+    {!! Html::script('js/daterangepicker.js') !!}
 
 
     {!! Html::script('js/angular.js') !!}
     {!! Html::script('js/angular-sanitize.js') !!}
-      {!! Html::script('js/map-icons.js') !!}
-      {!! Html::script('js/markerwithlabel.js') !!}
+    {!! Html::script('js/map-icons.js') !!}
+    {!! Html::script('js/markerwithlabel.js') !!}
 
     <script>
     var app = angular.module('App', ['ngSanitize']);
@@ -331,6 +333,52 @@ function get_address_components(args){
     });  
     
     
+  });
+
+})(window);
+</script>
+<style type="text/css" id="dropdown-arrow"></style>
+<script type="text/javascript">
+(function(window, undefined){
+
+  var $ = window.jQuery;
+  var document = window.document;
+
+  $(function(){
+
+    var $body = $(document.body);
+
+    $(document).on('click', 'ul.nav > li.header_item > a', function(event) {
+      var $this = $(this);
+      var $li = $this.closest('li.header_item');
+      var $dropdown = $li.find('ul.dropdown-menu');
+      if($dropdown.length > 0) {
+        if($dropdown.is(':visible')) {
+          $dropdown.hide();
+        } else {
+          $('ul.dropdown-menu').hide();
+          $dropdown.show();
+        }
+        console.log($li.outerWidth());
+        var arrow_css = '';
+        if($body.css('direction') === 'rtl') {
+          arrow_css = 'right:auto;left:' + ($li.outerWidth() / 2 - 10) + 'px;';
+        } else {
+          arrow_css = 'left:auto;right:' + ($li.outerWidth() / 2 - 10) + 'px;';
+        }
+        $('style#dropdown-arrow').html('ul.dropdown-menu:before,ul.dropdown-menu:after{' + arrow_css + '}');
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    $(document).on('click', function(event) {
+      var $target = $(event.target);
+      if($target.closest('li.header_item').length < 1) {
+        $('ul.dropdown-menu').hide();
+      }
+    });
+
   });
 
 })(window);

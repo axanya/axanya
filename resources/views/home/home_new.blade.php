@@ -42,8 +42,8 @@
                 <div class="textHeaderContainer_1sy11fq text-left">
                     <h1 class="textHeader_1o0y24x" id="home-intro" style="text-align: left !important;;">
                       <img src="images/top_homepage<?php echo \App::getLocale() == 'iw' ? '_rtl' : ''; ?>.png" style="display:block; margin: 0 !important;">
-                      <span class="block rtl-text-right">{{ trans('messages.home.text1') }}</span>
-                      <span class="block rtl-text-right">{{ trans('messages.home.text2') }}</span>
+                      <span class="block rtl-text-right mobile-text-center">{{ trans('messages.home.text1') }}</span>
+                      <span class="block rtl-text-right mobile-text-center">{{ trans('messages.home.text2') }}</span>
                       {{--Links--}}
                       <div class="row hero_link_holder rtl-text-right" id="link_holder" style="display: none;">
                         <a href="#media-popup" data-media="//www.youtube.com/embed/ZcPBcyEzpAU?rel=0&autoplay=1" class="what-is">
@@ -91,9 +91,11 @@
             <div class="hero__background page-container">
                 <div class="hero__content1 page-container">
                     <div class="col-lg-8 why-host-div">
-                        <h2 class="headerText_17uhuaw">{{ trans('messages.home.why_host') }}</h2>
-                        <p class="subtitle_1eiruqk">{{ trans('messages.home.why_host_text') }}</p>
-                        <a href="{{ url() }}/signup_login" id="otherShare" class="host-button">{{ trans('messages.home.learn_more') }}</a>
+                        <h2 class="headerText_17uhuaw mobile-text-center">{{ trans('messages.home.why_host') }}</h2>
+                        <p class="subtitle_1eiruqk mobile-text-center">{{ trans('messages.home.why_host_text') }}</p>
+                        <div class="mobile-text-center">
+                            <a href="{{ url() }}/signup_login" id="otherShare" class="host-button">{{ trans('messages.home.learn_more') }}</a>
+                        </div>
                         <script>
                             document.getElementById('otherShare1').onclick = function() {
                                 FB.ui({
@@ -126,9 +128,15 @@
                                             </div>
                                             <div class="SearchForm__dates text-left col-md-4">
                                                 <label for="startDate" class="SearchForm__label"><span>{{ trans('messages.home.when') }}</span></label>
+                                                <div class="DateInput" style="display:block;width:100%;">
+                                                    <input type="text" id="daterange" placeholder="{{ trans('messages.home.anytime') }}" readonly>
+                                                    <input type="hidden" name="checkin">
+                                                    <input type="hidden" name="checkout">
+                                                </div>
+                                                <!--
                                                 <div class="DateInput">
                                                     <label class="input-placeholder-group searchbar__checkin">
-                                                        <span class="input-placeholder-label  screen-reader-only">{{ trans('messages.home.checkin') }}</span>
+                                                        <span class="input-placeholder-label screen-reader-only">{{ trans('messages.home.checkin') }}</span>
                                                         <input type="text" id="checkin" class="checkin input-large input-contrast ui-datepicker-target" name="checkin" placeholder="{{ trans('messages.home.checkin') }}">
                                                     </label>
                                                 </div>
@@ -143,21 +151,38 @@
                                                         <input type="text" id="checkout" class="checkout input-large input-contrast ui-datepicker-target" name="checkout" placeholder=" {{ trans('messages.home.checkout') }}">
                                                     </label>
                                                 </div>
+                                                -->
                                             </div>
                                             <div class="SearchForm__guests text-left SearchForm__guests_infants col-md-3 col-lg-2">
-                                                <label for="how-many-guests" class="SearchForm__label"><span>{{ trans_choice('messages.home.guest',2) }}</span></label>
+                                                <label for="how-many-guests" class="SearchForm__label"><span>{{ trans('messages.home.no_of_guests') }}</span></label>
                                                 <label class="searchbar__guests">
                                                     <span class="screen-reader-only">{{ trans('messages.home.no_of_guests') }}</span>
                                                     <div class="select select-large">
-                                                        <select id="guests" name="guests">
+                                                        <select id="guests" name="guests" onmousedown="if(this.options.length>4){this.size=4;}"  onchange="this.size=0;" onblur="this.size=0;" style="position:absolute;z-index:9;">
+                                                            <option value="1">{{ trans('messages.numbers.one') }}</option>
+                                                            <option value="2">{{ trans('messages.numbers.two') }}</option>
+                                                            <option value="3">{{ trans('messages.numbers.three') }}</option>
+                                                            <option value="4">{{ trans('messages.numbers.four') }}</option>
+                                                            <option value="5">{{ trans('messages.numbers.five') }}</option>
+                                                            <option value="6">{{ trans('messages.numbers.six') }}</option>
+                                                            <option value="7">{{ trans('messages.numbers.seven') }}</option>
+                                                            <option value="8">{{ trans('messages.numbers.eight') }}</option>
+                                                            <option value="9">{{ trans('messages.numbers.nine') }}</option>
+                                                            <option value="10">{{ trans('messages.numbers.ten') }}</option>
+                                                            <option value="11">{{ trans('messages.numbers.eleven') }}</option>
+                                                            <option value="12">{{ trans('messages.numbers.twelve') }}</option>
+                                                            <option value="13">{{ trans('messages.numbers.thirteen') }}</option>
+                                                            <option value="14">{{ trans('messages.numbers.fourteen') }}</option>
+                                                            <option value="15">{{ trans('messages.numbers.fifteen') }}</option>
+                                                            <option value="16">{{ trans('messages.numbers.fifteen_plus') }}</option>
                                                             @for($i = 1; $i <= 16; $i++)
                                                               @if($i == 1)
-                                                                <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guest') }} </option>
+                                                                <!-- <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guest') }} </option> -->
                                                               @else
                                                                 @if($i == 16)
-                                                                  <option value="{{ $i }}"> {{ $i . '+ ' . trans('messages.home.guests') }} </option>
+                                                                  <!-- <option value="{{ $i }}"> {{ $i . '+ ' . trans('messages.home.guests') }} </option> -->
                                                                 @else
-                                                                  <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guests') }} </option>
+                                                                  <!-- <option value="{{ $i }}"> {{ $i . ' ' . trans('messages.home.guests') }} </option> -->
                                                                 @endif
                                                               @endif
                                                             @endfor
@@ -352,14 +377,14 @@
                     </div>
                     <div class="row">
                         {{--Left Side--}}
-                        <div class="col-md-6 question-holder rtl-right">
+                        <div class="col-md-6 question-holder rtl-right mobile-text-center">
                             <h5 class="question_title">{{ trans('messages.home.is_hosting_safe') }}</h5>
                             <p class="sub_text">{{ trans('messages.home.is_hosting_safe_answer') }}</p>
                             <h5 class="question_title">{{ trans('messages.home.what_does_it_cost') }}</h5>
                             <p class="sub_text">{{ trans('messages.home.what_does_it_cost_answer') }}</p>
                         </div>
                         {{--Right Side--}}
-                        <div class="col-md-6 rtl-right">
+                        <div class="col-md-6 rtl-right mobile-text-center">
                             <h5 class="question_title">{{ trans('messages.home.when_get_paid') }}</h5>
                             <p class="sub_text">{{ trans('messages.home.when_get_paid_answer') }}</p>
                             <h5 class="question_title">{{ trans('messages.home.do_i_pay_taxes') }}</h5>

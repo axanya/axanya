@@ -465,7 +465,7 @@ class PaymentController extends Controller {
 
 		$reservation->transaction_id = $data['transaction_id'];
 		$reservation->paymode = $data['paymode'];
-		$reservation->cancellation = Rooms::find($data['room_id'])->cancel_policy;
+		$reservation->cancellation = Rooms::find($data['room_id'])->rooms_policies->cancel_policy;
 		$reservation->type = 'reservation';
 
 		if ($data['paymode'] == 'Credit Card') {

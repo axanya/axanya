@@ -1069,13 +1069,13 @@ font-weight: bold;
   }
 }
 .wl-modal__header {
-    height:17%;
+    height:42px;
     padding:0 30px
 }
 .wl-modal__modal-close {
     position:absolute;
-    right:5px;
-    top:32px
+    right:0;
+    top:10px
 }
 .wl-modal-footer {
     text-align:left;

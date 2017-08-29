@@ -201,7 +201,7 @@
                 <input type="hidden" id="price_tooltip" value="" >
                 <input type="hidden" id="url_checkin" value="{{ $checkin }}" >
                 <input type="hidden" id="url_checkout" value="{{ $checkout }}" >
-                <input type="hidden" id="url_guests" value="{{ $guests }}" >
+                <input type="hidden" id="url_guests" value="{{ $guests ? $guests : 1 }}" >
                 <input type="hidden" name="booking_type" id="booking_type" value="{{ $result->booking_type }}" >
 
                 <div class="col-sm-6 space-1-sm">
@@ -239,6 +239,7 @@
             </div>
           </div>
         </div>
+        <div class="js-book-it-error"></div>
         <div class="js-book-it-status">
           <div class="js-book-it-enabled clearfix">
             <div class="js-subtotal-container book-it__subtotal panel-padding-fit" style="display:none;">
@@ -246,45 +247,80 @@
     <tbody>
     <tr>
       <td>
-        {{ $result->rooms_price->currency->symbol }}  <span  id="rooms_price_amount_1" value="">{{ $result->rooms_price->night }}</span> x <span  id="total_night_count" value="">0</span> {{ trans_choice('messages.rooms.night',1) }}
-
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <div id="price_breakup_weekday">{{ $result->rooms_price->currency->symbol }}<span id="price_breakup_weekday_price"></span> x <span id="price_breakup_weekday_count"></span> {{ trans('messages.rooms.weekday_nights') }}</div>
+            <div id="price_breakup_weekend">{{ $result->rooms_price->currency->symbol }}<span id="price_breakup_weekend_price"></span> x <span id="price_breakup_weekend_count"></span> {{ trans('messages.rooms.weekend_nights') }}</div>
+          </div>
+        </div>
+        {{ $result->rooms_price->currency->symbol }} <span id="rooms_price_amount_1" value="">{{ $result->rooms_price->night }}</span> x <span  id="total_night_count" value="">0</span> {{ trans_choice('messages.rooms.night', 1) }}
       </td>
-      <td>{{ $result->rooms_price->currency->symbol }}<span  id="total_night_price" value="">0</span></td>
+      <td>{{ $result->rooms_price->currency->symbol }}<span id="total_night_price" value="">0</span></td>
     </tr>
 
     <tr>
       <td>
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <span>{{ trans('messages.rooms.service_fee_info') }}</span>
+          </div>
+        </div>
         {{ trans('messages.rooms.service_fee') }}
-
-          <i id="service-fee-tooltip" class="icon icon-question"></i>
-
       </td>
       <td>{{ $result->rooms_price->currency->symbol }}<span  id="service_fee" value="">0</span></td>
     </tr>
 
-    <tr class = "additional_price">
+    <tr class="additional_price">
       <td>
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <div id="price_breakup_additional_guest">{{ $result->rooms_price->currency->symbol }}<span id="price_breakup_additional_guest_price"></span> x <span id="price_breakup_additional_guest_count"></span> {{ trans('messages.rooms.additional_guests') }} x <span id="price_breakup_additional_guest_night"></span> {{ trans('messages.rooms.nights') }}</div>
+          </div>
+        </div>
         {{ trans('messages.rooms.addtional_guest_fee') }}
       </td>
     <td>{{ $result->rooms_price->currency->symbol }}<span  id="additional_guest" value="">0</span></td>
     </tr>
 
-    <tr class = "security_price">
+    <tr class="security_price">
       <td>
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <span>{{ trans('messages.rooms.security_fee_info') }}</span>
+          </div>
+        </div>
         {{ trans('messages.rooms.security_fee') }}
       </td>
     <td>{{ $result->rooms_price->currency->symbol }}<span  id="security_fee" value="">0</span></td>
     </tr>
 
-    <tr class = "cleaning_price">
+    <tr class="cleaning_price">
       <td>
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <span>{{ trans('messages.rooms.cleaning_fee_info') }}</span>
+          </div>
+        </div>
         {{ trans('messages.rooms.cleaning_fee') }}
       </td>
-    <td>{{ $result->rooms_price->currency->symbol }}<span  id="cleaning_fee" value="">0</span></td>
+    <td>{{ $result->rooms_price->currency->symbol }}<span id="cleaning_fee" value="">0</span></td>
     </tr>
 
     <tr>
-      <td>{{ trans('messages.rooms.total') }}</td>
+      <td>
+        <div class="info-square-wrapper">
+          <span class="info-square">!</span>
+          <div class="info-square-popup">
+            <span>{{ trans('messages.rooms.total_info') }}</span>
+          </div>
+        </div>
+        {{ trans('messages.rooms.total') }}
+      </td>
       <td>{{ $result->rooms_price->currency->symbol }}<span  id="total" value="">0</span></td>
     </tr>
 
@@ -336,66 +372,59 @@
       </div>
     </div>
 
-    <div class="panel wishlist-panel space-top-6">
-      <div class="panel-body panel-light">
-      @if(Auth::user()->check())
-        <div class="wishlist-wrapper hide-sm">
-          <div class="rich-toggle wish_list_button not_saved" data-hosting_id="{{ $result->id }}">
-  <input type="checkbox" name="wishlist-button" id="wishlist-button">
-  <label for="wishlist-button" class="btn btn-block btn-large">
-    <span class="rich-toggle-checked">
-      <i class="icon icon-heart icon-rausch"></i>
-      Saved to Wish List
-    </span>
-    <span class="rich-toggle-unchecked">
-      <i class="icon icon-heart-alt icon-light-gray"></i>
-      {{ trans('messages.wishlist.save_to_wishlist') }}
-    </span>
-  </label>
-</div>
-        </div>
-        @endif
-        <div class="other-actions hide-sm text-center">
-          <div class="social-share-widget space-top-3 p3-share-widget" style="margin: 0;">
-  <span class="share-title">
-    {{ trans('messages.rooms.share') }}:
-  </span>
-  <span class="share-triggers">
-
-      <a class="share-btn link-icon" data-email-share-link="" data-network="email" rel="nofollow" title="{{ trans('messages.login.email') }}" href="mailto:?subject=I love this room&amp;body=Check out this {{ url('/rooms/'.$result->id) }}">
-        <span class="screen-reader-only">{{ trans('messages.login.email') }}</span>
-        <i class="icon icon-envelope social-icon-size"></i>
-      </a>
-      <a class="share-btn link-icon" data-network="facebook" rel="nofollow" title="Facebook" href="https://www.facebook.com/sharer.php?u={{ url('/rooms/'.$result->id) }}" target="_blank">
-        <span class="screen-reader-only">Facebook</span>
-        <i class="icon icon-facebook social-icon-size"></i>
-      </a>
-
-      <a class="share-btn link-icon" data-network="twitter" rel="nofollow" title="Twitter" href="https://twitter.com/home?status=Love this! {{ $result->name }} - {{ $result->property_type_name }} for Rent - {{ "@".$site_name}} Travel  {{ url('/rooms/'.$result->id) }}" target="_blank">
-        <span class="screen-reader-only">Twitter</span>
-        <i class="icon icon-twitter social-icon-size"></i>
-      </a>
-
-    <a class="share-btn link-icon" data-network="pinterest" rel="nofollow" title="Pinterest" href="https://pinterest.com/pin/create/button/?url={{ url('/rooms/'.$result->id) }}&media={{ url('images/'.$result->photo_name) }}&description={{ $result->summary }}" target="_blank">
-        <span class="screen-reader-only">Pinterest</span>
-        <i class="icon icon-pinterest social-icon-size"></i>
-      </a>
-
-
-      <a class="share-btn link-icon" href="https://plus.google.com/share?url={{ url('/rooms/'.$result->id) }}"  itemprop="nofollow" rel="publisher" target="_blank">
+<div class="panel wishlist-panel space-top-6">
+  <div class="panel-body panel-light">
+      
+    <div class="other-actions hide-sm text-center">
+      <div class="social-share-widget space-top-3 p3-share-widget" style="margin: 0;">
+        <span class="share-title">{{ trans('messages.rooms.share') }}</span>
+        <span class="share-triggers">
+          <a class="share-btn link-icon" data-email-share-link="" data-network="email" rel="nofollow" title="{{ trans('messages.login.email') }}" href="mailto:?subject=I love this room&amp;body=Check out this {{ url('/rooms/'.$result->id) }}">
+            <span class="screen-reader-only">{{ trans('messages.login.email') }}</span>
+            <i class="icon icon-envelope social-icon-size"></i>
+          </a>
+          <a class="share-btn link-icon" data-network="facebook" rel="nofollow" title="Facebook" href="https://www.facebook.com/sharer.php?u={{ url('/rooms/'.$result->id) }}" target="_blank">
+            <span class="screen-reader-only">Facebook</span>
+            <i class="icon icon-facebook social-icon-size"></i>
+          </a>
+          <a class="share-btn link-icon" data-network="twitter" rel="nofollow" title="Twitter" href="https://twitter.com/home?status=Love this! {{ $result->name }} - {{ $result->property_type_name }} for Rent - {{ "@".$site_name}} Travel  {{ url('/rooms/'.$result->id) }}" target="_blank">
+            <span class="screen-reader-only">Twitter</span>
+            <i class="icon icon-twitter social-icon-size"></i>
+          </a>
+          <a class="share-btn link-icon" data-network="pinterest" rel="nofollow" title="Pinterest" href="https://pinterest.com/pin/create/button/?url={{ url('/rooms/'.$result->id) }}&media={{ url('images/'.$result->photo_name) }}&description={{ $result->summary }}" target="_blank">
+            <span class="screen-reader-only">Pinterest</span>
+            <i class="icon icon-pinterest social-icon-size"></i>
+          </a>
+          <a class="share-btn link-icon" href="https://plus.google.com/share?url={{ url('/rooms/'.$result->id) }}"  itemprop="nofollow" rel="publisher" target="_blank">
             <span class="screen-reader-only">Google+</span>
             <i class="icon social-icon-size icon-google-plus"></i>
-      </a>
+          </a>
+        </span>
+      </div>
+    </div>
 
-  </span>
+    @if(Auth::user()->check())
+    <div class="wishlist-wrapper hide-sm">
+      <div class="rich-toggle wish_list_button not_saved" data-hosting_id="{{ $result->id }}">
+        <input type="checkbox" name="wishlist-button" id="wishlist-button">
+        <label for="wishlist-button" class="btn btn-block btn-large">
+          <span class="rich-toggle-checked">
+            <i class="icon icon-heart icon-rausch"></i>
+            Saved to Wish List
+          </span>
+          <span class="rich-toggle-unchecked">
+            <i class="icon icon-heart-alt icon-light-gray"></i>
+            {{ trans('messages.wishlist.save_to_wishlist') }}
+          </span>
+        </label>
+      </div>
+    </div>
+    @endif
 
-
+  </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -542,71 +571,53 @@
 
     <div class="col-md-9 expandable expandable-trigger-more">
       <div class="expandable-content-summary">
-        <div class="row rooms_amenities_before" >
 
-
-            <div class="col-sm-6">
-
-               {{--*/ $i = 1 /*--}}
-
-               {{--*/ $count = round(count($amenities)/2) /*--}}
-
-                @foreach($amenities as $all_amenities)
-
-
-               @if($i < 6)
-
+        <div class="row rooms_amenities_before" style="display:none;">
+          <div class="col-sm-6">
+            {{--*/ $i = 1 /*--}}
+            {{--*/ $count = round(count($amenities)/2) /*--}}
+            @foreach($amenities as $all_amenities)
+              @if($i < 6)
                 @if($all_amenities->status != null)
-                <div class="row-space-1">
+                  <div class="row-space-1">
                 @else
-                <div class="row-space-1 text-muted">
+                  <div class="row-space-1 text-muted">
                 @endif
-
                 <i class="icon h3 icon-{{ $all_amenities->icon }}"></i>
-                    &nbsp;
-                  <span class="js-present-safety-feature">
-                        @if($all_amenities->status == null)
-                        <del>
-                        @endif
-                        {{ \App::getLocale() == 'iw' ? $all_amenities->name_iw : $all_amenities->name }}
-                        @if($all_amenities->status == null)
-                        </del>
-                        @endif
-                  </span>
-                </div>
-
+                &nbsp;
+                <span class="js-present-safety-feature">
+                  @if($all_amenities->status == null)
+                    <del>
+                  @endif
+                  {{ \App::getLocale() == 'iw' ? $all_amenities->name_iw : $all_amenities->name }}
+                  @if($all_amenities->status == null)
+                    </del>
+                  @endif
+                </span>
+                  </div>
 
                 </div>
                 <div class="col-sm-6">
-                @endif
-                {{--*/ $i++ /*--}}
-                @endforeach
-                <a class="expandable-trigger-more amenities_trigger" href="">
-      <strong>+ {{ trans('messages.profile.more') }}</strong>
-    </a>
-
+              @endif
+              {{--*/ $i++ /*--}}
+            @endforeach
+            <a class="expandable-trigger-more amenities_trigger" href="">
+              <strong>+ {{ trans('messages.profile.more') }}</strong>
+            </a>
+          </div>
         </div>
 
-            </div>
+        <div class="row rooms_amenities_after">
+          <div class="col-sm-6">
+            {{--*/ $i = 1 /*--}}
+            {{--*/ $count = round(count($amenities)/2) /*--}}
 
-                  <div class="row rooms_amenities_after" style="display:none;">
-
-
-            <div class="col-sm-6">
-
-               {{--*/ $i = 1 /*--}}
-
-               {{--*/ $count = round(count($amenities)/2) /*--}}
-
-                @foreach($amenities as $all_amenities)
-
-
-
-                @if($all_amenities->status != null)
+            @foreach($amenities as $all_amenities)
+              @if($all_amenities->status != null)
                 <div class="row-space-1">
-                @else
+              @else
                 <div class="row-space-1 text-muted">
-                @endif
+              @endif
                 <i class="icon h3 icon-{{ $all_amenities->icon }}"></i>
                     &nbsp;
                   <span class="js-present-safety-feature">
@@ -621,7 +632,6 @@
 
                 </div>
 
-
                 </div>
                 <div class="col-sm-6">
 
@@ -630,7 +640,7 @@
 
         </div>
 
-            </div>
+      </div>
 
         </div>
       </div>
@@ -639,13 +649,10 @@
 
 <hr>
 
-@if(count($religious_amenities) !=0)
+@if( count( $religious_amenities ) !=0 && ( $result->rooms_policies->is_kosher == 'Yes' || $result->rooms_policies->is_special_accommodation == 'Yes' ) )
   <div class="row">
       <div class="col-md-3">
-            <div class="text-muted">
-      {{ trans('messages.new.religious_accommadations') }}
-    </div>
-
+        <div class="text-muted">{{ trans('messages.new.religious_accommadations') }}</div>
       </div>
       <div class="col-md-9">
         <div class="js-no-safety-features-text hide">
@@ -656,7 +663,7 @@
             <div class="col-md-6">
               @foreach($religious_amenities_type_array as $k => $religious_amenity_type)
                 <div class="space-2">
-                  <h4 class="text-muted">{{$k}}</h4>
+                  <h4 class="text-muted text-normal">{{$k}}</h4>
                   @foreach($religious_amenity_type as $religious_amenity)
                     <div class="row-space-1 @if($religious_amenity->status == null)text-muted @endif " style="margin-left:10px;">
                       <span class="js-present-safety-feature">
@@ -733,51 +740,44 @@
     <hr>
 
 
-   @if($result->rooms_description->space !='' || $result->rooms_description->access !='' || $result->rooms_description->interaction !='' || $result->rooms_description->neighborhood_overview !='' || $result->rooms_description->transit || $result->rooms_description->notes)
+  @if($result->rooms_description->space !='' || $result->rooms_description->access !='' || $result->rooms_description->interaction !='' || $result->rooms_description->neighborhood_overview !='' || $result->rooms_description->transit || $result->rooms_description->notes)
   <div class="row description">
 
-    <div class="col-md-3 text-muted">
-      {{ trans('messages.lys.description') }}
-    </div>
+    <div class="col-md-3 text-muted">{{ trans('messages.lys.description') }}</div>
 
     <div class="col-md-9 expandable expandable-trigger-more all_description">
 
-
       <div class="expandable-content expandable-content-long">
 
-            @if($result->rooms_description->space)
-            <p><strong>{{ trans('messages.lys.the_space') }}</strong></p>
-            <p>{{ $result->rooms_description->space}}</p>
-            @endif
-            @if($result->rooms_description->access)
-            <p><strong>{{ trans('messages.lys.guest_access') }}</strong></p>
-            <p>{{ $result->rooms_description->access}} </p>
-            @endif
-            @if($result->rooms_description->interaction)
-            <p><strong>{{ trans('messages.lys.interaction_with_guests') }}</strong></p>
-            <p> {{ $result->rooms_description->interaction}}</p>
-            @endif
-            @if($result->rooms_description->neighborhood_overview)
-            <p><strong>{{ trans('messages.lys.the_neighborhood') }}</strong></p>
-            <p> {{ $result->rooms_description->neighborhood_overview}}</p>
-            @endif
-            @if($result->rooms_description->transit)
-            <p><strong>{{ trans('messages.lys.getting_around') }}</strong></p>
-            <p>{{ $result->rooms_description->transit}}</p>
-            @endif
-            @if($result->rooms_description->notes)
-            <p><strong>{{ trans('messages.lys.other_things_note') }}</strong></p>
-            <p>{{ $result->rooms_description->notes}}</p>
-            @endif
+        @if($result->rooms_description->space)
+          <p><strong>{{ trans('messages.lys.the_space') }}</strong></p>
+          <p>{{ $result->rooms_description->space}}</p>
+        @endif
+        @if($result->rooms_description->access)
+          <p><strong>{{ trans('messages.lys.guest_access') }}</strong></p>
+          <p>{{ $result->rooms_description->access}}</p>
+        @endif
+        @if($result->rooms_description->interaction)
+          <p><strong>{{ trans('messages.lys.interaction_with_guests') }}</strong></p>
+          <p>{{ $result->rooms_description->interaction}}</p>
+        @endif
+        @if($result->rooms_description->neighborhood_overview)
+          <p><strong>{{ trans('messages.lys.the_neighborhood') }}</strong></p>
+          <p>{{ $result->rooms_description->neighborhood_overview}}</p>
+        @endif
+        @if($result->rooms_description->transit)
+          <p><strong>{{ trans('messages.lys.getting_around') }}</strong></p>
+          <p>{{ $result->rooms_description->transit}}</p>
+        @endif
+        @if($result->rooms_description->notes)
+          <p><strong>{{ trans('messages.lys.other_things_note') }}</strong></p>
+          <p>{{ $result->rooms_description->notes}}</p>
+        @endif
 
-
-      <div class="expandable-indicator"></div>
+        <div class="expandable-indicator"></div>
       </div>
 
-          <a class="expandable-trigger-more" href="">
-      <strong>+ {{ trans('messages.profile.more') }}</strong>
-    </a>
-
+      <a class="expandable-trigger-more" href=""><strong>+ {{ trans('messages.profile.more') }}</strong></a>
 
     </div>
   </div>
@@ -789,20 +789,14 @@
 @if($result->rooms_description->house_rules !='')
     <div class="row">
       <div class="col-md-3">
-            <div class="text-muted">
-      {{ trans('messages.lys.house_rules') }}
-    </div>
-
+        <div class="text-muted">{{ trans('messages.lys.house_rules') }}</div>
       </div>
       <div class="col-md-9 expandable expandable-trigger-more expanded">
         <div class="expandable-content">
           <p>{{ $result->rooms_description->house_rules}}</p>
           <div class="expandable-indicator"></div>
         </div>
-            <a class="expandable-trigger-more" href="#">
-      <strong>+ {{ trans('messages.profile.more') }}</strong>
-    </a>
-
+        <a class="expandable-trigger-more" href="#"><strong>+ {{ trans('messages.profile.more') }}</strong></a>
       </div>
     </div>
 
@@ -868,16 +862,14 @@
  
   <div class="row">
     <div class="col-md-3">
-          <div class="text-muted">
-      {{ trans('messages.rooms.availability') }}
-    </div>
-
+      <div class="text-muted">{{ trans('messages.rooms.availability') }}</div>
     </div>
     <div class="col-md-9">
       <div class="row">
-          <div class="col-md-6">
-            <strong>1 {{ trans_choice('messages.rooms.night',1) }}</strong> {{ trans('messages.rooms.minimum_stay') }}
-          </div>
+        <div class="col-md-6">
+          <?php $minimum_stay = $result->rooms_policies ? $result->rooms_policies->minimum_stay : 1; ?>
+          <strong id="minimum_stay_nights">{{ $minimum_stay }} {{ trans_choice('messages.rooms.night', $minimum_stay) }}</strong> {{ trans('messages.rooms.minimum_stay') }}
+        </div>
         <div class="col-md-6">
           <a id="view-calendar" href="#"><strong>{{ trans('messages.rooms.view_calendar') }}</strong></a>
         </div>
@@ -885,17 +877,29 @@
     </div>
   </div>
 
+@if( stripslashes( $result->rooms_description->direction_helpful_tips ) || stripslashes( $result->rooms_description->overview ) || stripslashes( $result->rooms_description->getting_arround ) || stripslashes( $result->rooms_description->local_jewish_life ) )
+
 <hr>
 
 <div class="row">
   <div class="col-md-3">{{ trans('messages.your_trips.location') }}</div>
   <div class="col-md-9">
-    <p>{{ trans('messages.lys.direction_helpful_tips_frontend') }}<br>{{ stripslashes($result->rooms_description->direction_helpful_tips) }}</p>
-    <p>{{ trans('messages.lys.the_neighborhood') }}<br>{{ stripslashes($result->rooms_description->overview) }}</p>
-    <p>{{ trans('messages.lys.getting_around') }}<br>{{ stripslashes($result->rooms_description->getting_arround) }}</p>
-    <p>{{ trans('messages.lys.local_jewish_life') }}<br>{{ stripslashes($result->rooms_description->local_jewish_life) }}</p>
+    @if(stripslashes($result->rooms_description->direction_helpful_tips))
+    <p><strong>{{ trans('messages.lys.direction_helpful_tips_frontend') }}</strong><br>{{ stripslashes($result->rooms_description->direction_helpful_tips) }}</p>
+    @endif
+    @if(stripslashes($result->rooms_description->overview))
+    <p><strong>{{ trans('messages.lys.the_neighborhood') }}</strong><br>{{ stripslashes($result->rooms_description->overview) }}</p>
+    @endif
+    @if(stripslashes($result->rooms_description->getting_arround))
+    <p><strong>{{ trans('messages.lys.getting_around') }}</strong><br>{{ stripslashes($result->rooms_description->getting_arround) }}</p>
+    @endif
+    @if(stripslashes($result->rooms_description->local_jewish_life))
+    <p><strong>{{ trans('messages.lys.local_jewish_life') }}</strong><br>{{ stripslashes($result->rooms_description->local_jewish_life) }}</p>
+    @endif
   </div>
 </div>
+
+@endif
 
 <hr>
 
@@ -1564,7 +1568,7 @@
 <div class="panel-overlay-top-left text-contrast wl-modal-listing-tabbed">
 <div class="va-container media">
 <span class="pull-left host-profile-img media-photo media-round space-2" style="width:67px; height:67px; background-image:url({{ $result->users->profile_picture->src }})"></span>
-<div class="media-body va-middle">
+<div class="media-body va-middle wishlist-popup-listing-title">
 <div class="h4 space-1 wl-modal-listing__name">{{ $result->name }}</div>
 <div class="wl-modal-listing__rating-container">
 <span class="hide">
@@ -1627,7 +1631,7 @@
 <div class="col-lg-5 wl-modal__col">
 <div class="panel-header panel-light wl-modal__header">
 <div class="va-container va-container-h va-container-v">
-<div class="va-middle">
+<div class="va-middle clearfix">
 <div class="pull-left h3">{{ trans('messages.wishlist.save_to_wishlist') }}</div>
 <a class="modal-close wl-modal__modal-close">
 </a>
@@ -1638,13 +1642,11 @@
 <div class="panel-body panel-body-scroll wl-modal-wishlists__body wl-modal-wishlists__body--scroll">
 <div class="text-lead text-gray space-4 hide">{{ trans('messages.wishlist.save_fav_list') }}</div>
 <div class="wl-modal-wishlist-row clickable" ng-repeat="item in wishlist_list" ng-class="(item.saved_id) ? 'text-dark-gray' : 'text-gray'" ng-click="wishlist_row_select($index)" id="wishlist_row_@{{ $index }}">
-<div class="va-container va-container-v va-container-h">
-<div class="va-middle text-left text-lead wl-modal-wishlist-row__name">
-<span> </span>
+<div class="va-container va-container-v va-container-h clearfix">
+<div class="va-middle text-left text-lead wl-modal-wishlist-row__name pull-left">
 <span>@{{ item.name }}</span>
-<span> </span>
 </div>
-<div class="va-middle text-right">
+<div class="va-middle text-right pull-right">
 <div class="h3 wl-modal-wishlist-row__icons">
 <i class="icon icon-heart-alt icon-light-gray wl-modal-wishlist-row__icon-heart-alt" ng-hide="item.saved_id"></i>
 <i class="icon icon-heart icon-rausch wl-modal-wishlist-row__icon-heart" ng-show="item.saved_id"></i>

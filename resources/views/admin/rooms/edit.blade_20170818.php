@@ -40,7 +40,7 @@
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_7" {{ (@$rooms_status->pricing != 1) ? 'disabled' : '' }} ng-click="step(7)">Availability</a>
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_8" {{ (@$rooms_status->calendar != 1) ? 'disabled' : '' }} ng-click="step(8)">Policies</a>
                           <a href="javascript:void(0);" class="step-btn btn btn-warning mt10" id="btn_9" {{ (@$rooms_status->terms != 1) ? 'disabled' : '' }} ng-click="step(9)">Select User</a>
-                        </div>
+                      </div>
                         <div id="sf1" class="frm">
                             {{-- <div class="box-header with-border">
                                 <a href="javascript:void(0);" class="btn btn-warning mt10" onclick="step(1)" disabled>Overview</a>
@@ -670,16 +670,16 @@ if ($i == 2 || $i == 7) {
                                                             <select name="currency_code" id="price-select-currency_code" data-saving="base_price">
 
                                                                 @foreach($get_currency as $val)
-                                                                    @if($val->code == 'USD' || $val->code == 'ILS' || $val->code == 'AUD' || $val->code == 'GBP' || $val->code == 'EUR' || $val->code == 'CAD')
-                                                                        <option value="{{$val->code}}"<?php echo $result->rooms_price->currency_code == $val->code ? ' selected="selected"' : '' ?>>{{$val->code}} - {{$val->name}}</option>
+                                                                    @if($val->code == 'USD' || $val->code == 'AUD' || $val->code == 'GBP' || $val->code == 'EUR' || $val->code == 'CAD')
+                                                                        <option value="{{$val->code}}">{{$val->code}} - {{$val->name}}</option>
                                                                     @endif
                                                                 @endforeach
 
                                                                 <option disabled="">------------------------------------</option>
 
                                                                 @foreach($get_currency as $val)
-                                                                    @if($val->code != 'USD' && $val->code != 'ILS' && $val->code != 'AUD' && $val->code != 'GBP' && $val->code != 'EUR' && $val->code != 'CAD')
-                                                                        <option value="{{$val->code}}"<?php echo $result->rooms_price->currency_code == $val->code ? ' selected="selected"' : '' ?>>{{$val->code}} - {{$val->name}}</option>
+                                                                    @if($val->code != 'USD' && $val->code != 'AUD' && $val->code != 'GBP' && $val->code != 'EUR' && $val->code != 'CAD')
+                                                                        <option value="{{$val->code}}">{{$val->code}} - {{$val->name}}</option>
                                                                     @endif
                                                                 @endforeach
 
@@ -699,36 +699,6 @@ if ($i == 2 || $i == 7) {
 
                                         </div>
                                     </div>
-
-                                    <hr>
-
-                    <div class="list_inner_frame clearfix" style="margin-bottom:10px;">
-                        <p>Your listing accommodates <b>{{ @$result->accommodates }}</b> guests.</p>
-                        <div class="row row-table row-space-1" ng-init="base_guests = {{ $result->rooms_price->guests ? $result->rooms_price->guests : $result->accommodates }}; additional_guest_price = {{ $result->rooms_price->original_additional_guest ? $result->rooms_price->original_additional_guest : '\'\'' }}; accommodates = {{ $result->accommodates }}">
-                            <div class="col-4">
-                                <label class="label-large">Base rate includes</label>
-                                <select name="guests" class="additional_guest_pricing" data-saving="base_price" ng-model="base_guests">
-                                    @for ( $i = 1; $i <= $result->accommodates; $i++ )
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <label class="label-large">Additional charge / guest</label>
-                                <div class="input-addon">
-                                    <span class="input-prefix">{{ $result->rooms_price->currency->original_symbol }}</span>
-                                    <input type="number"
-                                        class="additional_guest_pricing"
-                                        name="additional_guest"
-                                        class="input-stem input-large autosubmit-text"
-                                        data-saving="base_price"
-                                        ng-model="additional_guest_price"
-                                        ng-disabled="base_guests == accommodates">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                                 </div>
 
 
@@ -1028,19 +998,8 @@ if ($i == 2 || $i == 7) {
                                                     </div>
                                                 </div>
 
+
                                             </div>
-
-                                            <hr>
-
-                                            <div class="js-section list_inner_frame">
-                                                <div class="row row-space-2">
-                                                    <div class="col-4">
-                                                        <label class="label-large">Minimum stay (nights)</label>
-                                                        <input type="number" min="1" name="minimum_stay" value="{{ $rooms_policies ? $rooms_policies->minimum_stay : 1 }}" class="input-large" data-saving="basics2">
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         </form>
                                     </div>
                                 </div>
@@ -1377,11 +1336,8 @@ if ($i == 2 || $i == 7) {
                                                     <div class="col-4">
                                                         <label class="label-large">User Name</label>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-8">
                                                         {!! Form::select('user_id', $users_list, $result->user_id, ['class' => 'form-control', 'id' => 'basics-select-user_id', 'placeholder' => 'Select...', 'data-saving' => 'basics9']) !!}
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <a href="#" class="btn btn-link" id="user_details_link" target="_blank">User Details</a>
                                                     </div>
                                                 </div>
                                             </div>

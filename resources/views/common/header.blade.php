@@ -178,13 +178,13 @@
                 <div class="col-sm-6">
                   <label class="checkin">
                     <span class="screen-reader-only">{{ trans('messages.home.checkin') }}</span>
-                    <input type="text" name="checkin" id="modal_checkin" class="checkin input-large ui-datepicker-target" placeholder="{{ trans('messages.home.checkin') }}" value="{{ @$checkin }}">
+                    <input type="text" name="checkin" id="modal_checkin" class="checkin input-large ui-datepicker-target" placeholder="{{ trans('messages.home.checkin') }}" value="{{ @$checkin }}" readonly="readonly">
                   </label>
                 </div>
                 <div class="col-sm-6">
                   <label class="checkout">
                     <span class="screen-reader-only">{{ trans('messages.home.checkout') }}</span>
-                    <input type="text" name="checkout" id="modal_checkout" class="checkout input-large ui-datepicker-target" placeholder="{{ trans('messages.home.checkout') }}" value="{{ @$checkout }}">
+                    <input type="text" name="checkout" id="modal_checkout" class="checkout input-large ui-datepicker-target" placeholder="{{ trans('messages.home.checkout') }}" value="{{ @$checkout }}" readonly="readonly">
                   </label>
                 </div>
               </div>
@@ -241,36 +241,38 @@
 </div>
 </header>
 
-
-    <header class="regular-header clearfix hide-sm" id="old-header" role="banner">
+<header class="regular-header clearfix hide-sm" id="old-header" role="banner">
   <a aria-label="Homepage" href="{{ url() }}" class="header-belo pull-left rtl-right {{ (!isset($exception)) ? (Route::current()->uri() == '/' ? 'home-logo' : '') : '' }}" style="{{ (!isset($exception)) ? (Route::current()->uri() == '/' ? $home_logo_style : $logo_style) : $logo_style }}">
     <span class="screen-reader-only">
       {{ $site_name }}
     </span>
   </a>
-<!-- hide-sm -->
-@if(Request::segment(1) != 'help')
-  <ul class="nav pull-left rtl-right list-unstyled search-form-container" id="search-form-header">
-  <li id="header-search" class="search-bar-wrapper pull-left medium-right-margin">
-  <form action="{{ url() }}/s" class="search-form">
-  <div class="search-bar">
-  <div id="icon-drawer-search-icon" data-reactid=".0.0.3"><svg viewBox="0 0 24 24" style="fill:currentColor;height:1em;width:1em;display:block;" data-reactid=".0.0.3.0"><path d="M23.53 22.47l-6.807-6.808A9.455 9.455 0 0 0 19 9.5 9.5 9.5 0 1 0 9.5 19c2.353 0 4.502-.86 6.162-2.277l6.808 6.807a.75.75 0 0 0 1.06-1.06zM9.5 17.5a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" data-reactid=".0.0.3.0.0"></path></svg></div>
-  <label class="screen-reader-only" for="header-search-form">{{ trans('messages.header.where_are_you_going') }}</label>
-  <input type="text" placeholder="{{ trans('messages.header.where_are_you_going') }}" autocomplete="off" name="location" id="header-search-form" class="location" value="">
-  </div>
-  <div id="header-search-settings" class="panel search-settings header-menu">
-  <div class="panel-body clearfix basic-settings">
-  <div class="setting checkin">
-  <label for="header-search-checkin" class="field-label">
-  <strong>{{ trans('messages.home.checkin') }}</strong>
-  </label>
-  <input type="text" id="header-search-checkin" data-field-name="check_in_dates" name="checkin" class="checkin ui-datepicker-target" placeholder="{{ trans('messages.rooms.dd-mm-yyyy') }}"></div>
 
-  <div class="setting checkout">
-  <label for="header-search-checkout" class="field-label">
-  <strong>{{ trans('messages.home.checkout') }}</strong>
-  </label>
-  <input type="text" id="header-search-checkout" data-field-name="check_out_dates" class="checkout ui-datepicker-target" name="checkout" placeholder="{{ trans('messages.rooms.dd-mm-yyyy') }}"></div>
+  <!-- hide-sm -->
+  @if(Request::segment(1) != 'help')
+    <ul class="nav pull-left rtl-right list-unstyled search-form-container" id="search-form-header">
+      <li id="header-search" class="search-bar-wrapper pull-left medium-right-margin">
+        <form action="{{ url() }}/s" class="search-form">
+          <div class="search-bar">
+            <div id="icon-drawer-search-icon" data-reactid=".0.0.3"><svg viewBox="0 0 24 24" style="fill:currentColor;height:1em;width:1em;display:block;" data-reactid=".0.0.3.0"><path d="M23.53 22.47l-6.807-6.808A9.455 9.455 0 0 0 19 9.5 9.5 9.5 0 1 0 9.5 19c2.353 0 4.502-.86 6.162-2.277l6.808 6.807a.75.75 0 0 0 1.06-1.06zM9.5 17.5a8 8 0 1 1 0-16 8 8 0 0 1 0 16z" data-reactid=".0.0.3.0.0"></path></svg></div>
+            <label class="screen-reader-only" for="header-search-form">{{ trans('messages.header.where_are_you_going') }}</label>
+            <input type="text" placeholder="{{ trans('messages.header.where_are_you_going') }}" autocomplete="off" name="location" id="header-search-form" class="location" value="">
+          </div>
+          <div id="header-search-settings" class="panel search-settings header-menu">
+            <div class="panel-body clearfix basic-settings">
+              <div class="setting checkin">
+                <label for="header-search-checkin" class="field-label">
+                  <strong>{{ trans('messages.home.checkin') }}</strong>
+                </label>
+                <input type="text" id="header-search-checkin" data-field-name="check_in_dates" name="checkin" class="checkin ui-datepicker-target" placeholder="{{ trans('messages.rooms.dd-mm-yyyy') }}" readonly>
+              </div>
+
+              <div class="setting checkout">
+                <label for="header-search-checkout" class="field-label">
+                  <strong>{{ trans('messages.home.checkout') }}</strong>
+                </label>
+                <input type="text" id="header-search-checkout" data-field-name="check_out_dates" class="checkout ui-datepicker-target" name="checkout" placeholder="{{ trans('messages.rooms.dd-mm-yyyy') }}" readonly>
+              </div>
 
   <div class="setting guests">
   <label for="header-search-guests" class="field-label">
@@ -355,17 +357,17 @@
   @endif
 @if(!Auth::user()->check())
   <ul class="nav pull-right logged-out list-unstyled medium-right-margin">
-  <li id="sign_up" class="pull-left medium-right-margin header_item">
-    <a data-signup-modal="" data-header-view="true" href="{{ url('signup_login') }}" data-redirect="" class="link-reset">
-      {{ trans('messages.header.signup') }}
-    </a>
-  </li>
-  <li id="login" class="pull-left header_item">
-    <a data-login-modal="" href="{{ url('login') }}" data-redirect="" class="link-reset">
-      {{ trans('messages.header.login') }}
-    </a>
-  </li>
-</ul>
+    <li id="sign_up" class="pull-left medium-right-margin header_item">
+      <a data-signup-modal="" data-header-view="true" href="{{ url('signup_login') }}" data-redirect="" class="link-reset">
+        {{ trans('messages.header.signup') }}
+      </a>
+    </li>
+    <li id="login" class="pull-left header_item">
+      <a data-login-modal="" href="{{ url('login') }}" data-redirect="" class="link-reset">
+        {{ trans('messages.header.login') }}
+      </a>
+    </li>
+  </ul>
 @endif
 
 @if(Auth::user()->check())
@@ -373,19 +375,23 @@
  <ul class="nav pull-right list-unstyled" role="navigation">
   <li class="user-item pull-left medium-right-margin dropdown-trigger header_item">
     <a class="link-reset header-avatar-trigger" id="header-avatar-trigger" href="{{ url('login') }}">
-
       <span class="value_name">
         {{ Auth::user()->user()->first_name }}
       </span>
-	  <div class="media-photo media-round user-profile-image" style="background-image: url('{{ Auth::user()->user()->profile_picture->header_src }}')" ></div>
+	    <div class="media-photo media-round user-profile-image" style="background-image: url('{{ Auth::user()->user()->profile_picture->header_src }}')" ></div>
     </a>
     <ul class="tooltip tooltip-top-right dropdown-menu list-unstyled header-dropdown">
-		<li>
+      <li>
+        <a href="{{ url('dashboard') }}" rel="nofollow" class="no-crawl link-reset menu-item item-user-edit">
+         {{ trans('messages.header.dashboard') }}
+        </a>
+      </li>
+		  <li>
         <a href="{{ url('users/edit') }}" rel="nofollow" class="no-crawl link-reset menu-item item-user-edit">
          {{ trans('messages.header.edit_profile') }}
         </a>
       </li>
-	  <li>
+	    <li>
         <a href="{{ url('invite') }}" class="no-crawl link-reset menu-item item-invite-friends">
           {{ trans('messages.referrals.invite') }}
           <span class="label label-pink label-new">
@@ -397,7 +403,7 @@
           {{ trans('messages.header.payment_accounts') }}
         </a>
       </li>
-	   <li class="edit-password">
+	    <li class="edit-password">
         <a href="{{ url('users/security') }}" rel="nofollow" class="no-crawl link-reset menu-item item-edit-password">
           {{ trans('messages.header.edit_password') }}
         </a>
@@ -407,7 +413,6 @@
           {{ trans('messages.header.help') }}
         </a>
       </li>
-
       <li>
         <a href="{{ url('logout') }}" rel="nofollow" class="no-crawl link-reset menu-item header-logout">
           {{ trans('messages.header.logout') }}
@@ -539,12 +544,11 @@ if ($message['host_check'] == 1 && $message['reservation']['status'] == 'Pending
 </ul>
 @endif
 <ul class="nav pull-right last_menu list-unstyled">
-
-    <li class="list-your-space pull-right header_item">
-        <a id="list-your-space" class="btn btn-special list-your-space-btn" href="{{ url('rooms/new') }}">
-          {{ trans('messages.header.list_your_space') }}
-        </a>
-    </li>
+  <li class="list-your-space pull-right header_item">
+      <a id="list-your-space" class="list-your-space-btn" href="{{ url('rooms/new') }}">
+        {{ trans('messages.header.list_your_space') }}
+      </a>
+  </li>
 </ul>
 
 

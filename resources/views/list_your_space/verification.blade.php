@@ -38,6 +38,7 @@
                 <li class="space-2">
                   <input type="file" name="profile_pic_uploader" id="profile_pic_uploader" data-user_id="{{ Auth::user()->user()->id }}">
                   <a href="javascript:void(0)" id="trigger_profile_uploader">{{ trans('messages.dashboard.add_profile_photo') }}</a>
+                  <span></span>
                 </li>
               @endif
 

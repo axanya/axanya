@@ -22,7 +22,7 @@
                    id="href_description">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.overview') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.overview') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -53,7 +53,7 @@
                    id="href_basics">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.the_space') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.the_space') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -81,7 +81,7 @@
                    id="href_photos">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.photos') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.photos') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -113,7 +113,7 @@
                    id="href_location">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.your_trips.location') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.your_trips.location') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -144,7 +144,7 @@
                    id="href_amenities">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.amentities_accomodations') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.amentities_accomodations') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -178,7 +178,7 @@
                    id="href_pricing">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.fees_discount') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.fees_discount') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -209,7 +209,7 @@
                    class="calendar-popup" id="href_calendar">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.rooms.availability') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.rooms.availability') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -239,7 +239,7 @@
                 <a href="{{ ($room_step != 'terms') ? url('manage-listing/'.$room_id.'/terms') : '' }}" id="href_terms">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.policies') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.policies') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -270,7 +270,7 @@
                    id="href_verification">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <div class="text-wrap va-middle">
+                            <div class="text-wrap display-inline-middle">
                                 <span class="nav-item-name">{{ trans('messages.lys.verification') }}</span>
                             </div>
                             <div class="instant-book-status pull-right">
@@ -303,7 +303,7 @@
                    id="href_referral">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <div class="text-wrap va-middle">
+                            <div class="text-wrap display-inline-middle">
                                 <span class="nav-item-name">{{ trans('messages.lys.referral_code') }}</span>
                             </div>
                             <div class="instant-book-status pull-right">
@@ -332,7 +332,7 @@
                    id="href_booking">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <div class="text-wrap va-middle">
+                            <div class="text-wrap display-inline-middle">
                                 <span class="nav-item-name">{{ trans('messages.lys.booking') }}</span>
                             </div>
                             <div class="instant-book-status pull-right">
@@ -361,7 +361,7 @@
                    id="href_details">
                     <div class="row nav-item">
                         <div class="col-sm-12 va-container">
-                            <span class="va-middle">{{ trans('messages.lys.detailed_description') }}</span>
+                            <span class="display-inline-middle">{{ trans('messages.lys.detailed_description') }}</span>
 
                             <div class="instant-book-status pull-right">
                                 <div class="instant-book-status__on hide">
@@ -388,7 +388,7 @@
   <a href="{{ ($room_step != 'guidebook') ? url('manage-listing/'.$room_id.'/guidebook') : '' }}" id="href_guidebook">
     <div class="row nav-item">
       <div class="col-sm-12 va-container">
-        <span class="va-middle">{{ trans('messages.lys.guidebook') }}</span>
+        <span class="display-inline-middle">{{ trans('messages.lys.guidebook') }}</span>
 
           <div class="instant-book-status pull-right">
             <div class="instant-book-status__on hide">
@@ -416,7 +416,7 @@
   <a href="{{ ($room_step != 'calendar') ? url('manage-listing/'.$room_id.'/calendar') : '' }}" class="inline-calender" id="href_calendar">
     <div class="row nav-item">
       <div class="col-sm-12 va-container">
-        <span class="va-middle">{{ trans('messages.lys.calendar') }}</span>
+        <span class="display-inline-middle">{{ trans('messages.lys.calendar') }}</span>
 
           <div class="instant-book-status pull-right">
             <div class="instant-book-status__on hide">

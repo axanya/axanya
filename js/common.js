@@ -91,7 +91,7 @@ function homeAutocomplete()
     if(document.getElementById('location'))
     {
         home_autocomplete= new google.maps.places.Autocomplete(document.getElementById('location'));
-        home_autocomplete.addListener('place_changed',trigger_checkin);
+        home_autocomplete.addListener('place_changed', trigger_checkin);
     }
     if(document.getElementById('mob-search-location'))
     {
@@ -121,7 +121,7 @@ function headerAutocomplete()
         header_autocomplete= new google.maps.places.Autocomplete(document.getElementById('header-search-form'));
         google.maps.event.addListener(header_autocomplete, 'place_changed', function() {
             $('#header-search-settings').addClass('shown');
-            $("#header-search-checkin").datepicker("show");
+            $("#header-search-checkin").trigger('focus');
             // $('#header-search-form').closest('form').trigger('submit');
         });
     }
@@ -144,6 +144,60 @@ function headerAutocomplete()
     }*/
 }
 
+var $daterange = $('input#daterange');
+
+$daterange.daterangepicker({
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    "autoUpdateInput": false,
+    "autoApply": true,
+    "minDate": new Date()
+}, function (start, end, label) {
+    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+});
+
+$daterange.on('apply.daterangepicker', function (ev, picker) {
+    // $(this).val(picker.startDate.format('DD-MM-YYYY') + '\u00A0\u00A0\u2013\u00A0\u00A0' + picker.endDate.format('DD-MM-YYYY'));
+    $('input[name="checkin"]').val(picker.startDate.format('DD-MM-YYYY'));
+    $('input[name="checkout"]').val(picker.endDate.format('DD-MM-YYYY'));
+    $(this).val(picker.startDate.format('MMM DD') + '\u00A0\u00A0\u2013\u00A0\u00A0' + picker.endDate.format('MMM DD'));
+});
+
+$daterange.on('cancel.daterangepicker', function (ev, picker) {
+    $(this).val('');
+});
+
+var $headercheckin = $('#header-search-checkin');
+var $headercheckout = $('#header-search-checkout');
+
+$headercheckout.on('focus', function(event) {
+    $headercheckin.trigger('focus');
+});
+
+$headercheckin.daterangepicker({
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    "autoUpdateInput": false,
+    "autoApply": true,
+    "minDate": new Date()
+}, function (start, end, label) {
+    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+});
+
+$headercheckin.on('apply.daterangepicker', function (ev, picker) {
+    // $(this).val(picker.startDate.format('DD-MM-YYYY') + '\u00A0\u00A0\u2013\u00A0\u00A0' + picker.endDate.format('DD-MM-YYYY'));
+    $headercheckin.val(picker.startDate.format('DD-MM-YYYY'));
+    $headercheckout.val(picker.endDate.format('DD-MM-YYYY'));
+});
+
+$headercheckin.on('cancel.daterangepicker', function (ev, picker) {
+    $headercheckin.val('');
+    $headercheckout.val('');
+});
+
+/*
 $("#header-search-checkin").datepicker({
     dateFormat: "dd-mm-yy",
     minDate: 0,
@@ -172,6 +226,7 @@ $('#header-search-checkout').datepicker({
         }
     }
 });
+*/
 
 $("#modal_checkin").datepicker({
     dateFormat: "dd-mm-yy",
@@ -273,9 +328,9 @@ $('#header-search-settings').click(function(event){
     event.stopPropagation();
 });
 
-function trigger_checkin()
-{
-	$("#checkin").datepicker("show");
+function trigger_checkin() {
+    // $("#checkin").datepicker("show");
+    $('input#daterange').trigger('focus');
 }
 
 $("#checkin").datepicker({
@@ -799,24 +854,21 @@ $(document).ready(function()
 		$( this ).find( ".tooltip" ).remove();
 	  });
 
-
-		var stickyNavTop = 350;
-		 
-		var stickyNav = function(){
-		var scrollTop = $(window).scrollTop();
-		      
-		if (scrollTop > stickyNavTop) {
+    var stickyNavTop = 350;
+	var stickyNav = function() {
+        var scrollTop = $(window).scrollTop();
+        var winWidth = $(window).width();   
+		if (scrollTop > stickyNavTop && winWidth > 480) {
 		    $('#header').addClass('fixed_header');
 		} else {
 		    $('#header').removeClass('fixed_header');
 		}
-		};
+	};
 		 
-		stickyNav();
-		 
-		$(window).scroll(function() {
-		  stickyNav();
-		});
+	stickyNav();
+	$(window).scroll(function() {
+	    stickyNav();
+	});
 
 });
 

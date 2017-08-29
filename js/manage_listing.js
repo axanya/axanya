@@ -110,19 +110,19 @@ $(document).on('change', '[id^="basics-select-"], [id^="select-"]', function() {
 							bed_option = total_bedrooms[i-1].bed_options;
 						}
 	                    var html = '<div class = "row bedroom_child" id = "bedroom_child">'
-	                        + '<div class="col-3">'
+							+ '<div class="col-md-3 mobile-block">'
 	                            + '<label class="label-large" id = "bedroom_child_label">' + trans_lys.bedroom + ' ' + i + '</label>'
 	                        + '</div>';
 	                        if(bed_option != ''){
-	                        	html +=  '<div class="col-5 label-large">'
+								html +=  '<div class="col-md-5 label-large mobile-block">'
 				                        + '<span class ="">' + bed_option + '</span>'
 				                        + '</div>'
-			                        	+'<div class="col-4 label-large">'
+										+'<div class="col-md-4 label-large mobile-block">'
 			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">' + trans_lys.modify + '<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
 			    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
 			                        	+ '</div>';
 	                        }else{
-								html +=  '<div class="col-4 label-large">'
+								html +=  '<div class="col-md-4 label-large mobile-block">'
 			                            + '<a id = "bedroom_child_add_beds" class ="a_text bedroom_child_add_beds">' + trans_lys.add_beds + '<span style="display:none" class="data_index" data_index=' + i + ' data_id=' + total_bedrooms[i-1].bedroom_id + ' ></span>\n\
 			    <span style="display:none" class="bedroom_type" bedroom_type=' + "Bedroom" + '></span></a>'
 			                        	+ '</div>';
@@ -228,6 +228,25 @@ $(document).on('change', '[name="default_availability"]', function() {
 	 		$('.'+saving_class).fadeOut();
 	 		$('#steps_count').text(response.data.steps_count);
 	 		$scope.steps_count = response.data.steps_count;
+		}
+	});
+});
+
+
+$(document).on('change', '[name="minimum_stay"]', function(event) {
+	var $this = $(this);
+	var data = {
+		'minimum_stay': $this.val()
+	};
+	var saving_class = $this.attr('data-saving');
+	$('.' + saving_class + ' h5').text('Saving...');
+	$('.' + saving_class).fadeIn();
+	$http.post('update_rooms_policies', { data: JSON.stringify(data) }).then(function (response) {
+		if (response.data.success == 'true') {
+			$('.' + saving_class + ' h5').text('Saved!');
+			$('.' + saving_class).fadeOut();
+			$('#steps_count').text(response.data.steps_count);
+			$scope.steps_count = response.data.steps_count;
 		}
 	});
 });
@@ -2059,11 +2078,80 @@ function changeFormat(date) {
 	return split_date[0] + '-' + (split_date[1].length < 2 ? '0' + split_date[1] : split_date[1]) + '-' + (split_date[2].length < 2 ? '0' + split_date[2] : split_date[2]);
 }
 
+	/**
+	 * Calendar date selection NEW
+	 */
+	var isDragging = false;
+	var startIndex = 0, endIndex = 0;
+	$(document).on('click', '.available-date', function(event) {
+		var $this = $(this);
+		if(isDragging) {
+			// Clicked on last date
+			$this.addClass('last-day-selected');
+			endIndex = $this.index();
+			isDragging = false;
+			if(endIndex >= startIndex) {
+				selectRange(startIndex, endIndex);
+				finalizeRangeSelection();
+			} else {
+				$('#calendar_edit_cancel').trigger('click');
+			}
+		} else {
+			// Clicked on first date
+			$('#calendar_edit_cancel').trigger('click');
+			$('.available-date')
+				.removeClass('first-day-selected')
+				.removeClass('last-day-selected')
+				.removeClass('selected');
+			$this.addClass('first-day-selected');
+			startIndex = $this.index();
+			isDragging = true;
+		}
+	});
+
+	$(document).on('mouseover', '.tile', function(event) {
+		if(isDragging) {
+			var index = $(this).index();
+			if(index > startIndex) {
+				selectRange(startIndex, index - 1);
+			}
+		}
+	});
+
+	function finalizeRangeSelection() {
+		if ($('li.selected').length > 0) {
+			if ($('li.selected.bottom-green').length === $('li.selected').length) {
+				// all available
+				$scope.$apply(function () {
+					$scope.available_status = 'available';
+				});
+			} else if ($('li.selected:not(.bottom-green)').length === $('li.selected').length) {
+				// all blocked
+				$scope.$apply(function () {
+					$scope.available_status = 'not available';
+				});
+			} else {
+				// mixed selection
+				$scope.$apply(function () {
+					$scope.available_status = 'na';
+				});
+			}
+		}
+		calendar_edit_form();
+	}
+
+	function selectRange(startIndex, endIndex) {
+		$('#calendar_selection ul > li.tile').removeClass('selected');
+		for(var i = startIndex; i <= endIndex; i++) {
+			$('#calendar_selection ul > li.tile').eq(i).addClass('selected');
+		}
+	}
+
 
 
  /*Start - Calendar Date Selection*/
 
-$(document).on('click', '.available-date', function() {
+$(document).on('click', '.available-date1', function() {
 	if($(this).hasClass('bottom-green')){
 		//alert('available')
 		$scope.$apply( function() {
@@ -2155,7 +2243,7 @@ $(document).on('mousedown', '.tile-selection-handle', function()
 
 });
 
-$(document).on('mouseup', '.available-date', function()
+$(document).on('mouseup', '.available-date1', function()
 {
 	//alert('mouseup');
 	calendar_edit_form();
@@ -2248,7 +2336,7 @@ $(document).on('mouseup', '.available-date', function()
 var oldx = 0;
 var oldy = 0;
 
-$(document).on('mouseover', '.tile', function(e)
+$(document).on('mouseover', '.tile1', function(e)
 {
 
 	if(e.pageX > oldx && direction == 'right')
@@ -2519,12 +2607,11 @@ $(document).on('mouseover', '.tile', function(e)
 });
 
 
-$(document).on('click', '.cal-close', function()
-{
-	$('.calendar-sub-modal').attr('aria-hidden','true');
-	$('.calendar-sub-modal').addClass('hide');
-	$('#custom_calendar').hide();
-
+$(document).on('click', '.cal-close', function() {
+	$('#calendar_edit_cancel').trigger('click');
+	// $('.calendar-sub-modal').attr('aria-hidden','true');
+	// $('.calendar-sub-modal').addClass('hide');
+	// $('#custom_calendar').hide();
 });
 
 function calendar_edit_form() {
@@ -2826,6 +2913,7 @@ $(document).on('click', '#trigger_profile_uploader', function(e) {
 				try {
 					var response = JSON.parse(xhr.response);
 					if(response.success) {
+						$('#trigger_profile_uploader').parent().find('span').html('');
 						window.location.reload(true);
 					} else {
 						alert(response.error);
@@ -2837,6 +2925,7 @@ $(document).on('click', '#trigger_profile_uploader', function(e) {
 		};
 		xhr.upload.addEventListener('progress', function(e) {
 			var percent = Math.round(e.loaded / e.total * 100);
+			$('#trigger_profile_uploader').parent().find('span').html('Uploading... ' + percent + '%');
 			console.log(percent);
 		}, false);
 		xhr.open('POST', '/ajax_upload_profile_image');

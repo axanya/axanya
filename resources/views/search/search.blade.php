@@ -1,4 +1,8 @@
 
+<script type="text/javascript">
+  window.trans_search = <?php echo json_encode( \Lang::get('messages.search') ); ?>
+</script>
+
 <style type="text/css">
    .labels {
      color: red;
@@ -60,7 +64,7 @@ var geocode = <?php echo $geocode; ?>;
               <label for="guest-select" class="screen-reader-only">
                 {{ trans('messages.home.no_of_guests') }}
               </label>
-              <select  ng-model="guests" class="guest-select" id="guest-select" data-prefill="" ng-change="search_result();" ng-init="guests = '{{ $guest }}'">
+              <select  ng-model="guests" class="guest-select" id="guest-select" data-prefill="" ng-change="search_result();" ng-init="guests = '{{ $guests }}'">
               <option value="">{{ trans_choice('messages.home.guest',1) }}</option>
               @for($i=1;$i<=16;$i++)
                 <option value="{{ $i }}"> {{ ($i == '16') ? $i.'+ '.trans_choice('messages.home.guest',$i) : $i.' '.trans_choice('messages.home.guest',$i) }} </option>
@@ -89,8 +93,6 @@ var geocode = <?php echo $geocode; ?>;
           {{ trans('messages.lys.room_type') }}
           <i class="icon icon-question hide-sm hide-md" id="room-type-tooltip"></i>
         </label>
-
-
       </div>
 
       <div class="col-lg-9">
@@ -533,7 +535,7 @@ var geocode = <?php echo $geocode; ?>;
 <div class="panel-overlay-top-left text-contrast wl-modal-listing-tabbed">
 <div class="va-container media">
 <img class="pull-left host-profile-img media-photo media-round space-2" height="67" width="67" src="">
-<div class="media-body va-middle">
+<div class="media-body va-middle modal-listing-title">
 <div class="h4 space-1 wl-modal-listing__name"></div>
 <div class="wl-modal-listing__rating-container">
 <span class="hide">
@@ -597,7 +599,7 @@ var geocode = <?php echo $geocode; ?>;
 <div class="panel-header panel-light wl-modal__header">
 <div class="va-container va-container-h va-container-v">
 <div class="va-middle">
-<div class="pull-left h3">{{ trans('messages.wishlist.save_to_wishlist') }}</div>
+<div class="pull-left h3" style="margin-top:8px;">{{ trans('messages.wishlist.save_to_wishlist') }}</div>
 <a class="modal-close wl-modal__modal-close">
 </a>
 </div>

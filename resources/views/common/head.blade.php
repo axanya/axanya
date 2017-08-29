@@ -23,6 +23,8 @@
     {!! Html::style('css/airglyphs-ie8.css') !!}
   <![endif]-->
 
+  {!! Html::style('css/daterangepicker.css') !!}
+
   @if (isset($exception))
     @if ($exception->getStatusCode()  == '404')
       {!! Html::style('css/error_pages_pretzel.css') !!}
